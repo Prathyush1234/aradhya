@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>My CSL - Cochin Shipyard Portal</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--sh:url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&w=1000&q=80') center/cover}
+*{box-sizing:border-box;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#021019;color:#f8fafc;min-height:100vh;font-size:12px}
+b,h1,h2{font-weight:800}[onclick],button{cursor:pointer}
+.bgm{position:fixed;inset:0;z-index:-2;background:var(--sh)}
+.bgo{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(2,16,25,.82),rgba(2,14,23,.95))}
+.hr{position:relative;border-radius:20px;overflow:hidden;border:2px solid rgba(34,211,238,.5);min-height:175px;display:flex;flex-direction:column;justify-content:space-between;padding:12px;background:var(--sh)}
+.w{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:10px;padding-bottom:20px}
+.cd,.ca{background:rgba(4,24,36,.92);border:1.5px solid rgba(34,211,238,.32);border-radius:18px;padding:12px}
+.ca{border-color:rgba(251,191,36,.4)}
+.sb{background:#02121c;border:1px solid rgba(34,211,238,.22);border-radius:11px;padding:8px}
+.inp{width:100%;background:#02121c;border:1px solid rgba(34,211,238,.35);border-radius:9px;padding:7px 9px;color:#fff;font-weight:700;margin-top:2px}
+.bt{padding:8px 11px;border-radius:10px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.bC{background:#06b6d4;color:#021019}.bA{background:#f59e0b;color:#021019}.bE{background:#059669;color:#fff}
+.bD{background:#072233;border:1px solid rgba(34,211,238,.35);color:#67e8f9;border-radius:10px;padding:6px 10px;font-weight:700;align-self:flex-start}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:7px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.g7{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.fb{display:flex;align-items:center;justify-content:space-between;gap:6px}.fl{display:flex;align-items:center;gap:8px}
+.qc{display:flex;flex-direction:column;align-items:center;text-align:center;padding:11px 6px;border-radius:15px;background:rgba(4,24,36,.9);border:1.5px solid rgba(34,211,238,.28)}
+.nb{width:100%;padding:9px 11px;border-radius:10px;font-weight:700;color:#e2e8f0;background:#072233;border:1px solid rgba(34,211,238,.2);margin-bottom:5px;display:flex;justify-content:space-between}
+.t0{font-size:10px;text-transform:uppercase;color:#94a3b8;font-weight:700}
+.bd{font-size:10px;font-weight:800;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:rgba(6,182,212,.2);color:#67e8f9}
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+<div class="bgm"></div><div class="bgo"></div>
+<header class="sticky top-0 z-40 bg-[#041824]/95 border-b border-cyan-500/30 px-3.5 py-2">
+<div class="max-w-5xl mx-auto fb">
+<div class="fl"><button onclick="go('menu')" class="bD">☰</button><div onclick="go('front')"><b class="text-base">My CSL</b><div class="text-[9px] text-cyan-400 uppercase">Cochin Shipyard</div></div></div>
+<div class="fl"><button onclick="togL()" id="lBtn" class="bD">🌐 EN</button><div onclick="go('dashboard')" class="w-9 h-9 rounded-full border-2 border-cyan-400 bg-[#041824] flex items-center justify-center"><svg viewBox="0 0 100 100" class="w-7 h-7"><circle cx="50" cy="50" r="45" fill="#031b29" stroke="#f59e0b" stroke-width="6"/><path d="M22 58L50 38L78 58L68 72L32 72Z" fill="#22d3ee"/><rect x="44" y="24" width="12" height="14" fill="#f59e0b"/></svg></div></div>
+</div>
+</header>
+<div id="mMod" class="fixed inset-0 z-50 hidden bg-black/75 flex">
+<div class="w-64 bg-[#041824] border-r border-cyan-500/40 p-4 flex flex-col justify-between h-full">
+<div><div class="fb pb-2 border-b border-cyan-500/20 mb-2"><b class="text-cyan-300">My CSL Menu</b><button onclick="clM()" class="bD">✕</button></div><div id="navL"></div></div>
+<div class="text-slate-400 text-center">Prathyush Mohan K • CSL-7842</div>
+</div>
+<div class="flex-1" onclick="clM()"></div>
+</div>
+<main id="appView" class="flex-1 px-3 py-3 max-w-5xl mx-auto w-full"></main>
+<footer class="mt-auto py-2 bg-[#020d14]/90 border-t border-cyan-500/20 text-center text-slate-400">© 2026 Cochin Shipyard Limited • Govt. of India</footer>
+<script>
+const K='csl_v6',MN='January,February,March,April,May,June,July,August,September,October,November,December'.split(',');
+const QC=[{id:1,n:'Q1',r:'Mar–May 2026',m:[2,3,4]},{id:2,n:'Q2',r:'Jun–Aug 2026',m:[5,6,7]},{id:3,n:'Q3',r:'Sep–Nov 2026',m:[8,9,10]},{id:4,n:'Q4',r:'Dec–Feb 2027',m:[11,0,1]}];
+const fD=s=>s?s.split('-').reverse().join('/'):'',R=n=>'₹'+Number(n||0).toLocaleString('en-IN'),H=id=>document.getElementById(id);
+const st=(l,v,c='text-cyan-300')=>`<div class="sb text-center"><div class="t0">${l}</div><b class="text-sm ${c}">${v}</b></div>`;
+const ip=(id,ph,t='text',v='')=>`<input id="${id}" type="${t}" placeholder="${ph}" value="${v}" class="inp"/>`;
+const rw=(t,s,v,c,fn)=>`<div class="fb p-2 rounded-lg bg-[#041824]"><div><b>${t}</b> <span class="text-slate-400">${s}</span></div><span class="fl"><b class="${c}">${v}</b><button onclick="${fn};sv();render()" class="text-rose-400">✕</button></span></div>`;
+const sc=(t,c,r,f,fn,bt,bc)=>`<div class="sb mb-2"><b class="${c}">${t}</b><div class="space-y-1 my-1.5">${r}</div><div class="g2 mb-1.5">${f}</div><button onclick="${fn}" class="bt ${bc} w-full">➕ ${bt}</button></div>`;
+const pg=(t,s,b)=>`<div class="w"><button onclick="go('dashboard')" class="bD">← Back to Dashboard</button><div class="cd"><div class="mb-2"><h2 class="text-base">${t}</h2><p class="text-cyan-300">${s}</p></div>${b}</div></div>`;
+const nDT=()=>{const n=new Date(),p=v=>String(v).padStart(2,'0'),h=n.getHours();return`${p(n.getDate())}/${p(n.getMonth()+1)}/${n.getFullYear()}, ${p(h%12||12)}:${p(n.getMinutes())} ${h>=12?'PM':'AM'}`};
+let S={view:'front',lang:'en',role:'Permanent Employee',qCap:120,qCyc:3,cM:10,sT:'A2',att:{'2026-11-02':{s:'P',in:'08:15',out:'19:00',ot:2,nt:'Electrical'}},sal:{b:46500,da:42.4,hr:20,pr:32,otR:410,pf:7830},tax:{inc:980000},bks:[{id:1,b:'SBI',ac:'4821',tp:'Savings',bl:84500},{id:2,b:'Federal Bank',ac:'9104',tp:'Salary',bl:42300}],cds:[{id:1,b:'SBI Card ELITE',us:24500,du:'15/11/2026'}],txs:[{id:1,t:'Fuel & Travel',m:'Bank Account',a:1200,dt:'02/11/2026, 08:30 AM'},{id:2,t:'CSL Canteen',m:'UPI / Bank',a:450,dt:'02/11/2026, 01:15 PM'}]};
+try{const sv=localStorage.getItem(K);if(sv)S={...S,...JSON.parse(sv),view:'front'}}catch(e){}
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}},clM=()=>H('mMod').classList.add('hidden');
+function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';sv();render()}
+function go(v,r){if(v==='menu'){H('mMod').classList.remove('hidden');return}clM();if(r)S.role=r;S.view=v;sv();render();window.scrollTo(0,0)}
+function mOT(m){let t=0,p=`2026-${String(m+1).padStart(2,'0')}-`;for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=Number(v.ot)||0;return t}
+function qOT(id){const c=QC.find(x=>x.id===id)||QC[2],m=c.m.map(i=>({i,n:MN[i],ot:mOT(i)})),u=m.reduce((a,b)=>a+b.ot,0);return{c,m,u,r:Math.max(0,S.qCap-u)}}
+
+function vFront(){
+const ml=S.lang==='ml',q=qOT(S.qCyc),cats=[['Permanent Employee','cd','🛡️','Full Access',ml?'സ്ഥിരം ജീവനക്കാരൻ (Permanent)':'Permanent Employee','Attendance, 120h OT Cap, Salary, Tax & Money','bC'],['Contract Employee','ca','👷','Contract Staff',ml?'കരാർ ജീവനക്കാരൻ (Contract)':'Contract Employee','Daily Wage, Gate Attendance, Shift & Spend','bA']];
+return`<div class="w">
+<div class="hr"><div class="absolute inset-0 bg-gradient-to-t from-[#020f18] via-[#031826]/65 to-transparent"></div>
+<div class="relative z-10 fb"><span class="sb text-amber-400"><b>⚓ COCHIN SHIPYARD LTD</b></span><span class="bd">● LIVE 2026</span></div>
+<div class="relative z-10 my-1"><span class="bd">Official Workplace Portal</span><h1 class="text-xl mt-1">${ml?'മൈ സി.എസ്.എൽ പോർട്ടൽ':'My CSL Employee Portal'}</h1><p class="text-cyan-200">${ml?'കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാരുടെ പോർട്ടൽ':'Nighttime Illuminated Shipyard Vessel & Workforce Hub'}</p></div>
+<div class="relative z-10 fb sb"><div class="fl"><div class="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300"><b>PM</b></div><div><div class="t0">Signed in as</div><b>Prathyush Mohan K</b></div></div><button onclick="go('dashboard')" class="bt bC">Dashboard →</button></div>
+</div>
+<div class="text-center"><span class="bd">${ml?'നിങ്ങളുടെ വിഭാഗം തിരഞ്ഞെടുക്കുക':'Select Employee Category'}</span></div>
+${cats.map(([r,cl,ic,b,t,d,bc])=>`<div onclick="go('dashboard','${r}')" class="${cl} fb"><div class="fl"><div class="text-2xl">${ic}</div><div><span class="bd">${b}</span><h2 class="text-sm mt-0.5">${t}</h2><p class="text-slate-300">${d}</p></div></div><span class="bt ${bc}">→</span></div>`).join('')}
+<div class="g3">${st('Logged Q3',q.u+'h OT')}${st('2026 Roster','Shift '+S.sT,'text-amber-300')}${st('Accounts',S.bks.length+' Banks','text-emerald-300')}</div>
+</div>`;
+}
+
+function vDash(){
+const q=qOT(S.qCyc),pct=Math.min(100,Math.round((q.u/S.qCap)*100)),cds=[['attendance','📋','Attendance & OT','Biometric & Share'],['calendar','📅','2026 Calendar','Shift A2 ⇄ B2 & OT'],['salary','💵','Salary Calculator','Basic, DA & OT Pay'],['tax','📊','Income Tax','FY 2026-27 Regime'],['money','🏦','Money Manager','Banks, Cards & Spend'],['front','🚢','Portal Home','Switch Category']];
+return`<div class="w">
+<div class="cd fb"><div class="fl"><div class="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300"><b>PM</b></div><div><span class="bd">${S.role}</span><h2 class="text-sm mt-0.5">Prathyush Mohan K (CSL-7842)</h2></div></div><button onclick="go('front')" class="bD">🏠 Home</button></div>
+<div class="cd">
+<div class="fb mb-2"><div><b class="text-sm">⚡ Quarterly Overtime Cap (${q.c.n})</b><div class="text-cyan-400">${q.c.r} (3 months)</div></div><div class="flex gap-1">${[75,120].map(n=>`<button onclick="S.qCap=${n};sv();render()" class="bt ${S.qCap===n?'bC':'bD'}">${n}h OT</button>`).join('')}</div></div>
+<div class="sb">
+<div class="fb mb-1.5"><span>Used: <b class="text-amber-400">${q.u} hrs</b> / ${S.qCap} hrs</span><span>Remaining: <b class="text-emerald-400">${q.r} hrs</b></span></div>
+<div class="w-full h-2 bg-black rounded-full overflow-hidden mb-2"><div class="h-full bg-cyan-400" style="width:${pct}%"></div></div>
+<div class="g3 text-center">${q.m.map(m=>`<div onclick="S.cM=${m.i};go('attendance')" class="p-1.5 rounded-lg bg-[#041824]"><div class="text-slate-400">${m.n}</div><b class="text-amber-400">${m.ot}h OT</b></div>`).join('')}</div>
+</div>
+<div class="g4 mt-2">${QC.map(c=>`<button onclick="S.qCyc=${c.id};sv();render()" class="py-1 rounded-lg border ${S.qCyc===c.id?'bg-cyan-500/25 border-cyan-400 text-cyan-200':'bg-[#02121c] border-cyan-500/20 text-slate-400'}"><b>${c.n} (${qOT(c.id).u}h)</b></button>`).join('')}</div>
+</div>
+<div class="g2">${cds.map(([v,i,t,s])=>`<div onclick="go('${v}')" class="qc"><div class="text-2xl">${i}</div><b class="text-sm mt-1">${t}</b><div class="text-cyan-300">${s}</div></div>`).join('')}</div>
+</div>`;
+}
+
+function vAtt(){
+const m=S.cM,q=qOT(S.qCyc),p=`2026-${String(m+1).padStart(2,'0')}-`,l=Object.entries(S.att).filter(([k])=>k.startsWith(p)).sort((a,b)=>b[0].localeCompare(a[0]));
+return pg('📋 Attendance & Overtime','Syncs with Calendar, Salary & Quarterly OT Cap',`
+<select onchange="S.cM=Number(this.value);sv();render()" class="inp mb-2">${MN.map((n,i)=>`<option value="${i}" ${i===m?'selected':''}>${n} 2026</option>`).join('')}</select>
+<div class="g3 mb-2">${st('Month OT',mOT(m)+'h','text-amber-400')}${st(q.c.n+' Used',q.u+'/'+S.qCap+'h')}${st('Balance',q.r+'h','text-emerald-400')}</div>
+${sc('➕ Log Attendance & OT','text-cyan-300','',`<div><label class="t0">Date</label>${ip('aDt','','date',`2026-${String(m+1).padStart(2,'0')}-02`)}</div><div><label class="t0">Status</label><select id="aSt" class="inp"><option value="P">Present (P)</option><option value="WO">Weekly Off</option><option value="CL">Leave</option></select></div><div><label class="t0">In</label>${ip('aIn','','time','08:15')}</div><div><label class="t0">Out</label>${ip('aOut','','time','19:00')}</div><div><label class="t0">OT Hrs</label>${ip('aOt','','number','2')}</div><div><label class="t0">Note</label>${ip('aNt','Shift/Vessel')}</div>`,'svA()','Save Attendance & Sync OT','bC')}
+<div class="g2 mb-2"><button onclick="shW()" class="bt bE">📲 WhatsApp Share</button><button onclick="dlO()" class="bt bD w-full">⬇️ Download OT</button></div>
+<div class="space-y-1.5">${l.map(([d,v])=>rw(`${fD(d)} (${v.s})`,`${v.in}–${v.out} ${v.nt||''}`,`${v.ot||0}h OT`,'text-amber-400',`delete S.att['${d}']`)).join('')}</div>`);
+}
+function svA(){const d=H('aDt').value;if(d){S.att[d]={s:H('aSt').value,in:H('aIn').value,out:H('aOut').value,ot:Number(H('aOt').value)||0,nt:H('aNt').value};S.cM=Number(d.split('-')[1])-1;sv();render()}}
+function oTx(){const m=S.cM,q=qOT(S.qCyc),p=`2026-${String(m+1).padStart(2,'0')}-`;let t=`*MY CSL OT REPORT - ${MN[m]} 2026*\nEmp: Prathyush Mohan K\nMonth OT: ${mOT(m)}h | ${q.c.n}: ${q.u}/${S.qCap}h (Bal: ${q.r}h)\n`;Object.entries(S.att).filter(([k])=>k.startsWith(p)).forEach(([d,v])=>{t+=`${fD(d)}: ${v.s} (${v.in}-${v.out}) OT: ${v.ot||0}h\n`});return t}
+function shW(){const t=oTx();if(navigator.share)navigator.share({text:t}).catch(()=>{});else location.href='https://api.whatsapp.com/send?text='+encodeURIComponent(t)}
+function dlO(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([oTx()],{type:'text/plain'}));a.download=`CSL_OT_${MN[S.cM]}_2026.txt`;a.click()}
+
+function vCal(){
+const m=S.cM,dim=new Date(2026,m+1,0).getDate(),fd=new Date(2026,m,1).getDay(),r=['M','M','A','A','N','N','O'];
+let c='<div></div>'.repeat(fd);
+for(let d=1;d<=dim;d++){
+const dt=`2026-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,ot=Number(S.att[dt]?.ot)||0,sh=r[(d+(S.sT==='A2'?0:3))%7];
+c+=`<div onclick="qO('${dt}')" class="p-1 rounded-lg border ${ot?'bg-amber-500/20 border-amber-400':'bg-[#02121c] border-cyan-500/20'} text-center"><b>${d}</b><div class="text-[9px] text-cyan-300">${sh}</div><div class="text-[9px] text-amber-300"><b>${ot?ot+'h':'-'}</b></div></div>`;
+}
+return pg('📅 2026 Shift & OT Calendar','Tap any date to add/edit Overtime hours',`
+<div class="fb mb-2"><button onclick="S.cM=(S.cM+11)%12;sv();render()" class="bD">◀</button><b class="text-sm">${MN[m]} 2026 (${mOT(m)}h OT)</b><button onclick="S.cM=(S.cM+1)%12;sv();render()" class="bD">▶</button><button onclick="S.sT=S.sT==='A2'?'B2':'A2';sv();render()" class="bt bC">Shift ${S.sT}</button></div>
+<div class="g7 text-center text-[10px] text-cyan-400 mb-1">${['SU','MO','TU','WE','TH','FR','SA'].map(d=>`<b>${d}</b>`).join('')}</div>
+<div class="g7">${c}</div>`);
+}
+function qO(d){const v=prompt('OT Hours for '+fD(d)+':',S.att[d]?.ot||0);if(v!==null){S.att[d]={...(S.att[d]||{s:'P',in:'08:15',out:'19:00'}),ot:Number(v)||0};sv();render()}}
+
+function vSal(){
+const s=S.sal,mH=mOT(S.cM),fix=Math.round(s.b*(1+(s.da+s.hr+s.pr)/100)),otP=Math.round(mH*s.otR),gr=fix+otP,net=gr-s.pf;
+return pg('💵 Salary & OT Calculator',`Synced with ${MN[S.cM]} OT (${mH} hrs)`,`
+<div class="g3 mb-2">${st('Gross Pay',R(gr))}${st('OT Pay',R(otP),'text-amber-400')}${st('Net Pay',R(net),'text-emerald-400')}</div>
+<div class="g2">${[['b','Basic Pay (₹)'],['da','DA (%)'],['hr','HRA (%)'],['pr','Perks (%)'],['otR','OT Rate/Hr (₹)'],['pf','Deductions (₹)']].map(([k,l])=>`<div><label class="t0">${l}</label><input type="number" value="${s[k]}" onchange="S.sal.${k}=Number(this.value);sv();render()" class="inp"/></div>`).join('')}</div>`);
+}
+
+function vTax(){
+const inc=Number(S.tax.inc)||0,txb=Math.max(0,inc-75000),tot=txb<=1200000?0:Math.round((txb-1200000)*.15*1.04);
+return pg('📊 Income Tax Calculator','FY 2026-27 New Regime (Zero Tax up to ₹12.75L)',`
+<label class="t0">Annual Gross Income (₹)</label><input type="number" value="${inc}" onchange="S.tax.inc=Number(this.value);sv();render()" class="inp mb-2"/>
+<div class="g3">${st('Taxable',R(txb))}${st('Annual Tax',R(tot),'text-emerald-400')}${st('Monthly TDS',R(Math.round(tot/12)),'text-amber-400')}</div>`);
+}
+
+function vMon(){
+const tB=S.bks.reduce((a,b)=>a+(Number(b.bl)||0),0),tC=S.cds.reduce((a,c)=>a+(Number(c.us)||0),0),tS=S.txs.reduce((a,x)=>a+(Number(x.a)||0),0);
+return pg('🏦 Money Management Hub','Banks, Credit Cards & Spend (DD/MM/YYYY + Time)',`
+<div class="g3 mb-2">${st('Bank Bal',R(tB),'text-emerald-400')}${st('Card Used',R(tC),'text-amber-400')}${st('Spent',R(tS),'text-rose-400')}</div>
+${sc(`🏦 Bank Accounts (${S.bks.length})`,'text-emerald-300',S.bks.map(b=>rw(b.b,`${b.tp} ••${b.ac}`,R(b.bl),'text-emerald-400',`S.bks=S.bks.filter(x=>x.id!==${b.id})`)).join(''),`${ip('bN','Bank Name')}${ip('bA','Last 4 Digits')}<select id="bT" class="inp"><option>Savings</option><option>Salary</option></select>${ip('bB','Balance (₹)','number')}`,'adB()','Add Bank Account','bE')}
+${sc(`💳 Credit Cards (${S.cds.length})`,'text-amber-300',S.cds.map(c=>rw(c.b,'Due: '+c.du,R(c.us),'text-amber-400',`S.cds=S.cds.filter(x=>x.id!==${c.id})`)).join(''),`${ip('cN','Card Name')}${ip('cU','Used (₹)','number')}`,'adC()','Add Credit Card','bA')}
+${sc('🧾 Daily Spend (Day/Month/Year + Time)','text-cyan-300',S.txs.map(x=>rw(x.t,`${x.m} • 🕒 ${x.dt}`,'-'+R(x.a),'text-rose-400',`S.txs=S.txs.filter(i=>i.id!==${x.id})`)).join(''),`${ip('xT','Expense Title')}${ip('xA','Amount (₹)','number')}<select id="xM" class="inp"><option>Bank Account</option><option>Credit Card</option><option>UPI / Cash</option></select>${ip('xD','','text',nDT())}`,'adX()','Add Spend','bC')}`);
+}
+function adB(){const b=H('bN').value.trim();if(b){S.bks.unshift({id:Date.now(),b,ac:H('bA').value||'0000',tp:H('bT').value,bl:Number(H('bB').value)||0});sv();render()}}
+function adC(){const b=H('cN').value.trim();if(b){S.cds.unshift({id:Date.now(),b,us:Number(H('cU').value)||0,du:'15/12/2026'});sv();render()}}
+function adX(){const t=H('xT').value.trim(),a=Number(H('xA').value)||0;if(t&&a){S.txs.unshift({id:Date.now(),t,m:H('xM').value,a,dt:H('xD').value||nDT()});sv();render()}}
+
+function render(){
+const nv=[['front','🏠 Portal Home'],['dashboard','🛡️ Dashboard'],['attendance','📋 Attendance & OT'],['calendar','📅 2026 Calendar'],['salary','💵 Salary Calc'],['tax','📊 Income Tax'],['money','🏦 Money Manager']];
+H('navL').innerHTML=nv.map(([v,l])=>`<button onclick="go('${v}')" class="nb"><span>${l}</span><span>→</span></button>`).join('');
+H('appView').innerHTML=({front:vFront,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
+}
+render();
+</script>
+</body>
+</html>
