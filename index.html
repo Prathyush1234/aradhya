@@ -9,103 +9,166 @@
 *{box-sizing:border-box;font-family:system-ui,sans-serif}
 body{margin:0;background:#020d18;color:#fff;min-height:100vh;font-size:12px}
 b,h1,h2,h3{font-weight:800}button,[onclick]{cursor:pointer}
-.bg1,.bg2{position:fixed;inset:0;z-index:0;pointer-events:none}
-.bg1{background:radial-gradient(circle at 50% 25%,#062d4680,#020d18eb 70%),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900') center 35%/cover}
-.bg2{background:linear-gradient(#020d188c,#03131fbf,#010911f5)}
-.gl,.cd{background:#061825e6;backdrop-filter:blur(14px);border:1px solid #0f354c;border-radius:18px;padding:15px;box-shadow:0 12px 28px #0008}
-.gl{border-radius:26px;padding:18px}.sb{background:#04131e;border:1px solid #0e2c3e;border-radius:14px;padding:10px}
-.cA,.c1{border-radius:16px;padding:13px;border:1px solid #0e2c3e;background:#071825cc}
-.cA{border:2px solid #16b8d8;background:#092a3ae6;box-shadow:0 0 20px #16b8d859}
-.iB,.rB,.bt,.fc{display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.iB{width:44px;height:44px;border-radius:12px}.rB{width:38px;height:38px;border-radius:99px}
-.kB{width:24px;height:3px;background:#f59e0b;border-radius:9px}.kT{font-size:11px;font-weight:700;letter-spacing:.08em;color:#fbbf24}
-.inp{width:100%;background:#04131e;border:1px solid #144254;border-radius:10px;padding:7px 10px;color:#fff;font-weight:700;margin-top:3px;outline:none}
-.bt{padding:9px 13px;border-radius:12px;font-weight:800;gap:6px}.bC{background:#16b8d8;color:#031724;font-weight:800}
-.bD{background:#072233;border:1px solid #22d3ee55;color:#67e8f9;border-radius:12px;padding:6px 12px;font-weight:700}
-.fb,.fl{display:flex;align-items:center;gap:10px}.fb{justify-content:space-between}
-.g2,.g3,.g4,.g7{display:grid;gap:7px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}.g7{grid-template-columns:repeat(7,1fr);gap:4px}
-.t0{font-size:10px;text-transform:uppercase;color:#64748b;font-weight:700}.tx{font-size:10px}.sm{font-size:14px}.bs{font-size:16px}.lg{font-size:18px}
-.m2{margin-bottom:8px}.m3{margin-bottom:12px}.m4{margin-bottom:16px}.rx{border-radius:12px}.rf{border-radius:99px}
-.ts{color:#94a3b8}.tc{color:#22d3ee}.ta{color:#fbbf24}.te{color:#34d399}.fm{font-family:monospace}.tr{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mw{min-width:0}
+i,u,em,s{font-style:normal;text-decoration:none}
+i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em{color:#fbbf24;font-weight:800}s{color:#34d399;font-weight:800}
+.bg1{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(#020d1899,#010911f2),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800') center/cover}
+.cd{background:#061825e6;border:1px solid #0f354c;border-radius:15px;padding:10px;margin-bottom:8px}
+.sb{background:#04131e;border:1px solid #0e2c3e;border-radius:10px;padding:6px}
+.cA{border:2px solid #16b8d8;background:#092a3ae6}
+.bt,.fc,.av{display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av{width:30px;height:30px;border-radius:50px;background:#f59e0b;color:#020617;font-weight:900}
+.inp{width:100%;background:#04131e;border:1px solid #144254;border-radius:8px;padding:5px 8px;color:#fff;font-weight:700;margin-top:2px}
+.bt{padding:5px 9px;border-radius:9px;font-weight:800;gap:4px}.bC{background:#16b8d8;color:#031724;font-weight:800}.bE{background:#059669;color:#fff}.bA{background:#f59e0b33;border:1px solid #f59e0b;color:#fbbf24}
+.bD{background:#072233;border:1px solid #22d3ee55;color:#67e8f9;border-radius:9px;padding:4px 8px;font-weight:700}
+.fb,.fl{display:flex;align-items:center;gap:6px}.fb{justify-content:space-between}.bb{border-bottom:1px solid #0f354c;padding-bottom:5px}.bt1{border-top:1px solid #0f354c;padding-top:5px}
+.g2,.g3,.g4,.g5,.g7{display:grid;gap:5px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g7{grid-template-columns:repeat(7,1fr);gap:3px}
+.tx{font-size:10px}.sm{font-size:13px}.bs{font-size:15px}.lg{font-size:17px}.m2{margin-bottom:7px}.rx{border-radius:8px}.rf{border-radius:50px}
+.ts{color:#94a3b8}.tc{color:#22d3ee}.ta{color:#fbbf24}.te{color:#34d399}.tr0{color:#fb7185}.fm{font-family:monospace}
 </style>
 </head>
 <body class="flex flex-col min-h-screen">
-<div class="bg1"></div><div class="bg2"></div>
-<header class="sticky top-0 z-40 bg-[#041521]/95 border-b border-[#0e2c3e] px-4 py-2">
+<div class="bg1"></div>
+<header class="sticky top-0 z-40 bg-[#041521]/95 border-b border-[#0e2c3e] px-3 py-2">
 <div class="max-w-lg mx-auto fb">
 <div class="fl"><button onclick="H('mMod').classList.toggle('hidden')" class="bD bs">☰</button><b onclick="go('front')" class="lg">My CSL</b></div>
-<div class="fl"><button onclick="togL()" id="lBtn" class="bD rf">🌐 EN</button><div onclick="go('dashboard')" id="hdrLogo" class="p-0.5 rf ring-2 ring-cyan-400/70 bg-[#061522]"></div></div>
+<div class="fl"><button onclick="togL()" id="lBtn" class="bD rf">🌐 EN</button><div onclick="go('dashboard')" id="hdrLogo"></div></div>
 </div>
 <div id="mMod" class="hidden max-w-lg mx-auto pt-2 g2"></div>
 </header>
-<main id="appView" class="relative z-10 flex-1 w-full max-w-lg mx-auto px-4 py-5 flex flex-col justify-between"></main>
-<footer class="relative z-10 mt-auto py-3 bg-[#010911]/90 border-t border-[#0d2638] text-center tx ts">© 2026 Cochin Shipyard Limited • A Govt. of India Undertaking</footer>
+<main id="appView" class="relative z-10 flex-1 w-full max-w-lg mx-auto px-3 py-2"></main>
+<footer class="relative z-10 mt-auto py-2 bg-[#010911] border-t border-[#0d2638] text-center tx ts">
+<div>© 2026 Cochin Shipyard Limited • A Govt. of India Undertaking</div>
+<div id="fNav" class="fc gap-2 flex-wrap mt-1"></div>
+</footer>
 <script>
-const K='csl_pv3',MN=Array.from({length:12},(_,i)=>new Date(9,i).toLocaleString('en',{month:'long'}));
-const SH={C1:['Day / Gen','08:00 AM','04:20 PM'],A2:['Morning','07:00 AM','03:30 PM'],B2:['Evening','03:00 PM','11:30 PM'],C2:['Night','10:45 PM','06:45 AM']};
+const K='csl_pv5',MN=Array.from({length:12},(_,i)=>new Date(2026,i).toLocaleString('en',{month:'long'}));
+const SH={C1:['Day/Gen','08:00 AM','04:20 PM'],A2:['Morning','07:00 AM','03:30 PM'],B2:['Evening','03:00 PM','11:30 PM'],C2:['Night','10:45 PM','06:45 AM']};
 const QC=[[1,'Q1',2,3,4],[2,'Q2',5,6,7],[3,'Q3',8,9,10],[4,'Q4',11,0,1]];
-const LOGO=`<svg width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#041522" stroke="#f59e0b" stroke-width="6"/><path d="M24 58L50 38L76 58L67 71L33 71Z" fill="#22d3ee"/><rect x="44" y="25" width="12" height="13" rx="2" fill="#f59e0b"/><text x="50" y="88" font-size="12" font-weight="900" fill="#fbbf24" text-anchor="middle">CSL</text></svg>`;
-const ARR=`<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>`;
+const HOLS='0:26:Republic Day:National|2:21:Id-ul-Fitr:Gazetted|3:3:Good Friday:Gazetted|3:14:Vishu:Gazetted|4:1:May Day:National|4:27:Bakrid:Gazetted|6:26:Muharram:Gazetted|7:15:Independence Day:National|7:27:Thiruvonam:Gazetted|8:4:Sree Narayana Guru Jayanthi:Gazetted|9:2:Gandhi Jayanthi:National|9:21:Vijayadasami:Gazetted|11:25:Christmas:Gazetted'.split('|').map(x=>{const a=x.split(':');return[+a[0],+a[1],a[2],a[3]]});
+const LOGO=`<svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#041522" stroke="#f59e0b" stroke-width="6"/><path d="M24 58L50 38L76 58L67 71L33 71Z" fill="#22d3ee"/><rect x="44" y="25" width="12" height="13" fill="#f59e0b"/><text x="50" y="88" font-size="13" font-weight="900" fill="#fbbf24" text-anchor="middle">CSL</text></svg>`;
 const fD=s=>s?s.split('-').reverse().join('/'):'',R=n=>'₹'+Number(n||0).toLocaleString('en-IN'),H=id=>document.getElementById(id),P=n=>String(n).padStart(2,'0');
-const st=(l,v,c='tc')=>`<div class="sb text-center"><div class="t0">${l}</div><b class="sm ${c} block">${v}</b></div>`;
+const D=(c,h,o)=>`<div${o?` onclick="${o}"`:''} class="${c}">${h}</div>`,B=(o,c,h)=>`<button onclick="${o}" class="${c}">${h}</button>`,C=(h,c='',o)=>D('cd '+c,h,o),S1=(h,c='',o)=>D('sb '+c,h,o),F=(h,c='')=>D('fb '+c,h),L=(h,c='')=>D('fl '+c,h);
+const st=(l,v,c='tc')=>S1(`<i>${l}</i><b class="sm ${c} block">${v}</b>`,'text-center');
 const ip=(id,ph,t='text',v='')=>`<input id="${id}" type="${t}" placeholder="${ph}" value="${v}" class="inp"/>`;
 const sl=(id,o)=>`<select id="${id}" class="inp">${o.split(',').map(x=>`<option>${x}</option>`).join('')}</select>`;
-const rw=(t,s,v,c,fn)=>`<div class="fb p-2 rx sb"><div><b>${t}</b> <span class="ts">${s}</span></div><span class="fl"><b class="${c}">${v}</b><button onclick="${fn};u()" class="text-rose-400">✕</button></span></div>`;
-const sc=(t,c,r,f,fn,bt,bc)=>`<div class="sb m3"><b class="${c}">${t}</b><div class="space-y-1.5 my-2">${r}</div><div class="g2 m2">${f}</div><button onclick="${fn}" class="bt w-full ${bc}">➕ ${bt}</button></div>`;
-const brand=bk=>`<div class="fb m4"><div class="fl"><div class="p-0.5 rf ring-2 ring-amber-500/70 bg-[#061522]">${LOGO}</div><div><h1 class="bs">Cochin Shipyard Limited</h1><p class="tx ts">A GOVERNMENT OF INDIA UNDERTAKING</p></div></div>${bk?`<button onclick="go('${bk}')" class="bD rf">← Back</button>`:''}</div>`;
-const pg=(t,s,r,b)=>`<div>${brand('dashboard')}<div class="cd"><div class="fb m3"><div><h2 class="bs">${t}</h2><p class="tc">${s}</p></div>${r}</div>${b}</div></div>`;
-const rc=(fn,c,ic,ib,t,s,sc,rb)=>`<div onclick="${fn}" class="${c} fb"><div class="fl mw"><div class="iB ${ib}"><b>${ic}</b></div><div class="mw"><div class="sm fl tr"><b>${t}</b></div><div class="${sc} tr">${s}</div></div></div><div class="rB ${rb}">${ARR}</div></div>`;
+const rw=(t,s,v,c,fn)=>S1(`<div><b>${t}</b> <i>${s}</i></div>`+L(`<b class="${c}">${v}</b>`+B(fn+';u()','tr0','✕')),'fb mb-1');
+const sc=(t,c,r,f,fn,bt,bc)=>S1(`<b class="${c}">${t}</b><div class="my-1">${r}</div><div class="g2 m2">${f}</div>`+B(fn,'bt w-full '+bc,'➕ '+bt),'m2');
+const brand=bk=>F(L(LOGO+`<div><h1 class="bs">Cochin Shipyard Limited</h1><i>GOVT. OF INDIA UNDERTAKING</i></div>`)+(bk?B(`go('${bk}')`,'bD rf','← Back'):''),'m2');
+const pg=(t,s,r,b)=>brand('dashboard')+C(F(`<div><h2 class="bs">${t}</h2><u>${s}</u></div>`+r,'m2')+b);
+const rc=(fn,c,ic,t,s)=>D(c+' fb m2',L(`<span class="bD lg">${ic}</span><div><b class="sm">${t}</b><div><i>${s}</i></div></div>`)+'<span class="bD rf">→</span>',fn);
+const empC=(bdg,sub)=>C(L(`<div class="av">${S.name[0]||'P'}</div><div><b class="bs">${S.name}</b><div><u>Code: ${S.tok} · ${sub}</u></div></div>`)+`<span class="bD rf tx">${bdg}</span>`,'fb');
+const gBox=t=>C(`<s>✓</s><i>${t}</i>`,'bg-[#06242a]/80 fl');
+const hd=(k,t,s)=>D('m2',`<div><em>— ${k}</em></div><h2 class="text-2xl">${t}</h2><i>${s}</i>`);
 const nDT=()=>{const n=new Date(),h=n.getHours();return`${P(n.getDate())}/${P(n.getMonth()+1)}/${n.getFullYear()}, ${P(h%12||12)}:${P(n.getMinutes())} ${h>=12?'PM':'AM'}`};
-let S={view:'front',lang:'en',cat:'permanent',more:false,name:'Prathyush Mohan K',tok:'00005312',ph:'7559972544',sh:'A2',qCap:120,qCyc:3,cM:10,att:{'2026-11-02':{s:'P',in:'07:00 AM',out:'05:30 PM',ot:2,nt:'Shift A2'}},sal:{b:46500,da:42.4,hr:20,pr:32,otR:410,pf:7830},tax:{inc:980000},bks:[{id:1,b:'SBI',ac:'4821',tp:'Savings',bl:84500},{id:2,b:'Federal Bank',ac:'9104',tp:'Salary',bl:42300}],cds:[{id:1,b:'SBI Card ELITE',us:24500,du:'15/11/2026'}],txs:[{id:1,t:'Fuel & Travel',m:'Bank Account',a:1200,dt:'02/11/2026, 08:30 AM'},{id:2,t:'CSL Canteen',m:'UPI / Bank',a:450,dt:'02/11/2026, 01:15 PM'}]};
+let S={view:'front',lang:'en',cat:'permanent',qOpen:1,cTab:'wall',sD:2,lvDur:'Full Day',name:'Prathyush Mohan K',tok:'00005312',ph:'7559972544',dep:'Hull Errection',doj:'2025-11-01',sh:'A2',qCap:120,qCyc:3,cM:10,lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15},att:{'2026-11-02':{s:'P',sh:'A2',in:'07:00 AM',out:'05:30 PM',ot:2,nt:'Shift A2 + 2h OT',wk:'Building Dock Yard Work'}},sal:{b:46500,da:42.4,hr:20,pr:32,otR:410,pf:7830},tax:{inc:980000},bks:[{id:1,b:'SBI',ac:'4821',tp:'Savings',bl:84500},{id:2,b:'Federal Bank',ac:'9104',tp:'Salary',bl:42300}],cds:[{id:1,b:'SBI Card ELITE',us:24500,du:'15/11/2026'}],txs:[{id:1,t:'Fuel & Travel',m:'Bank Account',a:1200,dt:'02/11/2026, 08:30 AM'},{id:2,t:'CSL Canteen',m:'UPI',a:450,dt:'02/11/2026, 01:15 PM'}]};
 try{const sv=localStorage.getItem(K);if(sv)S={...S,...JSON.parse(sv),view:'front'}}catch(e){}
 const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};render()},set=(k,v)=>{S[k]=v;u()};
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
 function go(v,c){H('mMod').classList.add('hidden');if(c)S.cat=c;S.view=v;u();scrollTo(0,0)}
-function mOT(m){let t=0,p=`2026-${P(m+1)}-`;for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=Number(v.ot)||0;return t}
-function qOT(id){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:`${MN[c[2]]} – ${MN[c[4]]} 2026`,m,u,rem:Math.max(0,S.qCap-u)}}
+function mOT(m){let t=0,p=`2026-${P(m+1)}-`;for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=+v.ot||0;return t}
+function qOT(id){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:`${MN[c[2]]}–${MN[c[4]]} 2026`,m,u,rem:Math.max(0,S.qCap-u)}}
+function lvCnt(t){return Object.values(S.att).filter(v=>v.s===t).reduce((a,v)=>a+(v.dur?.includes('Half')?.5:1),0)}
+
 function vFront(){
-const ml=S.lang==='ml',opts=[['✓','permanent',ml?'സ്ഥിരം ജീവനക്കാരൻ':'Permanent Employee','Signed in as '+S.name,1],['02','contract',ml?'കരാർ ജീവനക്കാർ':'Company on Contract Employees','Contractual workforce & project staff',0],...(S.more?[['03','apprentice','Apprentice & Trainee','Skill development & yard trainees',0],['04','vendor','Vendor & Contractor','Sub-contractors & supplier partners',0]]:[])];
-return`<div>${brand('')}<div class="fl m2"><span class="kB"></span><span class="kT">COCHIN SHIPYARD • KOCHI, INDIA</span></div><div class="m4"><h2 class="text-3xl m2">${ml?'മൈ സി.എസ്.എൽ പോർട്ടൽ':'Welcome to My CSL Portal'}</h2><p class="ts sm">Official digital workspace for Cochin Shipyard Limited employees, contractors, and maritime partners.</p></div><div class="gl m4"><div class="fb m3 text-[#5e8b9f] tx"><b>SELECT YOUR CATEGORY</b><span class="fm">01 — 01</span></div><h3 class="lg m4">How are you associated with CSL?</h3><div class="space-y-3 m3">${opts.map(([n,c,t,d,a])=>rc(`go('dashboard','${c}')`,a?'cA':'c1',n,a?'bg-[#0e3c54] border border-[#16b8d8] tc lg':'bg-[#0a2030] ts sm',t,d,a?'tc':'ts',a?'bC':'border border-slate-700 ts')).join('')}<div class="text-center"><button onclick="set('more',!S.more)" class="text-[#5e8b9f]">${S.more?'Fewer categories ∧':'More categories (Apprentice / Vendor) ∨'}</button></div></div><div class="pt-3 border-t border-[#0d2f44] fb"><div class="fl"><span class="w-2 h-2 rf bg-teal-400"></span><span>Selected: Permanent Employee</span></div><button onclick="go('dashboard','permanent')" class="tc fl"><b>Continue</b>${ARR}</button></div></div><div class="fc gap-2 ts"><span class="tc">🛡️</span><span>Authorized access only • Cochin Shipyard Limited</span></div></div>`;
+const ml=S.lang==='ml',opts=[['✓','permanent',ml?'സ്ഥിരം ജീവനക്കാരൻ':'Permanent Employee','Signed in as '+S.name,1],['02','contract',ml?'കരാർ ജീവനക്കാർ':'Company on Contract Employees','Contractual workforce & project staff',0],...(S.more?[['03','apprentice','Apprentice & Trainee','Yard trainees',0],['04','vendor','Vendor & Contractor','Suppliers',0]]:[])];
+return brand('')+hd('COCHIN SHIPYARD • KOCHI',ml?'മൈ സി.എസ്.എൽ പോർട്ടൽ':'Welcome to My CSL Portal','Official digital workspace for Cochin Shipyard Limited.')+C(F('<i>SELECT YOUR CATEGORY</i><i>01 — 01</i>','m2')+'<h3 class="lg m2">How are you associated with CSL?</h3>'+opts.map(([n,c,t,d,a])=>rc(`go('signin','${c}')`,a?'cd cA':'sb',n,t,d)).join('')+D('text-center m2',B("set('more',!S.more)",'ts tx',S.more?'Fewer ∧':'More categories (Apprentice / Vendor) ∨'))+F('<i>● Permanent Employee</i>'+L(B("go('signin','permanent')",'bD rf tx','Sign In')+B("go('dashboard','permanent')",'tc','<b>Quick Access →</b>')),'bt1'))+D('fc','<i>🛡️ Authorized access only • Cochin Shipyard Limited</i>');
+}
+
+function vSign(){
+const ic=S.cat==='contract',q=S.lvQ||{},totCl=ic?+(q.cl1||12):+(q.cl1||6)+ +(q.cl2||6);
+return brand('front')+hd(ic?'CONTRACT EMPLOYEE':'PERMANENT EMPLOYEE',ic?'Contract Employee Sign In':'Employee Sign In','Enter your name, CSL code number, and mobile number.')+
+[['sNm','👤 FULL NAME',S.name],['sTk','# CSL CODE NUMBER',S.tok],['sPh','📞 PHONE NUMBER (+91)',S.ph],['sDp','🏢 DEPARTMENT',S.dep]].map(([id,l,v])=>C(F(`<i>${l}</i><b class="tr0">*</b>`)+ip(id,l,'text',v))).join('')+
+(ic?D('g2 m2',C('<u>📅 JOINING DATE (DOJ)</u>'+ip('sDj','','date',S.doj))+C('<em>⏱️ 1 YEAR FINISH</em><div class="ta fm sm mt-2"><b>31/10/2026</b></div>')):'')+
+C(F(`<div><b class="sm">CSL Leave Quotas & Entitlements</b> <span class="bD rf tx">QUOTA</span></div>`+B("set('qOpen',!S.qOpen)",'bD rf tx',S.qOpen?'Hide ∧':'Show ∨'),'m2')+
+(S.qOpen?D('bt1 space-y-2',F(`<em>● Casual Leave (CL – ${totCl}d)</em><span class="bA px-2 rx tx">Total: ${totCl}d</span>`)+D('g2',[['qC1','CL Phase 1 (Jan–Jun)',q.cl1??6],['qC2','CL Phase 2 (Jul–Dec)',q.cl2??6],['qHp','HPL (20d/Yr)',q.hpl??20],['qEl','EL (30d/Yr)',q.el??30],['qSc','Special (SCL)',q.scl??15]].map(([id,l,v])=>S1(`<u>${l}</u>`+ip(id,'','number',v))).join(''))):''))+
+B('doSign()','w-full py-3 rf bC bs m2','Sign In →')+gBox('Once signed in, Quick Access opens automatically.');
+}
+function doSign(){
+S.name=H('sNm')?.value.trim()||S.name;S.tok=H('sTk')?.value.trim()||S.tok;S.ph=H('sPh')?.value.trim()||S.ph;S.dep=H('sDp')?.value.trim()||S.dep;
+if(H('sDj'))S.doj=H('sDj').value;
+if(H('qC1'))S.lvQ={cl1:+H('qC1').value||6,cl2:+H('qC2')?.value||6,hpl:+H('qHp')?.value||20,el:+H('qEl')?.value||30,scl:+H('qSc')?.value||15};
+go('dashboard');
 }
 function vDash(){
 const q=qOT(S.qCyc),pct=Math.min(100,Math.round((q.u/S.qCap)*100)),sd=SH[S.sh]||SH.A2;
-const cards=[['calendar','📅','Calendar','🏅 12 CSL Holidays · 2nd & 4th Sat Off',''],['salary','₹','Salary','Pay Slip, Maritime Allowance, PF & Deductions',''],['attendance','📋','Attendance',`Shift ${S.sh} · In: ${sd[1]} · Out: ${sd[2]}`,`Shift ${S.sh} · Present`],['money','🏦','Money Management','Bank Accounts, Credit Cards & Daily Expenses','NEW'],['tax','📊','Income Tax Calculator','FY 2026-27 New Tax Regime & Monthly TDS','']];
-return`<div>${brand('front')}<div class="fb m3"><div class="fl"><span class="kB"></span><span class="kT">${S.cat==='contract'?'COMPANY ON CONTRACT':'PERMANENT EMPLOYEE'}</span></div><div class="ts fm">${S.tok} · <button onclick="go('front')" class="tc">Change</button></div></div><div class="cd fb m4"><div class="fl mw"><div class="rB bg-amber-500 text-slate-950 lg"><b>P</b></div><div class="mw"><div class="bs tr"><b>${S.name}</b></div><div class="tc fm tr">Code No: ${S.tok} · ${S.ph}</div></div></div><span class="bD rf tx"><b>ACTIVE</b></span></div><div class="m3"><h2 class="text-3xl">QuickAccess.</h2><p class="ts sm">Choose a service to continue.</p></div><div class="cd m3"><div class="fb m2"><div><h3 class="sm">⏱️ CSL Duty Shift</h3><span class="tx ts">${S.sh==='A2'||S.sh==='B2'?'A2 ⇄ B2 Weekly Rotation Active':'Fixed General Shift'}</span></div><span class="bD rf ta fm"><b>${S.sh}</b> <span class="tx ts">(${sd[1]}-${sd[2]})</span></span></div><div class="g4 m2">${Object.entries(SH).map(([k,v])=>`<button onclick="set('sh','${k}')" class="py-2 px-1 rx text-center ${S.sh===k?'bC':'sb ts'}"><b class="fm block">${k}</b><span class="text-[9px] block">${v[0]}</span><span class="text-[8px] fm">${v[1]}</span></button>`).join('')}</div><div class="fb tx ts pt-1 border-t border-[#0e2c3e]"><span>A2 ⇄ B2 Rotation in Calendar</span><span onclick="go('calendar')" class="tc">Open Calendar →</span></div></div><div class="cd m4"><div class="fb m3"><div class="fl"><div class="rB sb ta lg">⚡</div><div><div class="fl"><b class="sm">Quarterly Overtime (OT) Cap</b><span class="bD rf tx py-0.5 px-2">${q.n}</span></div><div class="tc">${q.r} (3 months)</div></div></div><div class="sb p-1 flex">${[75,120].map(n=>`<button onclick="set('qCap',${n})" class="px-2 py-1 rx ${S.qCap===n?'bC':'ts'}"><b>${n}h OT</b></button>`).join('')}</div></div><div class="sb m3"><div class="fb fm m2"><span>Used: <b class="ta">${q.u} hrs</b> / <span class="tc">${S.qCap} hrs</span></span><span>Remaining: <b class="te">${q.rem} hrs</b></span></div><div class="w-full h-2.5 bg-[#071f30] rf overflow-hidden m3"><div class="h-full bg-gradient-to-r from-cyan-400 to-amber-400" style="width:${pct}%"></div></div><div class="g3 text-center">${q.m.map(m=>`<div onclick="S.cM=${m.i};go('attendance')" class="sb"><div class="ts fm">${m.n}</div><b class="ta fm">${m.ot}h OT</b></div>`).join('')}</div></div><div class="g4 m2">${QC.map(c=>`<button onclick="set('qCyc',${c[0]})" class="py-1.5 rx ${S.qCyc===c[0]?'bD':'sb ts'}"><b>${c[1]} (${qOT(c[0]).u}h)</b></button>`).join('')}</div><button onclick="go('attendance')" class="w-full bD fb"><b>View 3-Month Breakdown & All Cycles</b><span>›</span></button></div><div class="space-y-3 m4">${cards.map(([v,ic,t,s,bd])=>rc(`go('${v}')`,'cd',ic,'sb tc lg',t+(bd?` <span class="bD rf tx py-0.5 px-2">${bd}</span>`:''),s,'ts','sb ts')).join('')}</div></div>`;
+return brand('signin')+empC('ACTIVE',S.ph+` · <em onclick="go('signin')">Change</em>`)+hd(S.cat==='contract'?'COMPANY ON CONTRACT':'PERMANENT EMPLOYEE','QuickAccess.','Choose a service to continue.')+
+C(F(`<div><b class="sm">⏱️ CSL Duty Shift</b><div><i>A2 ⇄ B2 Weekly Rotation</i></div></div><span class="bD rf ta fm">${S.sh} (${sd[1]}-${sd[2]})</span>`,'m2')+D('g4 m2',Object.entries(SH).map(([k,v])=>B(`set('sh','${k}')`,`py-1 rx text-center ${S.sh===k?'bC':'sb ts'}`,`<b>${k}</b><div class="text-[8px]">${v[0]}<br>${v[1]}</div>`)).join(''))+F('<i>A2 ⇄ B2 Rotation in Calendar</i>'+B("go('calendar')",'tc','Weekly Rotation →'),'bt1'))+
+C(F(`<div><b>⚡ Quarterly Overtime Cap (${q.n})</b><div><u>${q.r}</u></div></div>`+L([75,120].map(n=>B(`set('qCap',${n})`,`px-2 py-1 rx ${S.qCap===n?'bC':'sb ts'}`,`${n}h`)).join('')),'m2')+S1(F(`<span>Used: <em>${q.u}h</em>/${S.qCap}h</span><span>Rem: <s>${q.rem}h</s></span>`,'m2')+`<div class="w-full h-2 bg-[#071f30] rf overflow-hidden m2"><div class="h-full bg-cyan-400" style="width:${pct}%"></div></div>`+D('g3 text-center',q.m.map(m=>S1(`<i>${m.n}</i><div><em>${m.ot}h OT</em></div>`,'',`S.cM=${m.i};go('attendance')`)).join('')),'m2')+D('g4 m2',QC.map(c=>B(`set('qCyc',${c[0]})`,`py-1 rx ${S.qCyc===c[0]?'bD':'sb ts'}`,`${c[1]} (${qOT(c[0]).u}h)`)).join(''))+B("go('attendance')",'w-full bD fb','<b>View 3-Month Breakdown & All Cycles</b><span>›</span>'))+
+[['calendar','📅','Calendar','🏅 12 CSL Holidays · 2nd & 4th Sat Off'],['salary','₹','Salary','Pay Slip, Allowances, PF & Deductions'],['attendance','📋','Attendance',`Shift ${S.sh} · In: ${sd[1]} · Out: ${sd[2]}`],['money','🏦','Money Management','Bank Accounts, Credit Cards & Daily Expenses'],['tax','📊','Income Tax Calculator','FY 2026-27 New Tax Regime & Monthly TDS']].map(([v,ic,t,s])=>rc(`go('${v}')`,'cd',ic,t,s)).join('');
 }
+
+function miniCal(mi,l){const N=new Date(2026,mi+1,0).getDate(),f=new Date(2026,mi,1).getDay();return C(F(`<b>${l}</b><i>${N}D</i>`,'m2')+D('g7 text-center text-[9px]','<i></i>'.repeat(f)+Array.from({length:N},(_,i)=>`<span class="${(f+i)%7<1?'tr0':'ts'}">${i+1}</span>`).join('')),'p-2',`set('cM',${mi})`)}
+
+function vCal(){
+const m=S.cM,dim=new Date(2026,m+1,0).getDate(),fd=new Date(2026,m,1).getDay(),p=`2026-${P(m+1)}-`,sDt=`${p}${P(S.sD||1)}`,rec=S.att[sDt]||{},mHols=HOLS.filter(h=>h[0]===m);
+let pCnt=0,lCnt=0,c='<div></div>'.repeat(fd);
+for(let d=1;d<=dim;d++){
+const r=S.att[`${p}${P(d)}`],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),off=w<1||(w===6&&((d>7&&d<15)||(d>21&&d<29)))||HOLS.some(h=>h[0]===m&&h[1]===d);
+if(st0==='P')pCnt++;else if(st0&&st0!=='WO')lCnt++;
+const sh=r?.sh||(off?'OFF':(Math.floor((d-1)/7)%2?S.sh==='A2'?'B2':'A2':S.sh)),bg=st0==='P'?'bg-[#86efac] text-emerald-950':st0?'bA':off?'bg-rose-950/50 tr0':'sb';
+c+=D(`p-1 rx ${bg} ${S.sD===d?'ring-2 ring-cyan-400':''} text-center`,`<b>${d}</b><div class="text-[8px]">${st0&&st0!=='P'?st0:sh}${ot?`<br>⚡${ot}h`:''}</div>`,`S.sD=${d};u()`);
+}
+const q=S.lvQ||{},clT=(q.cl1||6)+(q.cl2||6),wkTxt=rec.wk||'Building Dock Yard Work',ntTxt=rec.nt||'';
+const hRow=([mi,d,n,tp])=>S1(L(`<span class="av">${P(d)}</span><div><b>${n}</b><div><i>${P(d)} ${MN[mi]} 2026</i></div></div>`)+`<span class="bD tx">${tp}</span>`,'fb mb-1',`S.cM=${mi};S.sD=${d};set('cTab','wall')`);
+return brand('dashboard')+empC('CALENDAR',S.dep)+hd('SHIPYARD CALENDAR','Calendar.','Official CSL 2026 Wall Calendar & Shifts.')+
+C(`<div><b>${S.sh} · A2 ⇄ B2 Weekly Rotation</b><div><i>Scheduled shift shown in advance.</i></div></div>`+L(B(`set('sh',S.sh==='A2'?'B2':'A2')`,'bD tx','Switch '+(S.sh==='A2'?'B2':'A2'))+B("set('sh','C1')",'sb tx','C1 Gen')),'fb')+
+C(L([['wall','📅 Wall Calendar'],['months','12 Months'],['holidays','12 Holidays & Leaves']].map(([k,l])=>B(`set('cTab','${k}')`,`px-2 py-1 rx tx ${S.cTab===k?'bC':'ts'}`,l)).join(''))+`<u>${MN[m]}</u>`,'p-1.5 fb')+
+(S.cTab==='months'?C(MN.map((n,i)=>S1(`<b>${n} 2026</b><div><u>OT: ${mOT(i)}h · ${HOLS.filter(h=>h[0]===i).length} Hols</u></div>`,'',`S.cM=${i};set('cTab','wall')`)).join(''),'g2'):'')+
+(S.cTab==='holidays'?C('<b class="sm tr0 block m2">🎉 CSL Official Closed Holidays 2026</b>'+HOLS.map(hRow).join('')):'')+
+D('flex gap-1 overflow-x-auto pb-1 m2',MN.map((n,i)=>B(`S.cM=${i};S.sD=1;u()`,`px-2.5 py-1 rf tx shrink-0 ${i===m?'bC':'sb ts'}`,n.slice(0,3))).join(''))+
+C(L(B(`set('cM',${(m+11)%12})`,'bD','◀')+B(`set('cM',${(m+1)%12})`,'bD','▶'))+`<div class="text-center"><b class="bs">${MN[m].toUpperCase()} 2026</b><div><em>Working: 22 · OT: ${mOT(m)}h · Holidays: ${mHols.length}</em></div></div>`+B('S.cM=10;S.sD=2;u()','bD tx','Today'),'fb')+
+S1(`<span>Days:<b>${dim}</b></span><span>Duty:<s>${pCnt}</s></span><span>Leaves:<em>${lCnt}</em></span><span>Offs:<b class="tr0">6</b></span><span onclick="set('cTab','holidays')" class="tr0">Holidays:<b>${mHols.length}/12 ↗</b></span>`,'fb tx m2')+
+C(D('g7 text-center tx tc mb-1','SUN,MON,TUE,WED,THU,FRI,SAT'.split(',').map((d,i)=>`<b class="${i?'':'tr0'}">${d}</b>`).join(''))+D('g7',c))+
+C(
+F(`<div><b class="bs">${S.sD} ${MN[m]} 2026</b><div><i>CSL Daily Register & Activity Log</i></div></div><span class="bD rf tx">${rec.s==='P'?'✓ PRESENT':rec.s?`LEAVE (${rec.s})`:'⚪ NOT MARKED'}</span>`,'bb')+
+S1(F(`<u>Calendar Shift:</u><em>Shift ${rec.sh||S.sh}</em>`,'m2')+D('g4',Object.entries(SH).map(([k,v])=>B(`S.sh='${k}';uDay({sh:'${k}'})`,`py-1 rx tx ${(rec.sh||S.sh)===k?'bE':'sb ts'}`,`<b>${k}</b><div class="text-[8px]">${v[1]}</div>`)).join('')))+
+L(B(`uDay({s:'P',nt:'Shift '+S.sh})`,'bt bE','✓ '+(rec.s==='P'?'Update Present':'Punch In / Mark Present'))+B(`qO('${sDt}')`,'bt bA','⚡ '+(rec.ot?`OT: ${rec.ot}h`:'Add Overtime (OT)'))+B('shW()','bt bD','💬 Half Day & WhatsApp')+(rec.s?B(`delete S.att['${sDt}'];u()`,'bt bg-rose-900','✕ Clear'):''),'flex-wrap')+
+D('bt1',F('<i>🕒 Record CSL Leave (ലീവ് രേഖപ്പെടുത്തുക):</i>'+L(['Full Day','Half Day (FN)','Half Day (AN)'].map(d=>B(`set('lvDur','${d}')`,`px-1.5 py-0.5 rx text-[9px] ${S.lvDur===d?'bC':'sb ts'}`,d)).join('')),'m2')+D('g5',[['CL','12d','കാഷ്വൽ','ta'],['EL','30d','ഏൺഡ്','te'],['ML','EL','മെഡിക്കൽ','tr0'],['HPL','20d','ഹാഫ് പേ','tc'],['SCL','Spl','സ്പെഷ്യൽ','ta']].map(([k,q0,ml0,cl])=>B(`uDay({s:'${k}',dur:S.lvDur,in:'—',out:'—',ot:0,nt:'${k} ('+S.lvDur+')'})`,'p-1.5 rx sb text-left',F(`<b class="${cl}">${k}</b><i>${q0}</i>`)+`<div><i>${ml0}</i></div>`)).join('')))+
+S1(F(`<b>⚓ Work Details (വർക്ക് ഡീറ്റെയിൽസ്)</b>`+B("set('wOpen',!S.wOpen)",'bD tx',S.wOpen?'Close':'✏️ + Add / Edit Work'))+(S.wOpen?ip('wIn','Work details','text',wkTxt)+L(['⚓ Yard Work','🔧 Hull Welding','🚢 Dry Dock','⚙️ Maintenance','🔍 Quality Check'].map(p0=>B(`H('wIn').value='${p0}'`,'px-2 py-0.5 rx sb tx tc',p0)).join(''),'flex-wrap my-1')+B(`uDay({wk:H('wIn').value})`,'bt bC w-full','✓ Save Work'):`<div><s>${wkTxt}</s></div>`),'space-y-1')+
+S1(F('<i>📝 Personal Notes (വ്യക്തിഗത കുറിപ്പുകൾ):</i>'+B("set('nOpen',!S.nOpen)",'tc tx',S.nOpen?'Close':'+ Add / Edit Note'))+(S.nOpen?L(ip('nIn','Personal note...','text',ntTxt)+B(`uDay({nt:H('nIn').value})`,'bt bC','Save')):D('tx ts italic',ntTxt||'No personal notes recorded.')),'space-y-1')
+,'space-y-2')+
+D('g2',miniCal((m+11)%12,'‹ '+MN[(m+11)%12].slice(0,3).toUpperCase()+' 2026')+miniCal((m+1)%12,MN[(m+1)%12].slice(0,3).toUpperCase()+' 2026 ›'))+
+C(F(`<b class="sm">🚩 Gazetted Holidays in ${MN[m]} 2026</b>`+B("set('cTab','holidays')",'tc tx','View All 12 ›'),'m2')+(mHols.length?mHols.map(hRow).join(''):'<i>No closed gazetted holidays in this month.</i>'))+
+C(F('<b class="sm">💼 സി.എസ്.എൽ സർവീസ് ലീവുകൾ (Leave Entitlements)</b>'+B("go('signin')",'ta tx','Edit Quotas ›'),'m2')+D('g5 text-center',[['CL',clT,lvCnt('CL'),'ta'],['EL',q.el||30,lvCnt('EL')+lvCnt('ML'),'te'],['ML','EL',lvCnt('ML'),'tr0'],['HPL',q.hpl||20,lvCnt('HPL'),'tc'],['SCL',q.scl||15,lvCnt('SCL'),'ta']].map(([k,tot,us,c])=>S1(`<b class="${c}">${tot==='EL'?'From EL':tot+'d'}</b><div><i>${k}</i></div><div class="text-[8px] ${c}">Used:${us}d</div>`)).join('')))+
+C(L(`<div class="av">${S.name[0]||'P'}</div><b>${S.name}</b><u>(Code ${S.tok})</u>`,'m2')+L([["set('cTab','wall');scrollTo(0,0)",'bA','📅 Calendar'],["go('attendance')",'bE','📋 Attendance'],["go('salary')",'bD','₹ Salary'],["go('signin')",'bD','✏️ Edit Profile'],["set('pdfMod','ot')",'bA','⬇️ Next month OT details PDF'],["set('pdfMod','mon')",'bD','📄 Monthly Details PDF']].map(([o,cl,l])=>B(o,'bt '+cl,l)).join(''),'flex-wrap'))+
+gBox('Official CSL Permanent Employee Calendar · Shipyard Shifts & Biometric Roster.')+
+D('fc gap-3 tc m2',`<b onclick="go('dashboard')">Quick Access →</b>·<b onclick="go('salary')">₹ Salary →</b>·<b onclick="go('attendance')">📋 Attendance →</b>`)+
+(S.pdfMod?D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F(`<b class="sm">${S.pdfMod==='ot'?'⚡ Upcoming Salary OT Details':'📄 Monthly Attendance & OT PDF'}</b>`+B("set('pdfMod','')",'bD','✕'),'bb')+S1(`<div>Employee: <b>${S.name} (${S.tok}) · ${S.dep}</b></div><em>${MN[m]} 2026 · ${mOT(m)}h OT (${pCnt} Duty Days)</em>`,'tx')+D('g3',B('shW()','bt bE','📲 WhatsApp')+B('dlO()','bt bA','⬇️ Download')+B('print()','bt bD','🖨️ Print/PDF')),'w-full max-w-md space-y-2')):'');
+}
+function uDay(p){const dt=`2026-${P(S.cM+1)}-${P(S.sD||1)}`,sh=p.sh||S.att[dt]?.sh||S.sh;S.att[dt]={s:'P',sh,in:SH[sh][1],out:SH[sh][2],ot:0,...(S.att[dt]||{}),...p};S.wOpen=S.nOpen=false;u()}
+function qO(d){const v=prompt('Overtime (OT) hours for '+fD(d)+':',S.att[d]?.ot||0);if(v!==null)uDay({s:'P',ot:+v||0})}
+
 function vAtt(){
 const m=S.cM,q=qOT(S.qCyc),p=`2026-${P(m+1)}-`,l=Object.entries(S.att).filter(([k])=>k.startsWith(p)).sort((a,b)=>b[0].localeCompare(a[0]));
-const f=[['Date','aDt','date',p+'02'],['Punch In','aIn','text','07:00 AM'],['Punch Out','aOut','text','05:30 PM'],['OT Hours','aOt','number','2']].map(([lb,id,t,v])=>`<div><label class="t0">${lb}</label>${ip(id,'',t,v)}</div>`).join('')+`<div><label class="t0">Status</label>${sl('aSt','P,WO,CL')}</div><div><label class="t0">Note</label>${ip('aNt','Shift/Vessel')}</div>`;
-return pg('📋 Attendance & Overtime','Syncs with Calendar, Salary & Quarterly OT Cap',`<select onchange="set('cM',Number(this.value))" class="bD">${MN.map((n,i)=>`<option value="${i}" ${i===m?'selected':''}>${n} 2026</option>`).join('')}</select>`,`<div class="g3 m3">${st('Month OT',mOT(m)+' hrs','ta')}${st(q.n+' Used',q.u+'/'+S.qCap+'h')}${st('Remaining',q.rem+' hrs','te')}</div>${sc('➕ Punch Duty & Overtime (OT)','tc','',f,'svA()','Save Attendance & Sync OT','bC')}<div class="g2 m3"><button onclick="shW()" class="bt bg-emerald-600 text-white">📲 Share WhatsApp</button><button onclick="dlO()" class="bt bD w-full">⬇️ Download Report</button></div><div class="space-y-2">${l.map(([d,v])=>rw(`${fD(d)} (${v.s})`,`${v.in}–${v.out} · ${v.nt||''}`,`${v.ot||0}h OT`,'ta',`delete S.att['${d}']`)).join('')}</div>`);
+const f=[['Date','aDt','date',p+'02'],['Punch In','aIn','text','07:00 AM'],['Punch Out','aOut','text','05:30 PM'],['OT Hours','aOt','number','2']].map(([lb,id,t,v])=>`<div><i>${lb}</i>${ip(id,'',t,v)}</div>`).join('')+`<div><i>Status</i>${sl('aSt','P,CL,EL,ML,HPL,SCL,WO')}</div><div><i>Note</i>${ip('aNt','Shift/Vessel')}</div>`;
+return pg('📋 Attendance & Overtime','Syncs with Calendar, Salary & Quarterly OT Cap',`<select onchange="set('cM',+this.value)" class="bD">${MN.map((n,i)=>`<option value="${i}" ${i===m?'selected':''}>${n} 2026</option>`).join('')}</select>`,D('g3 m2',st('Month OT',mOT(m)+' hrs','ta')+st(q.n+' Used',q.u+'/'+S.qCap+'h')+st('Remaining',q.rem+' hrs','te'))+sc('➕ Punch Duty & Overtime (OT)','tc','',f,'svA()','Save Attendance & Sync OT','bC')+D('g2 m2',B('shW()','bt bE','📲 Share WhatsApp')+B('dlO()','bt bD w-full','⬇️ Download Report'))+l.map(([d,v])=>rw(`${fD(d)} (${v.s})`,`${v.in}–${v.out} · ${v.nt||''}`,`${v.ot||0}h OT`,'ta',`delete S.att['${d}']`)).join(''));
 }
-function svA(){const d=H('aDt').value;if(d){S.att[d]={s:H('aSt').value,in:H('aIn').value,out:H('aOut').value,ot:Number(H('aOt').value)||0,nt:H('aNt').value};set('cM',Number(d.split('-')[1])-1)}}
-function oTx(){const m=S.cM,q=qOT(S.qCyc),p=`2026-${P(m+1)}-`;let t=`*MY CSL OVERTIME REPORT*\n${S.name} (${S.tok}) | ${MN[m]} 2026: *${mOT(m)}h OT* | ${q.n}: *${q.u}/${S.qCap}h*\n`;Object.entries(S.att).filter(([k])=>k.startsWith(p)).forEach(([d,v])=>{t+=`${fD(d)}: ${v.s} (${v.in}-${v.out}) *OT:${v.ot||0}h*\n`});return t}
+function svA(){const d=H('aDt').value;if(d){S.att[d]={s:H('aSt').value,in:H('aIn').value,out:H('aOut').value,ot:+H('aOt').value||0,nt:H('aNt').value};set('cM',+d.split('-')[1]-1)}}
+function oTx(){const m=S.cM,q=qOT(S.qCyc),p=`2026-${P(m+1)}-`;let t=`*MY CSL OVERTIME & ATTENDANCE REPORT*\n${S.name} (${S.tok}) | ${MN[m]} 2026: *${mOT(m)}h OT* | ${q.n}: *${q.u}/${S.qCap}h*\n`;Object.entries(S.att).filter(([k])=>k.startsWith(p)).forEach(([d,v])=>{t+=`${fD(d)}: ${v.s} (${v.in}-${v.out}) *OT:${v.ot||0}h*\n`});return t}
 function shW(){const t=oTx();if(navigator.share)navigator.share({text:t}).catch(()=>{});else location.href='https://api.whatsapp.com/send?text='+encodeURIComponent(t)}
-function dlO(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([oTx()]));a.download=`CSL_OT_${MN[S.cM]}.txt`;a.click()}
-function vCal(){
-const m=S.cM,dim=new Date(2026,m+1,0).getDate(),fd=new Date(2026,m,1).getDay();let c='<div></div>'.repeat(fd);
-for(let d=1;d<=dim;d++){const dt=`2026-${P(m+1)}-${P(d)}`,ot=Number(S.att[dt]?.ot)||0,w=new Date(2026,m,d).getDay(),sh=w===0?'OFF':(Math.floor((d-1)/7)%2===0?S.sh:(S.sh==='A2'?'B2':'A2'));c+=`<div onclick="qO('${dt}')" class="p-1.5 rx ${ot?'bg-amber-500/20 border border-amber-400':'sb'} text-center"><b>${d}</b><div class="text-[9px] ${w===0?'text-rose-400':'tc'}"><b>${sh}</b></div><div class="text-[9px] ta"><b>${ot?ot+'h OT':'-'}</b></div></div>`}
-return pg('📅 2026 CSL Shift & OT Calendar','Tap any date to add/update Overtime hours',`<button onclick="set('sh',S.sh==='A2'?'B2':'A2')" class="bt bC">Shift ${S.sh}</button>`,`<div class="fb m3"><button onclick="set('cM',(S.cM+11)%12)" class="bD">◀ Prev</button><div class="text-center"><b class="sm">${MN[m]} 2026</b><div class="ta"><b>Month OT: ${mOT(m)} hrs</b></div></div><button onclick="set('cM',(S.cM+1)%12)" class="bD">Next ▶</button></div><div class="g7 text-center tx tc mb-1">${'SUN,MON,TUE,WED,THU,FRI,SAT'.split(',').map(d=>`<b>${d}</b>`).join('')}</div><div class="g7">${c}</div>`);
-}
-function qO(d){const v=prompt('Overtime (OT) hours for '+fD(d)+':',S.att[d]?.ot||0);if(v!==null){S.att[d]={...(S.att[d]||{s:'P',in:SH[S.sh][1],out:SH[S.sh][2],nt:'Shift '+S.sh}),ot:Number(v)||0};u()}}
+function dlO(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([oTx()]));a.download=`CSL_Report_${MN[S.cM]}_2026.txt`;a.click()}
+
 function vSal(){
 const s=S.sal,mH=mOT(S.cM),fix=Math.round(s.b*(1+(s.da+s.hr+s.pr)/100)),otP=Math.round(mH*s.otR),gr=fix+otP;
-return pg('💵 CSL Salary & OT Calculator',`Synced with ${MN[S.cM]} Overtime (${mH} hrs)`,'',`<div class="g3 m3">${st('Gross Pay',R(gr))}${st('OT Pay ('+mH+'h)',R(otP),'ta')}${st('Net Pay',R(gr-s.pf),'te')}</div><div class="g2">${[['b','Basic Pay (₹)'],['da','DA (%)'],['hr','HRA (%)'],['pr','Perks (%)'],['otR','OT Rate/Hr (₹)'],['pf','PF & Deductions (₹)']].map(([k,l])=>`<div><label class="t0">${l}</label><input type="number" value="${s[k]}" onchange="S.sal.${k}=Number(this.value);u()" class="inp"/></div>`).join('')}</div>`);
+return pg('💵 CSL Salary & OT Calculator',`Synced with ${MN[S.cM]} Overtime (${mH} hrs)`,'',D('g3 m2',st('Gross Pay',R(gr))+st('OT Pay ('+mH+'h)',R(otP),'ta')+st('Net Pay',R(gr-s.pf),'te'))+D('g2',[['b','Basic Pay (₹)'],['da','DA (%)'],['hr','HRA (%)'],['pr','Perks (%)'],['otR','OT Rate/Hr (₹)'],['pf','PF & Deductions (₹)']].map(([k,l])=>`<div><i>${l}</i><input type="number" value="${s[k]}" onchange="S.sal.${k}=+this.value;u()" class="inp"/></div>`).join('')));
 }
 function vTax(){
-const inc=Number(S.tax.inc)||0,txb=Math.max(0,inc-75000),tot=txb<=1200000?0:Math.round((txb-1200000)*.156);
-return pg('📊 Income Tax Calculator','FY 2026-27 New Regime • Zero Tax up to ₹12.75L','',`<label class="t0">Annual Gross Income (₹)</label><input type="number" value="${inc}" onchange="S.tax.inc=Number(this.value);u()" class="inp m3"/><div class="g3">${st('Taxable',R(txb))}${st('Annual Tax',R(tot),'te')}${st('Monthly TDS',R(Math.round(tot/12)),'ta')}</div>`);
+const inc=+S.tax.inc||0,txb=Math.max(0,inc-75000),tot=txb<=1200000?0:Math.round((txb-1200000)*.156);
+return pg('📊 Income Tax Calculator','FY 2026-27 New Regime • Zero Tax up to ₹12.75L','',`<i>Annual Gross Income (₹)</i><input type="number" value="${inc}" onchange="S.tax.inc=+this.value;u()" class="inp m2"/>`+D('g3',st('Taxable',R(txb))+st('Annual Tax',R(tot),'te')+st('Monthly TDS',R(Math.round(tot/12)),'ta')));
 }
 function vMon(){
-const tB=S.bks.reduce((a,b)=>a+(Number(b.bl)||0),0),tC=S.cds.reduce((a,c)=>a+(Number(c.us)||0),0),tS=S.txs.reduce((a,x)=>a+(Number(x.a)||0),0);
-return pg('🏦 Money Management Hub','Bank Accounts, Credit Cards & Daily Spend (DD/MM/YYYY + Time)','',`<div class="g3 m3">${st('Bank Balance',R(tB),'te')}${st('Card Used',R(tC),'ta')}${st('Total Spend',R(tS),'text-rose-400')}</div>${sc(`🏦 Bank Accounts (${S.bks.length})`,'te',S.bks.map(b=>rw(b.b,`${b.tp} ••••${b.ac}`,R(b.bl),'te',`S.bks=S.bks.filter(x=>x.id!==${b.id})`)).join(''),`${ip('bN','Bank Name (SBI/Federal)')}${ip('bA','A/C Last 4 Digits')}${sl('bT','Savings,Salary')}${ip('bB','Balance (₹)','number')}`,'adB()','Add Bank Account','bg-emerald-600 text-white')}${sc(`💳 Credit Cards (${S.cds.length})`,'ta',S.cds.map(c=>rw(c.b,'Due: '+c.du,R(c.us),'ta',`S.cds=S.cds.filter(x=>x.id!==${c.id})`)).join(''),`${ip('cN','Card Name')}${ip('cU','Used Amount (₹)','number')}`,'adC()','Add Credit Card','bg-amber-500 text-slate-950')}${sc('🧾 Record Spend (Day/Month/Year + Time)','tc',S.txs.map(x=>rw(x.t,`${x.m} • 🕒 ${x.dt}`,'-'+R(x.a),'text-rose-400',`S.txs=S.txs.filter(i=>i.id!==${x.id})`)).join(''),`${ip('xT','Expense Title')}${ip('xA','Amount (₹)','number')}${sl('xM','Bank Account,Credit Card,UPI / Cash')}${ip('xD','','text',nDT())}`,'adX()','Add Spend Entry','bC')}`);
+const tB=S.bks.reduce((a,b)=>a+(+b.bl||0),0),tC=S.cds.reduce((a,c)=>a+(+c.us||0),0),tS=S.txs.reduce((a,x)=>a+(+x.a||0),0);
+return pg('🏦 Money Management Hub','Bank Accounts, Credit Cards & Daily Spend','',D('g3 m2',st('Bank Balance',R(tB),'te')+st('Card Used',R(tC),'ta')+st('Total Spend',R(tS),'tr0'))+sc(`🏦 Bank Accounts (${S.bks.length})`,'te',S.bks.map(b=>rw(b.b,`${b.tp} ••••${b.ac}`,R(b.bl),'te',`S.bks=S.bks.filter(x=>x.id!==${b.id})`)).join(''),`${ip('bN','Bank Name')}${ip('bA','Last 4 Digits')}${sl('bT','Savings,Salary')}${ip('bB','Balance (₹)','number')}`,'adB()','Add Bank Account','bE')+sc(`💳 Credit Cards (${S.cds.length})`,'ta',S.cds.map(c=>rw(c.b,'Due: '+c.du,R(c.us),'ta',`S.cds=S.cds.filter(x=>x.id!==${c.id})`)).join(''),`${ip('cN','Card Name')}${ip('cU','Used Amount (₹)','number')}`,'adC()','Add Credit Card','bA')+sc('🧾 Record Spend (Date + Time)','tc',S.txs.map(x=>rw(x.t,`${x.m} • 🕒 ${x.dt}`,'-'+R(x.a),'tr0',`S.txs=S.txs.filter(i=>i.id!==${x.id})`)).join(''),`${ip('xT','Expense Title')}${ip('xA','Amount (₹)','number')}${sl('xM','Bank Account,Credit Card,UPI / Cash')}${ip('xD','','text',nDT())}`,'adX()','Add Spend Entry','bC'));
 }
-function adB(){const b=H('bN').value.trim();if(b){S.bks.unshift({id:Date.now(),b,ac:H('bA').value||'0000',tp:H('bT').value,bl:Number(H('bB').value)||0});u()}}
-function adC(){const b=H('cN').value.trim();if(b){S.cds.unshift({id:Date.now(),b,us:Number(H('cU').value)||0,du:'15/12/2026'});u()}}
-function adX(){const t=H('xT').value.trim(),a=Number(H('xA').value)||0;if(t&&a){S.txs.unshift({id:Date.now(),t,m:H('xM').value,a,dt:H('xD').value||nDT()});u()}}
+function adB(){const b=H('bN').value.trim();if(b){S.bks.unshift({id:Date.now(),b,ac:H('bA').value||'0000',tp:H('bT').value,bl:+H('bB').value||0});u()}}
+function adC(){const b=H('cN').value.trim();if(b){S.cds.unshift({id:Date.now(),b,us:+H('cU').value||0,du:'15/12/2026'});u()}}
+function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0;if(t&&a){S.txs.unshift({id:Date.now(),t,m:H('xM').value,a,dt:H('xD').value||nDT()});u()}}
 function render(){
-H('hdrLogo').innerHTML=LOGO.replace(/40/g,'32');
-H('mMod').innerHTML=[['front','🏠 Front Page'],['dashboard','⚡ Dashboard'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance','📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']].map(([v,l])=>`<button onclick="go('${v}')" class="p-2 rx sb text-left fb"><b>${l}</b><span>→</span></button>`).join('');
-H('appView').innerHTML=({front:vFront,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
+const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance','📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
+H('hdrLogo').innerHTML=LOGO;
+H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('');
+H('fNav').innerHTML=nav.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.slice(3)}</span>`).join(' • ');
+H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
 render();
 </script>
