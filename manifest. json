@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "My CSL - Cochin Shipyard Portal",
+  "short_name": "My CSL",
+  "description": "Cochin Shipyard Limited official employee portal featuring biometric attendance, shift schedule, official wall calendar, salary & OT calculator, and personnel services.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020d18",
+  "theme_color": "#041521",
+  "categories": ["business", "productivity", "utilities", "finance"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
