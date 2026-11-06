@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "description": "Official employee portal onboarding for Cochin Shipyard Limited (A Government of India Undertaking).",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "my-csl-work-hub.ai",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "my-csl-work-hub.ai",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "id": "MyCSL"
+}
