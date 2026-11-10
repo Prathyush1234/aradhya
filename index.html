@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>My CSL - Cochin Shipyard Portal</title>
 <meta name="description" content="Cochin Shipyard Limited official employee portal featuring biometric attendance, shift schedule, official wall calendar, salary & OT calculator, and personnel services.">
 <meta name="theme-color" content="#041521">
@@ -36,10 +39,11 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 </head>
 <body class="flex flex-col min-h-screen">
 <div class="bg1"></div>
+<div id="upToast" class="hidden fixed top-14 inset-x-3 z-50 max-w-lg mx-auto cd border-emerald-400 bg-[#032b38] fb"><div><b class="te">🔄 പുതിയ അപ്‌ഡേറ്റ് വന്നു!</b><div><i>പുതിയ മാറ്റങ്ങൾ ലോഡ് ചെയ്യുന്നു...</i></div></div><button onclick="forceUpd()" class="bt bE tx">⚡ Update Now</button></div>
 <header class="sticky top-0 z-40 bg-[#041521]/95 border-b border-[#0e2c3e] px-3 py-2 backdrop-blur-md">
 <div class="max-w-lg mx-auto fb">
 <div class="fl"><button onclick="H('mMod').classList.toggle('hidden')" class="bD bs px-2.5 py-1">☰</button><div onclick="go('front')"><b class="lg leading-none block">My CSL</b><u class="text-[9px] tracking-widest">COCHIN SHIPYARD</u></div></div>
-<div class="fl"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install App</button><button onclick="togL()" id="lBtn" class="bD rf px-3 py-1">🌐 EN</button><div onclick="go('dashboard')" id="hdrLogo" class="p-0.5 rounded-full border border-cyan-400/50"></div></div>
+<div class="fl"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="forceUpd()" title="Check & Update App" class="bD rf px-2 py-1 tx">🔄</button><button onclick="togL()" id="lBtn" class="bD rf px-2.5 py-1">🌐 EN</button><div onclick="go('dashboard')" id="hdrLogo" class="p-0.5 rounded-full border border-cyan-400/50"></div></div>
 </div>
 <div id="mMod" class="hidden max-w-lg mx-auto pt-2 g2"></div>
 </header>
@@ -69,7 +73,7 @@ const rw=(t,s,v,c,fn)=>S1(`<div><b>${t}</b> <i>${s}</i></div>`+L(`<b class="${c}
 const sc=(t,c,r,f,fn,bt,bc)=>S1(`<b class="${c}">${t}</b><div class="my-1">${r}</div><div class="g2 m2">${f}</div>`+B(fn,'bt w-full '+bc,'➕ '+bt),'m2');
 const brand=bk=>F(L(LOGO+`<div><h1 class="bs">Cochin Shipyard Limited</h1><i>GOVT. OF INDIA UNDERTAKING</i></div>`)+(bk?B(`go('${bk}')`,'bD rf','← Back'):''),'m2');
 const pg=(t,s,r,b)=>brand('dashboard')+C(F(`<div><h2 class="bs">${t}</h2><u>${s}</u></div>`+r,'m2')+b);
-const rc=(fn,c,ic,t,s)=>D(c+' fb m2',L(`<span class="bD lg">${ic}</span><div><b class="sm">${t}</b><div><i>${s}</i></div></div>`)+'<span class="bD rf">→</span>',fn);
+  const rc=(fn,c,ic,t,s)=>D(c+' fb m2',L(`<span class="bD lg">${ic}</span><div><b class="sm">${t}</b><div><i>${s}</i></div></div>`)+'<span class="bD rf">→</span>',fn);
 const empC=(bdg,sub)=>C(L(`<div class="av">${S.name[0]||'P'}</div><div><b class="bs">${S.name}</b><div><u>Code: ${S.tok} · ${sub}</u></div></div>`)+`<span class="bD rf tx">${bdg}</span>`,'fb');
 const gBox=t=>C(`<s>✓</s><i>${t}</i>`,'bg-[#06242a]/80 fl');
 const hd=(k,t,s)=>D('m2',`<div><em>— ${k}</em></div><h2 class="text-2xl">${t}</h2><i>${s}</i>`);
@@ -124,7 +128,7 @@ function vCal(){
 const m=S.cM,dim=new Date(2026,m+1,0).getDate(),fd=new Date(2026,m,1).getDay(),p=`2026-${P(m+1)}-`,sDt=`${p}${P(S.sD||1)}`,rec=S.att[sDt]||{},mHols=HOLS.filter(h=>h[0]===m);
 let pCnt=0,lCnt=0,c='<div></div>'.repeat(fd);
 for(let d=1;d<=dim;d++){
-const r=S.att[`${p}${P(d)}`],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),off=w<1||(w===6&&((d>7&&d<15)||(d>21&&d<29)))||HOLS.some(h=>h[0]===m&&h[1]===d);
+  const r=S.att[`${p}${P(d)}`],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),off=w<1||(w===6&&((d>7&&d<15)||(d>21&&d<29)))||HOLS.some(h=>h[0]===m&&h[1]===d);
 if(st0==='P')pCnt++;else if(st0&&st0!=='WO')lCnt++;
 const sh=r?.sh||(off?'OFF':(Math.floor((d-1)/7)%2?S.sh==='A2'?'B2':'A2':S.sh)),bg=st0==='P'?'bg-[#86efac] text-emerald-950':st0?'bA':off?'bg-rose-950/50 tr0':'sb';
 c+=D(`p-1 rx ${bg} ${S.sD===d?'ring-2 ring-cyan-400':''} text-center`,`<b>${d}</b><div class="text-[8px]">${st0&&st0!=='P'?st0:sh}${ot?`<br>⚡${ot}h`:''}</div>`,`S.sD=${d};u()`);
@@ -169,7 +173,7 @@ if(st0==='P'||st0==='On Duty'){pCnt++;otSum+=ot}
 if(S.aFlt==='PRESENT'&&st0!=='P'&&st0!=='On Duty')continue;
 if(S.aFlt==='OT'&&!ot)continue;
 if(S.aFlt==='LEAVE'&&!['CL','EL','ML','HPL','SCL'].includes(st0))continue;
-if(S.aFlt==='HOLIDAY'&&!hol&&w>0&&!sOff)continue;
+  if(S.aFlt==='HOLIDAY'&&!hol&&w>0&&!sOff)continue;
 if(r||hol||d<=5||S.aFlt!=='ALL')rows.push({d,dt,w:WD[w],sh,in:r?.in||(st0==='P'?SH[sh]?.[1]:'—'),out:r?.out||(st0==='P'?SH[sh]?.[2]:'—'),ot,st:st0||'Off Duty',nt:r?.nt||'',wk:r?.wk||'',hol:hol?.[2]||''});
 }
 const sDt=`${p}${P(S.sD||2)}`,curR=S.att[sDt]||{sh:S.sh,in:sd[1],out:sd[2],ot:0,s:'P',nt:'',wk:'Building Dock Yard Work'};
@@ -209,7 +213,7 @@ D('g2',B('svP()','bt bC','✓ Save Duty Punch')+B(`delete S.att['${sDt}'];set('a
 (S.aMod==='note'?D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F(`<b class="sm">✏️ ${MN[m].slice(0,3)} ${S.sD}: Note & Work Details</b>`+B("set('aMod','')",'bD','✕'),'bb')+
 `<i>📝 Duty Note / Remarks:</i>`+ip('mNt','Holiday Duty / Special OT...','text',curR.nt||'')+
 L(['Holiday Duty Worked (CO Eligible)','Special Yard Duty','Overtime Duty Work'].map(x=>B(`H('mNt').value='${x}'`,'sb tx ta','+ '+x.split(' ')[0])).join(''),'my-1 flex-wrap')+
-`<i>⚓ Work Description (Work):</i>`+ip('mWk','Building Dock Yard Work...','text',curR.wk||'')+
+                                                             `<i>⚓ Work Description (Work):</i>`+ip('mWk','Building Dock Yard Work...','text',curR.wk||'')+
 L(['Building Dock Yard Work','Ship Repair Fabrication','Dry Dock Hull Inspection','Electrical & Mechanical Maintenance'].map(x=>B(`H('mWk').value='${x}'`,'sb tx te','+ '+x.split(' ')[0])).join(''),'my-1 flex-wrap')+
 D('g2 mt-2',B(`uDay({nt:H('mNt').value,wk:H('mWk').value});set('aMod','')`,'bt bC','✓ Save Note & Work')+B(`uDay({nt:'',wk:''});set('aMod','')`,'bt bg-rose-900','Clear All')),'w-full max-w-md')):'')+
 (S.aMod==='leave'?D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F('<b class="sm">✈️ Apply Leave / Shift Regularization</b>'+B("set('aMod','')",'bD','✕'),'bb')+
@@ -249,7 +253,7 @@ return pg('📊 Income Tax Calculator','FY 2026-27 New Regime • Zero Tax up to
 }
 function vMon(){
 const tB=S.bks.reduce((a,b)=>a+(+b.bl||0),0),tC=S.cds.reduce((a,c)=>a+(+c.us||0),0),tS=S.txs.reduce((a,x)=>a+(+x.a||0),0);
-return pg('🏦 Money Management Hub','Bank Accounts, Credit Cards & Daily Spend','',D('g3 m2',st('Bank Balance',R(tB),'te')+st('Card Used',R(tC),'ta')+st('Total Spend',R(tS),'tr0'))+sc(`🏦 Bank Accounts (${S.bks.length})`,'te',S.bks.map(b=>rw(b.b,`${b.tp} ••••${b.ac}`,R(b.bl),'te',`S.bks=S.bks.filter(x=>x.id!==${b.id})`)).join(''),`${ip('bN','Bank Name')}${ip('bA','Last 4 Digits')}${sl('bT','Savings,Salary')}${ip('bB','Balance (₹)','number')}`,'adB()','Add Bank Account','bE')+sc(`💳 Credit Cards (${S.cds.length})`,'ta',S.cds.map(c=>rw(c.b,'Due: '+c.du,R(c.us),'ta',`S.cds=S.cds.filter(x=>x.id!==${c.id})`)).join(''),`${ip('cN','Card Name')}${ip('cU','Used Amount (₹)','number')}`,'adC()','Add Credit Card','bA')+sc('🧾 Record Spend (Date + Time)','tc',S.txs.map(x=>rw(x.t,`${x.m} • 🕒 ${x.dt}`,'-'+R(x.a),'tr0',`S.txs=S.txs.filter(i=>i.id!==${x.id})`)).join(''),`${ip('xT','Expense Title')}${ip('xA','Amount (₹)','number')}${sl('xM','Bank Account,Credit Card,UPI / Cash')}${ip('xD','','text',nDT())}`,'adX()','Add Spend Entry','bC'));
+return pg('🏦 Money Management Hub','Bank Accounts, Credit Cards & Daily Spend','',D('g3 m2',st('Bank Balance',R(tB),'te')+st('Card Used',R(tC),'ta')+st('Total Spend',R(tS),'tr0'))+sc(`🏦 Bank Accounts (${S.bks.length})`,'te',S.bks.map(b=>rw(b.b,`${b.tp} ••••${b.ac}`,R(b.bl),'te',`S.bks=S.bks.filter(x=>x.id!==${b.id})`)).join(''),`${ip('bN','Bank Name')}${ip('bA','Last 4 Digits')}${sl('bT','Savings,Salary')}${ip('bB','Balance (₹)','number')}`,'adB()','Add Bank Account','bE')+sc(`💳 Credit Cards (${S.cds.length})`,'ta',S.cds.map(c=>rw(c.b,'Due: '+c.du,R(c.us),'ta',`S.cds=S.cds.filter(x=>x.id!==${x.id})`)).join(''),`${ip('cN','Card Name')}${ip('cU','Used Amount (₹)','number')}`,'adC()','Add Credit Card','bA')+sc('🧾 Record Spend (Date + Time)','tc',S.txs.map(x=>rw(x.t,`${x.m} • 🕒 ${x.dt}`,'-'+R(x.a),'tr0',`S.txs=S.txs.filter(i=>i.id!==${x.id})`)).join(''),`${ip('xT','Expense Title')}${ip('xA','Amount (₹)','number')}${sl('xM','Bank Account,Credit Card,UPI / Cash')}${ip('xD','','text',nDT())}`,'adX()','Add Spend Entry','bC'));
 }
 function adB(){const b=H('bN').value.trim();if(b){S.bks.unshift({id:Date.now(),b,ac:H('bA').value||'0000',tp:H('bT').value,bl:+H('bB').value||0});u()}}
 function adC(){const b=H('cN').value.trim();if(b){S.cds.unshift({id:Date.now(),b,us:+H('cU').value||0,du:'15/12/2026'});u()}}
@@ -257,7 +261,7 @@ function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0;if(t&&a){S.txs.u
 function render(){
 const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance','📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
 H('hdrLogo').innerHTML=cslLogo(32);
-H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('');
+H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('')+B('forceUpd()','p-2 rx bE col-span-2 fb','<b>🔄 Check & Auto-Update App</b><span>⚡</span>');
 H('fNav').innerHTML=nav.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.slice(3)}</span>`).join(' • ');
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
@@ -267,13 +271,19 @@ if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs|
 },1000);
 let dfP;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dfP=e;H('pwaBtn')?.classList.remove('hidden')});
 function instPwa(){if(dfP){dfP.prompt();dfP=null;H('pwaBtn')?.classList.add('hidden')}else alert('To install My CSL App: tap browser menu (⋮) and choose "Add to Home screen" or "Install app".')}
+async function clrSw(){try{if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs)await r.update();navigator.serviceWorker.register('/sw.js').then(r=>r.update()).catch(()=>{})}}catch(e){}}
+async function forceUpd(){await clrSw();location.replace(location.pathname+'?v='+Date.now())}
+async function chkUpd(){try{await clrSw();const r=await fetch(location.pathname+'?_t='+Date.now(),{cache:'no-store'}),tx=await r.text(),h=String(tx.length)+'_'+tx.slice(-120).length,old=localStorage.getItem('csl_html_sig');if(old&&old!==h){localStorage.setItem('csl_html_sig',h);H('upToast')?.classList.remove('hidden');setTimeout(()=>forceUpd(),900)}else localStorage.setItem('csl_html_sig',h)}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chkUpd()});
+window.addEventListener('online',chkUpd);
 (function initPwa(){
 try{
+chkUpd();
 const svgBlob=new Blob([cslLogo(512)],{type:'image/svg+xml'}),url=URL.createObjectURL(svgBlob),img=new Image();
 img.onload=()=>{
 const mk=sz=>{const c=document.createElement('canvas');c.width=c.height=sz;c.getContext('2d').drawImage(img,0,0,sz,sz);return c.toDataURL('image/png')};
 const i192=mk(192),i512=mk(512);if(H('apIcon'))H('apIcon').href=i192;
-const mf={id:'/',name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:location.href,scope:'/',display:'standalone',orientation:'portrait',background_color:'#020d18',theme_color:'#041521',icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
+const mf={id:'/',name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:location.origin+location.pathname,scope:'/',display:'standalone',orientation:'portrait',background_color:'#020d18',theme_color:'#041521',icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
 fetch('/manifest.json',{method:'HEAD'}).then(r=>{if(!r.ok&&H('mfLink'))H('mfLink').href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}))}).catch(()=>{if(H('mfLink'))H('mfLink').href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}))});
 };img.src=url;
 }catch(e){}
