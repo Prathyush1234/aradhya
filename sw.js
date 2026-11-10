@@ -1,6 +1,6 @@
 // My CSL Portal - Network-First Auto-Updating Service Worker (sw.js)
-// Automatically purges stale caches and always fetches the latest index.html when online.
-const CACHE_NAME = 'my-csl-live-v6';
+// Automatically purges stale caches (including old Workbox caches) and always fetches the latest index.html when online.
+const CACHE_NAME = 'my-csl-live-v8';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -11,15 +11,24 @@ self.addEventListener('activate', (event) => {
     caches.keys()
       .then((keys) => Promise.all(keys.map((k) => (k !== CACHE_NAME ? caches.delete(k) : Promise.resolve()))))
       .then(() => self.clients.claim())
-      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(() => self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
       .then((clients) => {
         clients.forEach((client) => {
           try {
-            client.navigate(client.url);
+            client.postMessage({ type: 'CSL_SW_UPDATED', version: CACHE_NAME });
+            if ('navigate' in client) {
+              client.navigate(client.url);
+            }
           } catch (e) {}
         });
       })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING' || (event.data && event.data.type === 'SKIP_WAITING')) {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('fetch', (event) => {
