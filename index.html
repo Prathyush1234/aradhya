@@ -447,10 +447,17 @@ return pg('🏦 Money Management Hub','Bank Accounts, Credit Cards & Daily Spend
 function adB(){const b=H('bN').value.trim();if(b){S.bks.unshift({id:Date.now(),b,ac:H('bA').value||'0000',tp:H('bT').value,bl:+H('bB').value||0});u()}}
 function adC(){const b=H('cN').value.trim();if(b){S.cds.unshift({id:Date.now(),b,us:+H('cU').value||0,du:'15/12/2026'});u()}}
 function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0;if(t&&a){S.txs.unshift({id:Date.now(),t,m:H('xM').value,a,dt:H('xD').value||nDT()});u()}}
+function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
+function enterFs(){if(S.noFs||isFs())return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;if(r)r.call(e,{navigationUI:'hide'}).catch(()=>{try{r.call(e)}catch(x){}})}catch(e){}}
+function togFs(){if(isFs()){S.noFs=1;try{(document.exitFullscreen||document.webkitExitFullscreen)?.call(document)}catch(e){}}else{S.noFs=0;enterFs()}}
+document.addEventListener('click',e=>{const t=e.target?.tagName||'';if(!/^(INPUT|SELECT|TEXTAREA|OPTION|LABEL)$/.test(t)&&!e.target?.closest?.('#fsBtn'))enterFs()},{passive:true});
+document.addEventListener('touchend',e=>{const t=e.target?.tagName||'';if(!/^(INPUT|SELECT|TEXTAREA|OPTION|LABEL)$/.test(t)&&!e.target?.closest?.('#fsBtn'))enterFs()},{passive:true});
+document.addEventListener('fullscreenchange',()=>{if(H('fsBtn'))H('fsBtn').innerHTML=isFs()?'✕':'⛶'});
 function render(){
 const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance','📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
 H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();
-H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('')+B('forceUpd()','p-2 rx bE col-span-2 fb','<b>🔄 Sync & Update App Now</b><span>⚡</span>');
+if(H('lBtn')&&!H('fsBtn'))H('lBtn').insertAdjacentHTML('beforebegin','<button id="fsBtn" onclick="togFs()" class="rounded-full bg-[#05232e] border border-[#0f485b] px-2.5 py-1.5 text-xs font-bold text-cyan-300 fl" title="Hide URL Bar / Fullscreen">⛶</button>');
+H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('')+B('togFs()','p-2 rx bC col-span-2 fb','<b>⛶ Full Screen (Hide Top URL Bar)</b><span>⚡</span>')+B('forceUpd()','p-2 rx bE col-span-2 fb','<b>🔄 Sync & Update App Now</b><span>⚡</span>');
 H("fNav").innerHTML=nav.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.split(" ").slice(1).join(" ")}</span>`).join(" • ");
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
@@ -460,7 +467,7 @@ const t=nTm();if(H('liveClk'))H('liveClk').textContent=t;if(H('liveClk2'))H('liv
 if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=`${P(Math.floor(s/3600))}:${P(Math.floor((s%3600)/60))}:${P(s%60)}`}
 },1000);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();S.dfP=e;H('pwaBtn')?.classList.remove('hidden')});
-function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H('pwaBtn')?.classList.add('hidden')}else alert('To install My CSL App: tap browser menu (⋮) and choose "Add to Home screen" or "Install app".')}
+function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H('pwaBtn')?.classList.add('hidden')}else{enterFs();alert('URL ബാർ പൂർണ്ണമായും ഒഴിവാക്കാൻ: മുകളിലെ വലതുവശത്തെ 3 ഡോട്ട് (⋮) അമർത്തി "Add to Home screen" → "Install" തിരഞ്ഞെടുക്കുക.')}}
 const hStr=(s='')=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return String(h)+'_'+s.length};
 async function clrSw(){try{if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs){await r.update();if(r.waiting)r.waiting.postMessage('SKIP_WAITING')}navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{})}}catch(e){}}
 async function forceUpd(){await clrSw();try{const u0=location.href.split('?')[0];await fetch(u0,{cache:'reload',headers:{'Cache-Control':'no-cache'}});await fetch(location.pathname,{cache:'reload'})}catch(e){}location.replace(location.pathname+'?v='+Date.now())}
@@ -477,15 +484,15 @@ const svgBlob=new Blob([cslLogo(512)],{type:'image/svg+xml'}),url=URL.createObje
 img.onload=()=>{
 const mk=(sz=192)=>{const c=document.createElement('canvas');c.width=c.height=sz;c.getContext('2d').drawImage(img,0,0,sz,sz);return c.toDataURL('image/png')};
 const i192=mk(192),i512=mk(512),u0=location.href.split('?')[0];if(H('apIcon'))H('apIcon').href=i192;
-const mf={id:u0,name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:u0,scope:'./',display:'standalone',orientation:'portrait',background_color:'#010911',theme_color:'#041521',icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
-if(H('mfLink'))H('mfLink').href=URL.createObjectURL(new Blob([JSON.stringify(mf)],{type:'application/manifest+json'}));
+const mf={id:u0,name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:u0,scope:'./',display:'fullscreen',display_override:['fullscreen','standalone'],orientation:'portrait',background_color:'#010911',theme_color:'#041521',icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
+if(H('mfLink'))H('mfLink').href='data:application/manifest+json;charset=utf-8,'+encodeURIComponent(JSON.stringify(mf));
 };img.src=url;
 }catch(e){}
 })();
 function doExit(){S.exitMod=0;u();try{window.close()}catch(e){}try{navigator.app?.exitApp?.()}catch(e){}try{if(history.length>1)history.go(-history.length)}catch(e){}}
 try{history.replaceState({v:S.view},'');history.pushState({v:S.view},'')}catch(e){}
 window.addEventListener('popstate',()=>{try{history.pushState({v:S.view},'')}catch(e){};if(!H('mMod')?.classList.contains('hidden')||S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.exitMod){H('mMod')?.classList.add('hidden');S.aMod='';S.pdfMod='';S.waPrev='';S.admOpen=0;S.exitMod=0;u();return}if(S.view!=='dashboard'&&S.view!=='front'){S.view='dashboard';u();scrollTo(0,0);return}S.exitMod=1;u()});
-render();Object.assign(window,{chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,tIn,sBrk,vTax,vMon,adB,adC,adX,render,instPwa,hStr,clrSw,forceUpd,chkUpd,doExit});
+render();Object.assign(window,{isFs,enterFs,togFs,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,tIn,sBrk,vTax,vMon,adB,adC,adX,render,instPwa,hStr,clrSw,forceUpd,chkUpd,doExit});
 </script>
 </body>
 </html>
