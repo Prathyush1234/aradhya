@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-< lang="en">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
@@ -53,13 +53,12 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 <div class="absolute bottom-10 right-10 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl"></div>
 <div class="absolute bottom-6 right-2 sm:right-6 w-56 h-56 opacity-55"><svg viewBox="0 0 200 200" fill="none" class="w-full h-full"><defs><linearGradient id="mG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/><stop offset="50%" stop-color="#0284c7" stop-opacity="0.45"/><stop offset="100%" stop-color="#0369a1" stop-opacity="0"/></linearGradient></defs><path d="M10 190Q60 140 130 150T195 90" stroke="url(#mG)" stroke-width="0.9"/><path d="M25 195Q75 145 145 155T195 105" stroke="url(#mG)" stroke-width="0.9"/><path d="M40 200Q90 150 160 160T195 120" stroke="url(#mG)" stroke-width="0.9"/><path d="M55 205Q105 155 175 165T195 135" stroke="url(#mG)" stroke-width="0.9"/><path d="M70 210Q120 160 190 170T195 150" stroke="url(#mG)" stroke-width="0.9"/><g transform="translate(145,120)"><path d="M0 -18Q1 -2 18 0Q1 2 0 18Q-1 2 -18 0Q-1 -2 0 -18Z" fill="url(#mG)" opacity="0.95"/><circle cx="0" cy="0" r="3.5" fill="#fff"/></g></svg></div>
 </div>
-<div id="admMod"></div><div id="upToast" class="hidden fixed top-14 inset-x-3 z-50 max-w-lg mx-auto cd border-emerald-400 bg-[#032b38] fb"><div><b class="te">🔄 പുതിയ അപ്‌ഡേറ്റ് വന്നു!</b><div><i>പുതിയ മാറ്റങ്ങൾ ലോഡ് ചെയ്യുന്നു...</i></div></div><button onclick="forceUpd()" class="bt bE tx">⚡ Update Now</button></div>
-<header class="sticky top-0 z-40 bg-[#031822]/95 border-b border-[#0a2e3d] px-4 py-2.5 ">
+<div id="admMod"></div><a id="navA" href="#dashboard" class="hidden"></a>
+<header class="sticky top-0 z-40 bg-[#031822]/95 border-b border-[#0a2e3d] px-4 py-2.5">
 <div class="max-w-lg mx-auto fb">
-<div class="fl gap-3"><button onclick="H('mMod').classList.toggle('hidden')" class="w-10 h-10 rounded-xl bg-[#05232e] border border-[#0f485b] text-teal-400 fc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div onclick="go('front')"><b class="text-xl  text-white">My CSL</b></div></div>
+<div class="fl gap-3"><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
 <div class="fl gap-2.5"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="togL()" id="lBtn" class="rounded-full bg-[#05232e] border border-[#0f485b] px-3.5 py-1.5 text-xs font-bold text-teal-300 fl gap-1.5">🌐 EN</button><div onclick="tapLogo()" title="3-Tap CSL Logo for Admin" id="hdrLogo" class="p-0.5 rounded-full border border-teal-500/40 bg-[#041521] cursor-pointer active:scale-90"></div></div>
 </div>
-<div id="mMod" class="hidden max-w-lg mx-auto pt-2 g2"></div>
 </header>
 <main id="appView" class="relative z-10 flex-1 w-full max-w-lg mx-auto px-3 py-2.5"></main>
 <footer class="relative z-10 mt-auto py-2.5 bg-[#010911]/90 border-t border-[#0d2638] text-center tx ts">
@@ -82,7 +81,6 @@ return`<svg width="${s}" height="${s}" viewBox="0 0 400 400" class="rounded-full
 }
 Object.assign(window,{tapLogo,K,MN,WD,WDF,WDML,SH,QC,MC,HOLS,cslLogo});
 // @ts-nocheck
- // @ts-nocheck
 const LOGO=cslLogo(38),fD=(s='')=>s?String(s).split('-').reverse().join('/'):'',R=(n=0)=>'₹'+Math.round(Number(n||0)).toLocaleString('en-IN'),R2=(n=0)=>Number(n||0).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}),H=(id='')=>document.getElementById(id),P=(n=0)=>String(n).padStart(2,'0');
 const D=(c='',h='',o='')=>`<div${o?` onclick="${o}"`:''} class="${c}">${h}</div>`,B=(o='',c='',h='')=>`<button onclick="${o}" class="${c}">${h}</button>`,C=(h='',c='',o='')=>D('cd '+c,h,o),S1=(h='',c='',o='')=>D('sb '+c,h,o),F=(h='',c='')=>D('fb '+c,h),L=(h='',c='')=>D('fl '+c,h);
 const st=(l='',v='',c='tc')=>S1(`<i>${l}</i><b class="sm ${c} block">${v}</b>`,'text-center');
@@ -103,7 +101,8 @@ let S={view:'front',initDone:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFl
 try{const sv=localStorage.getItem(K);if(sv){const p=JSON.parse(sv),q0=p.lvQ?.uSaved?p.lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},ps=p.sal||{},c0=(p.cds?.length>=2&&p.cds[0]?.stD?p.cds:S.cds).map((c={})=>({...c,tp:c.tp||(/visa/i.test(c.b||'')?'VISA':'RuPay UPI')})),x0=(p.txs||S.txs).map((x={})=>({...x,bk:x.bk||'needs'}));S={...S,...p,initDone:1,view:'attendance',aMod:'',pdfMod:'',cTm:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,b:ps.uTyped2?ps.b:'',otH:ps.uTyped2?ps.otH:''},txI:{...S.txI,...(p.txI||{}),b:+(p.txI?.b)||46500}}}const lb=localStorage.getItem('csl_leave_balances_v2');if(lb&&!S.lvQ?.uSaved){const b=JSON.parse(lb);S.lvQ={cl1:+(b.clPhase1Total??b.clPhase1??6),cl2:+(b.clPhase2Total??b.clPhase2??6),hpl:+(b.hplTotal??b.hpl??20),el:+(b.elTotal??b.el??30),scl:+(b.specialLeaveTotal??b.specialLeave??15),uSaved:1}}}catch(e){}S.cM=tM();S.sD=tD();S.lastDt=tKey();
 const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};if(window.render)window.render()},set=(k='',v='')=>{S[k]=v;u()},openAdm=()=>{S.admOpen=1;S.admAuth=0;S.admErr='';u()},daySh=(m=S.cM,d=S.sD)=>{const r=S.att[`2026-${P(m+1)}-${P(d)}`];if(r?.sh)return r.sh;if(S.sh!=='A2'&&S.sh!=='B2')return S.sh;return Math.abs(wkI(m,d)-wkI(tM(),tD()))%2?(S.sh==='A2'?'B2':'A2'):S.sh},setSh=(k='A2')=>{S.sh=k;[tKey(),`2026-${P(S.cM+1)}-${P(S.sD||tD())}`].forEach(d0=>{if(S.att[d0]&&(S.att[d0].s==='P'||S.att[d0].s==='On Duty')){S.att[d0].sh=k;S.att[d0].in=SH[k][1];if(S.att[d0].s==='P'&&!S.att[d0].ot)S.att[d0].out=SH[k][2]}});u()};
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
-function go(v='front',c=''){H('mMod').classList.add('hidden');if(c)S.cat=c;S.view=v;S.aMod='';S.exitMod=0;S.slipOpen=0;try{if(v==='dashboard'){window._hArm=0;history.replaceState({v:'dashboard'},'','#dashboard')}else{if(!window._hBase){history.replaceState({v:'dashboard'},'','#dashboard');window._hBase=1}history.pushState({v},'','#'+v);window._hArm=1}}catch(e){};u();scrollTo(0,0)}
+function navPush(v='attendance'){try{window._ignHash=1;const h='#'+v+'_'+(window._hSeq=(window._hSeq||0)+1),a=H('navA');if(a){a.href=h;a.click()}else history.pushState({v},'',h);setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
+function go(v='front',c=''){if(c)S.cat=c;S.view=v;S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
 function mOT(m=0){let t=0,p=`2026-${P(m+1)}-`;for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=+v.ot||0;return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:`${MN[c[2]]}–${MN[c[4]]} 2026`,m,u:u0,rem:Math.max(0,S.qCap-u0)}}
 function lvCnt(t=''){return Object.values(S.att).filter(v=>v.s===t||(t==='SCL'&&v.s==='SPL')).reduce((a,v)=>a+(v.dur?.includes('Half')?.5:1),0)}
@@ -139,7 +138,8 @@ C(F(`<div><b class="sm">⏱️ CSL Duty Shift</b><div><i>A2 ⇄ B2 Weekly Rotati
 qBanner()+
 [['attendance','📋','Attendance',`Shift ${S.sh} · In: ${sd[1]} (Grace ${sd[7]}) · Out: ${sd[2]}`],['calendar','📅','Calendar','🏅 12 CSL Holidays · Synced Shift Schedule'],['salary','₹','Salary','Pay Slip, Allowances, PF & Admin Formulas'],['money','🏦','Money Management','Bank Accounts, Credit Cards & Daily Expenses'],['tax','📊','Income Tax Calculator','FY 2026-27 New & Old Regime · Payslip Sync']].map(([v,ic,t,s])=>rc(`go('${v}')`,'cd',ic,t,s)).join('');
 }
-Object.assign(window,{LOGO,fD,R,R2,H,P,D,B,C,S1,F,L,st,ip,sl,rw,sc,brand,pg,rc,empC,gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,DADM,S,u,set,openAdm,daySh,setSh,togL,go,mOT,qOT,lvCnt,totLv,avlLv,uLvQ,vFront,vSign,doSign,qBanner,vDash});
+Object.assign(window,{LOGO,fD,R,R2,H,P,D,B,C,S1,F,L,st,ip,sl,rw,sc,brand,pg,rc,empC,gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,DADM,S,u,set,openAdm,daySh,setSh,togL,navPush,go,mOT,qOT,lvCnt,totLv,avlLv,uLvQ,vFront,vSign,doSign,qBanner,vDash});
+// @ts-nocheck
 function miniCal(mi=0,l=''){const N=new Date(2026,mi+1,0).getDate(),f=new Date(2026,mi,1).getDay(),hs=HOLS.filter(h=>h[0]===mi);return C(F(`<b>${l}</b><i>${N} D</i>`,'m2')+D('g7 text-center text-[9px] font-bold mb-1','<span class="tr0">S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>')+D('g7 text-center text-[10px]','<i></i>'.repeat(f)+[...Array(N).keys()].map(i=>{const d=i+1,w=(f+i)%7,h=hs.find(x=>x[1]===d),r=w<1||(w===6&&((d>7&&d<15)||(d>21&&d<29)));return`<span title="${h?h[2]:''}" class="h-5 fc rounded ${h?'bg-rose-600/35 ta font-black ring-1 ring-rose-400':r?'tr0 font-bold':'ts'}">${d}</span>`}).join(''))+(hs.length?D('bt1 mt-1.5 pt-1 space-y-0.5',hs.map(h=>`<div class="text-[9px] ta font-bold truncate">🎉 ${P(h[1])} ${MN[mi].slice(0,3)}: ${S.lang==='ml'?h[3]:h[2]}</div>`).join('')):''),'p-2.5',`set('cM',${mi})`)}
 function hRow([mi=0,d=1,n='',mlN='',tp='']){return S1(L(`<span class="w-9 h-9 rx ${tp==='National'?'bg-amber-400 text-slate-950':'bg-rose-600 text-white'} fc font-black">${P(d)}</span><div><b>${n}</b> <span class="ta tx">(${mlN})</span><div><i>${P(d)} ${MN[mi]} 2026 (${WDF[new Date(2026,mi,d).getDay()]}) · Official Paid Closed Holiday</i></div></div>`)+(`<span class="bD tx shrink-0">${tp}</span>`),'fb mb-1.5',`S.cM=${mi};S.sD=${d};set('cTab','wall')`)}
 function vCalTop(m=S.cM,ml=false,dSh='A2',sd=SH.A2,rot=true,clT=12){
@@ -421,7 +421,6 @@ C(F('<b>🛡️ CSL Employee Income Tax Rules & Tips (FY 2026-27)</b>'+B("go('sa
 }
 Object.assign(window,{chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,apSlip,tIn,sBrk,vTax});
 // @ts-nocheck
-// @ts-nocheck
 function ccDays(stD=15,duD=5){const d=tD();let toSt=stD-d;if(toSt<0)toSt+=30;let gr=duD-stD;if(gr<=0)gr+=30;return toSt+gr}
 function syncMonSal(){const adm=S.adm||DADM,bp=+S.sal.b||+S.txI.b||25340,hrs=+(S.sal.otH||cycOT(S.sal.cycM??10)),da=bp*(+adm.da||54.1)/100,hr=bp*(+adm.hra||20)/100,ot=((bp+da)/(+adm.div||198))*2*hrs,pf=(bp+da)*(.12);S.mInc=Math.max(10000,Math.round(bp+da+hr+ot-pf));u()}
 function vMon(){
@@ -449,13 +448,10 @@ function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0,bk=H('xB')?.valu
 function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
 function enterFs(){if(S.noFs||isFs())return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;if(r)r.call(e,{navigationUI:'hide'}).catch(()=>{try{r.call(e)}catch(x){}})}catch(e){}}
 function togFs(){if(isFs()){S.noFs=1;try{(document.exitFullscreen||document.webkitExitFullscreen)?.call(document)}catch(e){}}else{S.noFs=0;enterFs()}}
-document.addEventListener('fullscreenchange',()=>{if(H('fsBtn'))H('fsBtn').innerHTML=isFs()?'✕':'⛶'});
 function render(){
 if(window._isDl)return;
 const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance','📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
 H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();
-if(H('lBtn')&&!H('fsBtn'))H('lBtn').insertAdjacentHTML('beforebegin','<button id="fsBtn" onclick="togFs()" class="rounded-full bg-[#05232e] border border-[#0f485b] px-2.5 py-1.5 text-xs font-bold text-cyan-300 fl" title="Hide URL Bar / Fullscreen">⛶</button>');
-H('mMod').innerHTML=nav.map(([v,l])=>B(`go('${v}')`,'p-2 rx sb fb',`<b>${l}</b><span>→</span>`)).join('')+B('togFs()','p-2 rx bC col-span-2 fb','<b>⛶ Full Screen (Hide Top URL Bar)</b><span>⚡</span>')+B('forceUpd()','p-2 rx bE col-span-2 fb','<b>🔄 Sync & Update App Now</b><span>⚡</span>');
 H("fNav").innerHTML=nav.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.split(" ").slice(1).join(" ")}</span>`).join(" • ");
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
@@ -468,16 +464,15 @@ if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs|
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();S.dfP=e;H('pwaBtn')?.classList.remove('hidden')});
 function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H('pwaBtn')?.classList.add('hidden')}else{enterFs();alert('URL ബാർ പൂർണ്ണമായും ഒഴിവാക്കാൻ: മുകളിലെ വലതുവശത്തെ 3 ഡോട്ട് (⋮) അമർത്തി "Add to Home screen" → "Install" തിരഞ്ഞെടുക്കുക.')}}
 const hStr=(s='')=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return String(h)+'_'+s.length};
-async function clrSw(){try{if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs){await r.update();if(r.waiting)r.waiting.postMessage('SKIP_WAITING')}navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{})}}catch(e){}}
-async function forceUpd(){await clrSw();try{const u0=location.href.split('?')[0];await fetch(u0,{cache:'reload',headers:{'Cache-Control':'no-cache'}});await fetch(location.pathname,{cache:'reload'})}catch(e){}location.replace(location.pathname+'?v='+Date.now())}
-async function chkUpd(){if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();u()}try{await clrSw();const u0=location.href.split('?')[0],r=await fetch(u0+(u0.includes('?')?'&':'?')+'_t='+Date.now(),{cache:'no-store',headers:{'Cache-Control':'no-cache'}});if(!r.ok)return;const tx=await r.text(),h=hStr(tx),old=localStorage.getItem('csl_html_hash');if(old&&old!==h){localStorage.setItem('csl_html_hash',h);H('upToast')?.classList.remove('hidden');await fetch(u0,{cache:'reload'}).catch(()=>{});setTimeout(()=>forceUpd(),600)}else localStorage.setItem('csl_html_hash',h)}catch(e){}}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')chkUpd()});
-window.addEventListener('focus',chkUpd);window.addEventListener('online',chkUpd);setInterval(chkUpd,20000);
-if('serviceWorker'in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data?.type==='CSL_SW_UPDATED')forceUpd()});
+async function clrSw(){try{if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs)await r.unregister()}}catch(e){}}
+async function forceUpd(){await clrSw();location.reload()}
+async function chkUpd(){if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();u()}await clrSw()}
 function doExit(){S.exitMod=0;u();try{window.AppInventor?.setWebViewString?.('EXIT_APP')}catch(e){}try{window.close()}catch(e){}try{navigator.app?.exitApp?.()}catch(e){}try{if(history.length>1)history.go(-history.length)}catch(e){}}
-function armBack(){if(S.view!=='dashboard'&&!window._hArm){try{if(!window._hBase){history.replaceState({v:'dashboard'},'','#dashboard');window._hBase=1}history.pushState({v:S.view,a:1},'','#'+S.view);window._hArm=1}catch(e){}}}
+function armBack(){if(S.view!=='dashboard'&&!window._hArm){window._hArm=1;navPush(S.view)}}
 ['touchend','pointerup','mouseup','click','keydown'].forEach(ev=>window.addEventListener(ev,armBack,{passive:true,capture:true}));
-window.addEventListener('load',()=>setTimeout(()=>{if(S.view!=='dashboard'){try{history.replaceState({v:'dashboard'},'','#dashboard');window._hBase=1;history.pushState({v:S.view},'','#'+S.view)}catch(e){}}},120));
+function onHwBack(){if(window._ignHash)return;const n=Date.now();if(n-(window._lastBk||0)<220)return;window._lastBk=n;if(S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.slipOpen){S.aMod='';S.pdfMod='';S.waPrev='';S.admOpen=0;S.slipOpen=0;window._hArm=0;navPush(S.view);u();return}if(S.view!=='dashboard'){window._hArm=0;window._dashTs=n;S.view='dashboard';u();scrollTo(0,0);return}if(n-(window._dashTs||0)<500)return;doExit()}
+window.addEventListener('popstate',onHwBack);window.addEventListener('hashchange',onHwBack);
+window.addEventListener('load',()=>setTimeout(()=>{if(S.view!=='dashboard')navPush(S.view)},80));
 (function initApp(){
 if(location.search.includes('cslDl=')){
 window._isDl=1;document.body.innerHTML='';document.body.style.background='#010911';
@@ -492,7 +487,6 @@ setTimeout(cls,350);setTimeout(cls,750);setTimeout(cls,1200);document.addEventLi
 return;
 }
 try{
-if(location.search.includes('v='))history.replaceState({},'',location.pathname);
 chkUpd();
 const svgBlob=new Blob([cslLogo(512)],{type:'image/svg+xml'}),url=URL.createObjectURL(svgBlob),img=new Image();
 img.onload=()=>{
@@ -501,12 +495,11 @@ const i192=mk(192),i512=mk(512),u0=location.href.split('?')[0];if(H('apIcon'))H(
 const mf={id:u0,name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:u0,scope:'./',display:'fullscreen',display_override:['fullscreen','standalone'],orientation:'portrait',background_color:'#010911',theme_color:'#041521',icons:[{src:i192,sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
 if(H('mfLink'))H('mfLink').href='data:application/manifest+json;charset=utf-8,'+encodeURIComponent(JSON.stringify(mf));
 };img.src=url;
-history.replaceState({v:'dashboard'},'','#dashboard');window._hBase=1;if(S.view!=='dashboard')history.pushState({v:S.view},'','#'+S.view);
+if(S.view!=='dashboard')navPush(S.view);
 }catch(e){}
-window.addEventListener('popstate',()=>{if(!H('mMod')?.classList.contains('hidden')||S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.slipOpen){H('mMod')?.classList.add('hidden');S.aMod='';S.pdfMod='';S.waPrev='';S.admOpen=0;S.slipOpen=0;window._hArm=0;armBack();u();return}if(S.view!=='dashboard'){window._hArm=0;S.view='dashboard';try{history.replaceState({v:'dashboard'},'','#dashboard')}catch(e){};u();scrollTo(0,0);return}doExit()});
 render();
 })();
-Object.assign(window,{isFs,enterFs,togFs,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,apSlip,tIn,sBrk,vTax,ccDays,syncMonSal,vMon,adB,adC,adX,render,instPwa,hStr,clrSw,forceUpd,chkUpd,doExit,armBack});
+Object.assign(window,{isFs,enterFs,togFs,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,apSlip,tIn,sBrk,vTax,ccDays,syncMonSal,vMon,adB,adC,adX,render,instPwa,hStr,clrSw,forceUpd,chkUpd,doExit,armBack,onHwBack});
 </script>
 </body>
 </html>
