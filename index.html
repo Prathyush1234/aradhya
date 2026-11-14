@@ -111,11 +111,12 @@ const sc=(t='',c='',r='',f='',fn='',bt='',bc='')=>S1(("<b class=\""+(c)+"\">"+(t
 const brand=(bk='',xBtn='')=>F(L(("<div onclick=\"tapLogo()\" title=\"3-Tap CSL Logo for Admin\" class=\"p-0.5 rf ring-2 ring-amber-500/70 bg-[#061522] cursor-pointer active:scale-90\">"+
 (LOGO)+"</div><div><h1 class=\"bs\">Cochin Shipyard Limited</h1><i>A GOVERNMENT OF INDIA UNDERTAKING</i></div>"))+L(xBtn+(bk?B(bk==='exit'?'doExit()':("go('"+
 (bk)+"')"),'bD rf','← Back'):'')),'m2');
-const pg=(t='',s='',r='',b='')=>brand('dashboard')+C(F(("<div><h2 class=\"bs\">"+(t)+"</h2><u>"+(s)+"</u></div>")+r,'m2')+b);
-const rc=(fn="",c="",ic="",t="",s="",a=0)=>D(c+" rounded-2xl p-3.5 fb m2",L(("<div class=\"w-11 h-11 rounded-xl fc shrink-0 "+(a?"bg-[#0e3c54] border border-[#16b8d8]/80 text-cyan-300":"b"+
-"g-[#0a2030] text-slate-400 font-bold text-sm")+"\">"+(ic==="✓"?"<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg>":ic)+
 // === END PART 2 ===
 // === START PART 3 ===
+const pg=(t='',s='',r='',b='')=>brand('dashboard')+C(F(("<div><h2 class=\"bs\">"+(t)+"</h2><u>"+(s)+"</u></div>")+r,'m2')+b);
+const rc=(fn="",c="",ic="",t="",s="",a=0)=>D(c+" rounded-2xl p-3.5 fb m2",L(("<div class=\"w-11 h-11 rounded-xl fc shrink-0 "+(a?"bg-[#0e3c54] border border-[#16b8d8]/80 text-cyan-300":"b"+
+"g-[#0a2030] text-slate-400 font-bold text-sm")+"\">"+(ic==="✓"?"<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-line"+
+"cap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg>":ic)+
 "</div><div class=\"min-w-0\"><div class=\"font-bold text-white text-sm sm:text-base tracking-tight truncate\">"+(t)+"</div><div class=\"text-xs "+(a?"text-cyan-300 font-medium":"text-s"+
 "late-400")+" mt-0.5 truncate\">"+(s)+"</div></div>"))+(("<div class=\"w-10 h-10 rounded-full fc shrink-0 "+(a?"bg-[#16b8d8] text-[#031724] shadow-[0_0_12px_rgba(22,184,216,0.5)]":"bord"+
 "er border-slate-700/60 text-slate-400 bg-slate-800/40")+"\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-line"+
@@ -134,14 +135,14 @@ clb:50,lic:1499,cPf:0,cPfN:'Admin Solved (Formula pending)',cOtR:0,cOtN:'Custom 
 let S={view:'front',initDone:0,uSigned:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFlt:'all',hFlt:'all',sD:tD(),lastDt:tKey(),lvDur:'Full Day',lvOpen:0,
 wOpen:0,nOpen:0,aFlt:'ALL',aMod:'',pdfMod:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,admAuth:0,admErr:'',admSaved:0,shPw:0,
 exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'budget',
-lnTp:'none',slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},dfP:null,name:'',
+lnTp:'none',slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},gl:{ln:'',rt:9,mo:12,emi:'',ex:''},dfP:null,name:'',
 tok:'',ph:'',dep:'',doj:'',sh:'A2',qCap:120,qCyc:3,cM:tM(),lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},adm:{...DADM},att:{},sal:{b:'',otH:'',tgt:25,
 cycM:10,allCyc:0,da:54.1,hr:20,pr:32,otR:0,pf:0,uTyped2:0},txI:{b:0,da:54.1,otA:0,hraA:0,rentA:0,prkA:0,bonA:0,c80:0,nps1B:0,nps2:0,medS:0,medP:0,srP:0,
 hlInt:0,savI:0,fdI:0,hpI:0},bks:[],cds:[],txs:[]};
 try{const sv=localStorage.getItem(K);if(sv){const p=JSON.parse(sv);if(p?.uSigned&&p?.name?.trim()){const q0=p.lvQ?.uSaved?p.lvQ:{cl1:6,cl2:6,hpl:20,el:30,
 scl:15,uSaved:1},ps=p.sal||{},c0=(p.cds||[]).map((c={})=>({...c,tp:c.tp||(/visa/i.test(c.b||'')?'VISA':'RuPay UPI')})),x0=(p.txs||[]).map((x={})=>({...x,
 bk:x.bk||'needs'}));S={...S,...p,initDone:1,uSigned:1,view:'attendance',aMod:'',pdfMod:'',cTm:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,
-admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,hl:{...S.hl,...(p.hl||{})},pl:{...S.pl,...(p.pl||{})},adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,
+admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,hl:{...S.hl,...(p.hl||{})},pl:{...S.pl,...(p.pl||{})},gl:{...S.gl,...(p.gl||{})},adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,
 b:ps.uTyped2?ps.b:'',otH:ps.uTyped2?ps.otH:''},txI:{...S.txI,...(p.txI||{})}}}else{localStorage.removeItem(K)}}}catch(e){}S.cM=tM();S.sD=tD();S.lastDt=tKey();
 const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};if(window.render)window.render()},set=(k='',v='')=>{S[k]=v;u()},openAdm=()=>{S.admOpen=1;
 S.admAuth=0;S.admErr='';u()},daySh=(m=S.cM,d=S.sD)=>{const r=S.att[("2026-"+(P(m+1))+"-"+(P(d)))];if(r?.sh)return r.sh;if(S.sh!=='A2'&&S.sh!=='B2')return S.sh;
@@ -174,6 +175,8 @@ return ("<div class=\"py-2\"><div class=\"fl gap-3.5 mb-6\"><div onclick=\"tapLo
 "rtal.")+"</h2><p class=\"text-slate-300/80 text-sm sm:text-base font-normal\">Choose your employee category to continue.</p></div><div class=\"rounded-[28px] bg-[#061825]/90 backdrop-b"+
 "lur-xl p-5 shadow-2xl border border-[#0f354c] mb-6\"><div class=\"fb text-xs mb-3\"><span class=\"font-extrabold tracking-widest text-[#5e8b9f] uppercase text-[10px]\">SELECT YOUR CATE"+
 "GORY</span><span class=\"fm text-[#5e8b9f] text-[11px] font-semibold tracking-wider\">01 — 01</span></div><h3 class=\"text-lg sm:text-xl font-bold text-white mb-4 tracking-tight\">How "+
+// === END PART 3 ===
+// === START PART 4 ===
 "are you associated with CSL?</h3><div class=\"space-y-3 mb-3\">"+(opts.map(([n,c,t,d,a])=>rc(("go('signin','"+(c)+"')"),a?"cA":"border border-[#0e2c3e] bg-[#071825]/80",
 String(n),String(t),String(d),+a)).join(""))+"<div class=\"text-center pt-2\"><button onclick=\"set('more',!S.more)\" class=\"text-xs text-[#5e8b9f] font-medium\">"+
 (S.more?"Fewer categories ∧":"More categories (Apprentice / Vendor) ⌄")+"</button></div></div><div class=\"pt-3 border-t border-[#0d2f44] fb text-xs\"><div class=\"fl gap-2 text-slate-2"+
@@ -188,8 +191,6 @@ const ic=S.cat==='contract',q=S.lvQ||{},totCl=totLv('CL'),fin=S.doj?(()=>{const[
 return brand('front',S.uSigned?B('rstEmp()','bt bg-rose-950 tr0 tx','🔄 New User / Reset'):'')+hd(ic?'CONTRACT EMPLOYEE':'PERMANENT EMPLOYEE',ic?'Contract Employee Sign In':'Employee Si'+
 'gn In','Enter your name, CSL code number, and initial leave balances.')+
 [['sNm','👤 FULL NAME','Enter Full Name',S.name],['sTk','# CSL CODE NUMBER','Enter CSL Code No',S.tok],['sPh','📞 PHONE NUMBER (+91)','Enter 10-digit Mobile No',
-// === END PART 3 ===
-// === START PART 4 ===
 S.ph],['sDp','🏢 DEPARTMENT','Enter Department / Shop',S.dep]].map(([id,l,ph,v])=>C(F(("<i>"+(l)+"</i><b class=\"tr0\">*</b>"))+ip(id,ph,'text',String(v)))).join('')+
 (ic?D('g2 m2',C('<u>📅 JOINING DATE (DOJ)</u>'+ip('sDj','','date',S.doj,"S.doj=this.value;u()"))+C(("<em>⏱️ 1 YEAR FINISH</em><div class=\"ta fm sm mt-2\"><b>"+(fin)+"</b></div>"))):'' )+
 C(F("<div><b class=\"sm\">CSL Leave Quotas & Initial Available Balances</b> <span class=\"bD rf tx\">SYNCED</span></div>"+B("set('qOpen',!S.qOpen)",'bD rf tx',S.qOpen?'Hide ∧':'Show ∨'),'m2')+
@@ -263,6 +264,8 @@ i+1,0).getDate())+"D</i>"))+("<div class=\"te tx font-bold mt-0.5\">🚢 "+(MC[i
 B("set('cTab','wall')",'bD rf tx','← Wall Calendar'),'m2')+D('g4 text-center m2',st('Closed Holidays',HOLS.length,'tr0')+st('CSL Gazetted',HOLS.filter(h=>h[4]!=='National').length,
 'tr0')+st('National Days','3','ta')+st('CSL Leaves/Yr','62+','te'))+L([['all',("All Holidays ("+(HOLS.length)+")")],['Gazetted','CSL Gazetted'],['National',
 'National (3)'],['leaves','CSL Leaves (CL/EL/HPL)']].map(([k,l])=>B(("set('hFlt','"+(k)+"')"),("px-2.5 py-1 rx tx "+(S.hFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),
+// === END PART 4 ===
+// === START PART 5 ===
 l)).join(''),'flex-wrap m2')+(S.hFlt==='leaves'?D('g2',[['CL',clT,'Casual Leave (കാഷ്വൽ ലീവ്)','ta',lvCnt('CL')],['EL',totLv('EL'),'Earned Leave (ഏൺഡ് ലീവ്)',
 'te',lvCnt('EL')+lvCnt('ML')],['ML','From EL','Medical Leave (മെഡിക്കൽ ലീവ് - Debited from EL)','tr0',lvCnt('ML')],['HPL',totLv('HPL'),'Half Pay Leave (ഹാഫ് പേ ലീവ്)',
 'tc',lvCnt('HPL')],['SCL',totLv('SCL'),'Special Casual Leave (സ്പെഷ്യൽ ലീവ്)','ta',lvCnt('SCL')]].map(([k,q0,nm,cl,us])=>S1(F(("<b class=\"sm "+(cl)+"\">"+
@@ -279,8 +282,6 @@ for(let d=1;d<=dim;d++){
 const r=S.att[(""+(p)+(P(d)))],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),hol=HOLS.some(h=>h[0]===m&&h[1]===d),sOff=w===6&&((d>7&&d<15)||(d>21&&d<29)),off=w<1||sOff||hol;
 if(st0==='P'||st0==='On Duty')pCnt++;else if(st0&&st0!=='WO')lCnt++;
 const sh=r?.sh||(off?'':rot?daySh(m,d):''),dim0=(S.cFlt==='duty'&&st0!=='P'&&st0!=='On Duty')||(S.cFlt==='leaves'&&(!st0||st0==='P'||st0==='On Duty'))||(S.cFlt==='holidays'&&!off)?'opacity-25':'';
-// === END PART 4 ===
-// === START PART 5 ===
 const bg=st0==='P'||st0==='On Duty'?'bg-[#86efac] text-emerald-950 border border-emerald-400':st0?'bA':off?'bg-rose-950/45 tr0 border border-rose-800/40':'bg-[#082235]/80 text-slate-200'+
 ' border border-[#0e3046]';
 c+=D(("min-h-[48px] p-1 rx "+(bg)+" "+(dim0)+" "+(S.sD===d?'ring-2 ring-cyan-400 scale-105 z-10':m===tM()&&d===tD()?'ring-2 ring-amber-400':'')+" fc flex-col relative"),
@@ -342,6 +343,8 @@ B("set('wOpen',!S.wOpen)",'bD tx',S.wOpen?'Close':'✏️ + Add / Edit Work'))+(
 B("uDay({wk:H('wIn').value})",'bt bC w-full','✓ Save Work'):("<div class=\"mt-1\"><s>⚓ "+(wkTxt)+"</s> <i class=\"fm\">· Code: "+(S.tok)+"</i></div>")),
 'border-teal-500/40')+
 S1(F('<b>📝 വ്യക്തിഗത കുറിപ്പുകൾ (Personal Notes & Remarks):</b>'+B("set('nOpen',!S.nOpen)",'tc tx',S.nOpen?'Close':'✏️ + Add / Edit Note'))+(S.nOpen?L(ip('nIn',
+// === END PART 5 ===
+// === START PART 6 ===
 'ഈ തീയതിയിലെ പ്രത്യേക കുറിപ്പുകൾ...','text',ntTxt)+B("uDay({nt:H('nIn').value})",'bt bC','Save')):D('tx ts italic mt-1',ntTxt||'പ്രത്യേക കുറിപ്പുകൾ ഒന്നും ചേർത്തിട്ടില്ല (No personal no'+
 'tes recorded).')))
 ,'space-y-2')+
@@ -361,8 +364,6 @@ gBox('ഔദ്യോഗിക സി.എസ്.എൽ പെർമനന്റ�
 D('fc gap-3 tc m2',"<b onclick=\"go('dashboard')\">Quick Access →</b>·<b onclick=\"go('salary')\">₹ Salary →</b>·<b onclick=\"go('attendance')\">📋 Attendance →</b>")+
 (window.vAttMod?window.vAttMod(m,sd,sDt,rec,q):'');
 }
-// === END PART 5 ===
-// === START PART 6 ===
 function uDay(p=S.att['2026-11-02']){const dt=("2026-"+(P(S.cM+1))+"-"+(P(S.sD||tD()))),sh=p.sh||S.att[dt]?.sh||daySh(S.cM,S.sD||tD());S.att[dt]={s:'P',
 sh,in:SH[sh][1],out:SH[sh][2],ot:0,...(S.att[dt]||{}),...p};S.wOpen=S.nOpen=false;u()}
 function qO(d=''){const v=prompt('Overtime (OT) hours for '+fD(d)+':',S.att[d]?.ot||0);if(v!==null)uDay({s:'P',ot:+v||0})}
@@ -432,6 +433,8 @@ C(F(("<div><b class=\"sm\">📅 "+(MN[m])+" 2026 Daily Duty & Punch Logs</b><div
 ("px-2.5 py-1 rx tx "+(m===tM()?'bC':'sb ts')),(""+(MN[tM()].slice(0,3))+" 2026 (Today "+(tD())+")"))+B("set('cM',9)",("px-2.5 py-1 rx tx "+(m===9?'bg-amber-500 text-slate-950':'sb ta')),
 'Oct 2026 (Saved ✓)')+("<select onchange=\"set('cM',+this.value)\" class=\"bD tx\">"+(MN.map((n,i)=>("<option value=\""+(i)+"\" "+(i===m?'selected':'')+
 ">"+(n.slice(0,3))+" 2026</option>")).join(''))+"</select>")),'bb flex-wrap m2')+
+// === END PART 6 ===
+// === START PART 7 ===
 F(L(['ALL','PRESENT','OT','LEAVE','HOLIDAY'].map(f=>B(("set('aFlt','"+(f)+"')"),("px-2 py-1 rx tx "+(S.aFlt===f?'bg-amber-500 text-slate-950':'sb tc')),
 f==='ALL'?("All ("+(rows.length)+")"):f==='OT'?("Overtime ("+(otSum)+"h)"):f)).join(''),'flex-wrap')+L(B("launchWa(oTx(S.cM))",'bt bg-emerald-600 text-white tx',
 '💬 WhatsApp Text')+B("dlPdf('ot')",'bt bg-[#0e3b52] text-cyan-200 border border-[#1b5b85] tx','⬇️ Download PDF')+B("S.dlMsg='';S.dlUrl='';set('pdfMod','mon')",
@@ -453,8 +456,6 @@ Object.assign(window,{vAtt});
 function mBox(t='',b=''){return D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F(("<b class=\"sm\">"+(t)+"</b>")+B("set('aMod','')",'bD','✕'),'bb')+b,'w-full max-w-md'))}
 function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02'],q=S.lvQ){
 return(S.aMod==='punch'?mBox(("🕒 Duty Punch & Overtime ("+(P(S.sD))+" "+(MN[m])+" 2026)"),
-// === END PART 6 ===
-// === START PART 7 ===
 D('g5 my-2',Object.keys(SH).map(s=>B(("H('pSh').value='"+(s)+"';H('pIn').value='"+(SH[s][1])+"';H('pOut').value='"+(SH[s][2])+"'"),'bD tx',("Shift "+(s)+" ("+(SH[s][1])+")"))).join(''))+
 D('g3 m2',[[sd[7],'+5m In Grace',0],[sd[3],'-5m Out Grace',0],[sd[2],'Regular Out',0],['03:20 PM','03:20 PM Out',0],[sd[4],'+1h OT',1],[sd[5],'+2h OT',
 2]].map(([t0,lb,o0],i)=>B(i===0?("H('pIn').value='"+(t0)+"'"):("H('pOut').value='"+(t0)+"';H('pOt').value='"+(o0)+"'"),'sb tx tc',("<b>"+(lb)+"</b><div>"+
@@ -513,6 +514,8 @@ msg);launchWa(msg)}});return}cpTx(msg);set('waPrev',msg);launchWa(msg)}
 function sendWaMod(){
 const sh=H('wSh')?.value||S.sh,tm=H('wTm')?.value||nTm(),ot=+(H('wOt')?.value||S.waOt||1),dt=H('wDt')?.value||("2026-"+(P(S.cM+1))+"-"+(P(S.sD||tD()))),isOut=S.waSes==='Second Half'||S.waTp==='OUT';
 S.sh=sh;S.att[dt]={...(S.att[dt]||{}),s:'P',sh,in:S.waCat==='full_day_ot'?SH[sh][1]:(isOut?SH[sh][1]:tm),out:S.waCat==='full_day_ot'||isOut?tm:SH[sh][2],
+// === END PART 7 ===
+// === START PART 8 ===
 ot:S.waCat==='full_day_ot'?ot:0,nt:S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(""+(isOut?'Second Half':'First Half')+" ("+(isOut?'out':'In')+
 " punch @ "+(tm)+")")};
 const msg=S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(isOut?("out punch @ "+(tm)):("In punch @ "+(tm)));
@@ -540,8 +543,6 @@ y+31,'#0f172a','bold 16px sans-serif');dT(x,r.day,256,y+31,'#475569','14px sans-
 '#1e293b','14px monospace');dT(x,("+"+(r.ot.toFixed(1))+" hrs"),W-34,y+31,'#9a3412','bold 16px monospace','right');y+=rH});
 dR(x,'#0f172a',14,y,W-28,46);dT(x,'TOTAL VERIFIED OVERTIME CLAIM:',34,y+29,'#fff','bold 14px sans-serif');dT(x,(""+(tot.toFixed(1))+" HOURS"),W-34,y+30,'#fbbf24','bold 19px monospace','right');
 window._lastCv=cv;return cv.toDataURL('image/jpeg',0.95);}window.mkOtUrl=mkOtUrl;
-// === END PART 7 ===
-// === START PART 8 ===
 function mRows(m=S.cM){const dim=new Date(2026,m+1,0).getDate(),p=("2026-"+(P(m+1))+"-"),rs=[];let pC=0,lC=0,oC=0,otT=0;for(let d=1;d<=dim;d++){const dt=(""+
 (p)+(P(d))),r=S.att[dt],w=new Date(2026,m,d).getDay(),hol=HOLS.find(h=>h[0]===m&&h[1]===d),sOff=w===6&&((d>7&&d<15)||(d>21&&d<29)),st0=r?.s||(hol?'HOLIDAY':w<1||sOff?'OFF':'—'),
 sh=r?.sh||(st0==='P'||st0==='On Duty'?daySh(m,d):'—'),ot=+r?.ot||0;if(st0==='P'||st0==='On Duty'){pC++;otT+=ot}else if(['CL','EL','ML','HPL','SCL','SPL'].includes(st0))lC+=r?.dur?.includes('H'+
@@ -589,6 +590,8 @@ mod:md,m:String(m),nm:S.name,tk:S.tok,dp:S.dep,sh:S.sh,att:JSON.stringify(a)}).t
 function trigDl(u0='',fn=''){try{const a=document.createElement('a');a.href=u0;a.download=fn;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),2000)}catch(e){}}
 function sysNotif(fn='',tp='JPG',u0=''){try{navigator.vibrate?.([200,80,200])}catch(e){}S.dlNotif={fn,tp,u0,tm:nTm()};try{if('Notification'in window){const f=()=>{const t=("📥 "+
 (tp)+" Downloaded: "+(fn)),b=("Saved in Internal Storage > Downloads ("+(fn)+")");if('serviceWorker'in navigator)navigator.serviceWorker.ready.then((r=null)=>r?.showNotification(t,
+// === END PART 8 ===
+// === START PART 9 ===
 {body:b,icon:H('apIcon')?.href||'',tag:'csl-dl-'+Date.now()})).catch(()=>{try{new Notification(t,{body:b})}catch(e){}});else try{new Notification(t,{body:b})}catch(e){}};
 if(Notification.permission==='granted')f();else if(Notification.permission!=='denied')Promise.resolve(Notification.requestPermission()).then((p='')=>{if(p==='granted')f()}).catch(()=>{})}}catch(e){}}
 function shW(){const tx=oTx(S.cM);if(!isWv()&&navigator.share){navigator.share({text:tx}).then(()=>{S.dlUrl='';S.dlMsg='✓ OT shared to WhatsApp!';u()}).catch((e=new Error())=>{if(e?.name!=='A'+
@@ -616,8 +619,6 @@ return S1(F(("<div><b>🎯 Monthly OT Target & Progress ("+(aOt)+"h / "+(tgt)+"h
 ":"+(pct)+"%\"></div></div>"),'m2 border-teal-500/40')+
 S1(F(("<div><b class=\"ta\">✨ CSL Overtime Billing Cycle (Official 20-to-19 Rule)</b><div><i>"+(MN[cm])+" Salary OT = <b>20 "+(MN[pm])+" to 19 "+(MN[cm])+
 " 2026</b> ("+(cOt)+"h verified in Attendance)</i></div></div>")+B(("S.sal.otH='"+(cOt)+"';S.sal.uTyped2=1;u()"),'bt bC tx',("⚡ Load "+(MN[cm].slice(0,
-// === END PART 8 ===
-// === START PART 9 ===
 3))+" OT ("+(cOt)+" Hrs)")),'m2 flex-wrap')+D('flex gap-1 overflow-x-auto pb-1',MN.map((n,i)=>B(("S.sal.cycM="+(i)+";S.sal.otH=String(cycOT("+(i)+"));S.sal.uTyped2=1;u()"),
 ("px-2 py-1 rx tx shrink-0 "+(cm===i?'bg-amber-500 text-slate-950 font-black':'sb tc')),n.slice(0,3))).join('')))+
 D('bg-white rounded-3xl p-4 text-slate-900 shadow-xl space-y-3 mt-2',
@@ -669,6 +670,8 @@ const h3=("<div class=\"flex-1 overflow-y-auto p-3 sm:p-5 bg-slate-900/60\"><div
 "x-w-2xl mx-auto\"><img src=\""+(dUrl)+"\" alt=\"CSL Sheet\" class=\"w-full h-auto rounded border border-slate-200\"/></div></div>");
 const h4=D('px-4 py-3 border-t border-[#0f354c] bg-[#061825] flex flex-col gap-2',D('grid grid-cols-2 gap-2',isM?B("dlPdf('mon')",'col-span-2 px-3 py-2.5 rounded-xl bg-emerald-500 text-'+
 'slate-950 font-black text-xs fc gap-1.5 shadow-md active:scale-95','<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15'+
+// === END PART 9 ===
+// === START PART 10 ===
 'v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span>Download PDF</span>'):B('shW()','px-2.5 py-2.5 rounded-xl bg-emerald-600 text-white font-black text-xs fc gap-1.5'+
 ' shadow-md active:scale-95','<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h1'+
 '4a2 2 0 0 1 2 2z"/></svg><span>WhatsApp Text</span>')+B("dlPdf('ot')",'px-2.5 py-2.5 rounded-xl bg-[#0e3b52] text-cyan-200 font-bold text-xs fc gap-1.5 shadow-md active:scale-95 border'+
@@ -702,8 +705,6 @@ F(L(("<div class=\"p-1 rf bg-cyan-950 border border-cyan-500/40\">"+(cslLogo(32)
 'riple-click Secret Access (Password Protected)')+"</i></div>"))+B("set('admOpen',0)",'bD','✕'),'bg-[#09131d] px-4 py-3 bb')+
 D('p-4 overflow-y-auto space-y-3 flex-1',!S.admAuth?
 D('text-center space-y-3 py-3 max-w-sm mx-auto',"<div class=\"w-14 h-14 rounded-2xl bg-cyan-950 border border-cyan-500/40 tc mx-auto fc text-2xl\">🔒</div><b class=\"bs block\">അഡ്മിൻ പ"+
-// === END PART 9 ===
-// === START PART 10 ===
 "ാസ്സ്‌വേർഡ് നൽകുക (Enter Admin Password)</b><i>സാലറി സ്ലിപ്പിലെ ഓട്ടോമാറ്റിക് നിരക്കുകൾ (DA, HRA, OT Divisor, Allowances) എഡിറ്റ് ചെയ്യാൻ പാസ്സ്‌വേർഡ് നൽകുക.</i>"+
 L(("<input id=\"admPw\" type=\""+(S.shPw?'text':'password')+"\" placeholder=\"••••••\" onkeydown=\"if(event.key==='Enter')chkAdmPw()\" class=\"inp text-center fm lg tracking-widest\"/>")+
 B("set('shPw',!S.shPw)",'bD py-2',S.shPw?'🙈':'👁️'))+(S.admErr?("<div class=\"tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx\">"+(S.admErr)+"</div>"):'')+
@@ -728,7 +729,8 @@ function syncTaxSal(bOvr=0){const s=S.sal,adm=S.adm||DADM,bp=+bOvr||+s.b||+S.txI
 otA:Math.round(mO*(bp*(1+adm.da/100)/(adm.div||198)*2)*12),hraA:Math.round(bp*(adm.hra/100)*12),prkA:Math.round(bp*.32*12),c80:Math.min(150000,Math.round(bp*(1+
 adm.da/100)*(adm.epf/100)*12))};u()}
 function upSlip(el=document.createElement('input')){const f=el?.files?.[0];if(!f)return;S.slipNm=f.name;S.slipOpen=1;S.slipUrl='';if(f.type?.startsWith('image/')){const r0=new FileReader();
-r0.onload=()=>{S.slipUrl=String(r0.result||'');u()};r0.readAsDataURL(f)}const r=new FileReader();r.onload=()=>{const tx=String(r.result||''),m=tx.match(/(?:BASIC\s*PAY|Basic\s*Salary|BASIC)[^0-9]{1,25}([1-9][0-9]{4,5}(?:\.[0-9]{1,2})?)/i),bp=m?Math.round(+
+r0.onload=()=>{S.slipUrl=String(r0.result||'');u()};r0.readAsDataURL(f)}const r=new FileReader();r.onload=()=>{const tx=String(r.result||''),m=tx.match(/(?:BASIC\s*PAY|Basic\s*Salary|BASIC)[^0-9]{1,25}([1-9][0-9]{4,5}(?:\.[0-9]{1,2})?)/i),
+bp=m?Math.round(+
 m[1]):(+S.sal.b||+S.txI.b||25340);syncTaxSal(bp)};r.onerror=()=>syncTaxSal();r.readAsText(f);if(el)el.value=''}
 function apSlip(){const bp=+(H('slBp')?.value||S.txI.b||25340),da=+(H('slDa')?.value||S.txI.da||54.1),mOt=+(H('slOt')?.value||0),mHr=+(H('slHr')?.value||Math.round(bp*.2)),
 mPk=+(H('slPk')?.value||Math.round(bp*.32)),mPf=+(H('slPf')?.value||Math.round(bp*(1+da/100)*.12));S.sal.b=String(bp);S.sal.uTyped2=1;if(!S.slipNm)S.slipNm='Last_CSL_Salary_Slip_Verifie'+
@@ -742,6 +744,8 @@ const x=S.txI,bA=(+x.b||0)*12,daA=Math.round(bA*(+x.da||54.1)/100),grSal=bA+daA+
 const nps2=Math.min(+x.nps2||0,Math.round((bA+daA)*.14)),txbN=Math.max(0,grTot-75000-nps2);
 const nSl=[[0,4e5,0,'0%'],[4e5,8e5,.05,'5%'],[8e5,12e5,.1,'10%'],[12e5,16e5,.15,'15%'],[16e5,20e5,.2,'20%'],[20e5,24e5,.25,'25%'],[24e5,1e9,.3,'30%']];
 let nTx=0;const nBrk=nSl.map(([f,t,r,p])=>{const a=Math.max(0,Math.min(txbN,t)-+f),tx=Math.round(a*+r);nTx+=tx;return[f,t,p,tx]});
+// === END PART 10 ===
+// === START PART 11 ===
 const nReb=txbN<=12e5?nTx:0,nAf=Math.max(0,nTx-nReb),nMr=txbN>12e5&&nAf>txbN-12e5?nAf-(txbN-12e5):0,nSub=nAf-nMr,nCs=Math.round(nSub*.04),nTot=nSub+nCs,nMds=Math.round(nTot/12);
 const hraEx=x.rentA>0?Math.max(0,Math.min(x.hraA,x.rentA-Math.round((bA+daA)*.1),Math.round((bA+daA)*.4))):0;
 const v6A=Math.min(15e4,x.c80)+Math.min(5e4,x.nps1B)+nps2+Math.min(25e3,x.medS)+Math.min(x.srP?5e4:25e3,x.medP)+Math.min(1e4,x.savI),hlD=Math.min(2e5,x.hlInt),txbO=Math.max(0,grTot-5e4-hraEx-hlD-v6A);
@@ -778,8 +782,6 @@ D('g2 m2',[['New Tax Regime (Sec 115BAC)','<u>FY 2026-27 DEFAULT · ₹75,000 ST
 R(grTot),''],['Standard Deduction','-'+R(75000),'te'],['Employer NPS 80CCD(2)','-'+R(nps2),'te'],['Net Taxable Income',R(txbN),'tc'],['Normal Slab Tax',
 R(nTx),''],['Rebate u/s 87A (≤₹12L)','-'+R(nReb),'te'],['Health & Edu Cess (4%)',R(nCs),'']]],['Old Tax Regime','<em class="text-[9px]">WITH 80C, 80D, HRA & HOUSING LOAN</em>',
 win==='OLD','amber-400','amber-400','ta',oMds,oTot,[['Gross Annual Salary',R(grTot),''],['Standard Deduction','-'+R(50000),'te'],['HRA Exemption 10(13A)',
-// === END PART 10 ===
-// === START PART 11 ===
 '-'+R(hraEx),'te'],['Home Loan Int. 24(b)','-'+R(hlD),'te'],['Chapter VI-A (80C/80D/NPS)','-'+R(v6A),'te'],['Net Taxable Income',R(txbO),'ta'],['Slab Tax + 4% Cess',
 R(oTot),'']]]].map(([t,s,w0,bg,bd,cl,mds,tot,rs])=>C(F(("<div><b class=\"sm\">"+(t)+"</b><div>"+(s)+"</div></div>")+(w0?("<span class=\"px-1.5 py-0.5 rf bg-"+
 (bg)+" text-slate-950 text-[8px] font-black\">BEST</span>"):''),'bb')+rs.map(([l,v,c])=>F(("<i>"+(l)+"</i><b class=\"fm "+(c)+"\">"+(v)+"</b>"),'py-0.5')).join('')+
@@ -815,12 +817,17 @@ function selLn(t='none'){S.lnTp=t;S.mTab=t==='none'?'budget':'loans';u()}
 function selCc(n=0){S.ccMod=+n;if(!S.ccMod&&S.mTab==='cards')S.mTab='budget';else if(S.ccMod>0)S.mTab='cards';u()}
 function uHl(k='',v=''){S.hl={...(S.hl||{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''}),on:1,[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.hl.ln||0),r0=(+
 (S.hl.rt||8.5))/1200,n0=(+(S.hl.yr||20))*12;if(P0>0)S.hl.emi=Math.round((P0*r0*Math.pow(1+r0,n0))/(Math.pow(1+r0,n0)-1))}u()}
+// === END PART 11 ===
+// === START PART 12 ===
 function uPl(k='',v=''){S.pl={...(S.pl||{ln:'',rt:12.5,yr:5,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.pl.ln||0),r0=(+(S.pl.rt||12.5))/1200,
 n0=(+(S.pl.yr||5))*12;if(P0>0)S.pl.emi=Math.round((P0*r0*Math.pow(1+r0,n0))/(Math.pow(1+r0,n0)-1))}u()}
 function adHlTx(emi=0,intYr=0){if(emi>0){const i=S.txs.findIndex(x=>/Home Loan EMI|ഹൗസിംഗ് ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),
 t:'🏠 ഹൗസിംഗ് ലോൺ (Home Loan EMI)',m:'Bank Account',bk:'needs',a:emi,dt:nDT()})}if(intYr>0)S.txI.hlInt=Math.min(200000,intYr);u()}
 function adPlTx(emi=0){if(emi>0){const i=S.txs.findIndex(x=>/Personal Loan EMI|പേഴ്സണൽ ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),
 t:'💼 പേഴ്സണൽ ലോൺ (Personal Loan EMI)',m:'Bank Account',bk:'needs',a:emi,dt:nDT()})}u()}
+function uGl(k='',v=''){S.gl={...(S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='mo'){const P0=+(S.gl.ln||0),r0=(+(S.gl.rt||9))/1200,n0=Math.max(1,+(S.gl.mo||12));if(P0>0)S.gl.emi=Math.round((P0*r0*Math.pow(1+r0,
+n0))/(Math.pow(1+r0,n0)-1))}u()}
+function adGlTx(emi=0){if(emi>0){const i=S.txs.findIndex(x=>/Gold Loan|ഗോൾഡ് ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),t:'🪙 ഗോൾഡ് ലോൺ (Gold Loan Release)',m:'Bank Account',bk:'needs',a:emi,dt:nDT()})}u()}
 function vMon(){
 const inc=+S.mInc||0,nLim=Math.round(inc*.5),wLim=Math.round(inc*.3),sLim=Math.round(inc*.2),useCc=+(S.ccMod??3)>0,md=S.ccMod===2?2:3,lnTp=S.lnTp||'none',
 tab=(!useCc&&S.mTab==='cards')?'budget':(S.mTab||'budget');
@@ -842,6 +849,10 @@ rM1,nM1))/(Math.pow(1+rM1,nM1)-1)):0,plEmi=+(pl.emi||cEmi1||0),plEx=+(pl.ex||0)|
 Math.round(inc*.6)-plEmi),plWantB=Math.round(inc*.1),plSavB=Math.round(inc*.3);
 let nInt1=P1>0&&plEmi>P1*rM1?Math.max(0,plEmi*nM1-P1):0,pM1=nM1,pInt1=0;if(P1>0&&plEmi>P1*rM1&&plEx>0){let bl=P1,mc=0;while(bl>0&&mc<nM1){const mi=bl*rM1;
 pInt1+=mi;const pr=plEmi+plEx-mi;if(pr<=0)break;bl-=pr;mc++}pM1=mc}const plIntSv=Math.max(0,Math.round(nInt1-pInt1)),plMSv=Math.max(0,nM1-pM1);
+const gl=S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''},P2=+(gl.ln||0),rt2=+(gl.rt||9),mo2=Math.max(1,+(gl.mo||12)),rM2=rt2/1200,cEmi2=P2>0?Math.round((P2*rM2*Math.pow(1+rM2,mo2))/(Math.pow(1+rM2,mo2)-1)):0,glEmi=+(gl.emi||cEmi2||0),glEx=+
+(gl.ex||0)||Math.round(glEmi/4),glPct=inc>0?Math.round(glEmi/inc*100):0,glNeedB=Math.max(0,Math.round(inc*.6)-glEmi),glWantB=Math.round(inc*.15),glSavB=Math.round(inc*.25);
+let nInt2=P2>0&&glEmi>P2*rM2?Math.max(0,glEmi*mo2-P2):0,pM2=mo2,pInt2=0;if(P2>0&&glEmi>P2*rM2&&glEx>0){let bl=P2,mc=0;while(bl>0&&mc<mo2){const mi=bl*rM2;pInt2+=mi;const pr=glEmi+glEx-mi;if(pr<=0)break;bl-=pr;mc++}pM2=mc}const glIntSv=Math.max(0,
+Math.round(nInt2-pInt2)),glMSv=Math.max(0,mo2-pM2);
 window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n👤 *"+(S.name||'CSL Employee')+"* ("+(S.tok||'—')+")\n• Monthly Income: *"+
 (R(inc))+"*\n• 50% Needs: *"+(R(needS))+" / "+(R(nLim))+"*\n• 30% Wants: *"+(R(wantS))+" / "+(R(wLim))+"*\n• 20% Savings: *"+(R(savS))+" / "+(R(sLim))+
 "*"+((lnTp==='house'||lnTp==='both')&&hlEmi?("\n• House Loan EMI: *"+(R(hlEmi))+"* ("+(hlPct)+"%)"):'')+((lnTp==='personal'||lnTp==='both')&&plEmi?("\n• Personal Loan EMI: *"+
@@ -851,16 +862,14 @@ return brand('dashboard',L(B("go('salary')",'bD tx','💵 Salary')+B("go('tax')"
 'ONEY HUB',S.dep)+C(F("<div><h2 class=\"bs\">🏦 Permanent Employee Money Management</h2><u>വൃത്തിയുള്ള സ്മാർട്ട് മണി പ്ലാനർ · ആവശ്യമുള്ളവ മാത്രം തിരഞ്ഞെടുക്കുക</u></div>"+
 B("launchWa(window._monMsg)",'bt bg-[#25D366] text-slate-950 tx','💬 Share'),'m2')+
 D(useCc?'g4 m2':'g3 m2',st('Bank Balance',R(tB),'te')+(useCc?st(("Cards ("+(uPct)+"%)"),R(tC),'ta'):'')+st('Needs+Wants',R(tS),'tr0')+st('20% Savings',R(savS),'tc'))+
-S1(D('g2',("<div><b class=\"ta tx block mb-1\">1. 🏠 ലോൺ തിരഞ്ഞെടുക്കുക (Select Loan):</b><div class=\"g2\">"+([['none','🚫 ലോൺ ഇല്ല'],['house','🏠 ഹൗസ് ലോൺ'],
-['personal','💼 പേഴ്സണൽ ലോൺ'],['both','🏛️ രണ്ടും (Both)']].map(([k,l])=>B(("selLn('"+(k)+"')"),("py-1.5 px-2 rx tx "+(lnTp===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),
+S1(D('g2',("<div><b class=\"ta tx block mb-1\">1. 🏠 ലോൺ തിരഞ്ഞെടുക്കുക (Select Loan):</b><div class=\"g2\">"+([['none','🚫 ലോൺ ഇല്ല'],['house','🏠 ഹൗസ് ലോൺ'],['personal','💼 പേഴ്സണൽ ലോൺ'],['gold','🪙 ഗോൾഡ് ലോൺ'],['both','🏛️ എല്ലാം (All)']].map(([k,
+l])=>B(("selLn('"+(k)+"')"),("py-1.5 px-2 rx tx "+(lnTp===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),
 l)).join(''))+"</div></div><div><b class=\"tc tx block mb-1\">2. 💳 ക്രെഡിറ്റ് കാർഡ് ഉപയോഗിക്കുന്നുണ്ടോ?:</b><div class=\"g3\">"+([[0,'🚫 ഇല്ല'],[2,'💳 2 കാർഡ്'],
 [3,'💳 3 കാർഡ്']].map(([n,l])=>B(("selCc("+(n)+")"),("py-1.5 px-2 rx tx "+((+S.ccMod||0)===n?'bC font-black':'sb ts')),String(l))).join(''))+"</div><i class=\"block mt-1 text-[9px]\">"+
 (useCc?'ക്രെഡിറ്റ് കാർഡ് പ്ലാൻ സജീവമാണ് (45–50d പലിശരഹിതം)':'✓ ക്രെഡിറ്റ് കാർഡ് ഒഴിവാക്കി — കാർഡ് വിവരങ്ങൾ മറച്ചു')+"</i></div>")),'m2 border-cyan-500/40 bg-[#041824]')+
 D(("grid "+(useCc?'grid-cols-5':'grid-cols-4')+" gap-1 p-1 bg-[#03131e] rounded-xl border border-[#123d59] m2"),tabs.map(([k,l])=>B(("set('mTab','"+(k)+
 "')"),("py-2 rx tx text-center "+(tab===k?'bC font-black shadow':'ts')),l)).join(''))+
 (tab==='budget'?S1(F("<div><b class=\"sm te\">📊 50 / 30 / 20 Smart Budget Split (സ്മാർട്ട് ബജറ്റ് പ്ലാൻ)</b><div><i>ശമ്പളവും OT-യും 50% അവശ്യം · 30% ആഗ്രഹങ്ങൾ · 20% സമ്പാദ്യം എന്ന ക്രമ"+
-// === END PART 11 ===
-// === START PART 12 ===
 "ത്തിൽ വിഭജിക്കുക</i></div></div>"+L(("<div class=\"fl\"><i>Income ₹:</i><input type=\"number\" placeholder=\"Monthly Income\" value=\""+(inc||'')+"\" onchange=\"S.mInc=+this.value||0;u"+
 "()\" class=\"inp w-28 fm text-right\"/></div>")+B('syncMonSal()','bt bC tx','⚡ Sync Salary')),'m2 flex-wrap')+
 D('g3 m2',[['🏠 50% NEEDS (അവശ്യ ചിലവുകൾ)',needS,nLim,'tc','bg-cyan-400','വീട്ടുചിലവ്, പലചരക്ക്, ബില്ലുകൾ, പെട്രോൾ, EMI എന്നിവ 50%-ൽ ഒതുക്കുക.'],['🎉 30% WANTS (ആഗ്രഹങ്ങൾ)',
@@ -873,11 +882,13 @@ S1(("<b class=\"tc block mb-1\">🧠 50/30/20 ബുദ്ധിപരമായ�
 "lary A/c: ശമ്പളം & EMI · (B) Daily UPI A/c: 50%+30% ചിലവുകൾക്ക് · (C) Savings A/c: 20% സമ്പാദ്യത്തിന് (UPI ഓഫ് ചെയ്യുക).</i></div><div><b class=\"ta\">2. CSL Overtime (OT) 50:50 നിയമം:"+
 "</b><br><i>ബേസിക് ശമ്പളം കൊണ്ട് വീട്ടുചിലവ് നടത്തുക; OT തുകയുടെ 50% Emergency Fund-ലേക്കും 50% ലോൺ ക്ലോസ് ചെയ്യാനും മാറ്റിവെക്കുക.</i></div><div><b class=\"tc\">3. 1-ആം തീയതി Auto-Save"+
 ":</b><br><i>ശമ്പളം കിട്ടിയാലുടൻ ആദ്യം 20% ("+(R(sLim))+") മാറ്റി വെച്ച ശേഷം മാത്രം ബാക്കി തുക ചിലവാക്കുക.</i></div></div>"),'bg-[#041a26] border-teal-500/40')+
-(lnTp!=='none'?S1(F(("<div><b class=\"ta\">🏠 തിരഞ്ഞെടുത്ത ലോൺ പ്ലാൻ സജീവമാണ് ("+(lnTp==='house'?'ഹൗസ് ലോൺ':lnTp==='personal'?'പേഴ്സണൽ ലോൺ':'ഹൗസ് + പേഴ്സണൽ ലോൺ')+
+// === END PART 12 ===
+// === START PART 13 ===
+(lnTp!=='none'?S1(F(("<div><b class=\"ta\">🏠 തിരഞ്ഞെടുത്ത ലോൺ പ്ലാൻ സജീവമാണ് ("+(lnTp==='house'?'ഹൗസ് ലോൺ':lnTp==='personal'?'പേഴ്സണൽ ലോൺ':lnTp==='gold'?'ഗോൾഡ് ലോൺ':'ഹൗസ് + പേഴ്സണൽ + ഗോൾഡ് ലോൺ')+
 ")</b><div><i>ലോൺ ബുദ്ധിപരമായി ഉപയോഗിക്കാനും പലിശ ലാഭിക്കാനുമുള്ള പ്ലാൻ കാണാൻ ക്ലിക്ക് ചെയ്യുക</i></div></div>")+B("set('mTab','loans')",'bt bA tx','🏠 ലോൺ പ്ലാൻ തുറക്കുക →')),
 'mt-2 bg-amber-950/30 border-amber-500/40'):''),'m2 border-emerald-500/40'):'')+
 (tab==='loans'?
-(lnTp==='none'?S1('<div class="text-center py-4"><b class="sm ta block mb-1">🏠 ഹൗസ് ലോൺ അല്ലെങ്കിൽ 💼 പേഴ്സണൽ ലോൺ തിരഞ്ഞെടുക്കുക</b><i>മുകളിലുള്ള <b>"1. ലോൺ തിരഞ്ഞെടുക്കുക"</b> എന്നതിൽ'+
+(lnTp==='none'?S1('<div class="text-center py-4"><b class="sm ta block mb-1">🏠 ഹൗസ് ലോൺ, 💼 പേഴ്സണൽ ലോൺ അല്ലെങ്കിൽ 🪙 ഗോൾഡ് ലോൺ തിരഞ്ഞെടുക്കുക</b><i>മുകളിലുള്ള <b>"1. ലോൺ തിരഞ്ഞെടുക്കുക"</b> എന്നതിൽ'+
 ' നിന്ന് നിങ്ങളുടെ ലോൺ സെലക്ട് ചെയ്താൽ അത് എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം എന്നും ലക്ഷങ്ങൾ പലിശ ലാഭിക്കാം എന്നും ഇവിടെ കാണാം.</i></div>','m2 border-amber-500/40'):'')+
 (lnTp==='both'?S1("<b class=\"ta sm block mb-1\">🏛️ ഹൗസ് ലോൺ + പേഴ്സണൽ ലോൺ ഒരുമിച്ചുള്ളവർക്കുള്ള \"Debt Avalanche\" തന്ത്രം:</b><div class=\"tx ts\">രണ്ട് ലോണും ഒരുമിച്ചുള്ളപ്പോൾ <b>പേ"+
 "ഴ്സണൽ ലോണിനാണ് (12%–16%)</b> പലിശ കൂടുതൽ; ഹൗസ് ലോണിന് (8.5%) ടാക്സ് ഇളവുണ്ട്. അതിനാൽ ആദ്യം ഹൗസ് ലോണിൽ സാധാരണ EMI മാത്രം അടച്ച്, നിങ്ങളുടെ <b>മുഴുവൻ അധിക OT തുകയും പേഴ്സണൽ ലോൺ വേഗം ക്ലോ"+
@@ -910,8 +921,6 @@ S1(("<b class=\"tc block mb-1\">🛡️ ഹൗസിംഗ് ലോൺ ബു�
 D('g5 m2',[['ln','Loan Amount (₹)',pl.ln,'e.g. 500000'],['rt','Interest (%)',pl.rt,'12.5'],['yr','Tenure (Yrs)',pl.yr,'5'],['emi','Monthly EMI (₹)',plEmi||'',
 'Auto / Enter'],['ex','Extra OT Pay/m (₹)',pl.ex,'OT Payoff ₹']].map(([k,l,v,ph])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+
 (ph)+"\" value=\""+(v)+"\" onchange=\"uPl('"+(k)+"',this.value)\" class=\"inp fm\"/></div>")).join(''))+
-// === END PART 12 ===
-// === START PART 13 ===
 D('g4 m2',[['1. 💼 Personal Loan EMI',R(plEmi)+(" ("+(plPct)+"%)"),'tr0','ഉയർന്ന പലിശയുള്ള ലോൺ — വേഗം ക്ലോസ് ചെയ്യുക'],['2. 🍲 വീട്ടുചിലവ് (≤60%)',R(plNeedB),
 'tc','EMI + വീട്ടുചിലവുകൾ ശമ്പളത്തിന്റെ 60%-ൽ ഒതുക്കുക'],['3. 🎉 ആഗ്രഹങ്ങൾ (30%→10%)',R(plWantB)+' (10%)','ta','ലോൺ തീരുന്നതുവരെ Wants 10% ആയി കർശനമായി കുറയ്ക്കുക'],
 ['4. ⚡ 30% സമ്പാദ്യം + Closure',R(plSavB)+' (30%)','te','OT തുക ഉപയോഗിച്ച് ലോൺ പ്രിൻസിപ്പൽ വേഗം തീർക്കുക']].map(([t,v,c,s])=>S1(("<b class=\""+(c)+" tx\">"+
@@ -920,13 +929,32 @@ D('g4 m2',[['1. 💼 Personal Loan EMI',R(plEmi)+(" ("+(plPct)+"%)"),'tr0','ഉ�
 (R(plIntSv))+"</b> · ലോൺ തീരുന്നത്: <b class=\"tc\">"+(plMSv)+" മാസം വേഗത്തിൽ!</b></div></div>")+B(("adPlTx("+(plEmi)+")"),'bt bE tx','✓ Add Personal Loan EMI'),
 'flex-wrap'),'m2 bg-emerald-950/60 border-emerald-500/50'):B(("adPlTx("+(plEmi)+")"),'bt bC w-full m2 tx','➕ Add Personal Loan EMI to Monthly Budget'))+
 S1("<b class=\"tc block mb-1\">🛡️ പേഴ്സണൽ ലോൺ ബുദ്ധിപരമായി ഉപയോഗിക്കാനും വേഗം തീർക്കാനുമുള്ള 6 സുവർണ്ണ നിയമങ്ങൾ:</b><div class=\"g3 text-[10px]\"><div><b class=\"ta\">1. എന്തിനു മാത്രം"+
+// === END PART 13 ===
+// === START PART 14 ===
 " ഉപയോഗിക്കാം?:</b><br><i>മെഡിക്കൽ എമർജൻസി, ഉയർന്ന പലിശയുള്ള (36%–42%) ക്രെഡിറ്റ് കാർഡ് കടം ഒറ്റയടിക്ക് തീർക്കൽ (Debt Consolidation), അത്യാവശ്യ വീട് പണി എന്നിവയ്ക്ക് മാത്രം ഉപയോഗിക്കുക."+
 "</i></div><div><b class=\"te\">2. CSL സൊസൈറ്റി ലോൺ vs ബാങ്ക്:</b><br><i>പുറത്തെ ബാങ്കുകളുടെ 14%–18% പേഴ്സണൽ ലോണിനേക്കാൾ കുറഞ്ഞ പലിശയുള്ള <b>CSCS / CSEC സൊസൈറ്റി ലോൺ അല്ലെങ്കിൽ ഗോൾഡ് ലോ"+
 "ൺ (~9%–10%)</b> തിരഞ്ഞെടുക്കുക.</i></div><div><b class=\"tc\">3. 60 / 10 / 30 ഡെറ്റ്-ഫ്രീ നിയമം:</b><br><i>പേഴ്സണൽ ലോൺ തീരുന്നതുവരെ പുറത്തുനിന്നുള്ള ഭക്ഷണം/ഷോപ്പിംഗ് (Wants) 10% ആയി കു"+
 "റച്ച്, ആ പണം ലോൺ മുതലിലേക്ക് അടയ്ക്കുക.</i></div><div><b class=\"ta\">4. CSL Overtime (OT) Fast-Payoff:</b><br><i>എല്ലാ മാസവും കിട്ടുന്ന OT തുകയുടെ 50%–70% നേരിട്ട് പേഴ്സണൽ ലോൺ പ്രിൻസി"+
 "പ്പലിലേക്ക് അടച്ച് 5 വർഷത്തെ ലോൺ 2 വർഷം കൊണ്ട് തീർക്കുക.</i></div><div><b class=\"te\">5. Top-Up ലോൺ കെണി ഒഴിവാക്കുക:</b><br><i>ലോൺ പകുതിയാകുമ്പോൾ ബാങ്കുകൾ ഓഫർ ചെയ്യുന്ന Top-Up പേഴ്സണൽ"+
 " ലോൺ ഒരിക്കലും എടുക്കരുത്; അത് കടക്കെണി ഇരട്ടിയാക്കും.</i></div><div><b class=\"tr0\">6. EMI ≤ 15% സുരക്ഷാ പരിധി:</b><br><i>പേഴ്സണൽ ലോൺ EMI ഒരിക്കലും മാസ ശമ്പളത്തിന്റെ 15%-ൽ കൂടാതെ സൂക"+
-"്ഷിക്കുക.</i></div></div>",'bg-[#041a26] border-cyan-500/40'),'m2 border-cyan-500/40'):''):'')+
+"്ഷിക്കുക.</i></div></div>",'bg-[#041a26] border-cyan-500/40'),'m2 border-cyan-500/40'):'')+
+(lnTp==='gold'||lnTp==='both'?S1(F("<div><b class=\"sm ta\">🪙 ഗോൾഡ് ലോൺ (Gold Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം & സ്വർണ്ണം സുരക്ഷിതമായി തിരിച്ചെടുക്കാം?</b><div><i>പലിശ മാത്രം അടച്ച് പുതുക്കുന്ന കെണി ഒഴിവാക്കി <b>60 / 15 / 25 Gold Release ഫ"+
+"ോർമുലയും OT Part-Release തന്ത്രവും</b> ഉപയോഗിക്കുക!</i></div></div>"+(glEmi?("<span class=\"bD rf tx fm "+(glPct<=20?'te':'tr0')+"\">Pay: "+(glPct)+"% ("+(glPct<=20?'Safe ≤20% ✓':'High >20% ⚠️')+")</span>"):''),'m2 flex-wrap')+D('g5 m2',[['ln',
+'Gold Loan (₹)',gl.ln,'e.g. 200000'],['rt','Interest (%)',gl.rt,'9.0'],['mo','Months (1-36)',gl.mo,'12'],['emi','Monthly Pay (₹)',glEmi||'','Auto / Enter'],['ex','OT Release/m (₹)',gl.ex,'OT Release ₹']].map(([k,l,v,ph])=>("<div><i>"+(l)+
+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+(ph)+"\" value=\""+(v)+"\" onchange=\"uGl('"+(k)+"',this.value)\" class=\"inp fm\"/></div>")).join(''))+D('g4 m2',[['1. 🪙 Gold Loan Monthly Pay',R(glEmi)+(" ("+(glPct)+"%)"),'ta',
+'മുതലും പലിശയും ചേർത്ത് മാസംതോറും അടച്ച് സ്വർണ്ണം തിരിച്ചെടുക്കുക'],['2. 🍲 വീട്ടുചിലവ് (≤60%)',R(glNeedB),'tc','ഗോൾഡ് ലോൺ + വീട്ടുചിലവുകൾ ശമ്പളത്തിന്റെ 60%-ൽ ഒതുക്കുക'],['3. 🎉 ആഗ്രഹങ്ങൾ (30%→15%)',R(glWantB)+' (15%)','tr0',
+'സ്വർണ്ണം തിരിച്ചെടുക്കുന്നതുവരെ Wants 15% ആക്കുക'],['4. 🔓 25% OT Gold Release',R(glSavB)+' (25%)','te','OT തുക ഉപയോഗിച്ച് ഓരോ ആഭരണമായി (Part-Release) തിരിച്ചെടുക്കുക']].map(([t,v,c,s])=>S1(("<b class=\""+(c)+" tx\">"+(t)+
+"</b><div class=\"sm fm my-0.5\"><b>"+(v)+"</b></div><div class=\"text-[9px] ts\">"+(s)+"</div>"))).join(''))+(P2>0&&glEmi>0?S1(F(("<div><b class=\"te\">⚡ പ്രതിമാസം "+(R(glEx))+
+" (CSL OT തുകയിൽ നിന്ന്) ഗോൾഡ് ലോൺ മുതലിലേക്ക് അധികം അടച്ചാൽ:</b><div class=\"tx fm\">ആകെ പലിശ ലാഭം: <b class=\"ta\">"+(R(glIntSv))+"</b> · സ്വർണ്ണം തിരിച്ചെടുക്കാം: <b class=\"tc\">"+(glMSv)+" മാസം വേഗത്തിൽ!</b></div></div>")+B(("adGlTx("+(glEmi)+
+")"),'bt bE tx','✓ Add Gold Loan Pay'),'flex-wrap'),'m2 bg-emerald-950/60 border-emerald-500/50'):B(("adGlTx("+(glEmi)+")"),'bt bA w-full m2 tx','➕ Add Gold Loan Monthly Release to Budget'))+
+S1("<b class=\"ta block mb-1\">🛡️ ഗോൾഡ് ലോൺ ബുദ്ധിപരമായി ഉപയോഗിക്കാനും സ്വർണ്ണം സുരക്ഷിതമായി തിരിച്ചെടുക്കാനുമുള്ള 6 സുവർണ്ണ നിയമങ്ങൾ:</b><div class="+
+"\"g3 text-[10px]\"><div><b class=\"ta\">1. പൊതുമേഖലാ ബാങ്ക് vs NBFC (9% vs 24%):</b><br><i>സ്വകാര്യ ഫിനാൻസുകളിലെ 18%–24% പലിശയ്ക്ക് പകരം <b>SBI / Federal / Canara ബാങ്കുകളിലെ ~8.8%–9.5% ഗോൾഡ് ലോൺ</b> മാത്രം തിരഞ്ഞെടുക്കുക.</i></div><div><b clas"+
+"s=\"te\">2. പലിശ മാത്രം അടച്ച് പുതുക്കരുത്:</b><br><i>വർഷാവസാനം പലിശ മാത്രം അടച്ച് ലോൺ പുതുക്കിയാൽ സ്വർണ്ണം ഒരിക്കലും തിരികെ കിട്ടില്ല; <b>എല്ലാ മാസവും മുതലും പലിശയും</b> ചേർത്ത് അടയ്ക്കുക.</i></div><div><b class="+
+"\"tc\">3. CSL OT Part-Release തന്ത്രം:</b><br><i>മുഴുവൻ തുക ഒന്നിച്ച് ആകാൻ കാത്തിരിക്കാതെ, എല്ലാ മാസവും കിട്ടുന്ന <b>OT തുക ഉപയോഗിച്ച് ഓരോ പവനായി (Part-Release)</b> സ്വർണ്ണം തിരിച്ചെടുക്കുക.</i></div><div><b class="+
+"\"ta\">4. ഉയർന്ന പലിശ കടങ്ങൾ തീർക്കാൻ (Debt Swap):</b><br><i>36%–42% ക്രെഡിറ്റ് കാർഡ് കടമോ 16% പേഴ്സണൽ ലോണോ ഉണ്ടെങ്കിൽ 9% ബാങ്ക് ഗോൾഡ് ലോൺ എടുത്ത് അവ ഒറ്റയടിക്ക് ക്ലോസ് ചെയ്ത് പലിശ ലാഭിക്കാം.</i></div><div><b class="+
+"\"te\">5. 10-മാസ സുരക്ഷാ ക്ലോഷർ (No Auction):</b><br><i>12 മാസത്തെ കാലാവധി തികയാൻ കാത്തിരിക്കാതെ <b>10–11 മാസത്തിനുള്ളിൽ ക്ലോസ് ചെയ്യുക</b>; ഇത് പിഴപ്പലിശയും ലേല നോട്ടീസും (Auction) ഒഴിവാക്കും.</i></div><div><b class="+
+"\"tr0\">6. പരമാവധി LTV എടുക്കാതിരിക്കുക:</b><br><i>സ്വർണ്ണത്തിന് കിട്ടാവുന്ന പരമാവധി തുക മുഴുവൻ എടുക്കാതെ ആവശ്യമുള്ള തുക മാത്രം എടുക്കുക; സ്വർണ്ണവില കുറഞ്ഞാലും ബാങ്ക് Margin ചോദിക്കില്ല.</i></div></div>",'bg-[#041a26] border-amber-500/40'),
+'m2 border-amber-500/40'):''):'')+
 (tab==='cards'&&useCc?S1(F(("<div><b class=\"sm ta\">💳 "+(md)+" Credit Card എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം?</b><div><i>ബില്ലിംഗ് സൈക്കിൾ (Statement Date) തിരിച്ച് ഉപയോഗിച്ചാൽ <b>45–50"+
 " ദിവസം പലിശയില്ലാതെ (Interest-Free)</b> പണം ഉപയോഗിക്കാം!</i></div></div>")+L([2,3].map(n=>B(("selCc("+(n)+")"),("px-2.5 py-1 rx tx "+(md===n?'bg-amber-500 text-slate-950 font-black':'s'+
 'b ts')),("💳 "+(n)+" Cards")))+B('selCc(0)','px-2 py-1 rx tx bg-rose-950 tr0','🚫 കാർഡ് ഒഴിവാക്കുക')),'m2 flex-wrap')+
@@ -939,6 +967,8 @@ S1(F(L(("<span class=\"av bg-emerald-500 text-slate-950\">⚡</span><div><b clas
 return S1(F(("<div class=\"fl flex-wrap\"><b class=\"ta\">Card "+(i+1)+": "+(c.b)+"</b><span class=\"bD px-1.5 py-0.5 rx text-[8px] fm\">"+(c.tp||'RuPay UPI')+
 "</span></div>")+B(("S.cds=S.cds.filter(x=>x.id!=="+(c.id)+");u()"),'tr0 tx','✕'))+("<div class=\"tx fm my-0.5\">Used: <b>"+(R(us))+"</b> / "+(R(lm))+
 " ("+(p)+"%) · <s class=\"tx\">"+(gr)+"d Free</s></div><div class=\"w-full h-1.5 bg-[#020d16] rf overflow-hidden my-1\"><div class=\"h-full "+(p>30?'bg-rose-500':'bg-cyan-400')+
+// === END PART 14 ===
+// === START PART 15 ===
 "\" style=\"width:"+(p)+"%\"></div></div><div class=\"text-[9px] tc font-bold\">📅 Bill: "+(c.stD||15)+"th → Due: "+(c.duD||5)+"th · "+(c.win||'45-50d Free')+
 "</div><div class=\"text-[9px] ts mt-0.5\">✨ "+(c.use||'Smart Rotation Card')+"</div>"))}).join('')):'')+
 D('g2 m2',(""+(ip('cN','Card Name (e.g. SBI, Axis, HDFC)'))+(sl('cTp','RuPay UPI,VISA,Mastercard,Amex,RuPay Select','RuPay UPI'))))+D('g3 m2',(""+(ip('cL',
@@ -968,8 +998,6 @@ if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{try{Promise.res
 function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
 function render(){
 if(window._isDl)return;
-// === END PART 13 ===
-// === START PART 14 ===
 const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance',
 '📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
 H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();
@@ -1029,9 +1057,9 @@ if(S.view!=='dashboard')navPush(S.view);
 }catch(e){}
 render();
 })();
-Object.assign(window,{isFs,enterFs,togFs,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,apSlip,tIn,sBrk,vTax,ccDays,syncMonSal,selLn,selCc,uHl,uPl,adHlTx,adPlTx,
+Object.assign(window,{isFs,enterFs,togFs,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip,apSlip,tIn,sBrk,vTax,ccDays,syncMonSal,selLn,selCc,uHl,uPl,uGl,adHlTx,adPlTx,adGlTx,
 vMon,adB,adC,adX,render,instPwa,hStr,clrSw,forceUpd,chkUpd,doExit,armBack,onHwBack});
-// === END PART 14 ===
+// === END PART 15 ===
 </script>
 
 </body>
