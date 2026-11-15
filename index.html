@@ -56,10 +56,10 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 <div class="absolute bottom-10 right-10 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl"></div>
 <div class="absolute bottom-6 right-2 sm:right-6 w-56 h-56 opacity-55"><svg viewBox="0 0 200 200" fill="none" class="w-full h-full"><defs><linearGradient id="mG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/><stop offset="50%" stop-color="#0284c7" stop-opacity="0.45"/><stop offset="100%" stop-color="#0369a1" stop-opacity="0"/></linearGradient></defs><path d="M10 190Q60 140 130 150T195 90" stroke="url(#mG)" stroke-width="0.9"/><path d="M25 195Q75 145 145 155T195 105" stroke="url(#mG)" stroke-width="0.9"/><path d="M40 200Q90 150 160 160T195 120" stroke="url(#mG)" stroke-width="0.9"/><path d="M55 205Q105 155 175 165T195 135" stroke="url(#mG)" stroke-width="0.9"/><path d="M70 210Q120 160 190 170T195 150" stroke="url(#mG)" stroke-width="0.9"/><g transform="translate(145,120)"><path d="M0 -18Q1 -2 18 0Q1 2 0 18Q-1 2 -18 0Q-1 -2 0 -18Z" fill="url(#mG)" opacity="0.95"/><circle cx="0" cy="0" r="3.5" fill="#fff"/></g></svg></div>
 </div>
-<div id="admMod"></div><a id="navA" href="#dashboard" class="hidden"></a>
+<div id="admMod"></div><div id="navDrw"></div><a id="navA" href="#dashboard" class="hidden"></a>
 <header class="sticky top-0 z-40 bg-[#031822]/95 border-b border-[#0a2e3d] px-4 py-2.5">
 <div class="max-w-lg mx-auto fb">
-<div class="fl gap-3"><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
+<div class="fl gap-2.5"><button id="navBtn" onclick="set('navOpen',!S.navOpen)" title="Navigation Menu" class="bC px-2.5 py-1 rx sm leading-none">☰</button><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
 <div class="fl gap-2"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="forceUpd()" title="Clear Cache & Update App" class="bA rf px-2.5 py-1 tx">🔄 Update</button><button onclick="togL()" id="lBtn" class="rounded-full bg-[#05232e] border border-[#0f485b] px-3 py-1.5 text-xs font-bold text-teal-300 fl gap-1">🌐 EN</button><div onclick="tapLogo()" title="3-Tap CSL Logo for Admin" id="hdrLogo" class="p-0.5 rounded-full border border-teal-500/40 bg-[#041521] cursor-pointer active:scale-90"></div></div>
 </div>
 </header>
@@ -162,9 +162,8 @@ Object.assign(window,{gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,DADM,S,u,set,openAdm,da
 // === END PART 6 ===
 // === START PART 7 ===
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
-function navPush(v='attendance'){try{window._ignHash=1;const h='#'+v+'_'+(window._hSeq=(window._hSeq||0)+1),a=H('navA');if(a){a.href=h;a.click()}else history.pushState({v},
-'',h);setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
-function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
+function navPush(v='attendance'){try{window._ignHash=1;history.pushState({v},'','#'+v+'_'+(window._hSeq=(window._hSeq||0)+1));setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
+function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;S.navOpen=0;S.navSec='';S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
 function mOT(m=0){let t=0,p=("2026-"+(P(m+1))+"-");for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=+v.ot||0;return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:(""+
 (MN[c[2]])+"–"+(MN[c[4]])+" 2026"),m,u:u0,rem:Math.max(0,S.qCap-u0)}}
