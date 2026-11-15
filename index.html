@@ -1112,27 +1112,25 @@ Object.assign(window,{vMonBk,vMon,adB,adC,adX});
 // === END PART 47 ===
 // === START PART 48 ===
 function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
-function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;
-if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{try{Promise.resolve(r.call(e)).catch(()=>{})}catch(x){}})}catch(e){}}
+function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{})}catch(e){}}
 function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
-function vNavDrw(){if(!S.navOpen)return'';const ab=S.navSec==='about',ct=S.navSec==='contact',w="w-full py-2 px-3 rx ";return("<div class=\"fixed inset-0 z-50 bg-black/80 flex\"><div class=\"w-80 max-w-[86vw] bg-[#061825] border-r border-cyan-500/40 h-full p-4 flex flex-col justify-between overflow-y-auto\"><div class=\"space-y-1.5\">"+F(L(cslLogo(34)+'<div><b class="sm">My CSL Menu</b><div><i>COCHIN SHIPYARD</i></div></div>')+B("set('navOpen',0)",'bD','✕'),'bb m2')+[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']].map(([v,l])=>B("go('"+v+"')",w+"text-left "+(S.view===v?'bC':'sb ts'),l)).join('')+"<div class=\"bt1 pt-2 space-y-1.5\">"+B("set('navSec',S.navSec==='about'?'':'about')",w+"fb "+(ab?'bD':'sb ts'),"<span>ℹ️ About (ആപ്പിനെക്കുറിച്ച്)</span><span>"+(ab?'▲':'▼')+"</span>")+(ab?S1("<b class=\"tc block mb-1\">⚓ My CSL Portal</b><i>കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാർക്കായുള്ള പോർട്ടൽ. അറ്റൻഡൻസ്, ഷിഫ്റ്റ്, പ്രൊഡക്ഷൻ ഹവേഴ്സ്, കലണ്ടർ 2026, സാലറി, ടാക്സ്, മണി മാനേജ്‌മെന്റ് എന്നിവ ലഭ്യമാണ്.</i>"):'')+B("set('navSec',S.navSec==='contact'?'':'contact')",w+"fb "+(ct?'bA':'sb ts'),"<span>📞 Contact Us (ബന്ധപ്പെടുക)</span><span>"+(ct?'▲':'▼')+"</span>")+(ct?S1("<b class=\"ta block mb-1\">📞 Contact Us</b><i>ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്. (Contact details will be updated soon.)</i>"):'')+"</div></div><div class=\"bt1 pt-2 text-center\"><i>© 2026 Cochin Shipyard Limited</i></div></div><div class=\"flex-1\" onclick=\"set('navOpen',0)\"></div></div>")}
+const NAV=[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']];
+function vNavDrw(){if(!S.navOpen)return'';const ab=S.navSec==='about',ct=S.navSec==='contact',w="w-full py-2 px-3 rx ";return("<div class=\"fixed inset-0 z-50 bg-black/80 flex\"><div class=\"w-80 max-w-[86vw] bg-[#061825] border-r border-cyan-500/40 h-full p-4 flex flex-col justify-between overflow-y-auto\"><div class=\"space-y-1.5\">"+F(L(cslLogo(34)+'<div><b class="sm">My CSL Menu</b><div><i>COCHIN SHIPYARD</i></div></div>')+B("set('navOpen',0)",'bD','✕'),'bb m2')+NAV.map(([v,l])=>B("S.navOpen=0;go('"+v+"')",w+"text-left "+(S.view===v?'bC':'sb ts'),l)).join('')+"<div class=\"bt1 pt-2 space-y-1.5\">"+B("set('navSec',S.navSec==='about'?'':'about')",w+"fb "+(ab?'bD':'sb ts'),"<span>ℹ️ About (ആപ്പിനെക്കുറിച്ച്)</span><span>"+(ab?'▲':'▼')+"</span>")+(ab?S1("<b class=\"tc block mb-1\">⚓ My CSL Portal</b><i>കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാർക്കായുള്ള പോർട്ടൽ. അറ്റൻഡൻസ്, ഷിഫ്റ്റ്, പ്രൊഡക്ഷൻ ഹവേഴ്സ്, കലണ്ടർ 2026, സാലറി, ടാക്സ്, മണി മാനേജ്‌മെന്റ് എന്നിവ ലഭ്യമാണ്.</i>"):'')+B("set('navSec',S.navSec==='contact'?'':'contact')",w+"fb "+(ct?'bA':'sb ts'),"<span>📞 Contact Us (ബന്ധപ്പെടുക)</span><span>"+(ct?'▲':'▼')+"</span>")+(ct?S1("<b class=\"ta block mb-1\">📞 Contact Us</b><i>ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്. (Contact details will be updated soon.)</i>"):'')+"</div></div><div class=\"bt1 pt-2 text-center\"><i>© 2026 Cochin Shipyard Limited</i></div></div><div class=\"flex-1\" onclick=\"set('navOpen',0)\"></div></div>")}
 function render(){
 if(window._isDl)return;
 H('cpBox')?.remove();
-const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance',
-'📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
+if(!H('navDrw'))document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');
+if(!H('navBtn'))document.querySelector('header .fb')?.firstElementChild?.insertAdjacentHTML('afterbegin','<button id="navBtn" onclick="event.stopPropagation();set(\'navOpen\',!S.navOpen)" class="bC px-2.5 py-1 rx sm mr-2">☰</button>');
 H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();if(H('navDrw'))H('navDrw').innerHTML=vNavDrw();
-H("fNav").innerHTML=nav.map(([v,l])=>("<span onclick=\"go('"+(v)+"')\" class=\"tc\">"+(l.split(" ").slice(1).join(" "))+"</span>")).join(" • ");
+H("fNav").innerHTML=NAV.map(([v,l])=>("<span onclick=\"go('"+v+"')\" class=\"tc\">"+l.slice(3)+"</span>")).join(" • ");
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
 setInterval(()=>{
 if(window._isDl)return;
 if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
 const t=nTm();if(H('liveClk'))H('liveClk').textContent=t;if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;if(H('liveClk3'))H('liveClk3').textContent=t;
-if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const ot0=H('wOt')?.value||S.waOt||1,tm0=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full'+
-'_day_ot'?(""+(ot0)+" hours OT Punch out @ "+(tm0)):(S.waSes==='Second Half'?("out punch @ "+(tm0)):("In punch @ "+(tm0)))}if(H('liveDt'))H('liveDt').textContent=(""+
-(P(tD()))+" "+(MN[tM()].slice(0,3))+" 2026");
-if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=(""+(P(Math.floor(s/3600)))+":"+(P(Math.floor((s%3600)/60)))+":"+(P(s%60)))}
+if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const ot0=H('wOt')?.value||S.waOt||1,tm0=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full_day_ot'?(ot0+" hours OT Punch out @ "+tm0):(S.waSes==='Second Half'?("out punch @ "+tm0):("In punch @ "+tm0))}if(H('liveDt'))H('liveDt').textContent=(P(tD())+" "+MN[tM()].slice(0,3)+" 2026");
+if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=(P(Math.floor(s/3600))+":"+P(Math.floor((s%3600)/60))+":"+P(s%60))}
 },1000);
 Object.assign(window,{isFs,enterFs,togFs,vNavDrw,render});
 // === END PART 48 ===
