@@ -1093,7 +1093,7 @@ S1(("<b class=\"ta block mb-1\">🛡️ "+(md)+" ക്രെഡിറ്റ് 
 'bg-[#041a26] border-amber-500/40'),'m2 border-amber-500/40'):'');}
 Object.assign(window,{vMonCc});
 // === END PART 46 ===
-// === START PART 47 ===
+  // === START PART 47 ===
 function vMonBk(){const{tab,mOpts}=window._vm;return (tab==='banks'?sc(("🏦 Bank Accounts ("+(S.bks.length)+")"),'te',S.bks.map(b=>rw(b.b,(""+(b.tp)+" ••••"+(b.ac)),R(b.bl),'te',("S.bks=S.bks.filter(x=>x.id!=="+
 (b.id)+")"))).join(''),(""+(ip('bN','Bank Name'))+(ip('bA','Last 4 Digits'))+(sl('bT','Savings,Salary'))+(ip('bB','Balance (₹)','number'))),'adB()','Add Bank Account',
 'bE'):'')+
@@ -1112,7 +1112,7 @@ function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenEl
 function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;
 if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{try{Promise.resolve(r.call(e)).catch(()=>{})}catch(x){}})}catch(e){}}
 function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
-window._idxFull='';window._idxPts=[];window._cpDone={};window._cpAct=-1;window._cpMsg='';window._cpHide=0;
+window._idxFull='';window._idxPts=[];window._cpDone={};window._cpAct=-1;window._cpMsg='';window._cpHide=1;
 function parseIdxPts(tx=''){if(!tx)return;window._idxFull=tx;const ls=tx.replace(/\r\n/g,'\n').split('\n'),pts=[];
 for(let p=1;p<=65;p++){const sM='START PART '+p+' ===',eM='END PART '+p+' ===',sI=ls.findIndex(l=>l.includes(sM)),
 eI=ls.findIndex(l=>l.includes(eM));if(sI!==-1&&eI!==-1&&eI>=sI)pts.push(ls.slice(sI,eI+1).join('\n')+'\n')}
