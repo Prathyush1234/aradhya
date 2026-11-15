@@ -60,11 +60,10 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 <header class="sticky top-0 z-40 bg-[#031822]/95 border-b border-[#0a2e3d] px-4 py-2.5">
 <div class="max-w-lg mx-auto fb">
 <div class="fl gap-3"><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
-<div class="fl gap-2"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="togCp()" title="Copy index.html Parts" class="bD rf px-2.5 py-1 tx">📋 Parts</button><button onclick="forceUpd()" title="Clear Cache & Update App" class="bA rf px-2.5 py-1 tx">🔄 Update</button><button onclick="togL()" id="lBtn" class="rounded-full bg-[#05232e] border border-[#0f485b] px-3 py-1.5 text-xs font-bold text-teal-300 fl gap-1">🌐 EN</button><div onclick="tapLogo()" title="3-Tap CSL Logo for Admin" id="hdrLogo" class="p-0.5 rounded-full border border-teal-500/40 bg-[#041521] cursor-pointer active:scale-90"></div></div>
+<div class="fl gap-2"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="forceUpd()" title="Clear Cache & Update App" class="bA rf px-2.5 py-1 tx">🔄 Update</button><button onclick="togL()" id="lBtn" class="rounded-full bg-[#05232e] border border-[#0f485b] px-3 py-1.5 text-xs font-bold text-teal-300 fl gap-1">🌐 EN</button><div onclick="tapLogo()" title="3-Tap CSL Logo for Admin" id="hdrLogo" class="p-0.5 rounded-full border border-teal-500/40 bg-[#041521] cursor-pointer active:scale-90"></div></div>
 </div>
 </header>
 <div id="updBar" onclick="forceUpd()" class="hidden relative z-40 bg-amber-500 text-slate-950 px-3 py-1.5 text-center tx font-black cursor-pointer">🔄 പുതിയ അപ്ഡേറ്റ് ലഭ്യമാണ്! ഇവിടെ ക്ലിക്ക് ചെയ്ത് App Update ചെയ്യുക →</div>
-<div id="cpBox" class="relative z-30 max-w-lg mx-auto w-full px-3 pt-2"></div>
 <main id="appView" class="relative z-10 flex-1 w-full max-w-lg mx-auto px-3 py-2.5"></main>
 <footer class="relative z-10 mt-auto py-2.5 bg-[#010911]/90 border-t border-[#0d2638] text-center tx ts">
 <div>© 2026 Cochin Shipyard Limited • A Govt. of India Undertaking</div>
@@ -461,10 +460,11 @@ L(B("set('aMod','quota')",'bD tx','⚙ Initial Quotas')+B("set('aMod','leave')",
 D('g4',[['CL',avlLv('CL'),clT,lvCnt('CL'),("P1:"+(q.cl1??6)+"d·P2:"+(q.cl2??6)+"d"),'ta'],['EL',avlLv('EL'),totLv('EL'),lvCnt('EL')+lvCnt('ML'),'Earned (ML incl.)',
 'te'],['HPL',avlLv('HPL'),totLv('HPL'),lvCnt('HPL'),'Half Pay Leave','tc'],['SCL',avlLv('SCL'),totLv('SCL'),lvCnt('SCL'),'Special Casual','ta']].map(([k,
 rem,tot,us,sub,c])=>S1(F(("<b class=\""+(c)+" tx\">"+(k)+" Avl</b><i>Used:"+(us)+"d</i>"))+("<div class=\"bs fm "+(c)+"\"><b>"+(rem)+"d</b> <i class=\"tx\">/ "+
-(tot)+"d</i></div><div class=\"text-[8px] ts\">"+(sub)+"</div>"),'',("S.lvTp='"+(k)+"';set('aMod','leave')"))).join('')));}
+(tot)+"d</i></div><div class=\"text-[9px] ts\">"+(sub)+"</div>"),'',("S.lvTp='"+(k)+"';set('aMod','leave')"))).join('')));
+}
 Object.assign(window,{vAtt2,vAtt3});
 // === END PART 19 ===
-  // === START PART 20 ===
+// === START PART 20 ===
 function vAtt4(){const{m,sd,q,rows,otSum,sDt,curR}=window._va;return C(F(("<div><b class=\"sm\">📅 "+(MN[m])+" 2026 Daily Duty & Punch Logs</b><div><i>Biometric Duty, Shift & Overtime Register</i></div></div>")+L(B("S.cM=tM();S.sD=tD();u()",
 ("px-2.5 py-1 rx tx "+(m===tM()?'bC':'sb ts')),(""+(MN[tM()].slice(0,3))+" 2026 (Today "+(tD())+")"))+B("set('cM',9)",("px-2.5 py-1 rx tx "+(m===9?'bg-amber-500 text-slate-950':'sb ta')),
 'Oct 2026 (Saved ✓)')+("<select onchange=\"set('cM',+this.value)\" class=\"bD tx\">"+(MN.map((n,i)=>("<option value=\""+(i)+"\" "+(i===m?'selected':'')+
@@ -1111,38 +1111,29 @@ function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0,bk=H('xB')?.valu
 Object.assign(window,{vMonBk,vMon,adB,adC,adX});
 // === END PART 47 ===
 // === START PART 48 ===
-async function loadIdxPts(){try{for(const u of['/csl-compact-github.html?t='+Date.now(),location.pathname+'?t='+Date.now()]){
-try{const r=await fetch(u,{cache:'no-store'});if(r.ok){const t=await r.text();if(t&&t.includes('START PART 1')){parseIdxPts(t);return}}}catch(e){}}
-parseIdxPts('<!DOCTYPE html>\n'+document.documentElement.outerHTML)}catch(e){}}
-function togCp(){window._cpHide=window._cpHide?0:1;if(H('cpBox'))H('cpBox').innerHTML=vCpBox()}
-function cpAllIdx(){if(!window._idxFull)parseIdxPts('<!DOCTYPE html>\n'+document.documentElement.outerHTML);
-cpTx(window._idxFull);window._cpMsg='✅ മുഴുവൻ index.html കോപ്പി ആയി!';if(H('cpBox'))H('cpBox').innerHTML=vCpBox()}
-function dlIdx(){if(!window._idxFull)parseIdxPts('<!DOCTYPE html>\n'+document.documentElement.outerHTML);
-const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([window._idxFull],{type:'text/html'}));a.download='index.html';a.click()}
-function cpPt(n=1){if(!window._idxPts.length)parseIdxPts('<!DOCTYPE html>\n'+document.documentElement.outerHTML);
-const ch=window._idxPts[n-1]||'';if(!ch)return;cpTx(ch);window._cpAct=n-1;window._cpDone[n]=1;const lc=ch.trimEnd().split('\n').length;
-window._cpMsg='✅ Part '+n+' / '+window._idxPts.length+' കോപ്പി ആയി! ('+ch.length+' chars · '+lc+' lines)';
-if(H('cpBox')){H('cpBox').innerHTML=vCpBox();if(H('ptTa'))H('ptTa').value=ch}}
-function rstCpPts(){window._cpDone={};window._cpAct=-1;window._cpMsg='';if(H('cpBox'))H('cpBox').innerHTML=vCpBox()}
-function vCpBox(){if(window._isDl||window._cpHide)return'';const pts=window._idxPts||[],tot=pts.length||50,
-dn=Object.keys(window._cpDone||{}).length,act=window._cpAct,acTx=act>=0&&pts[act]?pts[act]:'';
-return C(F('<b class="tc tx">🚀 GitHub index.html File (Part 1 → Part '+tot+' · Zero-Truncation Copy)</b>'+
-L('<span class="bD px-2 py-0.5 rf text-[9px] fm">Copied: '+dn+'/'+tot+'</span>'+
-(dn?B('rstCpPts()','sb tr0 text-[9px] px-1.5 py-0.5','↺ Reset'):'')+
-B('togCp()','sb ts text-[9px] px-1.5 py-0.5','✕ Hide')),'flex-wrap m2')+
-D('g2 m2',B('cpAllIdx()','bt bC tx py-2','📋 index.html മുഴുവൻ Copy ചെയ്യുക')+
-B('dlIdx()','bt bg-amber-500 text-slate-950 tx py-2','⬇️ index.html Download ചെയ്യുക'))+
-(window._cpMsg?S1(F('<b class="te tx">'+window._cpMsg+'</b>'+(act>=0&&act+1<tot?B('cpPt('+(act+2)+')',
-'bt bg-amber-400 text-slate-950 text-[10px] py-1 px-2','⏭️ അടുത്ത Part '+(act+2)+' Copy →'):''),'flex-wrap'),
-'m2 bg-emerald-950/80 border-emerald-400/60'):'')+
-'<div class="tx ta font-bold mb-1">✂️ ഫോൺ ക്ലിപ്പ്ബോർഡിൽ മുറിഞ്ഞു പോകാതിരിക്കാൻ ചെറിയ ഭാഗങ്ങളായി (P1 → P'+tot+') കോപ്പി ചെയ്യാം:</div>'+
-D('g5',[...Array(tot).keys()].map(i=>{const n=i+1,ok=window._cpDone?.[n],sl=act===i;
-return B('cpPt('+n+')','py-1.5 px-1 rx tx font-black text-center '+(sl?'bg-amber-400 text-slate-950 ring-2 ring-white':ok?'bE':'bD'),
-(ok?'✅ P':'📋 P')+n)}).join(''))+
-(acTx?S1(F('<b class="tc tx fm">📄 Part '+(act+1)+' / '+tot+' ('+acTx.length+' chars)</b>'+
-B('H("ptTa")?.select();cpPt('+(act+1)+')','bt bC text-[9px] py-0.5 px-2','📋 Select All & Copy'),'m2')+
-'<textarea id="ptTa" readonly onclick="this.select()" class="inp fm text-[9px] h-24 te"></textarea>','mt-2'):''),'border-cyan-400/70 bg-[#072436]/95')}
-Object.assign(window,{loadIdxPts,togCp,cpAllIdx,dlIdx,cpPt,rstCpPts,vCpBox});
+function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
+function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;
+if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{try{Promise.resolve(r.call(e)).catch(()=>{})}catch(x){}})}catch(e){}}
+function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
+function render(){
+if(window._isDl)return;
+H('cpBox')?.remove();document.querySelector('[onclick*="togCp"]')?.remove();
+const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance',
+'📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
+H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();
+H("fNav").innerHTML=nav.map(([v,l])=>("<span onclick=\"go('"+(v)+"')\" class=\"tc\">"+(l.split(" ").slice(1).join(" "))+"</span>")).join(" • ");
+H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
+}
+setInterval(()=>{
+if(window._isDl)return;
+if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
+const t=nTm();if(H('liveClk'))H('liveClk').textContent=t;if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;if(H('liveClk3'))H('liveClk3').textContent=t;
+if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const ot0=H('wOt')?.value||S.waOt||1,tm0=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full'+
+'_day_ot'?(""+(ot0)+" hours OT Punch out @ "+(tm0)):(S.waSes==='Second Half'?("out punch @ "+(tm0)):("In punch @ "+(tm0)))}if(H('liveDt'))H('liveDt').textContent=(""+
+(P(tD()))+" "+(MN[tM()].slice(0,3))+" 2026");
+if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=(""+(P(Math.floor(s/3600)))+":"+(P(Math.floor((s%3600)/60)))+":"+(P(s%60)))}
+},1000);
+Object.assign(window,{isFs,enterFs,togFs,render});
 // === END PART 48 ===
 // === START PART 49 ===
 function render(){
