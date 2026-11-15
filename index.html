@@ -43,35 +43,26 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 <!-- === END PART 1 === -->
 <!-- === START PART 2 === -->
 <body class="flex flex-col min-h-screen">
-<div class="bg1">
-<div class="absolute top-10 right-0 w-[550px] h-[550px] rounded-full bg-cyan-500/18 blur-3xl translate-x-1/4"></div>
-<div class="absolute right-0 top-6 sm:top-10 w-[92%] sm:w-[75%] max-w-[660px] h-[360px] sm:h-[420px] overflow-hidden select-none shipM">
-<div class="shipI"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-[#020d18] via-transparent to-[#020d18]/35"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-[#020d18] via-transparent to-[#020d18]/40"></div>
-<div class="absolute top-[28%] right-[32%] w-20 h-8 bg-cyan-400/35 rounded-full blur-md"></div>
-<div class="absolute top-[52%] right-[55%] w-24 h-8 bg-amber-300/25 rounded-full blur-lg"></div>
-<div class="absolute top-[12%] right-[32%] w-2.5 h-2.5 bg-rose-500 rounded-full shadow-[0_0_8px_#f43f5e] animate-pulse"></div></div>
-<div class="absolute right-0 top-16 w-[480px] opacity-40"><svg viewBox="0 0 500 200" fill="none" class="w-full h-full"><line x1="10" y1="185" x2="490" y2="185" stroke="#38bdf8" stroke-width="0.8" opacity="0.6"/><line x1="80" y1="195" x2="450" y2="195" stroke="#38bdf8" stroke-width="0.5" opacity="0.4" stroke-dasharray="6 4"/></svg></div>
-<div class="absolute bottom-10 right-10 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl"></div>
-<div class="absolute bottom-6 right-2 sm:right-6 w-56 h-56 opacity-55"><svg viewBox="0 0 200 200" fill="none" class="w-full h-full"><defs><linearGradient id="mG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/><stop offset="50%" stop-color="#0284c7" stop-opacity="0.45"/><stop offset="100%" stop-color="#0369a1" stop-opacity="0"/></linearGradient></defs><path d="M10 190Q60 140 130 150T195 90" stroke="url(#mG)" stroke-width="0.9"/><path d="M25 195Q75 145 145 155T195 105" stroke="url(#mG)" stroke-width="0.9"/><path d="M40 200Q90 150 160 160T195 120" stroke="url(#mG)" stroke-width="0.9"/><path d="M55 205Q105 155 175 165T195 135" stroke="url(#mG)" stroke-width="0.9"/><path d="M70 210Q120 160 190 170T195 150" stroke="url(#mG)" stroke-width="0.9"/><g transform="translate(145,120)"><path d="M0 -18Q1 -2 18 0Q1 2 0 18Q-1 2 -18 0Q-1 -2 0 -18Z" fill="url(#mG)" opacity="0.95"/><circle cx="0" cy="0" r="3.5" fill="#fff"/></g></svg></div>
-</div>
+<div class="bg1"><div class="absolute right-0 top-6 w-[92%] sm:w-[75%] max-w-[660px] h-[380px] overflow-hidden shipM"><div class="shipI"></div><div class="absolute inset-0 bg-gradient-to-t from-[#020d18] via-transparent to-[#020d18]/35"></div></div></div>
 <div id="admMod"></div><div id="navDrw"></div><a id="navA" href="#dashboard" class="hidden"></a>
 <header class="sticky top-0 z-40 bg-[#031822]/95 border-b border-[#0a2e3d] px-4 py-2.5">
 <div class="max-w-lg mx-auto fb">
-<div class="fl gap-2.5"><button id="navBtn" onclick="set('navOpen',!S.navOpen)" title="Navigation Menu" class="bC px-2.5 py-1 rx sm leading-none">☰</button><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
-<div class="fl gap-2"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="forceUpd()" title="Clear Cache & Update App" class="bA rf px-2.5 py-1 tx">🔄 Update</button><button onclick="togL()" id="lBtn" class="rounded-full bg-[#05232e] border border-[#0f485b] px-3 py-1.5 text-xs font-bold text-teal-300 fl gap-1">🌐 EN</button><div onclick="tapLogo()" title="3-Tap CSL Logo for Admin" id="hdrLogo" class="p-0.5 rounded-full border border-teal-500/40 bg-[#041521] cursor-pointer active:scale-90"></div></div>
+<div class="fl gap-2.5"><button id="navBtn" onclick="window.togNav&&togNav()" class="bC px-2.5 py-1 rx sm leading-none">☰</button><div onclick="go('dashboard')"><b class="text-xl text-white">My CSL</b></div></div>
+<div class="fl gap-2"><button id="pwaBtn" onclick="instPwa()" class="hidden bE rf px-2.5 py-1 tx">📲 Install</button><button onclick="forceUpd()" class="bA rf px-2.5 py-1 tx">🔄 Update</button><button onclick="togL()" id="lBtn" class="rf bg-[#05232e] border border-[#0f485b] px-3 py-1.5 text-xs font-bold text-teal-300 fl gap-1">🌐 EN</button><div onclick="tapLogo()" id="hdrLogo" class="p-0.5 rf border border-teal-500/40 bg-[#041521]"></div></div>
 </div>
 </header>
-<div id="updBar" onclick="forceUpd()" class="hidden relative z-40 bg-amber-500 text-slate-950 px-3 py-1.5 text-center tx font-black cursor-pointer">🔄 പുതിയ അപ്ഡേറ്റ് ലഭ്യമാണ്! ഇവിടെ ക്ലിക്ക് ചെയ്ത് App Update ചെയ്യുക →</div>
+<div id="updBar" onclick="forceUpd()" class="hidden relative z-40 bg-amber-500 text-slate-950 px-3 py-1.5 text-center tx font-black">🔄 പുതിയ അപ്ഡേറ്റ് ലഭ്യമാണ്! ഇവിടെ ക്ലിക്ക് ചെയ്ത് App Update ചെയ്യുക →</div>
 <main id="appView" class="relative z-10 flex-1 w-full max-w-lg mx-auto px-3 py-2.5"></main>
 <footer class="relative z-10 mt-auto py-2.5 bg-[#010911]/90 border-t border-[#0d2638] text-center tx ts">
 <div>© 2026 Cochin Shipyard Limited • A Govt. of India Undertaking</div>
 <div id="fNav" class="fc gap-2 flex-wrap mt-1"></div>
 </footer>
-
 <script>
 // @ts-nocheck
+const NAV=[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']];
+function vNavDrw(){if(!window.S?.navOpen)return'';const ab=S.navSec==='about',ct=S.navSec==='contact',w="w-full py-2 px-3 rx ";return`<div class="fixed inset-0 z-50 bg-black/80 flex"><div class="w-80 max-w-[86vw] bg-[#061825] border-r border-cyan-500/40 h-full p-4 flex flex-col justify-between overflow-y-auto"><div class="space-y-1.5"><div class="fb bb m2"><div class="fl">${window.cslLogo?cslLogo(34):''}<div><b class="sm">My CSL Menu</b><div><i>COCHIN SHIPYARD</i></div></div></div><button onclick="togNav(0)" class="bD">✕</button></div>${NAV.map(([v,l])=>`<button onclick="togNav(0);go('${v}')" class="${w}text-left ${S.view===v?'bC':'sb ts'}">${l}</button>`).join('')}<div class="bt1 pt-2 space-y-1.5"><button onclick="togNav(1,S.navSec==='about'?'':'about')" class="${w}fb ${ab?'bD':'sb ts'}"><span>ℹ️ About (ആപ്പിനെക്കുറിച്ച്)</span><span>${ab?'▲':'▼'}</span></button>${ab?'<div class="sb"><b class="tc block mb-1">⚓ My CSL Portal</b><i>കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാർക്കായുള്ള പോർട്ടൽ. അറ്റൻഡൻസ്, ഷിഫ്റ്റ്, പ്രൊഡക്ഷൻ ഹവേഴ്സ്, കലണ്ടർ 2026, സാലറി, ടാക്സ്, മണി മാനേജ്‌മെന്റ് എന്നിവ ലഭ്യമാണ്.</i></div>':''}<button onclick="togNav(1,S.navSec==='contact'?'':'contact')" class="${w}fb ${ct?'bA':'sb ts'}"><span>📞 Contact Us (ബന്ധപ്പെടുക)</span><span>${ct?'▲':'▼'}</span></button>${ct?'<div class="sb"><b class="ta block mb-1">📞 Contact Us</b><i>ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്.</i></div>':''}</div></div><div class="bt1 pt-2 text-center"><i>© 2026 Cochin Shipyard Limited</i></div></div><div class="flex-1" onclick="togNav(0)"></div></div>`}
+function togNav(v=-1,sc='_'){if(!window.S)return;let d=document.getElementById('navDrw');if(!d){document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');d=document.getElementById('navDrw')}S.navOpen=v<0?!S.navOpen:v;if(sc!=='_')S.navSec=sc;d.innerHTML=vNavDrw()}
+Object.assign(window,{NAV,vNavDrw,togNav});
 // === END PART 2 ===
 // === START PART 3 ===
 let lTap=0,lTapT=0;function tapLogo(){const n=Date.now();lTap=n-lTapT<1800?lTap+1:1;lTapT=n;if(lTap>=3&&window.openAdm){lTap=0;window.openAdm()}}
@@ -1111,62 +1102,45 @@ Object.assign(window,{vMonBk,vMon,adB,adC,adX});
 // === END PART 47 ===
 // === START PART 48 ===
 function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
-function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{})}catch(e){}}
+function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement;Promise.resolve((e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)).catch(()=>{})}catch(e){}}
 function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
-const NAV=[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']];
-function vNavDrw(){if(!S.navOpen)return'';const ab=S.navSec==='about',ct=S.navSec==='contact',w="w-full py-2 px-3 rx ";return("<div class=\"fixed inset-0 z-50 bg-black/80 flex\"><div class=\"w-80 max-w-[86vw] bg-[#061825] border-r border-cyan-500/40 h-full p-4 flex flex-col justify-between overflow-y-auto\"><div class=\"space-y-1.5\">"+F(L(cslLogo(34)+'<div><b class="sm">My CSL Menu</b><div><i>COCHIN SHIPYARD</i></div></div>')+B("set('navOpen',0)",'bD','✕'),'bb m2')+NAV.map(([v,l])=>B("S.navOpen=0;go('"+v+"')",w+"text-left "+(S.view===v?'bC':'sb ts'),l)).join('')+"<div class=\"bt1 pt-2 space-y-1.5\">"+B("set('navSec',S.navSec==='about'?'':'about')",w+"fb "+(ab?'bD':'sb ts'),"<span>ℹ️ About (ആപ്പിനെക്കുറിച്ച്)</span><span>"+(ab?'▲':'▼')+"</span>")+(ab?S1("<b class=\"tc block mb-1\">⚓ My CSL Portal</b><i>കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാർക്കായുള്ള പോർട്ടൽ. അറ്റൻഡൻസ്, ഷിഫ്റ്റ്, പ്രൊഡക്ഷൻ ഹവേഴ്സ്, കലണ്ടർ 2026, സാലറി, ടാക്സ്, മണി മാനേജ്‌മെന്റ് എന്നിവ ലഭ്യമാണ്.</i>"):'')+B("set('navSec',S.navSec==='contact'?'':'contact')",w+"fb "+(ct?'bA':'sb ts'),"<span>📞 Contact Us (ബന്ധപ്പെടുക)</span><span>"+(ct?'▲':'▼')+"</span>")+(ct?S1("<b class=\"ta block mb-1\">📞 Contact Us</b><i>ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്. (Contact details will be updated soon.)</i>"):'')+"</div></div><div class=\"bt1 pt-2 text-center\"><i>© 2026 Cochin Shipyard Limited</i></div></div><div class=\"flex-1\" onclick=\"set('navOpen',0)\"></div></div>")}
+const NAV0=[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']];
+function vNavDrw(){if(!S.navOpen)return'';const ab=S.navSec==='about',ct=S.navSec==='contact',w="w-full py-2 px-3 rx ";return`<div class="fixed inset-0 z-50 bg-black/80 flex"><div class="w-80 max-w-[86vw] bg-[#061825] border-r border-cyan-500/40 h-full p-4 flex flex-col justify-between overflow-y-auto"><div class="space-y-1.5">${F(L(cslLogo(34)+'<div><b class="sm">My CSL Menu</b><div><i>COCHIN SHIPYARD</i></div></div>')+B("togNav(0)",'bD','✕'),'bb m2')}${NAV0.map(([v,l])=>B(`togNav(0);go('${v}')`,w+"text-left "+(S.view===v?'bC':'sb ts'),l)).join('')}<div class="bt1 pt-2 space-y-1.5">${B("togNav(1,S.navSec==='about'?'':'about')",w+"fb "+(ab?'bD':'sb ts'),`<span>ℹ️ About (ആപ്പിനെക്കുറിച്ച്)</span><span>${ab?'▲':'▼'}</span>`)}${ab?S1('<b class="tc block mb-1">⚓ My CSL Portal</b><i>കൊച്ചിൻ ഷിപ്പ്‌യാർഡ് ജീവനക്കാർക്കായുള്ള പോർട്ടൽ. അറ്റൻഡൻസ്, ഷിഫ്റ്റ്, പ്രൊഡക്ഷൻ ഹവേഴ്സ്, കലണ്ടർ 2026, സാലറി, ടാക്സ്, മണി മാനേജ്‌മെന്റ് എന്നിവ ലഭ്യമാണ്.</i>'):''}${B("togNav(1,S.navSec==='contact'?'':'contact')",w+"fb "+(ct?'bA':'sb ts'),`<span>📞 Contact Us (ബന്ധപ്പെടുക)</span><span>${ct?'▲':'▼'}</span>`)}${ct?S1('<b class="ta block mb-1">📞 Contact Us</b><i>ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്.</i>'):''}</div></div><div class="bt1 pt-2 text-center"><i>© 2026 Cochin Shipyard Limited</i></div></div><div class="flex-1" onclick="togNav(0)"></div></div>`}
+function togNav(v=-1,sc='_'){if(!H('navDrw'))document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');S.navOpen=v<0?!S.navOpen:v;if(sc!=='_')S.navSec=sc;H('navDrw').innerHTML=vNavDrw()}
 function render(){
-if(window._isDl)return;
-H('cpBox')?.remove();
-if(!H('navDrw'))document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');
-if(!H('navBtn'))document.querySelector('header .fb')?.firstElementChild?.insertAdjacentHTML('afterbegin','<button id="navBtn" onclick="event.stopPropagation();set(\'navOpen\',!S.navOpen)" class="bC px-2.5 py-1 rx sm mr-2">☰</button>');
-H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();if(H('navDrw'))H('navDrw').innerHTML=vNavDrw();
-H("fNav").innerHTML=NAV.map(([v,l])=>("<span onclick=\"go('"+v+"')\" class=\"tc\">"+l.slice(3)+"</span>")).join(" • ");
+if(window._isDl)return;H('cpBox')?.remove();if(!H('navDrw'))document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');
+if(!H('navBtn'))document.querySelector('header .fb')?.firstElementChild?.insertAdjacentHTML('afterbegin','<button id="navBtn" onclick="togNav()" class="bC px-2.5 py-1 rx sm mr-2">☰</button>');
+H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();H('navDrw').innerHTML=vNavDrw();
+H("fNav").innerHTML=NAV0.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.slice(3)}</span>`).join(" • ");
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
 setInterval(()=>{
-if(window._isDl)return;
-if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
-const t=nTm();if(H('liveClk'))H('liveClk').textContent=t;if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;if(H('liveClk3'))H('liveClk3').textContent=t;
-if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const ot0=H('wOt')?.value||S.waOt||1,tm0=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full_day_ot'?(ot0+" hours OT Punch out @ "+tm0):(S.waSes==='Second Half'?("out punch @ "+tm0):("In punch @ "+tm0))}if(H('liveDt'))H('liveDt').textContent=(P(tD())+" "+MN[tM()].slice(0,3)+" 2026");
-if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=(P(Math.floor(s/3600))+":"+P(Math.floor((s%3600)/60))+":"+P(s%60))}
+if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
+const t=nTm();['liveClk','liveClk3'].forEach(k=>{if(H(k))H(k).textContent=t});if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;
+if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const o=H('wOt')?.value||S.waOt||1,m=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full_day_ot'?`${o} hours OT Punch out @ ${m}`:(S.waSes==='Second Half'?`out punch @ ${m}`:`In punch @ ${m}`)}if(H('liveDt'))H('liveDt').textContent=`${P(tD())} ${MN[tM()].slice(0,3)} 2026`;
+if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=`${P(Math.floor(s/3600))}:${P(Math.floor((s%3600)/60))}:${P(s%60)}`}
 },1000);
-Object.assign(window,{isFs,enterFs,togFs,vNavDrw,render});
+Object.assign(window,{isFs,enterFs,togFs,vNavDrw,togNav,render});
 // === END PART 48 ===
 // === START PART 49 ===
-function render(){
-if(window._isDl)return;
-const nav=[['front','🏠 Front Page'],['signin','🔐 Sign In'],['dashboard','⚡ QuickAccess'],['calendar','📅 Calendar'],['salary','💵 Salary'],['attendance',
-'📋 Attendance'],['money','🏦 Money Hub'],['tax','📊 Income Tax']];
-H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();if(H('cpBox')){H('cpBox').innerHTML=vCpBox();if(H('ptTa')&&window._cpAct>=0&&window._idxPts[window._cpAct])H('ptTa').value=window._idxPts[window._cpAct]}
-H("fNav").innerHTML=nav.map(([v,l])=>("<span onclick=\"go('"+(v)+"')\" class=\"tc\">"+(l.split(" ").slice(1).join(" "))+"</span>")).join(" • ");
-H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
-}
-setInterval(()=>{
-if(window._isDl)return;
-if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
-const t=nTm();if(H('liveClk'))H('liveClk').textContent=t;if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;if(H('liveClk3'))H('liveClk3').textContent=t;
-if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const ot0=H('wOt')?.value||S.waOt||1,tm0=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full'+
-'_day_ot'?(""+(ot0)+" hours OT Punch out @ "+(tm0)):(S.waSes==='Second Half'?("out punch @ "+(tm0)):("In punch @ "+(tm0)))}if(H('liveDt'))H('liveDt').textContent=(""+
-(P(tD()))+" "+(MN[tM()].slice(0,3))+" 2026");
-if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=(""+(P(Math.floor(s/3600)))+":"+(P(Math.floor((s%3600)/60)))+":"+(P(s%60)))}
-},1000);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();S.dfP=e;H('pwaBtn')?.classList.remove('hidden')});
 function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H('pwaBtn')?.classList.add('hidden')}else{enterFs();alert('URL ബാർ പൂർണ്ണമായും ഒഴിവാക്കാൻ: മുകളിലെ വലതുവശത്തെ 3 ഡോട്ട് (⋮) അമർത്തി'+
 ' "Add to Home screen" → "Install" തിരഞ്ഞെടുക്കുക.')}}
-const APP_VER='2026.11.14.16',hStr=(s='')=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return String(h)+'_'+s.length};
+const APP_VER='2026.11.15.30',hStr=(s='')=>{const c=s.replace(/\s+/g,' ').trim();let h=0;for(let i=0;i<c.length;i++)h=(h*31+c.charCodeAt(i))|0;return h+'_'+c.length};
+const curH=()=>hStr(document.scripts[document.scripts.length-1]?.textContent||''),remH=(tx='')=>hStr(tx.slice(tx.lastIndexOf('<script>')+8,tx.lastIndexOf('<'+'/script>')));
 async function clrSw(){try{if('caches'in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if('serviceWorker'in navigator){const rs=await navigator.serviceWorker.getRegistrations();
 for(const r of rs)await r.unregister()}}catch(e){}}
-async function forceUpd(){await clrSw();try{localStorage.setItem('csl_app_ver',APP_VER)}catch(e){}location.replace(location.pathname+'?_u='+Date.now())}
-async function chkUpd(){if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();u()}await clrSw();try{if(location.search.includes('_u='))history.replaceState({},'',location.pathname+location.hash);
-const r=await fetch(location.pathname+'?_t='+Date.now(),{cache:'no-store'});if(r.ok){const tx=await r.text();if(tx.includes('APP_VER=')&&!tx.includes(APP_VER))H('updBar')?.classList.remove('hidden')}}catch(e){}}
+function showUpdNotif(m='',c='bg-emerald-500 text-slate-950'){const b=H('updBar');if(b){b.className='relative z-50 '+c+' px-3 py-2 text-center tx font-black cursor-pointer shadow-lg';b.innerHTML=m;b.classList.remove('hidden')}}
+async function forceUpd(){window._ignHash=1;showUpdNotif('⏳ പുതിയ കോഡ് അപ്ഡേറ്റ് ചെയ്യുന്നു... (Updating App Code...)','bg-amber-400 text-slate-950');await clrSw();const u0=location.origin+location.pathname+'?_u='+Date.now();try{const r=await fetch(u0,{cache:'reload',headers:{'Cache-Control':'no-cache'}});if(r.ok){const tx=await r.text();localStorage.setItem('csl_code_h',remH(tx));sessionStorage.setItem('csl_upd_ok','1')}}catch(e){}location.replace(u0);setTimeout(()=>{location.href=u0},250)}
+async function chkUpd(){if(window._isDl)return;if(sessionStorage.getItem('csl_upd_ok')){sessionStorage.removeItem('csl_upd_ok');showUpdNotif('✅ പുതിയ കോഡ് അപ്ഡേറ്റ് പൂർത്തിയായി! (App Code Updated Successfully!)');setTimeout(()=>H('updBar')?.classList.add('hidden'),4500)}if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();u()}await clrSw();try{if(location.search.includes('_u='))history.replaceState({},'',location.pathname+location.hash);const ch=curH(),oh=localStorage.getItem('csl_code_h');if(oh&&oh!==ch){localStorage.setItem('csl_code_h',ch);showUpdNotif('✅ പുതിയ കോഡ് അപ്ഡേറ്റ് പൂർത്തിയായി! (App Code Updated Successfully!)');setTimeout(()=>H('updBar')?.classList.add('hidden'),4500)}else if(!oh)localStorage.setItem('csl_code_h',ch);const r=await fetch(location.origin+location.pathname+'?_t='+Date.now(),{cache:'no-store'});if(r.ok){const tx=await r.text();if(tx.includes('<script>')&&(remH(tx)!==ch||(tx.includes('APP_VER=')&&!tx.includes(APP_VER)))){showUpdNotif('🔔 പുതിയ അപ്ഡേറ്റ് വന്നിട്ടുണ്ട്! കോഡ് തനിയെ അപ്ഡേറ്റ് ചെയ്യുന്നു... (Auto-Updating)','bg-amber-400 text-slate-950');setTimeout(()=>forceUpd(),900)}}}catch(e){}}
+setInterval(chkUpd,20000);window.addEventListener('focus',chkUpd);
 function doExit(){S.exitMod=0;u();try{window.AppInventor?.setWebViewString?.('EXIT_APP')}catch(e){}try{window.close()}catch(e){}try{navigator.app?.exitApp?.()}catch(e){}try{if(history.length>1)history.go(-history.length)}catch(e){}}
 function armBack(){if(S.view!=='dashboard'&&!window._hArm){window._hArm=1;navPush(S.view)}}
-['touchend','pointerup','mouseup','click','keydown'].forEach(ev=>window.addEventListener(ev,armBack,{passive:true,capture:true}));
-Object.assign(window,{render,instPwa,clrSw,forceUpd,chkUpd,doExit,armBack,APP_VER,hStr});
+window.addEventListener('click',armBack,{passive:true});
+Object.assign(window,{instPwa,clrSw,showUpdNotif,forceUpd,chkUpd,doExit,armBack,APP_VER,hStr});
 // === END PART 49 ===
 // === START PART 50 ===
-function onHwBack(){if(window._ignHash)return;const n=Date.now();if(n-(window._lastBk||0)<220)return;window._lastBk=n;if(S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.slipOpen){S.aMod='';
+function onHwBack(){if(window._ignHash)return;const n=Date.now();if(n-(window._lastBk||0)<220)return;window._lastBk=n;if(S.navOpen){togNav(0);return}if(S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.slipOpen){S.aMod='';
 S.pdfMod='';S.waPrev='';S.admOpen=0;S.slipOpen=0;window._hArm=0;navPush(S.view);u();return}if(S.view!=='dashboard'){window._hArm=0;window._dashTs=n;S.view='dashboard';
 u();scrollTo(0,0);return}if(n-(window._dashTs||0)<500)return;doExit()}
 window.addEventListener('popstate',onHwBack);window.addEventListener('hashchange',onHwBack);
@@ -1185,7 +1159,8 @@ setTimeout(cls,350);setTimeout(cls,750);setTimeout(cls,1200);document.addEventLi
 return;
 }
 try{
-chkUpd();loadIdxPts();
+H('cpBox')?.remove();document.querySelector('[onclick*="togCp"]')?.remove();
+chkUpd();
 const svgBlob=new Blob([cslLogo(512)],{type:'image/svg+xml'}),url=URL.createObjectURL(svgBlob),img=new Image();
 img.onload=()=>{
 const mk=(sz=192)=>{const c=document.createElement('canvas');c.width=c.height=sz;c.getContext('2d').drawImage(img,0,0,sz,sz);return c.toDataURL('image/png')};
