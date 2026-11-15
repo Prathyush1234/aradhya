@@ -145,7 +145,7 @@ const DADM={da:54.1,hra:20,epf:12,div:198,wd:500,tpa:2400,ml:220,mk:107.25,lta:1
 clb:50,lic:1499,cPf:0,cPfN:'Admin Solved (Formula pending)',cOtR:0,cOtN:'Custom contract OT cash calculation model',pass:'472544'};
 let S={view:'front',initDone:0,uSigned:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFlt:'all',hFlt:'all',sD:tD(),lastDt:tKey(),lvDur:'Full Day',lvOpen:0,
 wOpen:0,nOpen:0,aFlt:'ALL',aMod:'',pdfMod:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,admAuth:0,admErr:'',admSaved:0,shPw:0,
-exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'budget',
+exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'spend',
 lnTp:'none',lns:[],slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},gl:{ln:'',rt:9,mo:12,emi:'',ex:''},dfP:null,name:'',
 tok:'',ph:'',dep:'',doj:'',sh:'A2',qCap:120,qCyc:3,cM:tM(),lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},adm:{...DADM},att:{},sal:{b:'',otH:'',tgt:25,
 cycM:10,allCyc:0,da:54.1,hr:20,pr:32,otR:0,pf:0,uTyped2:0},txI:{b:0,da:54.1,otA:0,hraA:0,rentA:0,prkA:0,bonA:0,c80:0,nps1B:0,nps2:0,medS:0,medP:0,srP:0,
@@ -165,7 +165,7 @@ Object.assign(window,{gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,DADM,S,u,set,openAdm,da
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
 function navPush(v='attendance'){try{window._ignHash=1;const h='#'+v+'_'+(window._hSeq=(window._hSeq||0)+1),a=H('navA');if(a){a.href=h;a.click()}else history.pushState({v},
 '',h);setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
-function go(v='front',c=''){if(c)S.cat=c;S.view=v;S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
+function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
 function mOT(m=0){let t=0,p=("2026-"+(P(m+1))+"-");for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=+v.ot||0;return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:(""+
 (MN[c[2]])+"–"+(MN[c[4]])+" 2026"),m,u:u0,rem:Math.max(0,S.qCap-u0)}}
@@ -891,8 +891,8 @@ Object.assign(window,{vTax3,vTax,ccDays,syncMonSal,hasLn});
 // === START PART 37 ===
 function selLn(t='none'){let a=Array.isArray(S.lns)&&S.lns.length?[...S.lns]:(S.lnTp==='both'?['house','personal','gold']:S.lnTp==='pg'?['personal','gold']:S.lnTp&&S.lnTp!=='none'?[S.lnTp]:[]);if(t==='none')a=[];else if(t==='both')a=['house',
 'personal','gold'];else if(t==='pg')a=['personal','gold'];else a=a.includes(t)?a.filter(x=>x!==t):[...a,t];S.lns=a;S.lnTp=!a.length?'none':a.length===3?'both':a.length===2&&a.includes('personal')&&a.includes('gold')?'pg':
-a[0];S.mTab=a.length?'loans':'budget';u()}
-function selCc(n=0){S.ccMod=+n;if(!S.ccMod&&S.mTab==='cards')S.mTab='budget';else if(S.ccMod>0)S.mTab='cards';u()}
+a[0];S.mTab=a.length?'loans':'spend';u()}
+function selCc(n=0){S.ccMod=+n;if(!S.ccMod&&S.mTab==='cards')S.mTab='spend';else if(S.ccMod>0)S.mTab='cards';u()}
 function uHl(k='',v=''){S.hl={...(S.hl||{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''}),on:1,[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.hl.ln||0),r0=(+
 (S.hl.rt||8.5))/1200,n0=(+(S.hl.yr||20))*12;if(P0>0)S.hl.emi=Math.round((P0*r0*Math.pow(1+r0,n0))/(Math.pow(1+r0,n0)-1))}u()}
 function uPl(k='',v=''){S.pl={...(S.pl||{ln:'',rt:12.5,yr:5,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.pl.ln||0),r0=(+(S.pl.rt||12.5))/1200,
@@ -911,7 +911,7 @@ Object.assign(window,{selLn,selCc,uHl,uPl,adHlTx,adPlTx,uGl,adGlTx});
 // === START PART 38 ===
 function vMon0a(){const inc=+S.mInc||0,nLim=Math.round(inc*.5),wLim=Math.round(inc*.3),sLim=Math.round(inc*.2),useCc=+(S.ccMod??3)>0,md=S.ccMod===2?2:3,hH=hasLn('house'),hP=hasLn('personal'),hG=hasLn('gold'),noLn=!hH&&!hP&&!hG,allLn=hH&&hP&&hG,
 pgLn=!hH&&hP&&hG,
-tab=(!useCc&&S.mTab==='cards')?'budget':(S.mTab||'budget');
+tab=(!useCc&&S.mTab==='cards')?'spend':(S.mTab||'spend');
 const needS=S.txs.filter(x=>(x.bk||'needs')==='needs').reduce((a,x)=>a+(+x.a||0),0),wantS=S.txs.filter(x=>x.bk==='wants').reduce((a,x)=>a+(+x.a||0),0),
 savS=S.txs.filter(x=>x.bk==='savings').reduce((a,x)=>a+(+x.a||0),0);
 const tB=S.bks.reduce((a,b)=>a+(+b.bl||0),0),actC=useCc?S.cds.slice(0,md):[],tLm=actC.reduce((a,c)=>a+(+c.lm||50000),0),tC=actC.reduce((a,c)=>a+(+c.us||0),
@@ -946,7 +946,7 @@ window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n�
 (R(inc))+"*\n• 50% Needs: *"+(R(needS))+" / "+(R(nLim))+"*\n• 30% Wants: *"+(R(wantS))+" / "+(R(wLim))+"*\n• 20% Savings: *"+(R(savS))+" / "+(R(sLim))+
 "*"+(hH&&hlEmi?("\n• House Loan EMI: *"+(R(hlEmi))+"* ("+(hlPct)+"%)"):'')+(hP&&plEmi?("\n• Personal Loan EMI: *"+(R(plEmi))+"* ("+(plPct)+"%)"):'')+(hG&&glEmi?("\n• Gold Loan Pay: *"+(R(glEmi))+"* ("+(glPct)+"%)"):'')+"\n• Bank Balance: *"+
 (R(tB))+"*"+(useCc?(" | Card Used: *"+(R(tC))+"* ("+(uPct)+"%)"):''));
-const tabs=[['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],...(useCc?[['cards',("💳 കാർഡ് ("+(md)+")")]]:[]),['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")],['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")]];
+const tabs=[['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")],['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],...(useCc?[['cards',("💳 കാർഡ് ("+(md)+")")]]:[]),['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")]];
 return Object.assign(window._vm,{pl,P1,rt1,yr1,rM1,nM1,cEmi1,plEmi,plEx,plPct,plNeedB,plWantB,plSavB,nInt1,pM1,pInt1,plIntSv,plMSv,gl,P2,rt2,mo2,rM2,cEmi2,glEmi,glEx,glPct,glNeedB,glWantB,glSavB,nInt2,pM2,pInt2,glIntSv,glMSv,rtDf,pgArb,pgEmi,pgPct,lnBar,tabs});}
 Object.assign(window,{vMon0b});
 // === END PART 39 ===
@@ -1108,17 +1108,7 @@ function adC(){const b=H('cN').value.trim(),tp=H('cTp')?.value||'RuPay UPI';if(b
 14)%30)+1;S.cds.unshift({id:Date.now(),b,tp,lm:+(H('cL')?.value||50000),us:+(H('cU')?.value||0),stD,duD,du:(""+(P(duD))+"/12/2026"),win:("മാസം "+(sDay)+
 "–"+(eDay)+" വരെ ഉപയോഗിക്കുക (50d Free)"),use:(""+(tp)+" · Smart Rotation Card")});u()}}
 function adX(){const t=H('xT').value.trim(),a=+H('xA').value||0,bk=H('xB')?.value||'needs';if(t&&a){S.txs.unshift({id:Date.now(),t,m:H('xM').value,bk,a,dt:H('xD').value||nDT()});u()}}
-function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
-function enterFs(){if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement,r=e.requestFullscreen||e.webkitRequestFullscreen;
-if(r)Promise.resolve(r.call(e,{navigationUI:'hide'})).catch(()=>{try{Promise.resolve(r.call(e)).catch(()=>{})}catch(x){}})}catch(e){}}
-function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
-window._idxFull='';window._idxPts=[];window._cpDone={};window._cpAct=-1;window._cpMsg='';window._cpHide=1;
-function parseIdxPts(tx=''){if(!tx)return;window._idxFull=tx;const ls=tx.replace(/\r\n/g,'\n').split('\n'),pts=[];
-for(let p=1;p<=65;p++){const sM='START PART '+p+' ===',eM='END PART '+p+' ===',sI=ls.findIndex(l=>l.includes(sM)),
-eI=ls.findIndex(l=>l.includes(eM));if(sI!==-1&&eI!==-1&&eI>=sI)pts.push(ls.slice(sI,eI+1).join('\n')+'\n')}
-if(!pts.length){let c=[''].slice(1),ln=0;for(const l of ls){if(c.length&&ln+l.length+1>3200){pts.push(c.join('\n')+'\n');c=[l];ln=l.length+1}
-else{c.push(l);ln+=l.length+1}}if(c.length)pts.push(c.join('\n')+'\n')}window._idxPts=pts;if(H('cpBox'))H('cpBox').innerHTML=vCpBox()}
-Object.assign(window,{vMonBk,vMon,adB,adC,adX,isFs,enterFs,togFs,parseIdxPts});
+Object.assign(window,{vMonBk,vMon,adB,adC,adX});
 // === END PART 47 ===
 // === START PART 48 ===
 async function loadIdxPts(){try{for(const u of['/csl-compact-github.html?t='+Date.now(),location.pathname+'?t='+Date.now()]){
