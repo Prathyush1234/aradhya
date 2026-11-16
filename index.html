@@ -766,34 +766,22 @@ D('g3 pt-1',B('svAdm()','bt bC py-2.5','💾 Save Settings')+B('rstAdm()','bt sb
 Object.assign(window,{vAdmPre,vAdmForm});
 // === END PART 31 ===
 // === START PART 32 ===
-function vAdmMod(){const r=vAdmPre();if(typeof r==='string')return r;const{nb,ex}=r;
+function vAdmMod(){const r=vAdmPre();if(typeof r==="string")return r;const{nb,ex}=r;
 if(!S.admOpen)return nb+ex;const a=S.adm||DADM;
-return nb+M0('max-w-lg bg-[#0f1d2c] border border-cyan-500/50 overflow-hidden max-h-[92vh] flex flex-col',
-F(L(("<div class=\"p-1 rf bg-cyan-950 border border-cyan-500/40\">"+(cslLogo(32))+"</div><div><div class=\"fl\"><span class=\"bD px-2 py-0.5 rx text-[9px]\">CSL ADMIN</span><b class=\"s"+
-"m\">"+(S.admAuth?'പേറോൾ അഡ്മിൻ കൺട്രോൾ പാനൽ (Admin Panel)':'അഡ്മിൻ സുരക്ഷാ പരിശോധന (Security Check)')+"</b></div><i>"+(S.admAuth?'Official CSL Payslip Formulas, Rates & Recovery Standards':'T'+
-'riple-click Secret Access (Password Protected)')+"</i></div>"))+B("set('admOpen',0)",'bD','✕'),'bg-[#09131d] px-4 py-3 bb')+
-D('p-4 overflow-y-auto space-y-3 flex-1',!S.admAuth?
-D('text-center space-y-3 py-3 max-w-sm mx-auto',"<div class=\"w-14 h-14 rounded-2xl bg-cyan-950 border border-cyan-500/40 tc mx-auto fc text-2xl\">🔒</div><b class=\"bs block\">അഡ്മിൻ പ"+
-"ാസ്സ്‌വേർഡ് നൽകുക (Enter Admin Password)</b><i>സാലറി സ്ലിപ്പിലെ ഓട്ടോമാറ്റിക് നിരക്കുകൾ (DA, HRA, OT Divisor, Allowances) എഡിറ്റ് ചെയ്യാൻ പാസ്സ്‌വേർഡ് നൽകുക.</i>"+
-L(("<input id=\"admPw\" type=\""+(S.shPw?'text':'password')+"\" placeholder=\"••••••\" onkeydown=\"if(event.key==='Enter')chkAdmPw()\" class=\"inp text-center fm lg tracking-widest\"/>")+
-B("set('shPw',!S.shPw)",'bD py-2',S.shPw?'🙈':'👁️'))+(S.admErr?("<div class=\"tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx\">"+(S.admErr)+"</div>"):'')+
-D('g2 pt-2',B('chkAdmPw()','bt bC py-2.5','🔑 അൺലോക്ക് ചെയ്യുക (Unlock)')+B("set('admOpen',0)",'bt sb py-2.5','Cancel')))
-:
-vAdmForm(a)));
+return nb+M0("max-w-lg bg-[#0f1d2c] border border-cyan-500/50 overflow-hidden max-h-[92vh] flex flex-col",
+F(L("<div class=\"p-1 rf bg-cyan-950 border border-cyan-500/40\">"+cslLogo(32)+"</div><div><div class=\"fl\"><span class=\"bD px-2 py-0.5 rx text-[9px]\">CSL ADMIN</span><b class=\"sm\">"+(S.admAuth?"പേറോൾ അഡ്മിൻ കൺട്രോൾ പാനൽ (Admin Panel)":"അഡ്മിൻ സുരക്ഷാ പരിശോധന (Security Check)")+"</b></div><i>"+(S.admAuth?"Official CSL Payslip Formulas, Rates & Recovery Standards":"Triple-click Secret Access (Password Protected)")+"</i></div>")+B("S.admOpen=0;u()","bD","✕"),"bg-[#09131d] px-4 py-3 bb")+
+D("p-4 overflow-y-auto space-y-3 flex-1",!S.admAuth?
+D("text-center space-y-3 py-3 max-w-sm mx-auto","<div class=\"w-14 h-14 rounded-2xl bg-cyan-950 border border-cyan-500/40 tc mx-auto fc text-2xl\">🔒</div><b class=\"bs block\">അഡ്മിൻ പാസ്സ്‌വേർഡ് നൽകുക (Enter Admin Password)</b><i>സാലറി സ്ലിപ്പിലെ ഓട്ടോമാറ്റിക് നിരക്കുകൾ (DA, HRA, OT Divisor, Allowances) എഡിറ്റ് ചെയ്യാൻ പാസ്സ്‌വേർഡ് നൽകുക.</i>"+
+L("<input id=\"admPw\" type=\""+(S.shPw?"text":"password")+"\" placeholder=\"••••••\" onkeydown=\"if(event.key==='Enter')chkAdmPw()\" class=\"inp text-center fm lg tracking-widest\"/>"+B("S.shPw=S.shPw?0:1;u()","bD py-2",S.shPw?"🙈":"👁️"))+(S.admErr?"<div class=\"tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx\">"+S.admErr+"</div>":"")+
+D("g2 pt-2",B("chkAdmPw()","bt bC py-2.5","🔑 അൺലോക്ക് ചെയ്യുക (Unlock)")+B("S.admOpen=0;u()","bt sb py-2.5","Cancel"))):vAdmForm(a)));
 }window.vAdmMod=vAdmMod;
-function chkAdmPw(){const v=H('admPw')?.value.trim()||'';if(v===(S.adm?.pass||'472544')||v==='472544'){S.admAuth=1;S.admErr='';u()}else{S.admErr='തെറ്റായ പാസ്സ്‌വേർഡ്! ശരിയായ അഡ്മിൻ പാസ'+
-'്സ്‌വേർഡ് നൽകുക.';u()}}
-function svAdm(){const n={...DADM,...S.adm};Object.keys(DADM).forEach(k=>{if(typeof DADM[k]==='number')n[k]=+(H('adm_'+k)?.value??DADM[k])});n.cPfN=H('adm_cPfN')?.value||'Admin Solved';
-n.cOtN=H('adm_cOtN')?.value||'Custom contract OT model';S.adm=n;S.admSaved=1;u();setTimeout(()=>set('admSaved',0),2500)}
+function chkAdmPw(){const el=H("admPw"),v=(el&&"value"in el?String(el.value):"").trim();if(v===(S.adm?.pass||"472544")||v==="472544"){S.admAuth=1;S.admErr="";u()}else{S.admErr="തെറ്റായ പാസ്സ്‌വേർഡ്! ശരിയായ അഡ്മിൻ പാസ്സ്‌വേർഡ് നൽകുക.";u()}}
+function svAdm(){const n={...DADM,...S.adm};for(const[k,v]of Object.entries(DADM)){const el=H("adm_"+k);if(typeof v==="number")Object.assign(n,{[k]:+(el&&"value"in el?String(el.value):v)})}const e1=H("adm_cPfN"),e2=H("adm_cOtN");n.cPfN=e1&&"value"in e1&&e1.value?String(e1.value):"Admin Solved";n.cOtN=e2&&"value"in e2&&e2.value?String(e2.value):"Custom contract OT model";S.adm=n;S.admSaved=1;u();setTimeout(()=>{S.admSaved=0;u()},2500)}
 function rstAdm(){S.adm={...DADM};S.admSaved=1;u()}
-function syncTaxSal(bOvr=0){const s=S.sal,adm=S.adm||DADM,bp=+bOvr||+s.b||+S.txI.b||25340,mO=+(s.otH||cycOT(s.cycM??10));S.txI={...S.txI,b:bp,da:adm.da,
-otA:Math.round(mO*(bp*(1+adm.da/100)/(adm.div||198)*2)*12),hraA:Math.round(bp*(adm.hra/100)*12),prkA:Math.round(bp*.32*12),c80:Math.min(150000,Math.round(bp*(1+
-adm.da/100)*(adm.epf/100)*12))};u()}
-function upSlip(el=document.createElement('input')){const f=el?.files?.[0];if(!f)return;S.slipNm=f.name;S.slipOpen=1;S.slipUrl='';if(f.type?.startsWith('image/')){const r0=new FileReader();
-r0.onload=()=>{S.slipUrl=String(r0.result||'');u()};r0.readAsDataURL(f)}const r=new FileReader();r.onload=()=>{const tx=String(r.result||''),
-m=tx.match(/(?:BASIC\s*PAY|Basic\s*Salary|BASIC)[^0-9]{1,25}([1-9][0-9]{4,5}(?:\.[0-9]{1,2})?)/i),
-bp=m?Math.round(+m[1]):(+S.sal.b||+S.txI.b||25340);syncTaxSal(bp)};r.onerror=()=>syncTaxSal();r.readAsText(f);if(el)el.value=''}
-Object.assign(window,{vAdmMod,chkAdmPw,svAdm,rstAdm,syncTaxSal,upSlip});
+function syncTaxSal(bOvr=0){const s=S.sal,adm=S.adm||DADM,bp=+bOvr||+s.b||+S.txI.b||23880,mO=+(s.otH||cycOT(s.cycM??10));S.sal.b=String(bp);S.txI={...S.txI,b:bp,da:adm.da,otA:Math.round(mO*(bp*(1+adm.da/100)/(adm.div||198)*2)*12),hraA:Math.round(bp*(adm.hra/100)*12),prkA:Math.round(bp*.32*12),c80:Math.min(150000,Math.round(bp*(1+adm.da/100)*(adm.epf/100)*12))};u()}
+function setSlip(b=23880,da=54.1,ot=0,hr=0,pk=0,pf=0,nt=0){const b0=Math.round(+b||23880),d0=+(da||S.adm?.da||54.1),o0=Math.round(+ot||0),h0=Math.round(+hr||b0*.2),p0=Math.round(+pk||b0*.32),f0=Math.round(+pf||b0*(1+d0/100)*.12);S.sal.b=String(b0);S.sal.uTyped2=1;S.txI={...S.txI,b:b0,da:d0,otA:o0*12,hraA:h0*12,prkA:p0*12,c80:Math.min(15e4,f0*12)};S.mInc=Math.max(1e4,Math.round(+nt||(b0+b0*d0/100+h0+p0+o0-f0)));u()}
+function upSlip(el={files:[new File([],"")]}){const f=(el?.files||[])[0];if(!f)return;S.slipNm=String(f.name||"Salary_Slip.pdf");S.slipOpen=1;S.slipUrl="loading";if(!+S.txI.b)syncTaxSal(+S.sal.b||23880);else u();const r=new FileReader();r.onload=()=>{const d=String(r.result||""),tp=String(f.type||"application/pdf");if("prsSlip"in window&&typeof window.prsSlip==="function")window.prsSlip(d,tp);else{S.slipUrl=tp.startsWith("image/")?d:"";syncTaxSal(+S.sal.b||23880)}};r.readAsDataURL(f)}
+Object.assign(window,{vAdmMod,chkAdmPw,svAdm,rstAdm,syncTaxSal,setSlip,upSlip});
 // === END PART 32 ===
 // === START PART 33 ===
 function apSlip(){const bp=+(H('slBp')?.value||S.txI.b||25340),da=+(H('slDa')?.value||S.txI.da||54.1),mOt=+(H('slOt')?.value||0),mHr=+(H('slHr')?.value||Math.round(bp*.2)),
@@ -821,24 +809,18 @@ return(window._vt={x,bA,daA,grSal,oth,grTot,nps2,txbN,nSl,nTx,nBrk,nReb,nAf,nMr,
 Object.assign(window,{apSlip,tIn,sBrk,vTax0});
 // === END PART 33 ===
 // === START PART 34 ===
-function vTax1(){const{x,daA,grSal}=window._vt;return brand('dashboard')+C(F(L("<div class=\"w-10 h-10 rx bg-amber-500/20 border border-amber-400/50 ta fc lg\">🧮</div><div><div><u>COCHIN SHIPYARD LIMITED · FINANCE & ACCOUNTS</u></d"+
-"iv><div class=\"fl\"><b class=\"lg\">CSL Income Tax Calculator</b><span class=\"bA px-2 py-0.5 rf tx\">FY 2026-27 (AY 2027-28)</span></div></div>")+L(B("launchWa(window._taxMsg)",
-'bt bg-[#25D366] text-slate-950 tx','💬 Share via WhatsApp')+B('syncTaxSal()','bt bD tx','🔄 Sync CSL Salary')+B("S.slipNm='';S.slipUrl='';S.slipOpen=0;syncTaxSal(25340)",
-'bt sb tx','↺ Reset')+B('print()','bt bA tx','🖨️ Print')),'flex-wrap'))+
-C("<input id=\"slipIn\" type=\"file\" accept=\"application/pdf,image/*,*/*\" onchange=\"upSlip(this)\" style=\"position:absolute;opacity:0;width:1px;height:1px;pointer-events:none\"/>"+
-F(L(("<div class=\"w-9 h-9 rx bg-cyan-500/20 border border-cyan-400 tc fc\">📄</div><div><b>Upload Last CSL Salary Slip (PDF / Image)</b><div><i>"+(S.slipNm?("✓ Uploaded & Verified: <b "+
-"class=\"te\">"+(S.slipNm)+"</b>"):'അവസാനത്തെ സാലറി സ്ലിപ്പ് (PDF / ഫോട്ടോ) അപ്‌ലോഡ് ചെയ്യുകയോ വിവരങ്ങൾ നൽകുകയോ ചെയ്യുക.')+"</i></div></div>"))+L(B("S.slipOpen=1;u();setTimeout(()=>H('s"+
-"lipIn')?.click(),40)",'bt bC tx','📤 '+(S.slipNm?'Change Last Slip':'Upload Last Salary Slip'))+B("set('slipOpen',!S.slipOpen)",'bt bA tx','✏️ '+(S.slipOpen?'Close Slip Form':'Enter La'+
-'st Slip Figures'))+(S.slipNm?B("S.slipNm='';S.slipUrl='';S.slipOpen=0;u()",'bt bg-rose-950 tr0 tx','✕'):'')),'flex-wrap')+
-(S.slipOpen?S1(F('<b class="tc">📋 Last Salary Slip Monthly Figures (അവസാന സാലറി സ്ലിപ്പിലെ പ്രതിമാസ തുകകൾ):</b>'+B("H('slipIn')?.click()",'bD tx','📂 Browse PDF / Image'),
-'m2 flex-wrap')+(S.slipUrl?("<img src=\""+(S.slipUrl)+"\" class=\"max-h-32 rounded border border-cyan-500/40 mx-auto mb-2\"/>"):'')+D('g3 m2',[['slBp',
-'Basic Pay (₹/m)',+x.b||25340],['slDa','DA % (VDA)',+x.da||54.1],['slOt','Monthly OT Pay (₹/m)',Math.round((+x.otA||0)/12)],['slHr','Monthly HRA (₹/m)',
-Math.round((+x.hraA||0)/12)],['slPk','Monthly Perks (₹/m)',Math.round((+x.prkA||0)/12)],['slPf','Monthly EPF (₹/m)',Math.round((+x.c80||0)/12)]].map(([id,
-l,v])=>("<div><i>"+(l)+"</i><input id=\""+(id)+"\" type=\"number\" step=\"0.01\" value=\""+(v)+"\" class=\"inp fm\"/></div>")).join(''))+B('apSlip()',
-'bt bE w-full py-2','✓ Apply Last Salary Slip & Calculate Tax'),'mt-2 border-cyan-500/50'):'')+
-(S.slipNm?D('g4 mt-2 text-center',st('Basic Pay',R(x.b)+'/m','tc')+st('DA ('+x.da+'%)',R(Math.round(daA/12))+'/m','te')+st('Monthly Gross',R(Math.round(grSal/12)),
-'ta')+st('Annual Gross',R(grSal),'te')):''));}
-Object.assign(window,{vTax1});
+async function prsSlip(d="",tp="application/pdf"){S.slipUrl=tp.startsWith("image/")?d:"loading";let ok=0;const p="/api/analyze-payslip";for(const u0 of[p,"https://ais-pre-7vxn3xo667ap2qpse3fx57-659952209169.asia-east1.run.app"+p]){try{const rs=await fetch(u0,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fileBase64:d,mimeType:tp,fastMode:true,currentUserName:S.name,currentToken:S.tok})});if(rs.ok){const j=await rs.json(),e=j?.data?.earningsMonthly,m=j?.data?.deductionsMonthly;if(e?.basicPay){if("setSlip"in window&&typeof window.setSlip==="function")window.setSlip(+e.basicPay,+(e.daPercent||S.adm?.da||54.1),+e.overtimePay||0,+e.hra||0,+e.perksAndAllowances||0,+m?.providentFund||0,+j?.data?.netPayMonthly||0);else syncTaxSal(+e.basicPay);ok=1;break}}}catch(e){}}if(!ok){try{const m=atob(d.split(",")[1]||"").match(/(?:BASIC\s*PAY|Basic\s*Salary|BASIC)[^0-9]{0,25}([1-9]\d{4})/i);syncTaxSal(m?+m[1]:0)}catch(e){syncTaxSal()}}if(S.slipUrl==="loading")S.slipUrl="";u()}
+function fLbl(t="",c="bt bC tx"){return"<label onclick=\"if(!S.slipOpen){S.slipOpen=1;H('slipBox')?.classList.remove('hidden')}\" class=\""+c+" relative overflow-hidden inline-flex items-center cursor-pointer\">"+t+"<input type=\"file\" accept=\"application/pdf,image/*,.pdf,.jpg,.jpeg,.png\" onchange=\"upSlip(this)\" class=\"absolute inset-0 opacity-0 w-full h-full cursor-pointer\"/></label>"}
+function vTax1(){const{x,daA,grSal}=vTax0(),ld=S.slipUrl==="loading",im=S.slipUrl&&!ld?S.slipUrl:"";return brand("dashboard")+
+C(F(L("<div class=\"w-10 h-10 rx bg-amber-500/20 border border-amber-400/50 ta fc lg\">🧮</div><div><div><u>COCHIN SHIPYARD LIMITED · FINANCE & ACCOUNTS</u></div><div class=\"fl\"><b class=\"lg\">CSL Income Tax Calculator</b><span class=\"bA px-2 py-0.5 rf tx\">FY 2026-27 (AY 2027-28)</span></div></div>")+
+L(B("launchWa(window._taxMsg)","bt bg-[#25D366] text-slate-950 tx","💬 Share via WhatsApp")+B("syncTaxSal()","bt bD tx","🔄 Sync CSL Salary")+B("S.slipNm='';S.slipUrl='';S.slipOpen=0;syncTaxSal(23880)","bt sb tx","↺ Reset")+B("print()","bt bA tx","🖨️ Print")),"flex-wrap"))+
+C(F(L("<div class=\"w-9 h-9 rx bg-cyan-500/20 border border-cyan-400 tc fc\">📄</div><div><b>Upload Last CSL Salary Slip (PDF / Image)</b><div><i>"+(ld?"<b class=\"ta\">⏳ സാലറി സ്ലിപ്പ് പരിശോധിക്കുന്നു... ("+S.slipNm+")</b>":S.slipNm?"✓ Uploaded & Verified: <b class=\"te\">"+S.slipNm+"</b>":"അവസാനത്തെ സാലറി സ്ലിപ്പ് (PDF / ഫോട്ടോ) അപ്‌ലോഡ് ചെയ്യുകയോ വിവരങ്ങൾ നൽകുകയോ ചെയ്യുക.")+"</i></div></div>")+
+L(fLbl("📤 "+(S.slipNm?"Change Last Slip":"Upload Last Salary Slip"),"bt bC tx")+B("S.slipOpen=S.slipOpen?0:1;u()","bt bA tx","✏️ "+(S.slipOpen?"Close Slip Form":"Enter Last Slip Figures"))+(S.slipNm?B("S.slipNm='';S.slipUrl='';S.slipOpen=0;u()","bt bg-rose-950 tr0 tx","✕"):"")),"flex-wrap")+
+D("sb mt-2 border-cyan-500/50 "+(S.slipOpen?"":"hidden"),F("<b class=\"tc\">📋 Last Salary Slip Monthly Figures:</b>"+fLbl("📂 Browse PDF / Image","bD tx"),"m2 flex-wrap")+(im?"<img src=\""+im+"\" class=\"max-h-32 rounded border border-cyan-500/40 mx-auto mb-2\"/>":"")+
+D("g3 m2",[["slBp","Basic Pay (₹/m)",+x.b||23880],["slDa","DA % (VDA)",+x.da||54.1],["slOt","Monthly OT Pay (₹/m)",Math.round((+x.otA||0)/12)],["slHr","Monthly HRA (₹/m)",Math.round((+x.hraA||0)/12)],["slPk","Monthly Perks (₹/m)",Math.round((+x.prkA||0)/12)],["slPf","Monthly EPF (₹/m)",Math.round((+x.c80||0)/12)]].map(([id,l,v])=>"<div><i>"+l+"</i><input id=\""+id+"\" type=\"number\" step=\"0.01\" value=\""+v+"\" class=\"inp fm\"/></div>").join(""))+
+B("apSlip()","bt bE w-full py-2","✓ Apply Last Salary Slip & Calculate Tax")).replace("class=\"sb ","id=\"slipBox\" class=\"sb ")+
+(S.slipNm?D("g4 mt-2 text-center",st("Basic Pay",R(+x.b)+"/m","tc")+st("DA ("+x.da+"%)",R(Math.round(daA/12))+"/m","te")+st("Monthly Gross",R(Math.round(grSal/12)),"ta")+st("Annual Gross",R(grSal),"te")):""));}
+Object.assign(window,{prsSlip,fLbl,vTax1});
 // === END PART 34 ===
 // === START PART 35 ===
 function vTax2(){const{grTot,nps2,txbN,nTx,nReb,nCs,nTot,nMds,hraEx,v6A,hlD,txbO,oTot,oMds,win,sv}=window._vt;return C(F(("<div><div class=\"fl\"><span class=\"px-2.5 py-0.5 rf bg-emerald-500 text-slate-950 font-black tx\">✓ "+(win)+" REGIME RECOMMENDED</span><em class=\"tx\">Save "+
