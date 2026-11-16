@@ -484,14 +484,17 @@ function mBox(t='',b=''){return D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F(("
 Object.assign(window,{vAtt4,vAtt,mBox});
 // === END PART 20 ===
 // === START PART 21 ===
+function t2m(s=''){const m=String(s).match(/(\d+):(\d+)(?::\d+)?\s*(AM|PM)?/i);if(!m)return 0;let h=+m[1],ap=(m[3]||'').toUpperCase();if(ap)h=h%12+(ap==='PM'?12:0);return h*60+ +m[2]}
+function calcOt(sh=S.sh,tm=nTm(),m0=1){const e=t2m(SH[sh]?.[2]||'04:20 PM');let o=t2m(tm);if(!o)return m0;if(o<e-120)o+=1440;const d=o-e;return d>=55?Math.floor((d+5)/60):m0}
+function uPOt(){if(H('pOt'))H('pOt').value=calcOt(H('pSh')?.value||S.sh,H('pOut')?.value||nTm(),0)}
 function vAttMod1(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02']){return (S.aMod==='punch'?mBox(("🕒 Duty Punch & Overtime ("+(P(S.sD))+" "+(MN[m])+" 2026)"),
-D('g5 my-2',Object.keys(SH).map(s=>B(("H('pSh').value='"+(s)+"';H('pIn').value='"+(SH[s][1])+"';H('pOut').value='"+(SH[s][2])+"'"),'bD tx',("Shift "+(s)+" ("+(SH[s][1])+")"))).join(''))+
+D('g5 my-2',Object.keys(SH).map(s=>B(("H('pSh').value='"+(s)+"';H('pIn').value='"+(SH[s][1])+"';H('pOut').value='"+(SH[s][2])+"';H('pOt').value=0"),'bD tx',("Shift "+(s)+" ("+(SH[s][1])+")"))).join(''))+
 D('g3 m2',[[sd[7],'+5m In Grace',0],[sd[3],'-5m Out Grace',0],[sd[2],'Regular Out',0],['03:20 PM','03:20 PM Out',0],[sd[4],'+1h OT',1],[sd[5],'+2h OT',
 2]].map(([t0,lb,o0],i)=>B(i===0?("H('pIn').value='"+(t0)+"'"):("H('pOut').value='"+(t0)+"';H('pOt').value='"+(o0)+"'"),'sb tx tc',("<b>"+(lb)+"</b><div>"+
 (t0)+"</div>"))).join(''))+
-D('g2 m2',("<div><i>Date</i>"+(ip('pDt','','date',sDt))+"</div><div><i>Shift</i>"+(sl('pSh','C1,A2,B2,C2,A',curR.sh||S.sh))+"</div><div><i>Punch In</i>"+
-(ip('pIn','','text',curR.in||sd[1]))+"</div><div><i>Punch Out</i>"+(ip('pOut','','text',curR.out||sd[2]))+"</div><div><i>OT Hours</i>"+(ip('pOt','','number',
-String(curR.ot??0)))+"</div><div><i>Status</i>"+(sl('pSt0','P,On Duty,CL,EL,ML,HPL,SCL,WO',curR.s||'P'))+"</div><div><i>Work Details</i>"+(ip('pWk','',
+D('g2 m2',("<div><i>Date</i>"+(ip('pDt','','date',sDt))+"</div><div><i>Shift</i>"+(sl('pSh','C1,A2,B2,C2,A',curR.sh||S.sh).replace('<select','<select onchange="uPOt()"'))+"</div><div><i>Punch In</i>"+
+(ip('pIn','','text',curR.in||sd[1]))+"</div><div><i>Punch Out</i>"+(ip('pOut','','text',curR.out||sd[2],'uPOt()'))+"</div><div><i>OT Hours</i>"+(ip('pOt','','number',
+String(curR.ot??calcOt(curR.sh||S.sh,curR.out||sd[2],0))))+"</div><div><i>Status</i>"+(sl('pSt0','P,On Duty,CL,EL,ML,HPL,SCL,WO',curR.s||'P'))+"</div><div><i>Work Details</i>"+(ip('pWk','',
 'text',curR.wk||'Building Dock Yard Work'))+"</div><div><i>Duty Note</i>"+(ip('pNt','','text',curR.nt||''))+"</div>"))+
 D('g2',B('svP()','bt bC','✓ Save Duty Punch')+B(("delete S.att['"+(sDt)+"'];set('aMod','')"),'bt bg-rose-900','✕ Clear Day'))):'')+
 (S.aMod==='note'?mBox(("✏️ "+(MN[m].slice(0,3))+" "+(S.sD)+": Note & Work Details"),
@@ -500,38 +503,39 @@ L(['Holiday Duty Worked (CO Eligible)','Special Yard Duty','Overtime Duty Work']
 '<i>⚓ Work Description (Work):</i>'+ip('mWk','Building Dock Yard Work...','text',curR.wk||'')+
 L(['Building Dock Yard Work','Ship Repair Fabrication','Dry Dock Hull Inspection','Electrical & Mechanical Maintenance'].map(x=>B(("H('mWk').value='"+
 (x)+"'"),'sb tx te','+ '+x.split(' ')[0])).join(''),'my-1 flex-wrap')+
-D('g2 mt-2',B("uDay({nt:H('mNt').value,wk:H('mWk').value});set('aMod','')",'bt bC','✓ Save Note & Work')+B("uDay({nt:'',wk:''});set('aMod','')",'bt bg-rose-900','Clear All'))):'');}
-Object.assign(window,{vAttMod1});
-// === END PART 21 ===
-// === START PART 22 ===
-function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02'],q=S.lvQ){return vAttMod1(m,sd,sDt,curR)+(S.aMod==='leave'?mBox('✈️ Apply Leave / Shift Regularization',
+D('g2 mt-2',B("uDay({nt:H('mNt').value,wk:H('mWk').value});set('aMod','')",'bt bC','✓ Save Note & Work')+B("uDay({nt:'',wk:''});set('aMod','')",'bt bg-rose-900','Clear All'))):'')+
+(S.aMod==='leave'?mBox('✈️ Apply Leave / Shift Regularization',
 D('g5 my-2',['CL','EL','HPL','SCL','ML'].map(t0=>B(("S.lvTp='"+(t0)+"';u()"),("py-1.5 rx tx "+(S.lvTp===t0?'bC':'sb ts')),("<b>"+(t0)+"</b>"))).join(''))+
 D('g2 m2',("<div><i>Date</i>"+(ip('lDt','','date',sDt))+"</div><div><i>Duration</i>"+(sl('lDr','Full Day,0.5 Half Day (FN),0.5 Half Day (AN)'))+"</div>"))+
 '<i>Reason / Medical Note</i>'+ip('lRs','Personal / Medical reason...','text','Personal')+
-B("S.att[H('lDt').value]={s:S.lvTp,dur:H('lDr').value,in:'—',out:'—',ot:0,nt:S.lvTp+' ('+H('lDr').value+') - '+H('lRs').value};set('aMod','')",'bt bE w-full mt-2','✓ Submit Leave Application')):'')+
+B("S.att[H('lDt').value]={s:S.lvTp,dur:H('lDr').value,in:'—',out:'—',ot:0,nt:S.lvTp+' ('+H('lDr').value+') - '+H('lRs').value};set('aMod','')",'bt bE w-full mt-2','✓ Submit Leave Application')):'');}
+Object.assign(window,{t2m,calcOt,uPOt,vAttMod1});
+// === END PART 21 ===
+// === START PART 22 ===
+function uWaOt(a=1){const sh=H('wSh')?.value||S.waSh||S.sh,tm=H('wTm')?.value||nTm();S.waSh=sh;S.waTm=tm;if(a){window._uOt=0;S.waOt=calcOt(sh,tm,1);if(H('wOt')&&document.activeElement!==H('wOt'))H('wOt').value=S.waOt}else{window._uOt=1;S.waOt=+(H('wOt')?.value)||1}if(H('waMsgPrev'))H('waMsgPrev').textContent=S.waCat==='full_day_ot'?`${S.waOt} hours OT Punch out @ ${tm}`:(S.waSes==='Second Half'?`out punch @ ${tm}`:`In punch @ ${tm}`)}
+function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02'],q=S.lvQ){const wSh=S.waSh||daySh(m,S.sD||tD()),wTm=S.waTm||nTm(),wOt=window._uOt?(S.waOt||1):calcOt(wSh,wTm,1);if(S.aMod==='wa')S.waOt=wOt;return vAttMod1(m,sd,sDt,curR)+
 (S.aMod==='quota'?mBox('⚙ CSL Initial Leave Quotas Setup',
 D('g2 my-2',[['qC1','CL Phase 1 (Jan–Jun)',q.cl1??6],['qC2','CL Phase 2 (Jul–Dec)',q.cl2??6],['qHp','HPL (20d/Yr)',q.hpl??20],['qEl','EL (30d/Yr)',q.el??30],
 ['qSc','Special (SCL)',q.scl??15]].map(([id,l,v])=>S1(("<u>"+(l)+"</u>")+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+
 B("uLvQ();S.initDone=1;set('aMod','')",'bt bC w-full','✓ Save Quotas & Update Available Leaves')):'')+
 (S.aMod==='wa'?mBox('💬 Duty, Half-Day & OT WhatsApp Share',
-D('g2 my-2',B("S.waCat='full_day_ot';u()",("py-1.5 rx tx "+(S.waCat==='full_day_ot'?'bg-amber-500 text-slate-950':'sb ts')),'⚡ OT Punch Out')+B("S.waCat='half_day';u()",
+D('g2 my-2',B("S.waCat='full_day_ot';window._uOt=0;S.waOt=calcOt(H('wSh')?.value||S.waSh||S.sh,H('wTm')?.value||nTm(),1);u()",("py-1.5 rx tx "+(S.waCat==='full_day_ot'?'bg-amber-500 text-slate-950':'sb ts')),'⚡ OT Punch Out')+B("S.waCat='half_day';u()",
 ("py-1.5 rx tx "+(S.waCat==='half_day'?'bC':'sb ts')),'🕒 Half Day Leave (IN/OUT)'))+
-D('g2 m2',("<div><i>Shift</i>"+(sl('wSh','C1,A2,B2,C2,A',daySh(m,S.sD||tD())))+"</div><div><i>Live Time</i>"+(ip('wTm','','text',nTm()))+"</div>")+(S.waCat==='full_day_ot'?("<div><i>OT "+
-"Hours</i>"+(ip('wOt','','number',String(S.waOt||1),"S.waOt=+this.value||1;if(H('waMsgPrev'))H('waMsgPrev').textContent=S.waOt+' hours OT Punch out @ '+(H('wTm')?.value||nTm())"))+
+D('g2 m2',("<div><i>Shift</i>"+(sl('wSh','C1,A2,B2,C2,A',wSh).replace('<select','<select onchange="uWaOt(1)"'))+"</div><div><i>Live Time</i>"+(ip('wTm','','text',wTm,'uWaOt(1)'))+"</div>")+(S.waCat==='full_day_ot'?("<div><i>OT "+
+"Hours</i>"+(ip('wOt','','number',String(wOt),'uWaOt(0)'))+
 "</div><div><i>Date</i>"+(ip('wDt','','date',sDt))+"</div>"):B("S.waSes='First Half';S.waTp='IN';u()",("py-2 rx tx "+(S.waSes!=='Second Half'?'bg-emerald-500 text-slate-950 font-black':'s'+
 'b ts')),'🟢 First Half Leave (In punch)')+B("S.waSes='Second Half';S.waTp='OUT';u()",("py-2 rx tx "+(S.waSes==='Second Half'?'bg-amber-500 text-slate-950 font-black':'sb ts')),
 '🟠 Second Half Leave (out punch)')))+S1(("<i class=\"block\">WhatsApp Message:</i><b id=\"waMsgPrev\" class=\"te fm sm\">"+(S.waCat==='full_day_ot'?(""+
-(S.waOt||1)+" hours OT Punch out @ "+(nTm())):(S.waSes==='Second Half'?("out punch @ "+(nTm())):("In punch @ "+(nTm()))))+"</b>"),'m2 border-emerald-500/40')+
+(wOt)+" hours OT Punch out @ "+(wTm)):(S.waSes==='Second Half'?("out punch @ "+(wTm)):("In punch @ "+(wTm))))+"</b>"),'m2 border-emerald-500/40')+
 B('sendWaMod()','bt bE w-full','📲 Record Punch & Share on WhatsApp')):'');}
 function doPIn(tm=''){const t0=tm||nTm(),sh=daySh(tM(),tD());S.pSt='in';S.pInT=t0;S.pInTs=Date.now();S.cM=tM();S.sD=tD();const dt=tKey();S.att[dt]={...(S.att[dt]||{}),
 s:'On Duty',sh,in:t0,out:'On Duty',ot:0};u()}
-function doPOut(tm='',ot=0){const t0=tm||nTm(),sh=daySh(tM(),tD());S.pSt='out';S.cM=tM();S.sD=tD();const dt=tKey();S.att[dt]={...(S.att[dt]||{}),s:'P',
-sh,in:S.pInT||SH[sh][1],out:t0,ot:+ot||0};S.doneSum={sh,in:S.pInT||SH[sh][1],out:t0,ot:+ot||0};u()}
+function doPOut(tm='',ot=0){const t0=tm||nTm(),sh=daySh(tM(),tD()),o0=+ot||calcOt(sh,t0,0);S.pSt='out';S.cM=tM();S.sD=tD();const dt=tKey();S.att[dt]={...(S.att[dt]||{}),s:'P',
+sh,in:S.pInT||SH[sh][1],out:t0,ot:o0};S.doneSum={sh,in:S.pInT||SH[sh][1],out:t0,ot:o0};u()}
 function svP(){const d=H('pDt').value,sh=H('pSh').value;if(d){S.sh=sh;S.att[d]={s:H('pSt0').value,sh,in:H('pIn').value,out:H('pOut').value,ot:+H('pOt').value||0,
 wk:H('pWk').value,nt:H('pNt').value};S.cM=+d.split('-')[1]-1;S.aMod='';u()}}
-function openWa(tp='OUT',cat='full_day_ot',ot=1,tm='',dt=''){S.waTp=tp;S.waCat=cat;S.waOt=ot||1;S.waSes=tp==='OUT'?'Second Half':'First Half';S.waTm=tm||nTm();
-if(dt)S.sD=+dt.split('-')[2]||tD();else{S.cM=tM();S.sD=tD()}set('aMod','wa')}
-Object.assign(window,{vAttMod,doPIn,doPOut,svP,openWa});
+function openWa(tp='OUT',cat='full_day_ot',ot=1,tm='',dt=''){if(dt)S.sD=+dt.split('-')[2]||tD();else{S.cM=tM();S.sD=tD()}const sh=S.att[dt]?.sh||daySh(S.cM,S.sD||tD()),t0=tm||nTm();window._uOt=dt&&ot>0?1:0;S.waSh=sh;S.waTp=tp;S.waCat=cat;S.waTm=t0;S.waOt=window._uOt?ot:calcOt(sh,t0,1);S.waSes=tp==='OUT'?'Second Half':'First Half';set('aMod','wa')}
+Object.assign(window,{uWaOt,vAttMod,doPIn,doPOut,svP,openWa});
 // === END PART 22 ===
 // === START PART 23 ===
 function isWv(){const ua=navigator.userAgent||'';return!!(window.AppInventor||/; wv\)/i.test(ua)||(/Android/i.test(ua)&&/Version\/\d+\.\d+/i.test(ua)))}
@@ -1126,7 +1130,7 @@ Object.assign(window,{isFs,lockP,enterFs,togFs,chgFs,vNavDrw,togNav,render});
 setInterval(()=>{
 if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==='in'){S.pSt='out';S.doneSum=null}u();return}
 const t=nTm();['liveClk','liveClk3'].forEach(k=>{if(H(k))H(k).textContent=t});if(H('liveClk2'))H('liveClk2').textContent='🟢 LIVE: '+t;
-if(H('wTm')&&document.activeElement!==H('wTm'))H('wTm').value=t;if(H('waMsgPrev')){const o=H('wOt')?.value||S.waOt||1,m=H('wTm')?.value||t;H('waMsgPrev').textContent=S.waCat==='full_day_ot'?`${o} hours OT Punch out @ ${m}`:(S.waSes==='Second Half'?`out punch @ ${m}`:`In punch @ ${m}`)}if(H('liveDt'))H('liveDt').textContent=`${P(tD())} ${MN[tM()].slice(0,3)} 2026`;
+if(H('wTm')&&document.activeElement!==H('wTm')){H('wTm').value=t;window.uWaOt?.(!window._uOt)}if(H('liveDt'))H('liveDt').textContent=`${P(tD())} ${MN[tM()].slice(0,3)} 2026`;
 if(S.pSt==='in'&&H('elapT')){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H('elapT').textContent=`${P(Math.floor(s/3600))}:${P(Math.floor((s%3600)/60))}:${P(s%60)}`}
 },1000);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();S.dfP=e;H('pwaBtn')?.classList.remove('hidden')});
