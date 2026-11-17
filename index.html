@@ -232,9 +232,8 @@ QC.map(c=>B(("set('qCyc',"+(c[0])+")"),("py-1 rx "+(S.qCyc===c[0]?'bD':'sb ts'))
 Object.assign(window,{vSign,doSign,rstEmp,qBanner});
 // === END PART 9 ===
 // === START PART 10 ===
-function logProd(){const k=tKey(),sd=SH[S.sh]||SH.A2,h=+(H('pHr')?.value||8),ot=+(H('pOt')?.value||0),by=H('pBy')?.value||'Building Dock',nt=(H('pNt')?.value||'').trim()||'Yard Production';S.att[k]={...(S.att[k]||{}),s:'P',sh:S.sh,in:sd[1],out:sd[2],ot,nt:("⚓ "+(by)+": "+(nt)+" ("+(h)+"h"+(ot?("+"+(ot)+"h OT"):'')+")")};S.pOpen=0;u()}
 function vDash(){
-const sd=SH[S.sh]||SH.A2,td=S.att[tKey()];
+const sd=SH[S.sh]||SH.A2;
 return brand('exit')+empC('ACTIVE',(S.ph||'—')+" · <em onclick=\"go('signin')\">Change</em>")+hd(S.cat==='contract'?'COMPANY ON CONTRACT':'PERMANENT EMPLOYEE',
 'QuickAccess.','Choose a service to continue.')+
 C(F(("<div><b class=\"sm\">⏱️ CSL Duty Shift</b><div><i>A2 ⇄ B2 Weekly Rotation (5m Grace: "+(sd[7])+" / "+(sd[3])+")</i></div></div><span class=\"bD rf ta fm\">"+
@@ -242,8 +241,6 @@ C(F(("<div><b class=\"sm\">⏱️ CSL Duty Shift</b><div><i>A2 ⇄ B2 Weekly Rot
 ("<b>"+(k)+"</b><div class=\"text-[8px]\">"+(v[0])+"<br>"+(v[1])+"</div>"))).join(''))+F('<i>A2 ⇄ B2 Synced in Calendar & Attendance</i>'+B("go('calendar')",
 'tc','Weekly Rotation →'),'bt1'))+
 qBanner()+
-rc("set('pOpen',!S.pOpen)",'cd border-cyan-400/50','⚓','Daily Production & Yard Tasks',td?.nt||('പ്രൊഡക്ഷൻ മണിക്കൂറുകൾ & യാർഡ് വർക്ക് രേഖപ്പെടുത്താം'),S.pOpen?1:0)+
-(S.pOpen?C(F('<b class="tc">⚓ Log Daily Production Hours & Yard Task</b>'+B("set('pOpen',0)",'bD tx','✕'),'m2')+D('g2 m2','<div><i>Production Hours</i>'+ip('pHr','8','number','8')+'</div><div><i>OT Hours</i>'+ip('pOt','0','number',String(td?.ot||0))+'</div>')+D('g2 m2','<div><i>Yard Bay / Shop</i>'+sl('pBy','Building Dock,Ship Repair,Hull Fabrication,Outfit & Piping,Electrical,QC & Trials','Building Dock')+'</div><div><i>Vessel / Yard Task</i>'+ip('pNt','e.g. BY-115 Block Welding / Piping','text','')+'</div>')+B('logProd()','bt bC w-full','✅ Save Production Hours & Yard Task'),'border-cyan-400/60'):'')+
 [['attendance','📋','Attendance',("Shift "+(S.sh)+" · In: "+(sd[1])+" (Grace "+(sd[7])+") · Out: "+(sd[2]))],['calendar','📅','Calendar','🏅 12 CSL Holidays · Synced Shift Schedule'],
 ['salary','₹','Salary','Pay Slip, Allowances, PF & Admin Formulas'],['money','🏦','Money Management','🧾 Daily Expenses, Bank Accounts & Credit Cards']].map(([v,ic,t,s])=>rc(("go('"+(v)+"')"),'cd',ic,t,s)).join('');
 }
@@ -257,7 +254,7 @@ function hRow([mi=0,d=1,n='',mlN='',tp='']){return S1(L(("<span class=\"w-9 h-9 
 " fc font-black\">"+(P(d))+"</span><div><b>"+(n)+"</b> <span class=\"ta tx\">("+(mlN)+")</span><div><i>"+(P(d))+" "+(MN[mi])+" 2026 ("+(WDF[new Date(2026,
 mi,d).getDay()])+") · Official Paid Closed Holiday</i></div></div>"))+(("<span class=\"bD tx shrink-0\">"+(tp)+"</span>")),'fb mb-1.5',("S.cM="+(mi)+";S.sD="+
 (d)+";set('cTab','wall')"))}
-Object.assign(window,{vDash,logProd,miniCal,hRow});
+Object.assign(window,{vDash,miniCal,hRow});
 // === END PART 10 ===
 // === START PART 11 ===
 function vCalHols(clT=12){return (S.cTab==='holidays'?C(F('<div><b class="bs tr0">🎉 CSL Holidays & Leave Schedule · 2026</b><div><i>Gazetted Holidays & Employee Leave Entitlements</i></div></div>'+
