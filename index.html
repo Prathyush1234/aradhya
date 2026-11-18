@@ -197,19 +197,12 @@ Object.assign(window,{vFront});
 // === END PART 8 ===
 // === START PART 9 ===
 function vSign(){
-const ic=S.cat==='contract',q=S.lvQ||{},totCl=totLv('CL'),fin=S.doj?(()=>{const[y,m,d]=S.doj.split('-').map(Number),dt=new Date(y+1,m-1,d-1);return(""+
-(P(dt.getDate()))+"/"+(P(dt.getMonth()+1))+"/"+(dt.getFullYear()))})():'Select DOJ';
-return brand('front',S.uSigned?B('rstEmp()','bt bg-rose-950 tr0 tx','🔄 New User / Reset'):'')+hd(ic?'CONTRACT EMPLOYEE':'PERMANENT EMPLOYEE',ic?'Contract Employee Sign In':'Employee Si'+
-'gn In','Enter your name, CSL code number, and initial leave balances.')+
-[['sNm','👤 FULL NAME','Enter Full Name',S.name],['sTk','# CSL CODE NUMBER','Enter CSL Code No',S.tok],['sPh','📞 PHONE NUMBER (+91)','Enter 10-digit Mobile No',
-S.ph],['sDp','🏢 DEPARTMENT','Enter Department / Shop',S.dep]].map(([id,l,ph,v])=>C(F(("<i>"+(l)+"</i><b class=\"tr0\">*</b>"))+ip(id,ph,'text',String(v)))).join('')+
-(ic?D('g2 m2',C('<u>📅 JOINING DATE (DOJ)</u>'+ip('sDj','','date',S.doj,"S.doj=this.value;u()"))+C(("<em>⏱️ 1 YEAR FINISH</em><div class=\"ta fm sm mt-2\"><b>"+(fin)+"</b></div>"))):'' )+
-C(F("<div><b class=\"sm\">CSL Leave Quotas & Initial Available Balances</b> <span class=\"bD rf tx\">SYNCED</span></div>"+B("set('qOpen',!S.qOpen)",'bD rf tx',S.qOpen?'Hide ∧':'Show ∨'),'m2')+
-(S.qOpen?D('bt1 space-y-2',F(("<em>● Casual Leave (CL – "+(totCl)+"d)</em><span class=\"bA px-2 rx tx\">Total CL: "+(totCl)+"d</span>"))+D('g2',[['qC1',
-'CL Phase 1 (Jan–Jun)',q.cl1??6],['qC2','CL Phase 2 (Jul–Dec)',q.cl2??6],['qHp','HPL Available (20d/Yr)',q.hpl??20],['qEl','EL Available (30d/Yr)',q.el??30],
-['qSc','Special (SCL Available)',q.scl??15]].map(([id,l,v])=>S1(("<u>"+(l)+"</u>")+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+S1(("<div class=\"tx te\">✓ Live Available L"+
-"eaves synced to Calendar & Attendance:</div><div id=\"lvPrev\" class=\"tx fm tc mt-0.5\">CL: <b>"+(avlLv('CL'))+"d Avl</b> · EL: <b>"+(avlLv('EL'))+"d Avl</b> · HPL: <b>"+
-(avlLv('HPL'))+"d Avl</b> · SCL: <b>"+(avlLv('SCL'))+"d Avl</b></div>"))):''))+
+const ic=S.cat==='contract',q=S.lvQ||{},totCl=totLv('CL'),fin=S.doj?(()=>{const[y,m,d]=S.doj.split('-').map(Number),dt=new Date(y+1,m-1,d-1);return P(dt.getDate())+'/'+P(dt.getMonth()+1)+'/'+dt.getFullYear()})():'Select DOJ';
+return brand('front',S.uSigned?B('rstEmp()','bt bg-rose-950 tr0 tx','🔄 New User / Reset'):'')+hd(ic?'CONTRACT EMPLOYEE':'PERMANENT EMPLOYEE',ic?'Contract Employee Sign In':'Employee Sign In','Enter your name, CSL code number, and initial leave balances.')+
+[['sNm','👤 FULL NAME','Enter Full Name',S.name],['sTk','# CSL CODE NUMBER','Enter CSL Code No',S.tok],['sPh','📞 PHONE NUMBER (+91)','Enter 10-digit Mobile No',S.ph],['sDp','🏢 DEPARTMENT','Enter Department / Shop',S.dep]].map(([id,l,ph,v])=>C(F('<i>'+l+'</i><b class="tr0">*</b>')+ip(id,ph,'text',String(v)))).join('')+
+(ic?D('g2 m2',C('<u>📅 JOINING DATE (DOJ)</u>'+ip('sDj','','date',S.doj,"S.doj=this.value;u()"))+C('<em>⏱️ 1 YEAR FINISH</em><div class="ta fm sm mt-2"><b>'+fin+'</b></div>')):'')+
+C(F('<div><b class="sm">CSL Leave Quotas & Initial Available Balances</b> <span class="bD rf tx">SYNCED</span></div>'+B("set('qOpen',!S.qOpen)",'bD rf tx',S.qOpen?'Hide ∧':'Show ∨'),'m2')+
+(S.qOpen?D('bt1 space-y-2',F('<em>● Casual Leave (CL – '+totCl+'d)</em><span class="bA px-2 rx tx">Total CL: '+totCl+'d</span>')+D('g2',[['qC1','CL Phase 1 (Jan–Jun)',q.cl1??6],['qC2','CL Phase 2 (Jul–Dec)',q.cl2??6],['qHp','HPL Available (20d/Yr)',q.hpl??20],['qEl','EL Available (30d/Yr)',q.el??30],['qSc','Special (SCL Available)',q.scl??15]].map(([id,l,v])=>S1('<u>'+l+'</u>'+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+S1('<div class="tx te">✓ Live Available Leaves synced to Calendar & Attendance:</div><div id="lvPrev" class="tx fm tc mt-0.5">CL: <b>'+avlLv('CL')+'d Avl</b> · EL: <b>'+avlLv('EL')+'d Avl</b> · HPL: <b>'+avlLv('HPL')+'d Avl</b> · SCL: <b>'+avlLv('SCL')+'d Avl</b></div>')):''))+
 B('doSign()','w-full py-3 rf bC bs m2','Save & Open Attendance →')+gBox('Once initial leaves are saved, the app always opens directly on the Attendance page.');
 }
 function doSign(){
@@ -217,17 +210,16 @@ const nm=H('sNm')?.value.trim()||'',tk=H('sTk')?.value.trim()||'',ph=H('sPh')?.v
 if(!nm||!tk){alert('ദയവായി നിങ്ങളുടെ പേരും CSL Code Number-ഉം നൽകുക (Please enter your Name & CSL Code Number)');return}
 if(S.tok&&S.tok!==tk){S.att={};S.bks=[];S.cds=[];S.txs=[];S.mInc=0;S.sal={...S.sal,b:'',otH:'',uTyped2:0}}
 S.name=nm;S.tok=tk;S.ph=ph;S.dep=dp||'CSL Shipyard';
+try{const rk='csl_registered_employees_v1',u0={id:tk||ph||nm,name:nm,phone:ph,token:tk,department:S.dep,category:S.cat},ls=JSON.parse(localStorage.getItem(rk)||'[]');S.usrs=[u0,...(Array.isArray(ls)?ls:[]).filter(x=>(x.token||x.id)!==u0.id)];localStorage.setItem(rk,JSON.stringify(S.usrs))}catch(e){}
 if(H('sDj'))S.doj=H('sDj').value;
 if(H('qC1'))uLvQ();S.initDone=1;S.uSigned=1;go('attendance');
 }
 function rstEmp(){try{localStorage.removeItem(K);localStorage.removeItem('csl_leave_balances_v2')}catch(e){}location.reload()}
 function qBanner(){
 const q=qOT(S.qCyc),pct=Math.min(100,Math.round((q.u/S.qCap)*100));
-return C(F(("<div><b>⚡ Quarterly Overtime Cap ("+(q.n)+")</b><div><u>"+(q.r)+"</u></div></div>")+L([75,120].map(n=>B(("set('qCap',"+(n)+")"),("px-2 py-1 rx "+
-(S.qCap===n?'bC':'sb ts')),(""+(n)+"h"))).join('')),'m2 flex-wrap')+S1(F(("<span>Used: <em>"+(q.u)+"h</em>/"+(S.qCap)+"h</span><span>Rem: <s>"+(q.rem)+
-"h</s></span>"),'m2')+("<div class=\"w-full h-2 bg-[#071f30] rf overflow-hidden m2\"><div class=\"h-full bg-cyan-400\" style=\"width:"+(pct)+"%\"></div></div>")+
-D('g3 text-center',q.m.map(m=>S1(("<i>"+(m.n)+"</i><div><em>"+(m.ot)+"h OT</em></div>"),'',("S.cM="+(m.i)+";go('attendance')"))).join('')),'m2')+D('g4',
-QC.map(c=>B(("set('qCyc',"+(c[0])+")"),("py-1 rx "+(S.qCyc===c[0]?'bD':'sb ts')),(""+(c[1])+" ("+(qOT(c[0]).u)+"h)"))).join('')));
+return C(F('<div><b>⚡ Quarterly Overtime Cap ('+q.n+')</b><div><u>'+q.r+'</u></div></div>'+L([75,120].map(n=>B('set(\'qCap\','+n+')','px-2 py-1 rx '+(S.qCap===n?'bC':'sb ts'),n+'h')).join('')),'m2 flex-wrap')+S1(F('<span>Used: <em>'+q.u+'h</em>/'+S.qCap+'h</span><span>Rem: <s>'+q.rem+'h</s></span>','m2')+'<div class="w-full h-2 bg-[#071f30] rf overflow-hidden m2"><div class="h-full bg-cyan-400" style="width:'+pct+'%"></div></div>'+
+D('g3 text-center',q.m.map(m=>S1('<i>'+m.n+'</i><div><em>'+m.ot+'h OT</em></div>','','S.cM='+m.i+';go(\'attendance\')')).join('')),'m2')+D('g4',
+QC.map(c=>B('set(\'qCyc\','+c[0]+')','py-1 rx '+(S.qCyc===c[0]?'bD':'sb ts'),c[1]+' ('+qOT(c[0]).u+'h)')).join('')));
 }
 Object.assign(window,{vSign,doSign,rstEmp,qBanner});
 // === END PART 9 ===
@@ -738,31 +730,17 @@ Object.assign(window,{vPdfMod,aIn});
 // === END PART 30 ===
 // === START PART 31 ===
 function vAdmPre(){
-const nb=S.dlNotif?D('fixed top-2 inset-x-2 z-[99] max-w-lg mx-auto cd bg-[#042430] border-2 border-emerald-400 shadow-2xl',F(L(("<span class=\"av bg-emerald-500 text-slate-950\">📥</sp"+
-"an><div><div class=\"fl\"><b class=\"te tx\">DOWNLOAD COMPLETE • NOTIFICATION</b><span class=\"tx ts fm\">"+(S.dlNotif.tm)+"</span></div><b class=\"sm text-white break-all\">"+
-(S.dlNotif.fn)+"</b><div class=\"tx tc\">📂 Saved in: <b>Internal Storage / Downloads</b> (File Manager → Downloads)</div></div>"))+B("set('dlNotif',null)",
-'bD','✕'),'m2')+D(S.pdfMod==='mon'?'g2':'g3',(S.pdfMod==='mon'?'':B('shW()','bt bg-[#25D366] text-slate-950 tx','📲 WhatsApp OT'))+B(S.dlNotif.tp==='PDF'?'dlPdf()':'dlO()',
-'bt bC tx','⬇️ Open / Save')+B("set('dlNotif',null)",'bt sb tx','✓ OK'))):'';
-const ex=S.exitMod?M0('max-w-sm bg-[#071d2c] border-2 border-cyan-400/60 p-5 text-center space-y-3',"<div class=\"w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/50 ta mx-"+
-"auto fc text-2xl\">🚪</div><b class=\"bs block\">ആപ്പിൽ നിന്ന് പുറത്തുകടക്കണോ? (Exit My CSL App?)</b><i>നിങ്ങളുടെ ലോഗിൻ വിവരങ്ങളും ലീവ് / അറ്റൻഡൻസ് ഡാറ്റയും സുരക്ഷിതമായി സേവ് ചെയ്തിട്ട"+
-"ുണ്ട് (ലോഗൗട്ട് ആകില്ല / You will NOT be logged out).</i>"+D('g2 pt-2',B("set('exitMod',0)",'bt bC py-2.5','No (വേണ്ട, തുടരുക)')+B('doExit()','bt bg-rose-600 text-white py-2.5',
-'Yes (അതെ, Exit)'))):'';
-if(S.waPrev)return nb+M0('max-w-md bg-[#041521] border-2 border-[#25D366] p-4 space-y-3',F('<b class="sm te">💬 WhatsApp സന്ദേശം റെഡിയാണ്!</b>'+B("set('waPrev','')",
-'bD','✕'),'bb')+S1('<b class="te">✓ വാട്സാപ്പ് സന്ദേശം ഓട്ടോമാറ്റിക്കായി Copy ചെയ്തിട്ടുണ്ട്!</b><div><i>താഴെയുള്ള <b>Open WhatsApp</b> അമർത്തി നേരിട്ട് അയക്കാം:</i></div>',
-'bg-emerald-950/70 border-emerald-500/50')+("<pre class=\"sb tx fm whitespace-pre-wrap max-h-56 overflow-y-auto text-slate-200\">"+(S.waPrev)+"</pre>")+
-D('g3',B("launchWa(S.waPrev)",'bt bg-[#25D366] text-slate-950 py-2.5 tx','🟢 Open WhatsApp')+B("sysShare(S.waPrev)",'bt bC py-2.5 tx','📲 System Share')+
-B("cpTx(S.waPrev);set('waPrev','')",'bt bE py-2.5 tx','📋 Copy & Close')));if(S.pdfMod)return nb+vPdfMod();
+const d=S.dlNotif,nb=d?D('fixed top-2 inset-x-2 z-[99] max-w-lg mx-auto cd bg-[#042430] border-emerald-400',F(L('📥<div><b class="te tx">DOWNLOAD COMPLETE ('+d.tm+')</b><div class="sm font-bold break-all">'+d.fn+'</div><i class="tc">📂 Internal Storage / Downloads</i></div>')+B("set('dlNotif',null)",'bD','✕'),'m2')+D(S.pdfMod==='mon'?'g2':'g3',(S.pdfMod==='mon'?'':B('shW()','bt bg-[#25D366] text-slate-950 tx','📲 WhatsApp OT'))+B(d.tp==='PDF'?'dlPdf()':'dlO()','bt bC tx','⬇️ Open / Save')+B("set('dlNotif',null)",'bt sb tx','✓ OK'))):'';
+const ex=S.exitMod?M0('max-w-sm bg-[#071d2c] border-cyan-400/60 p-5 text-center space-y-3','<div class="text-3xl">🚪</div><b class="bs block">ആപ്പിൽ നിന്ന് പുറത്തുകടക്കണോ? (Exit App?)</b><i>നിങ്ങളുടെ ലോഗിൻ വിവരങ്ങളും ഡാറ്റയും സേവ് ചെയ്തിട്ടുണ്ട്.</i>'+D('g2 pt-2',B("set('exitMod',0)",'bt bC py-2.5','No (തുടരുക)')+B('doExit()','bt bg-rose-600 text-white py-2.5','Yes (Exit)'))):'';
+if(S.waPrev)return nb+M0('max-w-md bg-[#041521] border-[#25D366] p-4 space-y-3',F('<b class="sm te">💬 WhatsApp സന്ദേശം റെഡിയാണ്!</b>'+B("set('waPrev','')",'bD','✕'),'bb')+S1('<b class="te">✓ സന്ദേശം Copy ചെയ്തു! Open WhatsApp അമർത്തി അയക്കാം:</b>','border-emerald-500/50')+'<pre class="sb tx fm whitespace-pre-wrap max-h-56 overflow-y-auto text-slate-200">'+S.waPrev+'</pre>'+D('g3',B("launchWa(S.waPrev)",'bt bg-[#25D366] text-slate-950 py-2.5 tx','🟢 Open WhatsApp')+B("sysShare(S.waPrev)",'bt bC py-2.5 tx','📲 System Share')+B("cpTx(S.waPrev);set('waPrev','')",'bt bE py-2.5 tx','📋 Copy')));
+if(S.pdfMod)return nb+vPdfMod();
 return{nb,ex,h:null};}
-function vAdmForm(a=DADM){return (S.admSaved?S1('<b class="te">✓ അഡ്മിൻ ക്രമീകരണങ്ങൾ വിജയകരമായി സേവ് ചെയ്തു! സാലറി കാൽക്കുലേറ്ററിൽ മാറ്റങ്ങൾ പ്രതിഫലിക്കും.</b>','bg-emerald-950/80 border-emerald-500'):'')+
-[['tc','1. നിരക്കുകളും ഫോർമുലകളും (Rates & Formulas)','g4',[['da','DA % (VDA)',a.da],['hra','HRA % (Rent)',a.hra],['epf','EPF % (PF)',a.epf],['div','OT Divisor',
-a.div]],''],['te','2. സ്റ്റാൻഡേർഡ് വേതനങ്ങൾ (Standard Payslip Earnings ₹)','g3',[['wd','Work Dress',a.wd],['tpa','TPA Workmen',a.tpa],['ml','Meal Subsidy',
-a.ml],['mk','Milk Allow',a.mk],['lta','Leave Travel',a.lta],['bf','BF Milk Allow',a.bf]],''],['tr0','3. സ്റ്റാൻഡേർഡ് പിടുത്തങ്ങൾ (Standard Deductions ₹)',
-'g3',[['lwf','LWF Ded.',a.lwf],['sep','SEPPY Scheme',a.sep],['fst','Festival Adv',a.fst],['rec','Recov. Adv',a.rec],['sch','School Adv',a.sch],['cnt',
-'Canteen Rec',a.cnt],['csm','CSMPWT Rec',a.csm],['clb','Club Fund',a.clb],['lic','LIC Prem 1',a.lic]],''],['ta','4. കമ്പനി ഓൺ കോൺട്രാക്ട് പി.എഫ് & OT നിയന്ത്രണം (Admin Solved Only)',
-'g2',[['cPf','Contract PF Deduction (₹)',a.cPf],['cPfN','PF Status / Note',a.cPfN],['cOtR','Contract OT Rate/Hr (₹)',a.cOtR],['cOtN','OT Model Note',a.cOtN]],
-'border-amber-500/40']].map(([c,t,g,ar,b])=>S1(("<b class=\""+(c)+" block mb-1\">"+(t)+"</b>")+D(String(g),aIn(ar)),String(b))).join('')+
+function getRegUsrs(){const m=new Map();let ls=[];try{ls=JSON.parse(localStorage.getItem('csl_registered_employees_v1')||'[]')}catch(e){}[...(Array.isArray(ls)?ls:[]),...(S.usrs||[]),{name:S.name,phone:S.ph,token:S.tok,department:S.dep}].forEach((x={})=>{const n=x.name||x.nm||'',p=x.phone||x.ph||'',t=x.token||x.tk||'';if(n&&n!=='CSL Employee'||p)m.set((t||p||n).toLowerCase(),{n:n||'User',p:p||'—',t:t||'—',d:x.department||x.dp||'CSL'})});return[...m.values()]}
+function vAdmForm(a=DADM){const us=getRegUsrs();return(S.admSaved?S1('<b class="te">✓ അഡ്മിൻ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു!</b>','border-emerald-500'):'')+
+S1(F('<b class="tc">👥 ആപ്പ് ഉപയോഗിക്കുന്നവർ ('+us.length+')</b>'+(us.length?B("cpTx(getRegUsrs().map((u,i)=>(i+1)+'. '+u.n+' - '+u.p+' ('+u.t+')').join('\\n'))",'bD tx','📋 Copy'):''))+D('space-y-1 mt-1 max-h-40 overflow-y-auto',us.length?us.map((u,i)=>F('<span><b>'+(i+1)+'. '+u.n+'</b> <i class="tc">('+u.t+' · '+u.d+')</i></span><a href="tel:'+u.p+'" class="te fm font-bold">📞 '+u.p+'</a>','sb py-1 px-2 rx tx')).join(''):'<i>ആരും ലോഗിൻ ചെയ്തിട്ടില്ല.</i>'),'border-cyan-400/50')+
+[['tc','1. നിരക്കുകളും ഫോർമുലകളും','g4',[['da','DA % (VDA)',a.da],['hra','HRA % (Rent)',a.hra],['epf','EPF % (PF)',a.epf],['div','OT Divisor',a.div]],''],['te','2. സ്റ്റാൻഡേർഡ് വേതനങ്ങൾ (₹)','g3',[['wd','Work Dress',a.wd],['tpa','TPA Workmen',a.tpa],['ml','Meal Subsidy',a.ml],['mk','Milk Allow',a.mk],['lta','Leave Travel',a.lta],['bf','BF Milk Allow',a.bf]],''],['tr0','3. സ്റ്റാൻഡേർഡ് പിടുത്തങ്ങൾ (₹)','g3',[['lwf','LWF Ded.',a.lwf],['sep','SEPPY Scheme',a.sep],['fst','Festival Adv',a.fst],['rec','Recov. Adv',a.rec],['sch','School Adv',a.sch],['cnt','Canteen Rec',a.cnt],['csm','CSMPWT Rec',a.csm],['clb','Club Fund',a.clb],['lic','LIC Prem 1',a.lic]],''],['ta','4. കോൺട്രാക്ട് PF & OT നിയന്ത്രണം','g2',[['cPf','Contract PF Deduction (₹)',a.cPf],['cPfN','PF Status / Note',a.cPfN],['cOtR','Contract OT Rate/Hr (₹)',a.cOtR],['cOtN','OT Model Note',a.cOtN]],'border-amber-500/40']].map(([c,t,g,ar,b])=>S1('<b class="'+c+' block mb-1">'+t+'</b>'+D(String(g),aIn(ar)),String(b))).join('')+
 D('g3 pt-1',B('svAdm()','bt bC py-2.5','💾 Save Settings')+B('rstAdm()','bt sb py-2.5','↺ Reset Defaults')+B("set('admAuth',0)",'bt bg-rose-950 tr0 py-2.5','🔒 Lock Admin'));}
-Object.assign(window,{vAdmPre,vAdmForm});
+Object.assign(window,{vAdmPre,getRegUsrs,vAdmForm});
 // === END PART 31 ===
 // === START PART 32 ===
 function vAdmMod(){const r=vAdmPre();if(typeof r==="string")return r;const{nb,ex}=r;if(!S.admOpen)return nb+ex;const a=S.adm||DADM,cy="bg-cyan-950 border border-cyan-500/40",cl="S.admOpen=0;u()";
