@@ -133,7 +133,7 @@ const hd=(k='',t='',s='')=>D('m2',`<div class="fl"><span class="w-5 h-0.5 bg-amb
 const ist=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'})),nTm=()=>{const n=ist(),h=n.getHours();return`${P(h%12||12)}:${P(n.getMinutes())}:${P(n.getSeconds())} ${h>=12?'PM':'AM'}`};
 const nDT=()=>{const n=ist(),h=n.getHours();return`${P(n.getDate())}/${P(n.getMonth()+1)}/${n.getFullYear()}, ${P(h%12||12)}:${P(n.getMinutes())} ${h>=12?'PM':'AM'}`},tD=()=>ist().getDate(),tM=()=>ist().getMonth(),tKey=()=>`2026-${P(tM()+1)}-${P(tD())}`,wkI=(m=0,d=1)=>Math.floor((Date.UTC(2026,m,d)-Date.UTC(2026,0,4))/6048e5);
 const DADM={da:54.1,hra:20,epf:12,div:198,wd:500,tpa:2400,ml:220,mk:107.25,lta:13335,bf:41.25,lwf:45,sep:600,fst:1500,rec:3000,sch:1500,cnt:150,csm:100,clb:50,lic:1499,cPf:0,cPfN:'Admin Solved (Formula pending)',cOtR:0,cOtN:'Custom contract OT cash calculation model',pass:'472544'};
-const curCycM=()=>tD()>=20?(tM()+1)%12:tM(),otCyc=(m=S.cM)=>m===tM()&&tD()>=20?(m+1)%12:m,curQ=()=>QC.find(x=>x.slice(2).includes(curCycM()))?.[0]||4;
+const curCycM=()=>tM(),otCyc=(m=S.cM)=>m,curQ=()=>QC.find(x=>x.slice(2).includes(curCycM()))?.[0]||3;
 let S={view:'front',initDone:0,uSigned:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFlt:'all',hFlt:'all',sD:tD(),lastDt:tKey(),lvDur:'Full Day',lvOpen:0,wOpen:0,nOpen:0,aFlt:'ALL',aMod:'',pdfMod:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,admAuth:0,admErr:'',admSaved:0,shPw:0,exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'spend',lnTp:'none',lns:[],slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},gl:{ln:'',rt:9,mo:12,emi:'',ex:''},dfP:null,name:'',tok:'',ph:'',dep:'',doj:'',sh:'A2',qCap:120,qCyc:curQ(),cM:tM(),lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},adm:{...DADM},att:{},sal:{b:'',otH:'',tgt:25,cycM:curCycM(),allCyc:0,da:54.1,hr:20,pr:32,otR:0,pf:0,uTyped2:0},txI:{b:0,da:54.1,otA:0,hraA:0,rentA:0,prkA:0,bonA:0,c80:0,nps1B:0,nps2:0,medS:0,medP:0,srP:0,hlInt:0,savI:0,fdI:0,hpI:0},bks:[],cds:[],txs:[]};
 try{const sv=localStorage.getItem(K);if(sv){const p=JSON.parse(sv);if(p?.uSigned&&p?.name?.trim()){const q0=p.lvQ?.uSaved?p.lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},ps=p.sal||{},c0=(p.cds||[]).map((c={})=>({...c,tp:c.tp||(/visa/i.test(c.b||'')?'VISA':'RuPay UPI')})),x0=(p.txs||[]).map((x={})=>({...x,bk:x.bk||'needs'}));S={...S,...p,initDone:1,uSigned:1,view:'attendance',aMod:'',pdfMod:'',cTm:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,lns:Array.isArray(p.lns)?p.lns:[],hl:{...S.hl,...(p.hl||{})},pl:{...S.pl,...(p.pl||{})},gl:{...S.gl,...(p.gl||{})},adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,b:ps.uTyped2?ps.b:'',otH:ps.uTyped2?ps.otH:''},txI:{...S.txI,...(p.txI||{})}}}else localStorage.removeItem(K)}}catch(e){}S.cM=tM();S.sD=tD();S.lastDt=tKey();S.sal.cycM=curCycM();S.qCyc=curQ();
 const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};window.render?.()},set=(k='',v='')=>{S[k]=v;u()},openAdm=()=>{S.admOpen=1;S.admAuth=0;S.admErr='';u()},daySh=(m=S.cM,d=S.sD)=>{const r=S.att[`2026-${P(m+1)}-${P(d)}`];if(r?.sh)return r.sh;if(S.sh!=='A2'&&S.sh!=='B2')return S.sh;return Math.abs(wkI(m,d)-wkI(tM(),tD()))%2?(S.sh==='A2'?'B2':'A2'):S.sh},setSh=(k='A2')=>{S.sh=k;[tKey(),`2026-${P(S.cM+1)}-${P(S.sD||tD())}`].forEach(d0=>{const a=S.att[d0];if(a&&(a.s==='P'||a.s==='On Duty')){a.sh=k;a.in=SH[k][1];if(a.s==='P'&&!a.ot)a.out=SH[k][2]}});u()};
@@ -146,7 +146,7 @@ function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;
 function mOT(m=0){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:(""+
 (MN[c[2]])+"–"+(MN[c[4]])+" 2026"),m,u:u0,rem:Math.max(0,S.qCap-u0)}}
-function lvCnt(t=''){return Object.values(S.att).filter(v=>v.s===t||(t==='SCL'&&v.s==='SPL')).reduce((a,v)=>a+(v.dur?.includes('Half')?.5:1),0)}
+function lvCnt(t=''){return Object.values(S.att).filter(v=>v.s===t||(t==='SCL'&&v.s==='SPL')).reduce((a,v)=>a+(/Half|0\.5|Forenoon|Afternoon|\(FN\)|\(AN\)/i.test((v.dur||'')+' '+(v.nt||''))?.5:1),0)}
 const totLv=(k='CL')=>{const q=S.lvQ||{};return k==='CL'?(S.cat==='contract'?+(q.cl1??12):+(q.cl1??6)+ +(q.cl2??6)):k==='EL'?+(q.el??30):k==='HPL'?+(q.hpl??20):+(q.scl??15)};
 const avlLv=(k='CL')=>Math.max(0,totLv(k)-(k==='EL'?lvCnt('EL')+lvCnt('ML'):lvCnt(k)));
 function uLvQ(){const nV=(id='',d=0)=>{const e=H(id);return e&&e.value!==''?Math.max(0,+e.value):d};S.lvQ={cl1:nV('qC1',S.lvQ?.cl1??6),cl2:nV('qC2',S.lvQ?.cl2??6),
@@ -273,17 +273,13 @@ rot=S.sh==='A2'||S.sh==='B2';
 let pCnt=0,lCnt=0,c='<div></div>'.repeat(fd);
 for(let d=1;d<=dim;d++){
 const r=S.att[(""+(p)+(P(d)))],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),hol=HOLS.some(h=>h[0]===m&&h[1]===d),sOff=w===6&&((d>7&&d<15)||(d>21&&d<29)),off=w<1||sOff||hol,past=m<tM()||(m===tM()&&d<tD());
-const isHd=/Half/i.test(r?.dur||'')||/First Half|Second Half/i.test(r?.nt||''),isAn=/AN|Second Half/i.test((r?.dur||'')+(r?.nt||''));
+const hs=(r?.dur||'')+' '+(r?.nt||''),isHd=/Half|0\.5|Forenoon|Afternoon|\(FN\)|\(AN\)/i.test(hs),isAn=/AN|Afternoon|Second Half/i.test(hs);
 if(st0==='P'||st0==='On Duty')pCnt++;else if(st0&&st0!=='WO')lCnt++;
 const sh=rot&&!past&&!off?(r?.sh||daySh(m,d)):'',dim0=(S.cFlt==='duty'&&st0!=='P'&&st0!=='On Duty'&&!isHd)||(S.cFlt==='leaves'&&!isHd&&(!st0||st0==='P'||st0==='On Duty'))||(S.cFlt==='holidays'&&!off)?'opacity-25':'';
-const lc=st0==='EL'?'#2dd4bf':st0==='ML'?'#fb7185':st0==='HPL'?'#a5b4fc':st0==='SCL'?'#d8b4fe':'#fcd34d';
-const bg=isHd?(isAn?("bg-[linear-gradient(90deg,#86efac_50%,"+(lc)+"_50%)]"):("bg-[linear-gradient(90deg,"+(lc)+"_50%,#86efac_50%)]"))+' text-slate-950 font-black border border-emerald-400':st0==='P'||st0==='On Duty'?'bg-[#86efac] text-emerald-950 border border-emerald-400':st0?'bA':off?'bg-rose-950/45 tr0 border border-rose-800/40':'bg-[#082235]/80 text-slate-200'+
-' border border-[#0e3046]';
-c+=D(("min-h-[48px] p-1 rx "+(bg)+" "+(dim0)+" "+(S.sD===d?'ring-2 ring-cyan-400 scale-105 z-10':m===tM()&&d===tD()?'ring-2 ring-amber-400':'')+" fc flex-col relative"),
-("<b class=\"sm\">"+(d)+(m===tM()&&d===tD()?'<span class="text-[7px] tc ml-0.5">●</span>':'')+"</b>")+((st0==='P'||st0==='On Duty')&&ot?("<span class=\"text-[7px] bg-amber-400 text-slat"+
-"e-950 px-1 rounded fm font-black mt-0.5\">⚡"+(ot)+"h OT</span>"):isHd?("<span class=\"text-[7.5px] font-black mt-0.5 bg-slate-950/15 px-1 rounded\">"+(st0&&st0!=='P'&&st0!=='On Duty'?st0:'HD')+
-"½</span>"):st0&&st0!=='P'&&st0!=='On Duty'?("<span class=\"text-[7.5px] font-black mt-0.5\">"+(st0)+"</span>"):sh?("<span class=\"text-[7px] fm px-1 rounded mt-0.5 "+((st0==='P'||st0==='On Duty')?'bg-emerald-950/25 text-emerald-950':sh==='A2'?'ta bg-amber-950/60':'tc bg-cyan-950/60')+
-"\">"+(sh)+"</span>"):''),("S.sD="+(d)+";u()"));
+const lc=st0==='EL'?'#5eead4':st0==='ML'?'#fb7185':st0==='HPL'?'#a5b4fc':st0==='SCL'?'#d8b4fe':'#fcd34d';
+const bg=isHd?'text-[#fbbf24] font-black border border-[#f59e0b]':st0==='P'||st0==='On Duty'?'bg-[#86efac] text-emerald-950 border border-emerald-400':st0?("bg-["+(lc)+"] text-slate-950 font-black border border-amber-400"):off?'bg-rose-950/45 tr0 border border-rose-800/40':'bg-[#082235]/80 text-slate-200 border border-[#0e3046]';
+const hSt=isHd?` style="background:linear-gradient(135deg,${isAn?'#86efac 48.5%,#f59e0b 48.5%,#f59e0b 51.5%,#332b14 51.5%':'#332b14 48.5%,#f59e0b 48.5%,#f59e0b 51.5%,#86efac 51.5%'});text-shadow:0 1px 3px #000"`:'';
+c+=`<div onclick="S.sD=${d};u()"${hSt} class="min-h-[48px] p-1 rx ${bg} ${dim0} ${S.sD===d?'ring-2 ring-cyan-400 scale-105 z-10':m===tM()&&d===tD()?'ring-2 ring-amber-400':''} fc flex-col relative"><b class="sm">${d}${m===tM()&&d===tD()?'<span class="text-[7px] tc ml-0.5">●</span>':''}</b>${(st0==='P'||st0==='On Duty')&&ot?`<span class="text-[7px] bg-amber-400 text-slate-950 px-1 rounded fm font-black mt-0.5">⚡${ot}h OT</span>`:isHd?`<span class="text-[7.5px] font-black mt-0.5 bg-[#041521]/80 text-[#fbbf24] px-1 rounded">${st0&&st0!=='P'&&st0!=='On Duty'?st0:'HD'}½</span>`:st0&&st0!=='P'&&st0!=='On Duty'?`<span class="text-[7.5px] font-black mt-0.5">${st0}</span>`:sh?`<span class="text-[7px] fm px-1 rounded mt-0.5 ${(st0==='P'||st0==='On Duty')?'bg-emerald-950/25 text-emerald-950':sh==='A2'?'ta bg-amber-950/60':'tc bg-cyan-950/60'}">${sh}</span>`:''}</div>`;
 }
 const q=S.lvQ||{},clT=totLv('CL'),wkTxt=rec.wk||'Building Dock Yard Work & Fabrication',ntTxt=rec.nt||'',dSh=rec.sh||(sW<1?'C1':daySh(m,S.sD||tD())),sd=SH[dSh]||SH.A2;
 return(window._vc={m,ml,mc,dim,fd,p,sDt,rec,mHols,sHol,sW,sSat,rot,pCnt,lCnt,c,q,clT,wkTxt,ntTxt,dSh,sd});}
@@ -299,15 +295,15 @@ C(L(B(("set('cM',"+((m+11)%12)+")"),'bD','◀')+B(("set('cM',"+((m+1)%12)+")"),'
 S1(("<span>Days: <b>"+(dim)+"</b></span><span>Working: <s>"+(mc[3])+"</s></span><span>Duty: <s>"+(pCnt)+"</s></span><span>Leaves: <em>"+(lCnt)+"</em></span><span>Offs: <b class=\"tr0\">"+
 "6</b></span><span onclick=\"set('cTab','holidays')\" class=\"tr0\">Holidays: <b>"+(mHols.length)+"/12 ↗</b></span>"),'fb tx m2 flex-wrap')+
 F(L([['all',("All ("+(dim)+")")],['duty',("Duty ("+(pCnt)+")")],['leaves',("Leaves ("+(lCnt)+")")],['holidays','Offs & Holidays']].map(([k,l])=>B(("set('cFlt','"+
-(k)+"')"),("px-2.5 py-1 rx tx "+(S.cFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),l)).join(''))+L('<span class="te tx">●Duty</span><span class="inline-flex items-center gap-0.5 tx te"><i class="w-2 h-2 rf inline-block bg-[linear-gradient(90deg,#86efac_50%,#fcd34d_50%)]"></i>Half</span><span class="ta tx">●CL</span><span class'+
+(k)+"')"),("px-2.5 py-1 rx tx "+(S.cFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),l)).join(''))+L('<span class="te tx">●Duty</span><span class="inline-flex items-center gap-0.5 tx ta"><i class="w-2.5 h-2.5 rf inline-block border border-amber-500" style="background:linear-gradient(135deg,#86efac 46%,#f59e0b 46%,#f59e0b 54%,#332b14 54%)"></i>Half</span><span class="ta tx">●CL</span><span class'+
 '="tc tx">●EL/HPL</span><span class="tr0 tx">●Holiday</span><span class="bA px-1 rounded text-[9px] fm">⚡OT</span>'),'m2 flex-wrap')+
 C(D('g7 text-center tx tc mb-1.5','SUN,MON,TUE,WED,THU,FRI,SAT'.split(',').map((d,i)=>("<b class=\""+(i?'':'tr0')+"\">"+(d)+"</b>")).join(''))+D('g7',c));}
 Object.assign(window,{vCal1});
 // === END PART 14 ===
 // === START PART 15 ===
-function vCal2(){const{m,sDt,rec,sHol,sW,sSat,dSh,sd}=window._vc;return F(("<div><div class=\"fl flex-wrap\"><b class=\"bs\">"+(S.sD)+" "+(MN[m])+" 2026</b><u class=\"te\">· "+(WDF[sW])+" ("+(WDML[sW])+")</u>"+(m===tM()&&S.sD===tD()?'<span class="bD rf text-[9px]">🔵 TODAY (ഇന്ന്)</span>':'')+
-"</div><i>Cochin Shipyard Limited · Official Daily Register & Activity Log</i></div><span class=\"px-2.5 py-1 rf tx font-black "+(rec.s==='P'||rec.s==='On Duty'?'bg-emerald-950 te border border-emerald-400':rec.s?'bA':sHol||sW<1||sSat?'bg-rose-950 tr0 border border-rose-500/40':'s'+
-'b ts')+"\">"+(rec.s==='P'||rec.s==='On Duty'?'✓ PRESENT':rec.s?("LEAVE ("+(rec.s)+")"):sHol?("🎉 "+(sHol[4].toUpperCase())):sW<1?'☀️ SUNDAY OFF':sSat?'🏢 SATURDAY OFF':'⚪ NOT MARKED')+
+function vCal2(){const{m,sDt,rec,sHol,sW,sSat,dSh,sd}=window._vc,hs=(rec.dur||'')+' '+(rec.nt||''),isHd=/Half|0\.5|Forenoon|Afternoon|\(FN\)|\(AN\)/i.test(hs),isAn=/AN|Afternoon|Second Half/i.test(hs);return F(("<div><div class=\"fl flex-wrap\"><b class=\"bs\">"+(S.sD)+" "+(MN[m])+" 2026</b><u class=\"te\">· "+(WDF[sW])+" ("+(WDML[sW])+")</u>"+(m===tM()&&S.sD===tD()?'<span class="bD rf text-[9px]">🔵 TODAY (ഇന്ന്)</span>':'')+
+"</div><i>Cochin Shipyard Limited · Official Daily Register & Activity Log</i></div><span class=\"px-2.5 py-1 rf tx font-black "+(isHd?'bA':rec.s==='P'||rec.s==='On Duty'?'bg-emerald-950 te border border-emerald-400':rec.s?'bA':sHol||sW<1||sSat?'bg-rose-950 tr0 border border-rose-500/40':'s'+
+'b ts')+"\">"+(isHd?("½ HALF DAY ("+(rec.s||'CL')+" "+(isAn?'AN':'FN')+")"):rec.s==='P'||rec.s==='On Duty'?'✓ PRESENT':rec.s?("LEAVE ("+(rec.s)+")"):sHol?("🎉 "+(sHol[4].toUpperCase())):sW<1?'☀️ SUNDAY OFF':sSat?'🏢 SATURDAY OFF':'⚪ NOT MARKED')+
 "</span>"),'bb flex-wrap')+
 (sHol?S1(("<div class=\"fl\"><span class=\"av bg-rose-500 text-white\">🎉</span><div><b class=\"sm\">"+(sHol[2])+" <span class=\"ta\">("+(sHol[3])+")</span></b><div><i>Official CSL Clos"+
 "ed Holiday across all shipyard establishments. Holiday work carries 100% Holiday Overtime (OT).</i></div></div></div>"),'border-rose-500/50 bg-[#240a12]/80'):'')+
@@ -317,7 +313,7 @@ S1(F(("<div><b class=\"tc\">⏱️ Attendance & Shift Duty (ഹാജർ & ഷ�
 ".5 rf tx fm\">"+(dSh)+" ("+(sd[1])+" – "+(sd[2])+")</span>"),'m2 flex-wrap')+
 D('g5 m2',Object.entries(SH).map(([k,v])=>B(("setSh('"+(k)+"');if(S.att['"+(sDt)+"'])uDay({sh:'"+(k)+"'})"),("py-1.5 rx tx "+(dSh===k?'bg-emerald-500 text-slate-950 font-black':'sb ts')),
 ("<b>"+(k)+"</b><div class=\"text-[8px] fm\">"+(v[1])+"-"+(v[2])+"</div>"))).join(''))+
-(rec.s==='P'||rec.s==='On Duty'?
+(rec.s==='P'||rec.s==='On Duty'||isHd?
 (+rec.ot>0?S1(F(L("<span class=\"w-6 h-6 rx bg-amber-400 text-slate-950 fc font-black\">⚡</span><div><b class=\"ta\">ഓവർടൈം (OT) മണിക്കൂറുകൾ (Overtime Hours)</b><div><i>Authorized Overt"+
 "ime Claim</i></div></div>")+(("<span class=\"px-2.5 py-1 rx bg-amber-400 text-slate-950 fm font-black\">⚡ "+((+rec.ot).toFixed(1))+" hrs OT</span>"))),
 'bA m2'):'')+
@@ -333,21 +329,16 @@ B("go('attendance')",'bt bD','📋 Biometric Log')+(rec.s?B(("delete S.att['"+(s
 Object.assign(window,{vCal2});
 // === END PART 15 ===
 // === START PART 16 ===
-function vCal3(){const{wkTxt,ntTxt}=window._vc;return D('bt1 pt-2',F('<b>🕒 ലീവ് രേഖപ്പെടുത്തുക (Record CSL Leave Entry):</b>'+L(['Full Day','Half Day (FN)','Half Day (AN)'].map(d=>B(("set('lvDur','"+(d)+
-"')"),("px-2 py-0.5 rx text-[9px] "+(S.lvDur===d?'bC':'sb ts')),d)).join('')+B("set('aMod','quota')",'bD text-[9px]','⚙ Edit Quotas')),'m2 flex-wrap')+
-D('g5',[['CL',(""+(avlLv('CL'))+"d Avl"),'കാഷ്വൽ ലീവ്','ta'],['EL',(""+(avlLv('EL'))+"d Avl"),'ഏൺഡ് ലീവ്','te'],['ML','From EL','മെഡിക്കൽ ലീവ്','tr0'],
-['HPL',(""+(avlLv('HPL'))+"d Avl"),'ഹാഫ് പേ ലീവ്','tc'],['SCL',(""+(avlLv('SCL'))+"d Avl"),'സ്പെഷ്യൽ ലീവ്','ta']].map(([k,q0,ml0,cl])=>B(("uDay({s:'"+
-(k)+"',dur:S.lvDur,in:'—',out:'—',ot:0,nt:'"+(k)+" ('+S.lvDur+')'})"),'p-2 rx sb text-left hover:border-cyan-400',F(("<b class=\""+(cl)+"\">"+(k)+"</b><i class=\"text-[8px]\">"+
-(q0)+"</i>"))+("<div class=\"text-[9px] mt-0.5\">"+(ml0)+"</div>"))).join('')))+
-S1(F(("<div><b>⚓ Work Details (വർക്ക് ഡീറ്റെയിൽസ്)</b> <span class=\"bD tx\">"+(S.dep)+"</span><div><i>CSL Production, Repair & Yard Operations</i></div></div>")+
-B("set('wOpen',!S.wOpen)",'bD tx',S.wOpen?'Close':'✏️ + Add / Edit Work'))+(S.wOpen?ip('wIn','Enter work details...','text',wkTxt)+L(['⚓ Yard Work','🔧 Hull Welding',
-'🚢 Dry Dock','⚙️ Maintenance','🔍 Quality Check'].map(p0=>B(("H('wIn').value='"+(p0)+" - "+(S.dep)+"'"),'px-2 py-0.5 rx sb tx tc',p0)).join(''),'flex-wrap my-1')+
-B("uDay({wk:H('wIn').value})",'bt bC w-full','✓ Save Work'):("<div class=\"mt-1\"><s>⚓ "+(wkTxt)+"</s> <i class=\"fm\">· Code: "+(S.tok)+"</i></div>")),
-'border-teal-500/40')+
-S1(F('<b>📝 വ്യക്തിഗത കുറിപ്പുകൾ (Personal Notes & Remarks):</b>'+B("set('nOpen',!S.nOpen)",'tc tx',S.nOpen?'Close':'✏️ + Add / Edit Note'))+(S.nOpen?L(ip('nIn',
-'ഈ തീയതിയിലെ പ്രത്യേക കുറിപ്പുകൾ...','text',ntTxt)+B("uDay({nt:H('nIn').value})",'bt bC','Save')):D('tx ts italic mt-1',ntTxt||'പ്രത്യേക കുറിപ്പുകൾ ഒന്നും ചേർത്തിട്ടില്ല (No personal no'+
-'tes recorded).')));}
-Object.assign(window,{vCal3});
+function svLvEd(pr='e'){const g=(i='')=>Math.max(0,Math.round((+H(pr+i)?.value||0)*10)/10),c=g('Cl'),e=g('El'),h=g('Hp'),s=g('Sc'),L=lvCnt,cT=+(c+L('CL')).toFixed(1),p1=S.cat==='contract'?cT:Math.min(6,cT),p2=S.cat==='contract'?0:Math.max(0,+(cT-p1).toFixed(1)),c1=Math.min(c,p1),q={cl1:p1,cl2:p2,el:+(e+L('EL')+L('ML')).toFixed(1),hpl:+(h+L('HPL')).toFixed(1),scl:+(s+L('SCL')).toFixed(1),uSaved:1};S.lvQ=q;S.initDone=1;try{localStorage.setItem(K,JSON.stringify(S));localStorage.setItem('csl_leave_balances_v2',JSON.stringify({cl:c,clTotal:cT,clPhase1:c1,clPhase1Total:p1,clPhase2:Math.max(0,+(c-c1).toFixed(1)),clPhase2Total:p2,el:e,elTotal:q.el,hpl:h,hplTotal:q.hpl,specialLeave:s,specialLeaveTotal:q.scl}))}catch(_){}S.lvEd=0;if(pr==='m')S.aMod='';S.lvErr='';S.lvMsg='✓ ലീവ് സേവ് ചെയ്തു (Saved!)';u()}
+function addLv(k='CL'){const dt=`2026-${P(S.cM+1)}-${P(S.sD||tD())}`,h=/Half/i.test(S.lvDur),nd=h?.5:1,av=avlLv(k==='ML'?'EL':k),r=S.att[dt],sm=r&&(r.s===k||(/^(EL|ML)$/.test(r.s)&&/^(EL|ML)$/.test(k))),cr=sm?(/Half/i.test(r.dur||'')?.5:1):0;if(av+cr<nd){S.lvErr=`⚠️ ${k} അവൈലബിൾ ലീവ് ഇല്ല! (Avl:${av}d·Need:${nd}d)`;S.lvMsg='';u();return}S.lvErr=S.lvMsg='';const ok=(x='')=>h&&x&&x!=='—'&&x!=='On Duty'?x:'—';uDay({s:k,dur:S.lvDur,in:ok(r?.in),out:ok(r?.out),ot:0,nt:`${k} (${S.lvDur})`})}
+function vCal3(){const{wkTxt,ntTxt}=window._vc,aC=avlLv('CL'),aE=avlLv('EL'),aH=avlLv('HPL'),aS=avlLv('SCL');return D('bt1 pt-2',F('<b>🕒 ലീവ് രേഖപ്പെടുത്തുക (Record CSL Leave Entry):</b>'+L(['Full Day','Half Day (FN)','Half Day (AN)'].map(d=>B(`S.lvErr='';set('lvDur','${d}')`,`px-2 py-0.5 rx text-[9px] ${S.lvDur===d?'bC':'sb ts'}`,d)).join('')+B("S.lvEd=!S.lvEd;S.lvErr=S.lvMsg='';u()",'bD text-[9px]',S.lvEd?'✕ Close':'✏️ Edit Leaves')+B("set('aMod','quota')",'sb ts text-[9px]','⚙ Edit Quotas')),'m2 flex-wrap')+
+(S.lvEd?S1('<b class="tc tx block m2">✏️ Edit Available Leaves</b>'+D('g4 m2',[['eCl','CL Avl',aC],['eEl','EL Avl',aE],['eHp','HPL Avl',aH],['eSc','SCL Avl',aS]].map(([i,l,v])=>`<div><i>${l}</i><input id="${i}" type="number" step="0.5" min="0" value="${v}" class="inp"/></div>`).join(''))+B("svLvEd('e')",'bt bE w-full','✓ Save Leaves'),'border-cyan-500/50 m2'):'')+
+(S.lvMsg?S1(`<b class="te tx">${S.lvMsg}</b>`,'border-emerald-400/60 bg-emerald-950/60 m2'):'')+
+(S.lvErr?S1(F(`<b class="tr0 tx">${S.lvErr}</b>`+B("S.lvEd=1;S.lvErr='';u()",'px-2 py-0.5 rx bg-rose-500 text-white text-[9px] font-black shrink-0','✏️ Edit')),'border-rose-500/70 bg-rose-950/70 m2'):'')+
+D('g5',[['CL',aC,'കാഷ്വൽ ലീവ്','ta'],['EL',aE,'ഏൺഡ് ലീവ്','te'],['ML',aE,'മെഡിക്കൽ ലീവ്','tr0'],['HPL',aH,'ഹാഫ് പേ ലീവ്','tc'],['SCL',aS,'സ്പെഷ്യൽ ലീവ്','ta']].map(([k,av,ml,cl])=>B(`addLv('${k}')`,'p-2 rx sb text-left hover:border-cyan-400'+(av<=0?' border-rose-500/75':''),F(`<b class="${cl}">${k}</b><i class="text-[8px] ${av<=0?'tr0 font-black':''}">${av<=0?'No Avl':(k==='ML'?'From EL':av+'d Avl')}</i>`)+`<div class="text-[9px] mt-0.5">${ml}</div>`)).join('')))+
+S1(F(`<div><b>⚓ Work Details (വർക്ക്)</b> <span class="bD tx">${S.dep}</span><div><i>CSL Production & Yard Operations</i></div></div>`+B("set('wOpen',!S.wOpen)",'bD tx',S.wOpen?'Close':'✏️ Edit Work'))+(S.wOpen?ip('wIn','Enter work details...','text',wkTxt)+L(['⚓ Yard Work','🔧 Hull Welding','🚢 Dry Dock','⚙️ Maintenance','🔍 Quality'].map(p=>B(`H('wIn').value='${p} - ${S.dep}'`,'px-2 py-0.5 rx sb tx tc',p)).join(''),'flex-wrap my-1')+B("uDay({wk:H('wIn').value})",'bt bC w-full','✓ Save Work'):`<div class="mt-1"><s>⚓ ${wkTxt}</s> <i class="fm">· ${S.tok}</i></div>`),'border-teal-500/40')+
+S1(F('<b>📝 കുറിപ്പുകൾ (Personal Notes):</b>'+B("set('nOpen',!S.nOpen)",'tc tx',S.nOpen?'Close':'✏️ Edit Note'))+(S.nOpen?L(ip('nIn','പ്രത്യേക കുറിപ്പുകൾ...','text',ntTxt)+B("uDay({nt:H('nIn').value})",'bt bC','Save')):D('tx ts italic mt-1',ntTxt||'കുറിപ്പുകൾ ഒന്നും ചേർത്തിട്ടില്ല.')));}
+Object.assign(window,{svLvEd,addLv,vCal3});
 // === END PART 16 ===
 // === START PART 17 ===
 function vCal4(){const{m,sDt,rec,mHols,q,clT,sd}=window._vc;return(S.cTab==='wall'?vCal1()+C(vCal2()+vCal3(),'space-y-2')+D('g2',miniCal((m+11)%12,'‹ '+MN[(m+11)%12].slice(0,3).toUpperCase()+' 2026')+miniCal((m+1)%12,MN[(m+1)%12].slice(0,3).toUpperCase()+' 2026 ›'))+
@@ -378,7 +369,7 @@ if(S.aFlt==='OT'&&!ot)continue;
 if(S.aFlt==='LEAVE'&&!['CL','EL','ML','HPL','SCL','SPL'].includes(st0))continue;
 if(S.aFlt==='HOLIDAY'&&!hol&&w>0&&!sOff)continue;
 if(r||hol||(m===tM()?d<=tD()&&d>=Math.max(1,tD()-4):d<=5)||S.aFlt!=='ALL')rows.push({d,dt,w:WD[w],sh,in:r?.in||(st0==='P'?SH[sh]?.[1]:'—'),out:r?.out||(st0==='P'?SH[sh]?.[2]:'—'),
-ot,st:st0||'Off Duty',nt:r?.nt||'',wk:r?.wk||'',hol:hol?.[2]||''});
+ot,st:st0||'Off Duty',dur:r?.dur||'',nt:r?.nt||'',wk:r?.wk||'',hol:hol?.[2]||''});
 }
 const sDt=(""+(p)+(P(S.sD||tD()))),curR=S.att[sDt]||{sh:aSh,in:sd[1],out:sd[2],ot:0,s:'P',nt:'',wk:'Building Dock Yard Work'};
 return(window._va={m,ml,aSh,sd,tm,on,q,clT,p,dim,rows,pCnt,otSum,sDt,curR});}
@@ -444,17 +435,17 @@ F(L(['ALL','PRESENT','OT','LEAVE','HOLIDAY'].map(f=>B(("set('aFlt','"+(f)+"')"),
 f==='ALL'?("All ("+(rows.length)+")"):f==='OT'?("Overtime ("+(otSum)+"h)"):f)).join(''),'flex-wrap')+L(B("launchWa(oTx(otCyc(S.cM)))",'bt bg-emerald-600 text-white tx',
 '💬 WhatsApp Text')+B("dlPdf('ot')",'bt bg-[#0e3b52] text-cyan-200 border border-[#1b5b85] tx','⬇️ Download PDF')+B("S.dlMsg='';S.dlUrl='';set('pdfMod','mon')",
 'bt bD tc tx','📄 Monthly Details PDF')),'m2 flex-wrap')+
-D('space-y-1.5',rows.map((r={d:1,dt:'',w:'',sh:'',in:'',out:'',ot:0,st:'',nt:'',wk:'',hol:''})=>S1(F(L(("<div class=\"w-9 h-9 rx fc flex-col "+(r.st==='P'||r.st==='On Duty'?'bg-emerald-500/20 te border border-emerald-500/40':r.hol?'bA':'sb ts')+
+D('space-y-1.5',rows.map((r={d:1,dt:'',w:'',sh:'',in:'',out:'',ot:0,st:'',dur:'',nt:'',wk:'',hol:''})=>{const hs=(r.dur||'')+' '+(r.nt||''),hd=/Half|0\.5|Forenoon|Afternoon|\(FN\)|\(AN\)/i.test(hs),an=/AN|Afternoon|Second Half/i.test(hs),t1=t2m(r.in),t2=t2m(r.out),df=t1&&t2?(t2>=t1?t2-t1:t2+1440-t1):0,wh=r.st==='P'?(df?Math.floor(df/60)+'h '+P(df%60)+'m':'8h 20m'):hd?(df?Math.floor(df/60)+'h '+P(df%60)+'m':'4h 10m'):'0h 00m';return S1(F(L(("<div class=\"w-9 h-9 rx fc flex-col "+(hd?'bA':r.st==='P'||r.st==='On Duty'?'bg-emerald-500/20 te border border-emerald-500/40':r.hol?'bA':'sb ts')+
 "\"><span class=\"text-[8px]\">"+(r.w)+"</span><b class=\"sm\">"+(P(r.d))+"</b></div><div><div class=\"fl\"><b>"+(P(r.d))+" "+(MN[m].slice(0,3))+" 2026</b><span class=\"bD tx fm\">Shift"+
 " "+(r.sh)+"</span></div><div class=\"tx fm\">IN: <u>"+(r.in)+"</u> · OUT: <em>"+(r.out)+"</em></div><div class=\"fl flex-wrap mt-1\">"+(r.hol?("<span class=\"px-1.5 rounded bg-purple-9"+
-"50 text-purple-300 tx\">✨ Holiday: "+(r.hol)+"</span>"):'')+(['CL','EL','ML','HPL','SCL','SPL'].includes(r.st)?("<span class=\"px-1.5 rounded bg-rose-950 tr0 tx\">📋 Leave: "+
+"50 text-purple-300 tx\">✨ Holiday: "+(r.hol)+"</span>"):'')+(hd?("<span class=\"px-1.5 rounded bA tx\">📋 Half Day: "+(r.st==='P'?'CL':r.st)+" ("+(an?'AN':'FN')+")</span>"):['CL','EL','ML','HPL','SCL','SPL'].includes(r.st)?("<span class=\"px-1.5 rounded bg-rose-950 tr0 tx\">📋 Leave: "+
 (r.st)+"</span>"):'')+(r.nt?("<span class=\"px-1.5 rounded bg-amber-950 ta tx\">📝 Note: "+(r.nt)+"</span>"):'')+(r.wk?("<span class=\"px-1.5 rounded bg-teal-950 te tx\">✏️ Work: "+
 (r.wk)+"</span>"):'')+"</div></div>"))+
 L((r.ot?("<div class=\"text-right\"><span class=\"bD tx fm\">+"+(r.ot)+" hrs OT</span><div class=\"text-[8px] ta\">In "+(MN[r.d<=19?m:(m+1)%12].slice(0,3))+
 " OT Cycle</div></div>")+B(("event.stopPropagation();openWa('OUT','full_day_ot',"+(r.ot)+",nTm(),'"+(r.dt)+"')"),'bA px-2 py-1 rx tx','💬 Share'):'')+
 B(("event.stopPropagation();S.sD="+(r.d)+";set('aMod','note')"),'bD tx','✏️ Note/Work')+
-D('text-right',("<span class=\"px-2 py-0.5 rf tx "+(r.st==='P'||r.st==='On Duty'?'bg-emerald-950 te':'sb ts')+"\"><b>"+(r.st==='P'?'Present':r.st)+"</b></span><div class=\"text-[9px] ts"+
-" fm\">"+(r.st==='P'?'8h 20m':'0h 00m')+"</div>"))),'flex-wrap'),'',("S.sD="+(r.d)+";set('aMod','punch')"))).join('')))+(window.vAttMod?window.vAttMod(m,
+D('text-right',("<span class=\"px-2 py-0.5 rf tx "+(hd?'bA':r.st==='P'||r.st==='On Duty'?'bg-emerald-950 te':'sb ts')+"\"><b>"+(hd?("Half Day "+(r.st==='P'?'CL':r.st)):r.st==='P'?'Present':r.st)+"</b></span><div class=\"text-[9px] ts"+
+" fm\">"+(wh)+"</div>"))),'flex-wrap'),'',("S.sD="+(r.d)+";set('aMod','punch')"))}).join('')))+(window.vAttMod?window.vAttMod(m,
 sd,sDt,curR,q):'');}
 function vAtt(){vAtt0();return vAtt1()+vAtt3()+vAtt4();}
 function mBox(t='',b=''){return D('fixed inset-0 z-50 fc p-4 bg-black/80',C(F(("<b class=\"sm\">"+(t)+"</b>")+B("set('aMod','')",'bD','✕'),'bb')+b,'w-full max-w-md'))}
@@ -485,34 +476,24 @@ D('g2 mt-2',B("uDay({nt:H('mNt').value,wk:H('mWk').value});set('aMod','')",'bt b
 D('g5 my-2',['CL','EL','HPL','SCL','ML'].map(t0=>B(("S.lvTp='"+(t0)+"';u()"),("py-1.5 rx tx "+(S.lvTp===t0?'bC':'sb ts')),("<b>"+(t0)+"</b>"))).join(''))+
 D('g2 m2',("<div><i>Date</i>"+(ip('lDt','','date',sDt))+"</div><div><i>Duration</i>"+(sl('lDr','Full Day,0.5 Half Day (FN),0.5 Half Day (AN)'))+"</div>"))+
 '<i>Reason / Medical Note</i>'+ip('lRs','Personal / Medical reason...','text','Personal')+
-B("S.att[H('lDt').value]={s:S.lvTp,dur:H('lDr').value,in:'—',out:'—',ot:0,nt:S.lvTp+' ('+H('lDr').value+') - '+H('lRs').value};set('aMod','')",'bt bE w-full mt-2','✓ Submit Leave Application')):'');}
+B("const dt=H('lDt').value,dr=H('lDr').value,isH=/Half/i.test(dr),pr=S.att[dt]||{};S.att[dt]={...pr,s:S.lvTp,sh:pr.sh||daySh(S.cM,S.sD||tD()),dur:dr,in:isH&&pr.in&&pr.in!=='—'?pr.in:'—',out:isH&&pr.out&&pr.out!=='—'&&pr.out!=='On Duty'?pr.out:'—',ot:0,nt:S.lvTp+' ('+dr+') - '+H('lRs').value};set('aMod','')",'bt bE w-full mt-2','✓ Submit Leave Application')):'');}
 Object.assign(window,{t2m,calcOt,uPOt,vAttMod1});
 // === END PART 21 ===
 // === START PART 22 ===
-function uWaOt(a=1){const sh=H('wSh')?.value||S.waSh||S.sh,tm=H('wTm')?.value||nTm();S.waSh=sh;S.waTm=tm;if(a){window._uOt=0;S.waOt=calcOt(sh,tm,1);if(H('wOt')&&document.activeElement!==H('wOt'))H('wOt').value=S.waOt}else{window._uOt=1;S.waOt=+(H('wOt')?.value)||1}if(H('waMsgPrev'))H('waMsgPrev').textContent=S.waCat==='full_day_ot'?`${S.waOt} hours OT Punch out @ ${tm}`:(S.waSes==='Second Half'?`out punch @ ${tm}`:`In punch @ ${tm}`)}
-function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02'],q=S.lvQ){const wSh=S.waSh||daySh(m,S.sD||tD()),wTm=S.waTm||nTm(),wOt=window._uOt?(S.waOt||1):calcOt(wSh,wTm,1);if(S.aMod==='wa')S.waOt=wOt;return vAttMod1(m,sd,sDt,curR)+
-(S.aMod==='quota'?mBox('⚙ CSL Initial Leave Quotas Setup',
-D('g2 my-2',[['qC1','CL Phase 1 (Jan–Jun)',q.cl1??6],['qC2','CL Phase 2 (Jul–Dec)',q.cl2??6],['qHp','HPL (20d/Yr)',q.hpl??20],['qEl','EL (30d/Yr)',q.el??30],
-['qSc','Special (SCL)',q.scl??15]].map(([id,l,v])=>S1(("<u>"+(l)+"</u>")+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+
-B("uLvQ();S.initDone=1;set('aMod','')",'bt bC w-full','✓ Save Quotas & Update Available Leaves')):'')+
-(S.aMod==='wa'?mBox('💬 Duty, Half-Day & OT WhatsApp Share',
-D('g2 my-2',B("S.waCat='full_day_ot';window._uOt=0;S.waOt=calcOt(H('wSh')?.value||S.waSh||S.sh,H('wTm')?.value||nTm(),1);u()",("py-1.5 rx tx "+(S.waCat==='full_day_ot'?'bg-amber-500 text-slate-950':'sb ts')),'⚡ OT Punch Out')+B("S.waCat='half_day';u()",
-("py-1.5 rx tx "+(S.waCat==='half_day'?'bC':'sb ts')),'🕒 Half Day Leave (IN/OUT)'))+
-D('g2 m2',("<div><i>Shift</i>"+(sl('wSh','C1,A2,B2,C2,A',wSh).replace('<select','<select onchange="uWaOt(1)"'))+"</div><div><i>Live Time</i>"+(ip('wTm','','text',wTm,'uWaOt(1)'))+"</div>")+(S.waCat==='full_day_ot'?("<div><i>OT "+
-"Hours</i>"+(ip('wOt','','number',String(wOt),'uWaOt(0)'))+
-"</div><div><i>Date</i>"+(ip('wDt','','date',sDt))+"</div>"):B("S.waSes='First Half';S.waTp='IN';u()",("py-2 rx tx "+(S.waSes!=='Second Half'?'bg-emerald-500 text-slate-950 font-black':'s'+
-'b ts')),'🟢 First Half Leave (In punch)')+B("S.waSes='Second Half';S.waTp='OUT';u()",("py-2 rx tx "+(S.waSes==='Second Half'?'bg-amber-500 text-slate-950 font-black':'sb ts')),
-'🟠 Second Half Leave (out punch)')))+S1(("<i class=\"block\">WhatsApp Message:</i><b id=\"waMsgPrev\" class=\"te fm sm\">"+(S.waCat==='full_day_ot'?(""+
-(wOt)+" hours OT Punch out @ "+(wTm)):(S.waSes==='Second Half'?("out punch @ "+(wTm)):("In punch @ "+(wTm))))+"</b>"),'m2 border-emerald-500/40')+
-B('sendWaMod()','bt bE w-full','📲 Record Punch & Share on WhatsApp')):'');}
-function doPIn(tm=''){const t0=tm||nTm(),sh=daySh(tM(),tD());S.pSt='in';S.pInT=t0;S.pInTs=Date.now();S.cM=tM();S.sD=tD();const dt=tKey();S.att[dt]={...(S.att[dt]||{}),
-s:'On Duty',sh,in:t0,out:'On Duty',ot:0};u()}
-function doPOut(tm='',ot=0){const t0=tm||nTm(),sh=daySh(tM(),tD()),o0=+ot||calcOt(sh,t0,0);S.pSt='out';S.cM=tM();S.sD=tD();const dt=tKey();S.att[dt]={...(S.att[dt]||{}),s:'P',
-sh,in:S.pInT||SH[sh][1],out:t0,ot:o0};S.doneSum={sh,in:S.pInT||SH[sh][1],out:t0,ot:o0};u()}
-function svP(){const d=H('pDt').value,sh=H('pSh').value;if(d){S.sh=sh;S.att[d]={s:H('pSt0').value,sh,in:H('pIn').value,out:H('pOut').value,ot:+H('pOt').value||0,
-wk:H('pWk').value,nt:H('pNt').value};S.cM=+d.split('-')[1]-1;S.aMod='';u()}}
-function openWa(tp='OUT',cat='full_day_ot',ot=1,tm='',dt=''){if(dt)S.sD=+dt.split('-')[2]||tD();else{S.cM=tM();S.sD=tD()}const sh=S.att[dt]?.sh||daySh(S.cM,S.sD||tD()),t0=tm||nTm();window._uOt=dt&&ot>0?1:0;S.waSh=sh;S.waTp=tp;S.waCat=cat;S.waTm=t0;S.waOt=window._uOt?ot:calcOt(sh,t0,1);S.waSes=tp==='OUT'?'Second Half':'First Half';set('aMod','wa')}
-Object.assign(window,{uWaOt,vAttMod,doPIn,doPOut,svP,openWa});
+const noSec=(s='')=>String(s||'').replace(/(\d{1,2}:\d{2}):\d{2}(\s*(?:AM|PM))?/i,'$1$2').trim(),waTxt=(c='full_day_ot',s='First Half',o=1,t='')=>c==='full_day_ot'?`♦️ *${o} hours OT Punch out @ ${noSec(t)}*`:(s==='Second Half'?`🔴 *Afternoon Leave - Out punch @ ${noSec(t)}*`:`🟢 *Forenoon Leave - In punch @ ${noSec(t)}*`);
+function uWaOt(a=1){const sh=H('wSh')?.value||S.waSh||S.sh,tm=noSec(H('wTm')?.value||nTm());S.waSh=sh;S.waTm=tm;if(a){window._uOt=0;S.waOt=calcOt(sh,tm,1);if(H('wOt')&&document.activeElement!==H('wOt'))H('wOt').value=S.waOt}else{window._uOt=1;S.waOt=+(H('wOt')?.value)||1}if(H('waMsgPrev'))H('waMsgPrev').textContent=waTxt(S.waCat,S.waSes,S.waOt,tm).replace(/\*/g,'')}
+function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02']){const wSh=S.waSh||daySh(m,S.sD||tD()),wTm=noSec(S.waTm||nTm()),wOt=window._uOt?(S.waOt||1):calcOt(wSh,wTm,1),isOt=S.waCat==='full_day_ot',isAn=S.waSes==='Second Half',pCol=isOt?'border-[#800000] text-[#800000]':isAn?'border-red-600 text-[#dc2626]':'border-green-600 text-[#15803d]',bc='rx tx ',tw=' text-white font-black';if(S.aMod==='wa')S.waOt=wOt;return vAttMod1(m,sd,sDt,curR)+
+(S.aMod==='quota'?mBox('⚙ Edit Available Leaves & Quotas',D('g2 my-2',[['mCl','CL Avl',avlLv('CL')],['mEl','EL Avl',avlLv('EL')],['mHp','HPL Avl',avlLv('HPL')],['mSc','SCL Avl',avlLv('SCL')]].map(([i,l,v])=>S1(`<u>${l}</u><input id="${i}" type="number" step="0.5" min="0" value="${v}" class="inp"/>`)).join(''))+B("svLvEd('m')",'bt bE w-full','✓ Save Quotas & Leaves')):'')+
+(S.aMod==='wa'?mBox('💬 Half-Day & OT WhatsApp Share',
+D('g2 my-2',B("S.waCat='full_day_ot';window._uOt=0;S.waOt=calcOt(H('wSh')?.value||S.waSh||S.sh,noSec(H('wTm')?.value||nTm()),1);u()",`py-1.5 ${bc}${isOt?'bg-[#800000]'+tw:'sb ts'}`,'♦️ OT Punch Out')+B("S.waCat='half_day';u()",`py-1.5 ${bc}${!isOt?'bC':'sb ts'}`,'🕒 Half Day (FN/AN)'))+
+D('g2 m2',`<div><i>Shift</i>${sl('wSh','C1,A2,B2,C2,A',wSh).replace('<select','<select onchange="uWaOt(1)"')}</div><div><i>Time</i>${ip('wTm','','text',wTm,'uWaOt(1)')}</div>`+(isOt?`<div><i>OT Hrs</i>${ip('wOt','','number',String(wOt),'uWaOt(0)')}</div><div><i>Date</i>${ip('wDt','','date',sDt)}</div>`:B("S.waSes='First Half';S.waTp='IN';u()",`py-2 ${bc}${!isAn?'bg-green-600'+tw:'sb ts'}`,'🟢 Forenoon Leave (In)')+B("S.waSes='Second Half';S.waTp='OUT';u()",`py-2 ${bc}${isAn?'bg-red-600'+tw:'sb ts'}`,'🔴 Afternoon Leave (Out)')))+
+D(`p-2.5 rx bg-white border-2 m2 ${pCol}`,`<i class="block text-slate-500">WhatsApp:</i><b id="waMsgPrev" class="fm sm font-black">${waTxt(S.waCat,S.waSes,wOt,wTm).replace(/\*/g,'')}</b>`)+
+B('sendWaMod()','bt bE w-full','📲 Record Punch & Share')):'');}
+function doPIn(tm=''){const t0=tm||nTm(),sh=daySh(tM(),tD()),dt=tKey(),p=S.att[dt]||{},h=/Half/i.test(p.dur||'');S.pSt='in';S.pInT=t0;S.pInTs=Date.now();S.cM=tM();S.sD=tD();S.att[dt]={...p,s:h?p.s:'On Duty',sh,in:t0,out:h&&p.out&&p.out!=='—'?p.out:'On Duty',ot:0};u()}
+function doPOut(tm='',ot=0){const t0=tm||nTm(),sh=daySh(tM(),tD()),o0=+ot||calcOt(sh,t0,0),dt=tKey(),p=S.att[dt]||{},h=/Half/i.test(p.dur||''),inT=(p.in&&p.in!=='—'?p.in:S.pInT)||SH[sh][1];S.pSt='out';S.cM=tM();S.sD=tD();S.att[dt]={...p,s:h?p.s:'P',sh,in:inT,out:t0,ot:h?0:o0};S.doneSum={sh,in:inT,out:t0,ot:h?0:o0};u()}
+function svP(){const d=H('pDt').value,sh=H('pSh').value;if(d){S.sh=sh;S.att[d]={...(S.att[d]||{}),s:H('pSt0').value,sh,in:H('pIn').value,out:H('pOut').value,ot:+H('pOt').value||0,wk:H('pWk').value,nt:H('pNt').value};S.cM=+d.split('-')[1]-1;S.aMod='';u()}}
+function openWa(tp='OUT',cat='full_day_ot',ot=1,tm='',dt=''){if(dt)S.sD=+dt.split('-')[2]||tD();else{S.cM=tM();S.sD=tD()}const sh=S.att[dt]?.sh||daySh(S.cM,S.sD||tD()),t0=noSec(tm||nTm());window._uOt=dt&&ot>0?1:0;S.waSh=sh;S.waTp=tp;S.waCat=cat;S.waTm=t0;S.waOt=window._uOt?ot:calcOt(sh,t0,1);S.waSes=tp==='OUT'?'Second Half':'First Half';set('aMod','wa')}
+Object.assign(window,{noSec,waTxt,uWaOt,vAttMod,doPIn,doPOut,svP,openWa});
 // === END PART 22 ===
 // === START PART 23 ===
 function isWv(){const ua=navigator.userAgent||'';return!!(window.AppInventor||/; wv\)/i.test(ua)||(/Android/i.test(ua)&&/Version\/\d+\.\d+/i.test(ua)))}
@@ -527,12 +508,10 @@ function sysShare(msg=''){if(navigator.share){navigator.share({text:msg}).catch(
 function goWa(msg='CSL OT'){if(navigator.share){navigator.share({text:msg}).catch((e=new Error())=>{if(e?.name!=='AbortError'){cpTx(msg);set('waPrev',
 msg);launchWa(msg)}});return}cpTx(msg);set('waPrev',msg);launchWa(msg)}
 function sendWaMod(){
-const sh=H('wSh')?.value||S.sh,tm=H('wTm')?.value||nTm(),ot=+(H('wOt')?.value||S.waOt||1),dt=H('wDt')?.value||("2026-"+(P(S.cM+1))+"-"+(P(S.sD||tD()))),isOut=S.waSes==='Second Half'||S.waTp==='OUT';
-S.sh=sh;S.att[dt]={...(S.att[dt]||{}),s:'P',sh,dur:S.waCat==='full_day_ot'?'':(isOut?'Half Day (AN)':'Half Day (FN)'),in:S.waCat==='full_day_ot'?SH[sh][1]:(isOut?SH[sh][1]:tm),out:S.waCat==='full_day_ot'||isOut?tm:SH[sh][2],
-ot:S.waCat==='full_day_ot'?ot:0,nt:S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(""+(isOut?'Second Half':'First Half')+" ("+(isOut?'out':'In')+
-" punch @ "+(tm)+")")};
-const msg=S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(isOut?("out punch @ "+(tm)):("In punch @ "+(tm)));
-S.aMod='';u();goWa(msg);
+const sh=H('wSh')?.value||S.sh,tm=noSec(H('wTm')?.value||nTm()),ot=+(H('wOt')?.value||S.waOt||1),dt=H('wDt')?.value||`2026-${P(S.cM+1)}-${P(S.sD||tD())}`,isO=S.waSes==='Second Half'||S.waTp==='OUT',pr=S.att[dt]||{},isOt=S.waCat==='full_day_ot',ok=(x='')=>x&&x!=='—'&&x!=='On Duty'?x:'';
+S.sh=sh;if(dt===tKey()){if(isO||isOt)S.pSt='out';else{S.pSt='in';S.pInT=tm;S.pInTs=Date.now()}}
+S.att[dt]={...pr,s:isOt?'P':(/^(CL|EL|ML|HPL|SCL)$/.test(pr.s||'')?pr.s:'CL'),sh,dur:isOt?'':(isO?'Half Day (AN)':'Half Day (FN)'),in:isOt||isO?(ok(pr.in)||SH[sh][1]):tm,out:isOt||isO?tm:(ok(pr.out)||SH[sh][2]),ot:isOt?ot:0,nt:isOt?`${ot}h OT Out @ ${tm}`:`${isO?'Afternoon Leave (Out':'Forenoon Leave (In'} @ ${tm})`};
+S.aMod='';u();goWa(waTxt(S.waCat,isO?'Second Half':'First Half',ot,tm));
 }
 function cycOT(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);
 if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
@@ -695,7 +674,10 @@ const h2=S.dlMsg?("<div class=\"px-4 py-2.5 bg-emerald-950/95 border-b border-em
 const h3=("<div class=\"flex-1 overflow-y-auto p-3 sm:p-5 bg-slate-900/60\"><div id=\"otPrn\" class=\"bg-white text-slate-900 rounded-xl p-3 sm:p-4 shadow-2xl border border-slate-300 ma"+
 "x-w-2xl mx-auto\"><img src=\""+(dUrl)+"\" alt=\"CSL Sheet\" class=\"w-full h-auto rounded border border-slate-200\"/></div></div>");
 return(window._vp={isM,hTop:h1+h2+h3});}
-Object.assign(window,{vPdfTop});
+const FB_CFG={apiKey:'AIzaSyBuLh50fs7h6VTu5S7mdXKsgM88OzQQgCw',authDomain:'vertical-kayak-488204-e7.firebaseapp.com',projectId:'vertical-kayak-488204-e7',appId:'1:1053548704763:web:87b0c70e8e1ab49333515e'},FB_DB='projects/vertical-kayak-488204-e7/databases/ai-studio-mycslcochinshipy-e3ae9123-fcc4-40db-8364-af8bcb9a99d9/documents',FB_U='https://firestore.googleapis.com/v1/'+FB_DB;
+function empId(u={}){const t=String(u.t||u.token||'').trim(),p=String(u.p||u.phone||'').trim(),n=String(u.n||u.name||'').trim(),r=t&&t!=='—'?'tk_'+t:p&&p!=='—'?'ph_'+p:n&&n!=='CSL Employee'?'nm_'+n:'';return r?r.toLowerCase().replace(/[^a-z0-9_-]+/g,'_').replace(/^_+|_+$/g,'').slice(0,128):''}
+async function fbPush(u={}){const id=empId(u);if(!id)return;const S1=(v='',df='',mx=100)=>({stringValue:(String(v||'').trim()||df).slice(0,mx)}),f={name:S1(u.n||u.name,'CSL Employee',100),phone:S1(u.p||u.phone,'—',20),token:S1(u.t||u.token,'—',40),department:S1(u.d||u.department,'CSL Shipyard',80),category:{stringValue:(u.cat||u.category)==='contract'?'contract':'permanent'},source:{stringValue:isWv()?'android':'github'}},nm=FB_DB+'/registered_employees/'+id,h={'Content-Type':'application/json'},T=(p='')=>({fieldPath:p,setToServerValue:'REQUEST_TIME'});try{const r=await fetch(FB_U+':commit',{method:'POST',headers:h,body:JSON.stringify({writes:[{update:{name:nm,fields:f},updateMask:{fieldPaths:Object.keys(f)},updateTransforms:[T('updatedAt')],currentDocument:{exists:true}}]})});if(!r.ok)await fetch(FB_U+':commit',{method:'POST',headers:h,body:JSON.stringify({writes:[{update:{name:nm,fields:{id:{stringValue:id},...f}},updateTransforms:[T('createdAt'),T('updatedAt')],currentDocument:{exists:false}}]})})}catch(_){}}
+Object.assign(window,{vPdfTop,empId,fbPush});
 // === END PART 29 ===
 // === START PART 30 ===
 function vPdfMod(){const{isM,hTop}=vPdfTop();
@@ -712,7 +694,9 @@ return M0('max-w-2xl bg-[#04121d] border border-amber-500/40 overflow-hidden max
 }window.vPdfMod=vPdfMod;
 function aIn(ar=[['','',0]]){return ar.map(([k,l,v])=>("<div><i>"+(l)+"</i><input id=\"adm_"+(k)+"\" type=\""+(typeof v==='number'?'number':'text')+"\" step=\"0.01\" value=\""+
 (v)+"\" class=\"inp "+(typeof v==='number'?'fm':'')+"\"/></div>")).join('')}window.aIn=aIn;
-Object.assign(window,{vPdfMod,aIn});
+async function fbLoad(tk=''){if(!tk)return;try{const r=await fetch(FB_U+'/registered_employees?pageSize=300',{headers:{Authorization:'Bearer '+tk}});if(!r.ok){S.fbSt='⚠️ Admin Google account ആവശ്യമാണ്';u();return}const j=await r.json(),ds=(j.documents||[]).map((d={name:'',fields:{}})=>{const x=d.fields||{},s=(k='',df='')=>x[k]?.stringValue||df;return{id:d.name.split('/').pop(),name:s('name','User'),phone:s('phone','—'),token:s('token','—'),department:s('department','CSL'),category:s('category','permanent')}}),m=new Map();[...getRegUsrs().map(x=>({name:x.n,phone:x.p,token:x.t,department:x.d,category:'permanent'})),...ds].forEach(x=>{const k=empId(x);if(k)m.set(k,{...x,id:k})});const all=[...m.values()];S.usrs=all;localStorage.setItem('csl_registered_employees_v1',JSON.stringify(all));S.fbSt='✓ Cloud Synced ('+all.length+' പേർ)';u()}catch(_){S.fbSt='⚠️ നെറ്റ്‌വർക്ക് പിശക്';u()}}
+async function admCloud(){if(window._fbTk){S.fbSt='⏳ Syncing...';u();await fbLoad(window._fbTk);return}if(isWv()){const w=location.origin+location.pathname+'?admSync=1';S.fbSt='🌐 Chrome-ൽ തുറക്കുന്നു...';u();try{window.AppInventor?.setWebViewString?.(w)}catch(_){}location.href='intent://'+w.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;end';return}S.fbSt='⏳ Google Sign-In...';u();try{const b='https://www.gstatic.com/firebasejs/10.14.1/firebase-',[fa,au]=await Promise.all([import(b+'app.js'),import(b+'auth.js')]),ap=fa.getApps().length?fa.getApp():fa.initializeApp(FB_CFG),pr=new au.GoogleAuthProvider();pr.setCustomParameters({prompt:'select_account'});const cr=await au.signInWithPopup(au.getAuth(ap),pr);window._fbTk=await cr.user.getIdToken();await fbLoad(window._fbTk)}catch(e){S.fbSt='⚠️ '+(e?.code==='auth/popup-closed-by-user'?'Sign-In റദ്ദാക്കി':'Sign-In പരാജയപ്പെട്ടു');u()}}
+Object.assign(window,{vPdfMod,aIn,fbLoad,admCloud});
 // === END PART 30 ===
 // === START PART 31 ===
 function vAdmPre(){
@@ -721,12 +705,11 @@ const ex=S.exitMod?M0('max-w-sm bg-[#071d2c] border-cyan-400/60 p-5 text-center 
 if(S.waPrev)return nb+M0('max-w-md bg-[#041521] border-[#25D366] p-4 space-y-3',F('<b class="sm te">💬 WhatsApp സന്ദേശം റെഡിയാണ്!</b>'+B("set('waPrev','')",'bD','✕'),'bb')+S1('<b class="te">✓ സന്ദേശം Copy ചെയ്തു! Open WhatsApp അമർത്തി അയക്കാം:</b>')+'<pre class="sb tx fm whitespace-pre-wrap max-h-56 overflow-y-auto text-slate-200">'+S.waPrev+'</pre>'+D('g3',B("launchWa(S.waPrev)",'bt bg-[#25D366] text-slate-950 py-2.5 tx','🟢 Open WhatsApp')+B("sysShare(S.waPrev)",'bt bC py-2.5 tx','📲 System Share')+B("cpTx(S.waPrev);set('waPrev','')",'bt bE py-2.5 tx','📋 Copy')));
 if(S.pdfMod)return nb+vPdfMod();return{nb,ex,h:null};}
 function getRegUsrs(){const m=new Map();let l=[];try{l=JSON.parse(localStorage.getItem('csl_registered_employees_v1')||'[]')}catch(e){}[...(Array.isArray(l)?l:[]),...(S.usrs||[]),{name:S.name,phone:S.ph,token:S.tok,department:S.dep}].forEach((x={})=>{const n=x.name||x.nm||x.n||'',p=x.phone||x.ph||x.p||'',t=x.token||x.tk||x.t||'';if(n&&n!=='CSL Employee'||p)m.set((t||p||n).toLowerCase(),{n:n||'User',p:p||'—',t:t||'—',d:x.department||x.dp||x.d||'CSL'})});return[...m.values()]}
-function dlCsv(){trigDl('data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFFSL,Name,Phone,Code,Dept\n'+getRegUsrs().map((u,i)=>`${i+1},"${u.n}","${u.p}","${u.t}","${u.d}"`).join('\n')),'CSL_Users.csv')}
 function vAdmForm(a=DADM){const us=getRegUsrs();return(S.admSaved?S1('<b class="te">✓ അഡ്മിൻ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു!</b>'):'')+
-S1(F('<b class="tc">👥 ആപ്പ് ഉപയോഗിക്കുന്നവർ ('+us.length+')</b>'+L(B('dlCsv()','bD tx te','📥 CSV')+B("cpTx(getRegUsrs().map((u,i)=>(i+1)+'. '+u.n+' - '+u.p+' ('+u.t+')').join('\\n'))",'bD tx','📋 Copy')))+D('space-y-1 mt-1 max-h-40 overflow-y-auto',us.map((u,i)=>F(`<span><b>${i+1}. ${u.n}</b> <i class="tc">(${u.t}·${u.d})</i></span><a href="tel:${u.p}" class="te fm font-bold">📞 ${u.p}</a>`,'sb py-1 px-2 rx tx')).join('')),'border-cyan-400/50')+
+S1(F('<b class="tc">👥 ആപ്പ് ഉപയോഗിക്കുന്നവർ ('+us.length+')</b>'+L(B('admCloud()','bD tx ta','☁️ Sync')+B('dlCsv()','bD tx te','📥 CSV')+B("cpTx(getRegUsrs().map((u,i)=>(i+1)+'. '+u.n+' - '+u.p+' ('+u.t+')').join('\\n'))",'bD tx','📋 Copy')))+'<div class="tx ts mt-1">'+(S.fbSt||'മറ്റു ഫോണുകളിലെ ഉപയോക്താക്കളെ കാണാൻ ☁️ Sync അമർത്തുക')+'</div>'+D('space-y-1 mt-1 max-h-40 overflow-y-auto',us.map((u,i)=>F(`<span><b>${i+1}. ${u.n}</b> <i class="tc">(${u.t}·${u.d})</i></span><a href="tel:${u.p}" class="te fm font-bold">📞 ${u.p}</a>`,'sb py-1 px-2 rx tx')).join('')),'border-cyan-400/50')+
 [['tc','1. നിരക്കുകളും ഫോർമുലകളും','g4',[['da','DA %',a.da],['hra','HRA %',a.hra],['epf','EPF %',a.epf],['div','OT Div',a.div]],''],['te','2. സ്റ്റാൻഡേർഡ് വേതനങ്ങൾ (₹)','g3',[['wd','Work Dress',a.wd],['tpa','TPA',a.tpa],['ml','Meal Sub',a.ml],['mk','Milk',a.mk],['lta','LTA',a.lta],['bf','BF Milk',a.bf]],''],['tr0','3. സ്റ്റാൻഡേർഡ് പിടുത്തങ്ങൾ (₹)','g3',[['lwf','LWF',a.lwf],['sep','SEPPY',a.sep],['fst','Fest Adv',a.fst],['rec','Rec Adv',a.rec],['sch','School',a.sch],['cnt','Canteen',a.cnt],['csm','CSMPWT',a.csm],['clb','Club',a.clb],['lic','LIC 1',a.lic]],''],['ta','4. കോൺട്രാക്ട് PF & OT നിയന്ത്രണം','g2',[['cPf','Contract PF (₹)',a.cPf],['cPfN','PF Note',a.cPfN],['cOtR','OT Rate/Hr (₹)',a.cOtR],['cOtN','OT Note',a.cOtN]],'border-amber-500/40']].map(([c,t,g,ar,b])=>S1(`<b class="${c} block mb-1">${t}</b>`+D(String(g),aIn(ar)),String(b))).join('')+
 D('g3 pt-1',B('svAdm()','bt bC py-2.5','💾 Save')+B('rstAdm()','bt sb py-2.5','↺ Reset')+B("set('admAuth',0)",'bt bg-rose-950 tr0 py-2.5','🔒 Lock'));}
-Object.assign(window,{vAdmPre,getRegUsrs,dlCsv,vAdmForm});
+Object.assign(window,{vAdmPre,getRegUsrs,vAdmForm});
 // === END PART 31 ===
 // === START PART 32 ===
 function vAdmMod(){const r=vAdmPre();if(typeof r==="string")return r;const{nb,ex}=r;if(!S.admOpen)return nb+ex;const a=S.adm||DADM,cy="bg-cyan-950 border border-cyan-500/40",cl="S.admOpen=0;u()";
@@ -736,7 +719,6 @@ D("p-4 overflow-y-auto space-y-3 flex-1",!S.admAuth?D("text-center space-y-3 py-
 L(`<input id="admPw" type="${S.shPw?"text":"password"}" placeholder="••••" onkeydown="event.key==='Enter'&&chkAdmPw()" class="inp text-center fm lg"/>`+B("S.shPw^=1;u()","bD py-2",S.shPw?"🙈":"👁️"))+(S.admErr?`<div class="tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx">${S.admErr}</div>`:"")+
 D("g2 pt-2",B("chkAdmPw()","bt bC py-2.5","🔑 Unlock")+B(cl,"bt sb py-2.5","Cancel"))):vAdmForm(a)));}
 const aV=(k="")=>""+(H(k)?.value||""),R0=Math.round;
-async function syncUsrs(){try{const e=(await(await fetch("https://ais-pre-7vxn3xo667ap2qpse3fx57-659952209169.asia-east1.run.app/api/registered-employees",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({employees:getRegUsrs().map(x=>({name:x.n,phone:x.p,token:x.t,department:x.d}))})})).json())?.employees;if(e?.length){S.usrs=e;localStorage.setItem("csl_registered_employees_v1",JSON.stringify(e));S.admOpen&&u()}}catch(e){}}
 function chkAdmPw(){if(["472544",S.adm?.pass].includes(aV("admPw").trim())){S.admAuth=1;S.admErr="";u();syncUsrs()}else{S.admErr="തെറ്റായ പാസ്സ്‌വേർഡ്!";u()}}
 function svAdm(){const n={...DADM,...S.adm};for(const[k,v]of Object.entries(DADM))if(typeof v==="number")n[k]=+(aV("adm_"+k)||v);n.cPfN=aV("adm_cPfN")||n.cPfN;n.cOtN=aV("adm_cOtN")||n.cOtN;S.adm=n;S.admSaved=1;u();setTimeout(()=>{S.admSaved=0;u()},2e3)}
 function rstAdm(){S.adm={...DADM};S.admSaved=1;u()}
@@ -744,7 +726,9 @@ function setSlip(b=23880,da=54.1,ot=0,hr=0,pk=0,pf=0,nt=0){const b0=R0(+b||23880
 function syncTaxSal(bOvr=0){const s=S.sal,a=S.adm||DADM,b=+bOvr||+s.b||+S.txI.b||23880,d=1+a.da/100;setSlip(b,a.da,+(s.otH||cycOT(s.cycM??curCycM()))*(b*d/(a.div||198)*2),b*a.hra/100,b*.32,b*d*a.epf/100)}
 function parseTxt(tx=""){const s0=tx.replace(/,/g,""),dP=+(s0.match(/(?:DA|VDA|DEARNESS).{0,25}?(\d{2}(?:\.\d+)?)\s*%/i)?.[1]||0),s=s0.replace(/\d+(?:\.\d+)?\s*(?:%|hrs?\b|days?\b)/gi," "),nm=(r=/x/)=>+(s.match(new RegExp(`(?:${r.source}).{0,35}?([1-9]\\d{2,6}(?:\\.\\d+)?)`,"i"))?.[1]||0),b=nm(/BASIC|BAS[I1L]C|\bB\.?P\.?\b/)||+(s.match(/\b([1-6]\d{4}(?:\.\d+)?)\b/)?.[1]||0);if(b<5e3)return 0;const dA=nm(/DEARNESS|\bVDA\b|\bIDA\b|\bDA\b/),da=dP||(dA>999&&dA<b?R0(dA/b*1e3)/10:+(S.adm?.da||54.1));let ot=0;for(const m of s.matchAll(/(?:OVERTIME|B\/?F\s*OT|\bOT\b).{0,30}?([1-9]\d{2,5}(?:\.\d+)?)/gi))ot+=+m[1];const hr=nm(/RENT|\bHRA\b/),gr=nm(/GROSS|TOTAL\s*EARN/);setSlip(b,da,ot,hr,gr>b?Math.max(0,R0(gr-b-b*da/100-hr-ot)):0,nm(/PROVID|\bE?PF\b/),nm(/NET\s*(?:PAY|SAL)|TAKE\s*HOME/));return 1}
 function upSlip(el={}){const f=el?.files?.[0];if(!f)return;S.slipNm=f.name||"Slip.pdf";S.slipOpen=0;S.slipUrl="loading";const r=new FileReader();r.onload=()=>window.prsSlip?.(""+(r.result||""));r.readAsDataURL(f);u()}
-Object.assign(window,{vAdmMod,syncUsrs,chkAdmPw,svAdm,rstAdm,syncTaxSal,setSlip,parseTxt,upSlip});
+async function syncUsrs(){try{if(location.search.includes('admSync=1')&&!window._admA){window._admA=1;S.admOpen=1;u()}for(const x of getRegUsrs())await fbPush({n:x.n,p:x.p,t:x.t,d:x.d,cat:S.cat});if(window._fbTk)await fbLoad(window._fbTk)}catch(_){}}
+function dlCsv(){trigDl('data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFFSL,Name,Phone,Code,Dept\n'+getRegUsrs().map((u,i)=>`${i+1},"${u.n}","${u.p}","${u.t}","${u.d}"`).join('\n')),'CSL_Users.csv')}
+Object.assign(window,{syncUsrs,dlCsv,vAdmMod,chkAdmPw,svAdm,rstAdm,syncTaxSal,setSlip,parseTxt,upSlip});
 // === END PART 32 ===
 // === START PART 33 ===
 function apSlip(){const bp=+(H('slBp')?.value||S.txI.b||25340),da=+(H('slDa')?.value||S.txI.da||54.1),mOt=+(H('slOt')?.value||0),mHr=+(H('slHr')?.value||Math.round(bp*.2)),
