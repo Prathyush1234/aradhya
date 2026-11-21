@@ -272,15 +272,17 @@ function vCal0(){const m=S.cM,ml=S.lang==='ml',mc=MC[m]||MC[10],dim=new Date(202
 rot=S.sh==='A2'||S.sh==='B2';
 let pCnt=0,lCnt=0,c='<div></div>'.repeat(fd);
 for(let d=1;d<=dim;d++){
-const r=S.att[(""+(p)+(P(d)))],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),hol=HOLS.some(h=>h[0]===m&&h[1]===d),sOff=w===6&&((d>7&&d<15)||(d>21&&d<29)),off=w<1||sOff||hol;
+const r=S.att[(""+(p)+(P(d)))],st0=r?.s,ot=+r?.ot||0,w=new Date(2026,m,d).getDay(),hol=HOLS.some(h=>h[0]===m&&h[1]===d),sOff=w===6&&((d>7&&d<15)||(d>21&&d<29)),off=w<1||sOff||hol,past=m<tM()||(m===tM()&&d<tD());
+const isHd=/Half/i.test(r?.dur||'')||/First Half|Second Half/i.test(r?.nt||''),isAn=/AN|Second Half/i.test((r?.dur||'')+(r?.nt||''));
 if(st0==='P'||st0==='On Duty')pCnt++;else if(st0&&st0!=='WO')lCnt++;
-const sh=r?.sh||(off?'':rot?daySh(m,d):''),dim0=(S.cFlt==='duty'&&st0!=='P'&&st0!=='On Duty')||(S.cFlt==='leaves'&&(!st0||st0==='P'||st0==='On Duty'))||(S.cFlt==='holidays'&&!off)?'opacity-25':'';
-const bg=st0==='P'||st0==='On Duty'?'bg-[#86efac] text-emerald-950 border border-emerald-400':st0?'bA':off?'bg-rose-950/45 tr0 border border-rose-800/40':'bg-[#082235]/80 text-slate-200'+
+const sh=rot&&!past&&!off?(r?.sh||daySh(m,d)):'',dim0=(S.cFlt==='duty'&&st0!=='P'&&st0!=='On Duty'&&!isHd)||(S.cFlt==='leaves'&&!isHd&&(!st0||st0==='P'||st0==='On Duty'))||(S.cFlt==='holidays'&&!off)?'opacity-25':'';
+const lc=st0==='EL'?'#2dd4bf':st0==='ML'?'#fb7185':st0==='HPL'?'#a5b4fc':st0==='SCL'?'#d8b4fe':'#fcd34d';
+const bg=isHd?(isAn?("bg-[linear-gradient(90deg,#86efac_50%,"+(lc)+"_50%)]"):("bg-[linear-gradient(90deg,"+(lc)+"_50%,#86efac_50%)]"))+' text-slate-950 font-black border border-emerald-400':st0==='P'||st0==='On Duty'?'bg-[#86efac] text-emerald-950 border border-emerald-400':st0?'bA':off?'bg-rose-950/45 tr0 border border-rose-800/40':'bg-[#082235]/80 text-slate-200'+
 ' border border-[#0e3046]';
 c+=D(("min-h-[48px] p-1 rx "+(bg)+" "+(dim0)+" "+(S.sD===d?'ring-2 ring-cyan-400 scale-105 z-10':m===tM()&&d===tD()?'ring-2 ring-amber-400':'')+" fc flex-col relative"),
 ("<b class=\"sm\">"+(d)+(m===tM()&&d===tD()?'<span class="text-[7px] tc ml-0.5">●</span>':'')+"</b>")+((st0==='P'||st0==='On Duty')&&ot?("<span class=\"text-[7px] bg-amber-400 text-slat"+
-"e-950 px-1 rounded fm font-black mt-0.5\">⚡"+(ot)+"h OT</span>"):st0&&st0!=='P'&&st0!=='On Duty'?("<span class=\"text-[7.5px] font-black mt-0.5\">"+(st0)+
-(r?.dur?.includes('Half')?'½':'')+"</span>"):sh?("<span class=\"text-[7px] fm px-1 rounded mt-0.5 "+(sh==='A2'?'ta bg-amber-950/60':'tc bg-cyan-950/60')+
+"e-950 px-1 rounded fm font-black mt-0.5\">⚡"+(ot)+"h OT</span>"):isHd?("<span class=\"text-[7.5px] font-black mt-0.5 bg-slate-950/15 px-1 rounded\">"+(st0&&st0!=='P'&&st0!=='On Duty'?st0:'HD')+
+"½</span>"):st0&&st0!=='P'&&st0!=='On Duty'?("<span class=\"text-[7.5px] font-black mt-0.5\">"+(st0)+"</span>"):sh?("<span class=\"text-[7px] fm px-1 rounded mt-0.5 "+((st0==='P'||st0==='On Duty')?'bg-emerald-950/25 text-emerald-950':sh==='A2'?'ta bg-amber-950/60':'tc bg-cyan-950/60')+
 "\">"+(sh)+"</span>"):''),("S.sD="+(d)+";u()"));
 }
 const q=S.lvQ||{},clT=totLv('CL'),wkTxt=rec.wk||'Building Dock Yard Work & Fabrication',ntTxt=rec.nt||'',dSh=rec.sh||(sW<1?'C1':daySh(m,S.sD||tD())),sd=SH[dSh]||SH.A2;
@@ -297,7 +299,7 @@ C(L(B(("set('cM',"+((m+11)%12)+")"),'bD','◀')+B(("set('cM',"+((m+1)%12)+")"),'
 S1(("<span>Days: <b>"+(dim)+"</b></span><span>Working: <s>"+(mc[3])+"</s></span><span>Duty: <s>"+(pCnt)+"</s></span><span>Leaves: <em>"+(lCnt)+"</em></span><span>Offs: <b class=\"tr0\">"+
 "6</b></span><span onclick=\"set('cTab','holidays')\" class=\"tr0\">Holidays: <b>"+(mHols.length)+"/12 ↗</b></span>"),'fb tx m2 flex-wrap')+
 F(L([['all',("All ("+(dim)+")")],['duty',("Duty ("+(pCnt)+")")],['leaves',("Leaves ("+(lCnt)+")")],['holidays','Offs & Holidays']].map(([k,l])=>B(("set('cFlt','"+
-(k)+"')"),("px-2.5 py-1 rx tx "+(S.cFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),l)).join(''))+L('<span class="te tx">●Duty</span><span class="ta tx">●CL</span><span class'+
+(k)+"')"),("px-2.5 py-1 rx tx "+(S.cFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),l)).join(''))+L('<span class="te tx">●Duty</span><span class="inline-flex items-center gap-0.5 tx te"><i class="w-2 h-2 rf inline-block bg-[linear-gradient(90deg,#86efac_50%,#fcd34d_50%)]"></i>Half</span><span class="ta tx">●CL</span><span class'+
 '="tc tx">●EL/HPL</span><span class="tr0 tx">●Holiday</span><span class="bA px-1 rounded text-[9px] fm">⚡OT</span>'),'m2 flex-wrap')+
 C(D('g7 text-center tx tc mb-1.5','SUN,MON,TUE,WED,THU,FRI,SAT'.split(',').map((d,i)=>("<b class=\""+(i?'':'tr0')+"\">"+(d)+"</b>")).join(''))+D('g7',c));}
 Object.assign(window,{vCal1});
@@ -526,7 +528,7 @@ function goWa(msg='CSL OT'){if(navigator.share){navigator.share({text:msg}).catc
 msg);launchWa(msg)}});return}cpTx(msg);set('waPrev',msg);launchWa(msg)}
 function sendWaMod(){
 const sh=H('wSh')?.value||S.sh,tm=H('wTm')?.value||nTm(),ot=+(H('wOt')?.value||S.waOt||1),dt=H('wDt')?.value||("2026-"+(P(S.cM+1))+"-"+(P(S.sD||tD()))),isOut=S.waSes==='Second Half'||S.waTp==='OUT';
-S.sh=sh;S.att[dt]={...(S.att[dt]||{}),s:'P',sh,in:S.waCat==='full_day_ot'?SH[sh][1]:(isOut?SH[sh][1]:tm),out:S.waCat==='full_day_ot'||isOut?tm:SH[sh][2],
+S.sh=sh;S.att[dt]={...(S.att[dt]||{}),s:'P',sh,dur:S.waCat==='full_day_ot'?'':(isOut?'Half Day (AN)':'Half Day (FN)'),in:S.waCat==='full_day_ot'?SH[sh][1]:(isOut?SH[sh][1]:tm),out:S.waCat==='full_day_ot'||isOut?tm:SH[sh][2],
 ot:S.waCat==='full_day_ot'?ot:0,nt:S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(""+(isOut?'Second Half':'First Half')+" ("+(isOut?'out':'In')+
 " punch @ "+(tm)+")")};
 const msg=S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(isOut?("out punch @ "+(tm)):("In punch @ "+(tm)));
