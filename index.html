@@ -143,7 +143,7 @@ Object.assign(window,{gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,curCycM,otCyc,curQ,DADM
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
 function navPush(v='attendance'){try{window._ignHash=1;history.pushState({v},'','#'+v+'_'+(window._hSeq=(window._hSeq||0)+1));setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
 function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;S.navOpen=0;S.navSec='';S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
-function mOT(m=0){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
+function mOT(m=0){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot||/^(CL|EL|ML|HPL|SCL|SPL)$/.test(v.s||''))continue;const[y,mn,dy]=k.split('-').map(Number);if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:(""+
 (MN[c[2]])+"–"+(MN[c[4]])+" 2026"),m,u:u0,rem:Math.max(0,S.qCap-u0)}}
 function lvCnt(t=''){return Object.values(S.att).filter(v=>v.s===t||(t==='SCL'&&v.s==='SPL')).reduce((a,v)=>a+(/Half|0\.5|Forenoon|Afternoon|\(FN\)|\(AN\)/i.test((v.dur||'')+' '+(v.nt||''))?.5:1),0)}
@@ -348,7 +348,7 @@ C(F('<b class="sm">💼 സി.എസ്.എൽ അവൈലബിൾ ലീവ�
 [['CL',clT,lvCnt('CL'),'ta'],['EL',totLv('EL'),lvCnt('EL')+lvCnt('ML'),'te'],['ML','EL',lvCnt('ML'),'tr0'],['HPL',totLv('HPL'),lvCnt('HPL'),'tc'],['SCL',
 totLv('SCL'),lvCnt('SCL'),'ta']].map(([k,tot,us,c0])=>S1(("<b class=\""+(c0)+"\">"+(tot==='EL'?'From EL':avlLv(String(k))+'d Avl')+"</b><div><i>"+(k)+
 " ("+(tot==='EL'?'EL':tot+'d')+")</i></div><div class=\"text-[8px] "+(c0)+"\">Used:"+(us)+"d</div>"))).join(''))):'')+C(L(("<div class=\"av\">"+((S.name||'C')[0])+"</div><b>"+(S.name||'New CSL Employee')+"</b><u>(Code "+(S.tok||'—')+")</u>"),'m2')+L([["set('cTab','wall');scrollTo(0,0)",
-'bA','📅 Calendar'],["go('attendance')",'bE','📋 Attendance'],["go('salary')",'bD','₹ Salary'],["go('signin')",'bD','✏️ Edit Profile'],["S.dlMsg='';S.dlUrl='';set('pdfMod','ot')",
+'bA','📅 Calendar'],["go('attendance')",'bE','📋 Attendance'],["go('salary')",'bD','₹ Salary'],["go('signin')",'bD','✏️ Edit Profile'],["launchWa(oTx(otCyc(S.cM)))",'bg-emerald-600 text-white','💬 WhatsApp Text'],["S.dlMsg='';S.dlUrl='';set('pdfMod','ot')",
 'bA','⬇️ Next month OT details download PDF'],["S.dlMsg='';S.dlUrl='';set('pdfMod','mon')",'bD','📄 Monthly Details PDF']].map(([o,cl,l])=>B(o,'bt '+cl,
 l)).join(''),'flex-wrap'))+
 gBox('ഔദ്യോഗിക സി.എസ്.എൽ പെർമനന്റ് എംപ്ലോയി കലണ്ടർ · ഷിപ്പ്‌യാർഡ് ഷിഫ്റ്റുകൾ, ഗസറ്റഡ് അവധികൾ & ബയോമെട്രിക് ഹാജർ വിവരങ്ങൾ.')+
@@ -453,7 +453,7 @@ Object.assign(window,{vAtt4,vAtt,mBox});
 // === END PART 20 ===
 // === START PART 21 ===
 function t2m(s=''){const m=String(s).match(/(\d+):(\d+)(?::\d+)?\s*(AM|PM)?/i);if(!m)return 0;let h=+m[1],ap=(m[3]||'').toUpperCase();if(ap)h=h%12+(ap==='PM'?12:0);return h*60+ +m[2]}
-function calcOt(sh=S.sh,tm=nTm(),m0=1){const e=t2m(SH[sh]?.[2]||'04:20 PM');let o=t2m(tm);if(!o)return m0;if(o<e-120)o+=1440;const d=o-e;return d>=55?Math.floor((d+5)/60):m0}
+function calcOt(sh=S.sh,tm=nTm(),m0=1){const e=t2m(SH[sh]?.[2]||'04:20 PM');let o=t2m(tm);if(!o)return m0;if(o<360&&e>=900)o+=1440;const d=o-e;return d>=55?Math.min(12,Math.floor((d+5)/60)):m0}
 function uPOt(){if(H('pOt'))H('pOt').value=calcOt(H('pSh')?.value||S.sh,H('pOut')?.value||nTm(),0)}
 function vAttMod1(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02']){return (S.aMod==='punch'?mBox(("🕒 Duty Punch & Overtime ("+(P(S.sD))+" "+(MN[m])+" 2026)"),
 D('g5 my-2',Object.keys(SH).map(s=>B(("H('pSh').value='"+(s)+"';H('pIn').value='"+(SH[s][1])+"';H('pOut').value='"+(SH[s][2])+"';H('pOt').value=0"),'bD tx',("Shift "+(s)+" ("+(SH[s][1])+")"))).join(''))+
@@ -513,10 +513,10 @@ S.sh=sh;if(dt===tKey()){if(isO||isOt)S.pSt='out';else{S.pSt='in';S.pInT=tm;S.pIn
 S.att[dt]={...pr,s:isOt?'P':(/^(CL|EL|ML|HPL|SCL)$/.test(pr.s||'')?pr.s:'CL'),sh,dur:isOt?'':(isO?'Half Day (AN)':'Half Day (FN)'),in:isOt||isO?(ok(pr.in)||SH[sh][1]):tm,out:isOt||isO?tm:(ok(pr.out)||SH[sh][2]),ot:isOt?ot:0,nt:isOt?`${ot}h OT Out @ ${tm}`:`${isO?'Afternoon Leave (Out':'Forenoon Leave (In'} @ ${tm})`};
 S.aMod='';u();goWa(waTxt(S.waCat,isO?'Second Half':'First Half',ot,tm));
 }
-function cycOT(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);
+function cycOT(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot||/^(CL|EL|ML|HPL|SCL|SPL)$/.test(v.s||''))continue;const[y,mn,dy]=k.split('-').map(Number);
 if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
 function otRows(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026,pC=("2026-"+(P(m+1))+"-"),pP=(""+(py)+"-"+(P(pm+1))+"-");return Object.entries(S.att).filter(([k,
-v])=>+v.ot>0&&((k.startsWith(pC)&&+k.split('-')[2]<=19)||(k.startsWith(pP)&&+k.split('-')[2]>=20))).sort(([a],[b])=>a.localeCompare(b)).map(([dt,v],i)=>{const[y,mn,dy]=dt.split('-').map(Number),
+v])=>+v.ot>0&&!/^(CL|EL|ML|HPL|SCL|SPL)$/.test(v.s||'')&&((k.startsWith(pC)&&+k.split('-')[2]<=19)||(k.startsWith(pP)&&+k.split('-')[2]>=20))).sort(([a],[b])=>a.localeCompare(b)).map(([dt,v],i)=>{const[y,mn,dy]=dt.split('-').map(Number),
 w=new Date(y,mn-1,dy).getDay(),sh=v.sh||'A2';return{sl:i+1,dt,fDt:fD(dt),day:WDF[w],sh,in:v.in||SH[sh]?.[1]||'07:00 AM',out:v.out||SH[sh]?.[2]||'05:20 PM',
 ot:+v.ot,nt:v.nt||v.wk||'Overtime Duty'}})}
 const pR=(s='',n=2)=>String(s).slice(0,n).padEnd(n,' '),pL=(s='',n=2)=>String(s).slice(0,n).padStart(n,' ');
@@ -660,19 +660,9 @@ Object.assign(window,{uSal,clrSal,vSal,M0});
 // === END PART 28 ===
 // === START PART 29 ===
 function vPdfTop(){const m=S.cM,om=otCyc(m),pm=(om+11)%12,mD=mRows(m),{isM,dUrl}=pDoc(m);
-const h1=("<div class=\"fb px-4 sm:px-6 py-3 border-b border-[#0f354c] bg-[#061825]\"><div class=\"fl gap-2.5 min-w-0\"><div class=\"w-8 h-8 rounded-xl bg-amber-500/20 border border-amb"+
-"er-500/40 fc text-amber-400 shrink-0\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\"><circle cx=\"12\" cy=\"12\" r=\"1"+
-"0\"/><path d=\"M12 6v6l4 2\"/></svg></div><div class=\"min-w-0\"><h3 class=\"font-extrabold text-white text-sm sm:text-base truncate\">"+(isM?(""+(MN[m])+
-" 2026 Monthly Attendance Register"):'Next Month OT Details Register')+"</h3><p class=\"text-[10px] text-amber-300 font-mono\">"+(isM?("Present: "+(mD.pC)+
-"d · Leaves: "+(mD.lC)+"d · Offs: "+(mD.oC)+"d · OT: "+(mD.otT.toFixed(1))+"h"):("Payable in: "+(MN[om].toUpperCase())+" 2026 · Cycle: 20 "+(MN[pm].slice(0,3))+
-" - 19 "+(MN[om].slice(0,3))+" 2026"))+"</p></div></div><button onclick=\"S.dlMsg='';S.dlUrl='';S.dlNotif=null;set('pdfMod','')\" class=\"w-8 h-8 rounded-full bg-[#092a3a] fc text-slate-300 shri"+
-"nk-0\">✕</button></div>");
-const h2=S.dlMsg?("<div class=\"px-4 py-2.5 bg-emerald-950/95 border-b border-emerald-500/60 text-emerald-200 text-xs fb gap-2 flex-wrap\"><div class=\"fl gap-2\"><span class=\"text-eme"+
-"rald-400 font-bold\">✓</span><span class=\"font-bold text-emerald-300\">"+(S.dlMsg)+"</span></div><div class=\"fl gap-2 flex-wrap\">"+(S.dlUrl?B(S.dlFn?.endsWith('.pdf')?'dlPdf()':'dlO'+
-'()','px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-black text-[11px]','⬇ Save File'):'')+"<button onclick=\"S.dlMsg='';u()\" class=\"text-emerald-400 text-[10px] uppercase "+
-"font-bold\">OK</button></div></div>"):'';
-const h3=("<div class=\"flex-1 overflow-y-auto p-3 sm:p-5 bg-slate-900/60\"><div id=\"otPrn\" class=\"bg-white text-slate-900 rounded-xl p-3 sm:p-4 shadow-2xl border border-slate-300 ma"+
-"x-w-2xl mx-auto\"><img src=\""+(dUrl)+"\" alt=\"CSL Sheet\" class=\"w-full h-auto rounded border border-slate-200\"/></div></div>");
+const h1=`<div class="fb px-4 sm:px-6 py-3 border-b border-[#0f354c] bg-[#061825]"><div class="fl gap-2.5 min-w-0"><div class="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-500/40 fc text-amber-400 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="min-w-0"><h3 class="font-extrabold text-white text-sm sm:text-base truncate">${isM?MN[m]+' 2026 Monthly Attendance Register':'Next Month OT Details Register'}</h3><p class="text-[10px] text-amber-300 font-mono">${isM?`Present: ${mD.pC}d · Leaves: ${mD.lC}d · Offs: ${mD.oC}d · OT: ${mD.otT.toFixed(1)}h`:`Payable in: ${MN[om].toUpperCase()} 2026 · Cycle: 20 ${MN[pm].slice(0,3)} - 19 ${MN[om].slice(0,3)} 2026`}</p>${!isM?L(B(`set('cM',${(m+11)%12})`,'px-1.5 py-0.5 rx sb tx ta','◀ '+MN[(m+11)%12].slice(0,3))+B(`set('cM',${(m+1)%12})`,'px-1.5 py-0.5 rx sb tx tc',MN[(m+1)%12].slice(0,3)+' ▶'),'mt-1'):''}</div></div><button onclick="S.dlMsg='';S.dlUrl='';S.dlNotif=null;set('pdfMod','')" class="w-8 h-8 rounded-full bg-[#092a3a] fc text-slate-300 shrink-0">✕</button></div>`;
+const h2=S.dlMsg?`<div class="px-4 py-2.5 bg-emerald-950/95 border-b border-emerald-500/60 text-emerald-200 text-xs fb gap-2 flex-wrap"><div class="fl gap-2"><span class="text-emerald-400 font-bold">✓</span><span class="font-bold text-emerald-300">${S.dlMsg}</span></div><div class="fl gap-2 flex-wrap">${S.dlUrl?B(S.dlFn?.endsWith('.pdf')?'dlPdf()':'dlO()','px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-black text-[11px]','⬇ Save File'):''}<button onclick="S.dlMsg='';u()" class="text-emerald-400 text-[10px] uppercase font-bold">OK</button></div></div>`:'';
+const h3=`<div class="flex-1 overflow-y-auto p-3 sm:p-5 bg-slate-900/60"><div id="otPrn" class="bg-white text-slate-900 rounded-xl p-3 sm:p-4 shadow-2xl border border-slate-300 max-w-2xl mx-auto"><img src="${dUrl}" alt="CSL Sheet" class="w-full h-auto rounded border border-slate-200"/></div></div>`;
 return(window._vp={isM,hTop:h1+h2+h3});}
 const FB_CFG={apiKey:'AIzaSyBuLh50fs7h6VTu5S7mdXKsgM88OzQQgCw',authDomain:'vertical-kayak-488204-e7.firebaseapp.com',projectId:'vertical-kayak-488204-e7',appId:'1:1053548704763:web:87b0c70e8e1ab49333515e'},FB_DB='projects/vertical-kayak-488204-e7/databases/ai-studio-mycslcochinshipy-e3ae9123-fcc4-40db-8364-af8bcb9a99d9/documents',FB_U='https://firestore.googleapis.com/v1/'+FB_DB;
 function empId(u={}){const t=String(u.t||u.token||'').trim(),p=String(u.p||u.phone||'').trim(),n=String(u.n||u.name||'').trim(),r=t&&t!=='—'?'tk_'+t:p&&p!=='—'?'ph_'+p:n&&n!=='CSL Employee'?'nm_'+n:'';return r?r.toLowerCase().replace(/[^a-z0-9_-]+/g,'_').replace(/^_+|_+$/g,'').slice(0,128):''}
