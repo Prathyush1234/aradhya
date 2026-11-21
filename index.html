@@ -128,38 +128,22 @@ const empC=(bdg='',sub='')=>C(L(("<div class=\"av\">"+((S.name||'C')[0])+"</div>
 Object.assign(window,{LOGO,fD,R,R2,H,P,D,B,C,S1,F,L,st,ip,sl,rw,sc,brand,pg,rc,empC});
 // === END PART 5 ===
 // === START PART 6 ===
-const gBox=(t='')=>C(("<s>✓</s><i>"+(t)+"</i>"),'bg-[#06242a]/85 fl border-[#0f4b55]');
-const hd=(k='',t='',s='')=>D('m2',("<div class=\"fl\"><span class=\"w-5 h-0.5 bg-amber-500 rf\"></span><em>"+(k)+"</em></div><h2 class=\"text-2xl mt-0.5\">"+(t)+"</h2><i>"+(s)+"</i>"));
-const ist=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'})),nTm=()=>{const n=ist(),h=n.getHours();return(""+(P(h%12||12))+":"+
-(P(n.getMinutes()))+":"+(P(n.getSeconds()))+" "+(h>=12?'PM':'AM'))};
-const nDT=()=>{const n=ist(),h=n.getHours();return(""+(P(n.getDate()))+"/"+(P(n.getMonth()+1))+"/"+(n.getFullYear())+", "+(P(h%12||12))+":"+(P(n.getMinutes()))+
-" "+(h>=12?'PM':'AM'))},tD=()=>ist().getDate(),tM=()=>ist().getMonth(),tKey=()=>("2026-"+(P(tM()+1))+"-"+(P(tD()))),wkI=(m=0,d=1)=>Math.floor((Date.UTC(2026,
-m,d)-Date.UTC(2026,0,4))/6048e5);
-const DADM={da:54.1,hra:20,epf:12,div:198,wd:500,tpa:2400,ml:220,mk:107.25,lta:13335,bf:41.25,lwf:45,sep:600,fst:1500,rec:3000,sch:1500,cnt:150,csm:100,
-clb:50,lic:1499,cPf:0,cPfN:'Admin Solved (Formula pending)',cOtR:0,cOtN:'Custom contract OT cash calculation model',pass:'472544'};
-let S={view:'front',initDone:0,uSigned:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFlt:'all',hFlt:'all',sD:tD(),lastDt:tKey(),lvDur:'Full Day',lvOpen:0,
-wOpen:0,nOpen:0,aFlt:'ALL',aMod:'',pdfMod:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,admAuth:0,admErr:'',admSaved:0,shPw:0,
-exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'spend',
-lnTp:'none',lns:[],slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},gl:{ln:'',rt:9,mo:12,emi:'',ex:''},dfP:null,name:'',
-tok:'',ph:'',dep:'',doj:'',sh:'A2',qCap:120,qCyc:3,cM:tM(),lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},adm:{...DADM},att:{},sal:{b:'',otH:'',tgt:25,
-cycM:10,allCyc:0,da:54.1,hr:20,pr:32,otR:0,pf:0,uTyped2:0},txI:{b:0,da:54.1,otA:0,hraA:0,rentA:0,prkA:0,bonA:0,c80:0,nps1B:0,nps2:0,medS:0,medP:0,srP:0,
-hlInt:0,savI:0,fdI:0,hpI:0},bks:[],cds:[],txs:[]};
-try{const sv=localStorage.getItem(K);if(sv){const p=JSON.parse(sv);if(p?.uSigned&&p?.name?.trim()){const q0=p.lvQ?.uSaved?p.lvQ:{cl1:6,cl2:6,hpl:20,el:30,
-scl:15,uSaved:1},ps=p.sal||{},c0=(p.cds||[]).map((c={})=>({...c,tp:c.tp||(/visa/i.test(c.b||'')?'VISA':'RuPay UPI')})),x0=(p.txs||[]).map((x={})=>({...x,
-bk:x.bk||'needs'}));S={...S,...p,initDone:1,uSigned:1,view:'attendance',aMod:'',pdfMod:'',cTm:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,
-admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,lns:Array.isArray(p.lns)?p.lns:[],hl:{...S.hl,...(p.hl||{})},pl:{...S.pl,...(p.pl||{})},gl:{...S.gl,...(p.gl||{})},adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,
-b:ps.uTyped2?ps.b:'',otH:ps.uTyped2?ps.otH:''},txI:{...S.txI,...(p.txI||{})}}}else{localStorage.removeItem(K)}}}catch(e){}S.cM=tM();S.sD=tD();S.lastDt=tKey();
-const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};if(window.render)window.render()},set=(k='',v='')=>{S[k]=v;u()},openAdm=()=>{S.admOpen=1;
-S.admAuth=0;S.admErr='';u()},daySh=(m=S.cM,d=S.sD)=>{const r=S.att[("2026-"+(P(m+1))+"-"+(P(d)))];if(r?.sh)return r.sh;if(S.sh!=='A2'&&S.sh!=='B2')return S.sh;
-return Math.abs(wkI(m,d)-wkI(tM(),tD()))%2?(S.sh==='A2'?'B2':'A2'):S.sh},setSh=(k='A2')=>{S.sh=k;[tKey(),("2026-"+(P(S.cM+1))+"-"+(P(S.sD||tD())))].forEach(d0=>{if(S.att[d0]&&(S.att[d0].s==='P'||S.att[d0].s==='O'+
-'n Duty')){S.att[d0].sh=k;S.att[d0].in=SH[k][1];if(S.att[d0].s==='P'&&!S.att[d0].ot)S.att[d0].out=SH[k][2]}});u()};
-Object.assign(window,{gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,DADM,S,u,set,openAdm,daySh,setSh});
+const gBox=(t='')=>C(`<s>✓</s><i>${t}</i>`,'bg-[#06242a]/85 fl border-[#0f4b55]');
+const hd=(k='',t='',s='')=>D('m2',`<div class="fl"><span class="w-5 h-0.5 bg-amber-500 rf"></span><em>${k}</em></div><h2 class="text-2xl mt-0.5">${t}</h2><i>${s}</i>`);
+const ist=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'})),nTm=()=>{const n=ist(),h=n.getHours();return`${P(h%12||12)}:${P(n.getMinutes())}:${P(n.getSeconds())} ${h>=12?'PM':'AM'}`};
+const nDT=()=>{const n=ist(),h=n.getHours();return`${P(n.getDate())}/${P(n.getMonth()+1)}/${n.getFullYear()}, ${P(h%12||12)}:${P(n.getMinutes())} ${h>=12?'PM':'AM'}`},tD=()=>ist().getDate(),tM=()=>ist().getMonth(),tKey=()=>`2026-${P(tM()+1)}-${P(tD())}`,wkI=(m=0,d=1)=>Math.floor((Date.UTC(2026,m,d)-Date.UTC(2026,0,4))/6048e5);
+const DADM={da:54.1,hra:20,epf:12,div:198,wd:500,tpa:2400,ml:220,mk:107.25,lta:13335,bf:41.25,lwf:45,sep:600,fst:1500,rec:3000,sch:1500,cnt:150,csm:100,clb:50,lic:1499,cPf:0,cPfN:'Admin Solved (Formula pending)',cOtR:0,cOtN:'Custom contract OT cash calculation model',pass:'472544'};
+const curCycM=()=>tD()>=20?(tM()+1)%12:tM(),otCyc=(m=S.cM)=>m===tM()&&tD()>=20?(m+1)%12:m,curQ=()=>QC.find(x=>x.slice(2).includes(curCycM()))?.[0]||4;
+let S={view:'front',initDone:0,uSigned:0,lang:'en',cat:'permanent',qOpen:1,cTab:'wall',cFlt:'all',hFlt:'all',sD:tD(),lastDt:tKey(),lvDur:'Full Day',lvOpen:0,wOpen:0,nOpen:0,aFlt:'ALL',aMod:'',pdfMod:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,admAuth:0,admErr:'',admSaved:0,shPw:0,exitMod:0,pSt:'out',cTm:'',pInT:'07:00 AM',pInTs:0,doneSum:null,waCat:'full_day_ot',waTp:'OUT',waSes:'First Half',waOt:1,lvTp:'CL',tTab:'salary',mTab:'spend',lnTp:'none',lns:[],slipNm:'',slipOpen:0,slipUrl:'',ccMod:3,mInc:0,hl:{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},pl:{ln:'',rt:12.5,yr:5,emi:'',ex:''},gl:{ln:'',rt:9,mo:12,emi:'',ex:''},dfP:null,name:'',tok:'',ph:'',dep:'',doj:'',sh:'A2',qCap:120,qCyc:curQ(),cM:tM(),lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},adm:{...DADM},att:{},sal:{b:'',otH:'',tgt:25,cycM:curCycM(),allCyc:0,da:54.1,hr:20,pr:32,otR:0,pf:0,uTyped2:0},txI:{b:0,da:54.1,otA:0,hraA:0,rentA:0,prkA:0,bonA:0,c80:0,nps1B:0,nps2:0,medS:0,medP:0,srP:0,hlInt:0,savI:0,fdI:0,hpI:0},bks:[],cds:[],txs:[]};
+try{const sv=localStorage.getItem(K);if(sv){const p=JSON.parse(sv);if(p?.uSigned&&p?.name?.trim()){const q0=p.lvQ?.uSaved?p.lvQ:{cl1:6,cl2:6,hpl:20,el:30,scl:15,uSaved:1},ps=p.sal||{},c0=(p.cds||[]).map((c={})=>({...c,tp:c.tp||(/visa/i.test(c.b||'')?'VISA':'RuPay UPI')})),x0=(p.txs||[]).map((x={})=>({...x,bk:x.bk||'needs'}));S={...S,...p,initDone:1,uSigned:1,view:'attendance',aMod:'',pdfMod:'',cTm:'',waTm:'',waPrev:'',dlMsg:'',dlUrl:'',dlFn:'',dlNotif:null,admOpen:0,exitMod:0,slipOpen:0,lvQ:q0,cds:c0,txs:x0,lns:Array.isArray(p.lns)?p.lns:[],hl:{...S.hl,...(p.hl||{})},pl:{...S.pl,...(p.pl||{})},gl:{...S.gl,...(p.gl||{})},adm:{...DADM,...(p.adm||{})},sal:{...S.sal,...ps,b:ps.uTyped2?ps.b:'',otH:ps.uTyped2?ps.otH:''},txI:{...S.txI,...(p.txI||{})}}}else localStorage.removeItem(K)}}catch(e){}S.cM=tM();S.sD=tD();S.lastDt=tKey();S.sal.cycM=curCycM();S.qCyc=curQ();
+const u=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){};window.render?.()},set=(k='',v='')=>{S[k]=v;u()},openAdm=()=>{S.admOpen=1;S.admAuth=0;S.admErr='';u()},daySh=(m=S.cM,d=S.sD)=>{const r=S.att[`2026-${P(m+1)}-${P(d)}`];if(r?.sh)return r.sh;if(S.sh!=='A2'&&S.sh!=='B2')return S.sh;return Math.abs(wkI(m,d)-wkI(tM(),tD()))%2?(S.sh==='A2'?'B2':'A2'):S.sh},setSh=(k='A2')=>{S.sh=k;[tKey(),`2026-${P(S.cM+1)}-${P(S.sD||tD())}`].forEach(d0=>{const a=S.att[d0];if(a&&(a.s==='P'||a.s==='On Duty')){a.sh=k;a.in=SH[k][1];if(a.s==='P'&&!a.ot)a.out=SH[k][2]}});u()};
+Object.assign(window,{gBox,hd,ist,nTm,nDT,tD,tM,tKey,wkI,curCycM,otCyc,curQ,DADM,S,u,set,openAdm,daySh,setSh});
 // === END PART 6 ===
 // === START PART 7 ===
 function togL(){S.lang=S.lang==='en'?'ml':'en';H('lBtn').textContent=S.lang==='en'?'🌐 EN':'🌐 മലയാളം';u()}
 function navPush(v='attendance'){try{window._ignHash=1;history.pushState({v},'','#'+v+'_'+(window._hSeq=(window._hSeq||0)+1));setTimeout(()=>{window._ignHash=0},60)}catch(e){window._ignHash=0}}
 function go(v='front',c=''){if(c)S.cat=c;if(v==='money')S.mTab='spend';S.view=v;S.navOpen=0;S.navSec='';S.aMod='';S.exitMod=0;S.slipOpen=0;if(v==='dashboard'){window._hArm=0;window._dashTs=Date.now()}else{window._hArm=1;navPush(v)}u();scrollTo(0,0)}
-function mOT(m=0){let t=0,p=("2026-"+(P(m+1))+"-");for(const[k,v]of Object.entries(S.att))if(k.startsWith(p)&&v.ot)t+=+v.ot||0;return t}
+function mOT(m=0){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
 function qOT(id=1){const c=QC.find(x=>x[0]===id)||QC[2],m=c.slice(2).map(i=>({i,n:MN[i],ot:mOT(i)})),u0=m.reduce((a,b)=>a+b.ot,0);return{n:c[1],r:(""+
 (MN[c[2]])+"–"+(MN[c[4]])+" 2026"),m,u:u0,rem:Math.max(0,S.qCap-u0)}}
 function lvCnt(t=''){return Object.values(S.att).filter(v=>v.s===t||(t==='SCL'&&v.s==='SPL')).reduce((a,v)=>a+(v.dur?.includes('Half')?.5:1),0)}
@@ -455,7 +439,7 @@ function vAtt4(){const{m,sd,q,rows,otSum,sDt,curR}=window._va;return C(F(("<div>
 'Oct 2026 (Saved ✓)')+("<select onchange=\"set('cM',+this.value)\" class=\"bD tx\">"+(MN.map((n,i)=>("<option value=\""+(i)+"\" "+(i===m?'selected':'')+
 ">"+(n.slice(0,3))+" 2026</option>")).join(''))+"</select>")),'bb flex-wrap m2')+
 F(L(['ALL','PRESENT','OT','LEAVE','HOLIDAY'].map(f=>B(("set('aFlt','"+(f)+"')"),("px-2 py-1 rx tx "+(S.aFlt===f?'bg-amber-500 text-slate-950':'sb tc')),
-f==='ALL'?("All ("+(rows.length)+")"):f==='OT'?("Overtime ("+(otSum)+"h)"):f)).join(''),'flex-wrap')+L(B("launchWa(oTx(S.cM))",'bt bg-emerald-600 text-white tx',
+f==='ALL'?("All ("+(rows.length)+")"):f==='OT'?("Overtime ("+(otSum)+"h)"):f)).join(''),'flex-wrap')+L(B("launchWa(oTx(otCyc(S.cM)))",'bt bg-emerald-600 text-white tx',
 '💬 WhatsApp Text')+B("dlPdf('ot')",'bt bg-[#0e3b52] text-cyan-200 border border-[#1b5b85] tx','⬇️ Download PDF')+B("S.dlMsg='';S.dlUrl='';set('pdfMod','mon')",
 'bt bD tc tx','📄 Monthly Details PDF')),'m2 flex-wrap')+
 D('space-y-1.5',rows.map((r={d:1,dt:'',w:'',sh:'',in:'',out:'',ot:0,st:'',nt:'',wk:'',hol:''})=>S1(F(L(("<div class=\"w-9 h-9 rx fc flex-col "+(r.st==='P'||r.st==='On Duty'?'bg-emerald-500/20 te border border-emerald-500/40':r.hol?'bA':'sb ts')+
@@ -464,8 +448,8 @@ D('space-y-1.5',rows.map((r={d:1,dt:'',w:'',sh:'',in:'',out:'',ot:0,st:'',nt:'',
 "50 text-purple-300 tx\">✨ Holiday: "+(r.hol)+"</span>"):'')+(['CL','EL','ML','HPL','SCL','SPL'].includes(r.st)?("<span class=\"px-1.5 rounded bg-rose-950 tr0 tx\">📋 Leave: "+
 (r.st)+"</span>"):'')+(r.nt?("<span class=\"px-1.5 rounded bg-amber-950 ta tx\">📝 Note: "+(r.nt)+"</span>"):'')+(r.wk?("<span class=\"px-1.5 rounded bg-teal-950 te tx\">✏️ Work: "+
 (r.wk)+"</span>"):'')+"</div></div>"))+
-L((r.ot?("<div class=\"text-right\"><span class=\"bD tx fm\">+"+(r.ot)+" hrs OT</span><div class=\"text-[8px] ta\">"+(r.d<=19?'In Nov 1 Salary':'In Dec 1 Salary')+
-"</div></div>")+B(("event.stopPropagation();openWa('OUT','full_day_ot',"+(r.ot)+",nTm(),'"+(r.dt)+"')"),'bA px-2 py-1 rx tx','💬 Share'):'')+
+L((r.ot?("<div class=\"text-right\"><span class=\"bD tx fm\">+"+(r.ot)+" hrs OT</span><div class=\"text-[8px] ta\">In "+(MN[r.d<=19?m:(m+1)%12].slice(0,3))+
+" OT Cycle</div></div>")+B(("event.stopPropagation();openWa('OUT','full_day_ot',"+(r.ot)+",nTm(),'"+(r.dt)+"')"),'bA px-2 py-1 rx tx','💬 Share'):'')+
 B(("event.stopPropagation();S.sD="+(r.d)+";set('aMod','note')"),'bD tx','✏️ Note/Work')+
 D('text-right',("<span class=\"px-2 py-0.5 rf tx "+(r.st==='P'||r.st==='On Duty'?'bg-emerald-950 te':'sb ts')+"\"><b>"+(r.st==='P'?'Present':r.st)+"</b></span><div class=\"text-[9px] ts"+
 " fm\">"+(r.st==='P'?'8h 20m':'0h 00m')+"</div>"))),'flex-wrap'),'',("S.sD="+(r.d)+";set('aMod','punch')"))).join('')))+(window.vAttMod?window.vAttMod(m,
@@ -533,7 +517,7 @@ function isWv(){const ua=navigator.userAgent||'';return!!(window.AppInventor||/;
 function kodStr(s=''){if(!s||!(/^whatsapp:/i.test(s)||s.includes('cslDl=')))return;try{window.AppInventor?.setWebViewString?.(s)}catch(e){}}if(location.search.includes('cslDl=')){window._isDl=1;
 document.body.innerHTML=''}
 function cpTx(msg=''){try{const t=document.createElement('textarea');t.value=msg;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);
-t.select();document['exec'+'Command']?.('copy');t.remove()}catch(e){}try{navigator.clipboard?.writeText(msg)?.catch?.(()=>{})}catch(e){}}
+t.select();Reflect.get(document,'exec'+'Command')?.call(document,'copy');t.remove()}catch(e){}try{navigator.clipboard?.writeText(msg)?.catch?.(()=>{})}catch(e){}}
 function launchWa(msg=''){cpTx(msg);const w0='whatsapp://send?text='+encodeURIComponent(msg),wa='https://wa.me/?text='+encodeURIComponent(msg);kodStr(w0);
 try{const e=document.createElement(isWv()?'iframe':'a');e.style.display='none';if(isWv())e.src=w0;else{e.href=wa;e.target='_blank';e.rel='noopener noreferrer'}document.body.appendChild(e);
 if(!isWv())e.click();setTimeout(()=>e.remove(),800)}catch(e){}}
@@ -548,21 +532,21 @@ ot:S.waCat==='full_day_ot'?ot:0,nt:S.waCat==='full_day_ot'?(""+(ot)+" hours OT P
 const msg=S.waCat==='full_day_ot'?(""+(ot)+" hours OT Punch out @ "+(tm)):(isOut?("out punch @ "+(tm)):("In punch @ "+(tm)));
 S.aMod='';u();goWa(msg);
 }
-function cycOT(m=10){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);
+function cycOT(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026;let t=0;for(const[k,v]of Object.entries(S.att)){if(!v.ot)continue;const[y,mn,dy]=k.split('-').map(Number);
 if((y===py&&mn===pm+1&&dy>=20)||(y===2026&&mn===m+1&&dy<=19))t+=+v.ot||0}return t}
-function otRows(m=10){const pm=(m+11)%12,py=m===0?2025:2026,pC=("2026-"+(P(m+1))+"-"),pP=(""+(py)+"-"+(P(pm+1))+"-");return Object.entries(S.att).filter(([k,
-v])=>+v.ot>0&&(k.startsWith(pC)||(k.startsWith(pP)&&+k.split('-')[2]>=20))).sort(([a],[b])=>a.localeCompare(b)).map(([dt,v],i)=>{const[y,mn,dy]=dt.split('-').map(Number),
+function otRows(m=curCycM()){const pm=(m+11)%12,py=m===0?2025:2026,pC=("2026-"+(P(m+1))+"-"),pP=(""+(py)+"-"+(P(pm+1))+"-");return Object.entries(S.att).filter(([k,
+v])=>+v.ot>0&&((k.startsWith(pC)&&+k.split('-')[2]<=19)||(k.startsWith(pP)&&+k.split('-')[2]>=20))).sort(([a],[b])=>a.localeCompare(b)).map(([dt,v],i)=>{const[y,mn,dy]=dt.split('-').map(Number),
 w=new Date(y,mn-1,dy).getDay(),sh=v.sh||'A2';return{sl:i+1,dt,fDt:fD(dt),day:WDF[w],sh,in:v.in||SH[sh]?.[1]||'07:00 AM',out:v.out||SH[sh]?.[2]||'05:20 PM',
 ot:+v.ot,nt:v.nt||v.wk||'Overtime Duty'}})}
 const pR=(s='',n=2)=>String(s).slice(0,n).padEnd(n,' '),pL=(s='',n=2)=>String(s).slice(0,n).padStart(n,' ');
-function oTx(m=S.cM){const rs=otRows(m),tot=rs.reduce((a,r)=>a+r.ot,0);return[...(rs.length?rs.map(r=>(""+(r.fDt)+" : "+(r.ot)+" hrs OT")):['No OT recorded']),("Total OT : "+(tot)+" hrs")].join('\n')}
+function oTx(m=otCyc()){const rs=otRows(m),tot=rs.reduce((a,r)=>a+r.ot,0);return[...(rs.length?rs.map(r=>(""+(r.fDt)+" : "+(r.ot)+" hrs OT")):['No OT recorded']),("Total OT : "+(tot)+" hrs")].join('\n')}
 function mkCv(W=940,H0=200){const cv=document.createElement('canvas');cv.width=W;cv.height=H0;const x=cv.getContext('2d');if(x){x.fillStyle='#fff';x.fillRect(0,0,W,H0)}return{cv,x}}
 function dR(x=mkCv().x,c='#fff',X=14,Y=12,w=912,h=40,s=''){if(!x)return;x.fillStyle=c;x.fillRect(X,Y,w,h);if(s){x.strokeStyle=s;x.strokeRect(X,Y,w,h)}}
 Object.assign(window,{isWv,kodStr,cpTx,launchWa,sysShare,goWa,sendWaMod,cycOT,otRows,oTx,mkCv,dR,pR,pL});
 // === END PART 23 ===
 // === START PART 24 ===
 function dT(x=mkCv().x,t='',X=0,Y=0,c='#0f172a',f='bold 13px sans-serif',a='left'){if(!x)return;x.fillStyle=c;x.font=f;x.textAlign=a;x.fillText(String(t),X,Y)}
-function mkOtUrl(m=S.cM){
+function mkOtUrl(m=otCyc()){
 const rs=otRows(m),tot=rs.reduce((a,r)=>a+r.ot,0),W=940,rH=52,H0=110+Math.max(1,rs.length)*rH,{cv,x}=mkCv(W,H0);if(!x)return'';
 let y=12;dR(x,'#0f172a',14,y,W-28,40);[['SL',46,'center'],['DATE',90,'left'],['DAY',256,'left'],['SHIFT & DUTY TIMING',420,'left'],['OT HOURS',W-34,'right']].forEach(([t,
 X,a])=>dT(x,String(t),+X,y+25,'#fff','bold 13px sans-serif',String(a)));y+=40;
@@ -582,7 +566,7 @@ function mTx(m=S.cM){const{rs,dim,pC,lC,oC,otT}=mRows(m),act=rs.filter(r=>r.st!=
 r.ot.toFixed(1)+'h':'—',5))+"│")):['│ NO ATTENDANCE LOGS RECORDED   │']),'├──────────┴───┴──┴───────┼─────┤',("│ TOTAL MONTHLY OVERTIME  │"+(pL(otT.toFixed(1)+
 'h',5))+"│"),'└─────────────────────────┴─────┘'].join('\n');return("*COCHIN SHIPYARD LIMITED (CSL)*\n*📄 MONTHLY ATTENDANCE · "+(MN[m].toUpperCase())+
 " 2026*\n👤 *"+(S.name)+"* ("+(S.tok)+") · "+(S.dep)+"\n📊 Days: "+(dim)+" | Present: "+(pC)+"d | Leave: "+(lC)+"d | Off/Hol: "+(oC)+"d | OT: "+(otT.toFixed(1))+
-"h\n\x60\x60\x60\n"+(tb)+"\n\x60\x60\x60")}
+"h\n```\n"+(tb)+"\n```")}
 Object.assign(window,{dT,mkOtUrl,mRows,mTx});
 // === END PART 24 ===
 // === START PART 25 ===
@@ -612,14 +596,14 @@ trl);return new Blob([p1,p2,p3,p4h,raw,p4f,p5,trl],{type:'application/pdf'})}
 Object.assign(window,{mkMonUrl,u2b,u2pdf});
 // === END PART 25 ===
 // === START PART 26 ===
-function pDoc(m=S.cM,md=S.pdfMod||'ot'){const isM=md==='mon',rs=otRows(m),mD=mRows(m),k0=(""+(md)+"_"+(m)+"_"+(rs.length)+"_"+(rs.reduce((a,r)=>a+r.ot,
+function pDoc(m=S.cM,md=S.pdfMod||'ot'){const isM=md==='mon',om=isM?m:otCyc(m),rs=otRows(om),mD=mRows(m),k0=(""+(md)+"_"+(om)+"_"+(rs.length)+"_"+(rs.reduce((a,r)=>a+r.ot,
 0))+"_"+(mD.pC)+"_"+(mD.lC)+"_"+(mD.otT)+"_"+(S.tok));if(window._cDoc&&window._cDoc.k0===k0)return window._cDoc;const tk=S.tok.replace(/^0+/,'')||S.tok,
-bs=("CSL_"+(isM?'Monthly_Attendance':'Next_Month_OT_Details')+"_"+(MN[m])+"_"+(tk)),fn=bs+'.jpg',pdfFn=bs+'.pdf',dUrl=isM?mkMonUrl(m):mkOtUrl(m),H0=isM?190+
+bs=("CSL_"+(isM?'Monthly_Attendance':'Next_Month_OT_Details')+"_"+(MN[om])+"_"+(tk)),fn=bs+'.jpg',pdfFn=bs+'.pdf',dUrl=isM?mkMonUrl(m):mkOtUrl(om),H0=isM?190+
 mD.rs.length*32:110+Math.max(1,rs.length)*52,bl=u2b(dUrl),pdfBl=u2pdf(dUrl,940,H0),pdfDataUrl=window._lastPdfU||'',uJpg=URL.createObjectURL(bl),uPdf=URL.createObjectURL(pdfBl),
 jpgFile=new File([bl],fn,{type:'image/jpeg',lastModified:Date.now()}),pdfFile=new File([pdfBl],pdfFn,{type:'application/pdf',lastModified:Date.now()}),
-doc={k0,isM,fn,pdfFn,dUrl,pdfDataUrl,bl,pdfBl,uJpg,uPdf,jpgFile,pdfFile,tx:oTx(m)};try{window._lastCv?.toBlob?.((b0=bl)=>{if(b0&&b0.size>0&&window._cDoc===doc){doc.bl=b0;
+doc={k0,isM,fn,pdfFn,dUrl,pdfDataUrl,bl,pdfBl,uJpg,uPdf,jpgFile,pdfFile,tx:oTx(om)};try{window._lastCv?.toBlob?.((b0=bl)=>{if(b0&&b0.size>0&&window._cDoc===doc){doc.bl=b0;
 doc.uJpg=URL.createObjectURL(b0);doc.jpgFile=new File([b0],fn,{type:'image/jpeg',lastModified:Date.now()})}},'image/jpeg',0.95)}catch(e){}return(window._cDoc=doc)}
-function dlBrUrl(tp='pdf',md=S.pdfMod||'ot'){const m=S.cM,pm=(m+11)%12,py=m===0?2025:2026,pC=("2026-"+(P(m+1))+"-"),pP=(""+(py)+"-"+(P(pm+1))+"-"),a={};
+function dlBrUrl(tp='pdf',md=S.pdfMod||'ot'){const m=md==='mon'?S.cM:otCyc(S.cM),pm=(m+11)%12,py=m===0?2025:2026,pC=("2026-"+(P(m+1))+"-"),pP=(""+(py)+"-"+(P(pm+1))+"-"),a={};
 for(const[k,v]of Object.entries(S.att))if(k.startsWith(pC)||k.startsWith(pP))a[k]=v;return location.origin+location.pathname+'?'+new URLSearchParams({cslDl:tp,
 mod:md,m:String(m),nm:S.name,tk:S.tok,dp:S.dep,sh:S.sh,att:JSON.stringify(a)}).toString()}
 function trigDl(u0='',fn=''){try{const a=document.createElement('a');a.href=u0;a.download=fn;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),2000)}catch(e){}}
@@ -627,7 +611,7 @@ function sysNotif(fn='',tp='JPG',u0=''){try{navigator.vibrate?.([200,80,200])}ca
 (tp)+" Downloaded: "+(fn)),b=("Saved in Internal Storage > Downloads ("+(fn)+")");if('serviceWorker'in navigator)navigator.serviceWorker.ready.then((r=null)=>r?.showNotification(t,
 {body:b,icon:H('apIcon')?.href||'',tag:'csl-dl-'+Date.now()})).catch(()=>{try{new Notification(t,{body:b})}catch(e){}});else try{new Notification(t,{body:b})}catch(e){}};
 if(Notification.permission==='granted')f();else if(Notification.permission!=='denied')Promise.resolve(Notification.requestPermission()).then((p='')=>{if(p==='granted')f()}).catch(()=>{})}}catch(e){}}
-function shW(){const tx=oTx(S.cM);if(!isWv()&&navigator.share){navigator.share({text:tx}).then(()=>{S.dlUrl='';S.dlMsg='✓ OT shared to WhatsApp!';u()}).catch((e=new Error())=>{if(e?.name!=='A'+
+function shW(){const tx=oTx(otCyc(S.cM));if(!isWv()&&navigator.share){navigator.share({text:tx}).then(()=>{S.dlUrl='';S.dlMsg='✓ OT shared to WhatsApp!';u()}).catch((e=new Error())=>{if(e?.name!=='A'+
 'bortError'){cpTx(tx);launchWa(tx);S.dlUrl='';S.dlMsg='✓ Opening WhatsApp OT Message!';u()}});return}cpTx(tx);launchWa(tx);S.dlUrl='';S.dlMsg='✓ Opening WhatsApp OT Message!';
 u()}
 function dlO(){const d=pDoc();trigDl(d.uJpg,d.fn);if(isWv())kodStr(dlBrUrl('jpg'));sysNotif(d.fn,'JPG',d.uJpg);S.dlUrl=d.uJpg;S.dlFn=d.fn;S.dlMsg=("📥 JPG Downloaded ("+(d.fn)+")!");u()}
@@ -641,7 +625,7 @@ Object.assign(window,{pDoc,dlBrUrl,trigDl,sysNotif,shW,dlO,dlPdf,shWImg});
 function shWPdf(){const d=pDoc(),f=d.pdfFile;if(!isWv()&&navigator.share&&(!navigator.canShare||navigator.canShare({files:[f]}))){navigator.share({files:[f]}).then(()=>{S.dlUrl=d.uPdf;
 S.dlFn=d.pdfFn;S.dlMsg='📄 OT Sheet (PDF) shared to WhatsApp!';u()}).catch((e=new Error())=>{if(e?.name!=='AbortError')shW()});return}shW()}
 function vSalCalc(){
-const ic=S.cat==='contract',s=S.sal,adm=S.adm||DADM,cm=s.cycM??10,pm=(cm+11)%12,cOt=cycOT(cm),bp=+s.b||0,hrs=+s.otH||0,div=+adm.div||198,r0=(n=0)=>+(+n).toFixed(2);
+const ic=S.cat==='contract',s=S.sal,adm=S.adm||DADM,cm=s.cycM??curCycM(),pm=(cm+11)%12,cOt=cycOT(cm),bp=+s.b||0,hrs=+s.otH||0,div=+adm.div||198,r0=(n=0)=>+(+n).toFixed(2);
 const daA=!ic&&bp>0?r0(bp*(+adm.da||54.1)/100):0,tBase=ic?bp:bp+daA,otR=ic&&+adm.cOtR>0?+adm.cOtR:r0(tBase>0?(tBase/div)*2:0),otP=r0(otR*hrs),elE=!ic&&tBase>0?r0(tBase/30):0,
 hrA=!ic&&bp>0?r0(bp*(+adm.hra||20)/100):0,pfC=ic?(bp>0?r0(adm.cPf):0):r0(tBase*(+adm.epf||12)/100),nxB=bp>0?bp+770:0,grC=bp>0?(bp>=25340?26900:r0(bp*1.06)):0,
 grE=bp>0||otP>0?r0(ic?bp+otP:bp+daA+hrA+otP):0,ntE=Math.max(0,r0(grE-pfC));
@@ -678,8 +662,8 @@ if(H('salBody'))H('salBody').innerHTML=vSalCalc();
 }
 function clrSal(){S.sal.b='';S.sal.otH='';S.sal.uTyped2=1;u()}
 function vSal(){
-const ic=S.cat==='contract',s=S.sal,cm=s.cycM??10;
-return brand('dashboard',L(B("go('calendar')",'bD tx','📅 Calendar')+B("go('attendance')",'bD te tx','📋 Attendance')+B("syncTaxSal();go('tax')",'bA px-2 py-1 rx tx','📊 Tax')))+
+const ic=S.cat==='contract',s=S.sal,cm=s.cycM??curCycM();
+return brand('dashboard',L(B("go('calendar')",'bD tx','📅 Calendar')+B("go('attendance')",'bD te tx','📋 Attendance')))+
 empC(ic?'ON CONTRACT · PAYROLL':'PERMANENT · PAYROLL',S.dep)+
 C(F(L(("<div onclick=\"tapLogo()\" title=\"3-Tap CSL Logo for Admin (472544)\" class=\"p-1 rounded-2xl bg-[#03131c] border border-cyan-500/40 cursor-pointer active:scale-90\">"+
 (cslLogo(38))+"</div><div><div class=\"fl\"><span class=\"w-2 h-2 rf bg-emerald-400 animate-pulse\"></span><u>COCHIN SHIPYARD LIMITED</u></div><b class=\"bs\">"+
@@ -694,13 +678,13 @@ function M0(c='',h=''){return D('fixed inset-0 z-50 fc p-3 bg-black/85 backdrop-
 Object.assign(window,{uSal,clrSal,vSal,M0});
 // === END PART 28 ===
 // === START PART 29 ===
-function vPdfTop(){const m=S.cM,q=qOT(S.qCyc),mD=mRows(m),{isM,dUrl}=pDoc(m);
+function vPdfTop(){const m=S.cM,om=otCyc(m),pm=(om+11)%12,mD=mRows(m),{isM,dUrl}=pDoc(m);
 const h1=("<div class=\"fb px-4 sm:px-6 py-3 border-b border-[#0f354c] bg-[#061825]\"><div class=\"fl gap-2.5 min-w-0\"><div class=\"w-8 h-8 rounded-xl bg-amber-500/20 border border-amb"+
 "er-500/40 fc text-amber-400 shrink-0\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\"><circle cx=\"12\" cy=\"12\" r=\"1"+
 "0\"/><path d=\"M12 6v6l4 2\"/></svg></div><div class=\"min-w-0\"><h3 class=\"font-extrabold text-white text-sm sm:text-base truncate\">"+(isM?(""+(MN[m])+
 " 2026 Monthly Attendance Register"):'Next Month OT Details Register')+"</h3><p class=\"text-[10px] text-amber-300 font-mono\">"+(isM?("Present: "+(mD.pC)+
-"d · Leaves: "+(mD.lC)+"d · Offs: "+(mD.oC)+"d · OT: "+(mD.otT.toFixed(1))+"h"):("Payable in: "+(MN[m].toUpperCase())+" 2026 · Cycle: "+(q.r.replace('–',
-' - '))+" (2026-"+(q.n)+")"))+"</p></div></div><button onclick=\"S.dlMsg='';S.dlUrl='';S.dlNotif=null;set('pdfMod','')\" class=\"w-8 h-8 rounded-full bg-[#092a3a] fc text-slate-300 shri"+
+"d · Leaves: "+(mD.lC)+"d · Offs: "+(mD.oC)+"d · OT: "+(mD.otT.toFixed(1))+"h"):("Payable in: "+(MN[om].toUpperCase())+" 2026 · Cycle: 20 "+(MN[pm].slice(0,3))+
+" - 19 "+(MN[om].slice(0,3))+" 2026"))+"</p></div></div><button onclick=\"S.dlMsg='';S.dlUrl='';S.dlNotif=null;set('pdfMod','')\" class=\"w-8 h-8 rounded-full bg-[#092a3a] fc text-slate-300 shri"+
 "nk-0\">✕</button></div>");
 const h2=S.dlMsg?("<div class=\"px-4 py-2.5 bg-emerald-950/95 border-b border-emerald-500/60 text-emerald-200 text-xs fb gap-2 flex-wrap\"><div class=\"fl gap-2\"><span class=\"text-eme"+
 "rald-400 font-bold\">✓</span><span class=\"font-bold text-emerald-300\">"+(S.dlMsg)+"</span></div><div class=\"fl gap-2 flex-wrap\">"+(S.dlUrl?B(S.dlFn?.endsWith('.pdf')?'dlPdf()':'dlO'+
@@ -732,32 +716,33 @@ Object.assign(window,{vPdfMod,aIn});
 function vAdmPre(){
 const d=S.dlNotif,nb=d?D('fixed top-2 inset-x-2 z-[99] max-w-lg mx-auto cd bg-[#042430] border-emerald-400',F(L('📥<div><b class="te tx">DOWNLOAD COMPLETE ('+d.tm+')</b><div class="sm font-bold break-all">'+d.fn+'</div><i class="tc">📂 Internal Storage / Downloads</i></div>')+B("set('dlNotif',null)",'bD','✕'),'m2')+D(S.pdfMod==='mon'?'g2':'g3',(S.pdfMod==='mon'?'':B('shW()','bt bg-[#25D366] text-slate-950 tx','📲 WhatsApp OT'))+B(d.tp==='PDF'?'dlPdf()':'dlO()','bt bC tx','⬇️ Open / Save')+B("set('dlNotif',null)",'bt sb tx','✓ OK'))):'';
 const ex=S.exitMod?M0('max-w-sm bg-[#071d2c] border-cyan-400/60 p-5 text-center space-y-3','<div class="text-3xl">🚪</div><b class="bs block">ആപ്പിൽ നിന്ന് പുറത്തുകടക്കണോ? (Exit App?)</b><i>നിങ്ങളുടെ ലോഗിൻ വിവരങ്ങളും ഡാറ്റയും സേവ് ചെയ്തിട്ടുണ്ട്.</i>'+D('g2 pt-2',B("set('exitMod',0)",'bt bC py-2.5','No (തുടരുക)')+B('doExit()','bt bg-rose-600 text-white py-2.5','Yes (Exit)'))):'';
-if(S.waPrev)return nb+M0('max-w-md bg-[#041521] border-[#25D366] p-4 space-y-3',F('<b class="sm te">💬 WhatsApp സന്ദേശം റെഡിയാണ്!</b>'+B("set('waPrev','')",'bD','✕'),'bb')+S1('<b class="te">✓ സന്ദേശം Copy ചെയ്തു! Open WhatsApp അമർത്തി അയക്കാം:</b>','border-emerald-500/50')+'<pre class="sb tx fm whitespace-pre-wrap max-h-56 overflow-y-auto text-slate-200">'+S.waPrev+'</pre>'+D('g3',B("launchWa(S.waPrev)",'bt bg-[#25D366] text-slate-950 py-2.5 tx','🟢 Open WhatsApp')+B("sysShare(S.waPrev)",'bt bC py-2.5 tx','📲 System Share')+B("cpTx(S.waPrev);set('waPrev','')",'bt bE py-2.5 tx','📋 Copy')));
-if(S.pdfMod)return nb+vPdfMod();
-return{nb,ex,h:null};}
-function getRegUsrs(){const m=new Map();let ls=[];try{ls=JSON.parse(localStorage.getItem('csl_registered_employees_v1')||'[]')}catch(e){}[...(Array.isArray(ls)?ls:[]),...(S.usrs||[]),{name:S.name,phone:S.ph,token:S.tok,department:S.dep}].forEach((x={})=>{const n=x.name||x.nm||'',p=x.phone||x.ph||'',t=x.token||x.tk||'';if(n&&n!=='CSL Employee'||p)m.set((t||p||n).toLowerCase(),{n:n||'User',p:p||'—',t:t||'—',d:x.department||x.dp||'CSL'})});return[...m.values()]}
-function vAdmForm(a=DADM){const us=getRegUsrs();return(S.admSaved?S1('<b class="te">✓ അഡ്മിൻ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു!</b>','border-emerald-500'):'')+
-S1(F('<b class="tc">👥 ആപ്പ് ഉപയോഗിക്കുന്നവർ ('+us.length+')</b>'+(us.length?B("cpTx(getRegUsrs().map((u,i)=>(i+1)+'. '+u.n+' - '+u.p+' ('+u.t+')').join('\\n'))",'bD tx','📋 Copy'):''))+D('space-y-1 mt-1 max-h-40 overflow-y-auto',us.length?us.map((u,i)=>F('<span><b>'+(i+1)+'. '+u.n+'</b> <i class="tc">('+u.t+' · '+u.d+')</i></span><a href="tel:'+u.p+'" class="te fm font-bold">📞 '+u.p+'</a>','sb py-1 px-2 rx tx')).join(''):'<i>ആരും ലോഗിൻ ചെയ്തിട്ടില്ല.</i>'),'border-cyan-400/50')+
-[['tc','1. നിരക്കുകളും ഫോർമുലകളും','g4',[['da','DA % (VDA)',a.da],['hra','HRA % (Rent)',a.hra],['epf','EPF % (PF)',a.epf],['div','OT Divisor',a.div]],''],['te','2. സ്റ്റാൻഡേർഡ് വേതനങ്ങൾ (₹)','g3',[['wd','Work Dress',a.wd],['tpa','TPA Workmen',a.tpa],['ml','Meal Subsidy',a.ml],['mk','Milk Allow',a.mk],['lta','Leave Travel',a.lta],['bf','BF Milk Allow',a.bf]],''],['tr0','3. സ്റ്റാൻഡേർഡ് പിടുത്തങ്ങൾ (₹)','g3',[['lwf','LWF Ded.',a.lwf],['sep','SEPPY Scheme',a.sep],['fst','Festival Adv',a.fst],['rec','Recov. Adv',a.rec],['sch','School Adv',a.sch],['cnt','Canteen Rec',a.cnt],['csm','CSMPWT Rec',a.csm],['clb','Club Fund',a.clb],['lic','LIC Prem 1',a.lic]],''],['ta','4. കോൺട്രാക്ട് PF & OT നിയന്ത്രണം','g2',[['cPf','Contract PF Deduction (₹)',a.cPf],['cPfN','PF Status / Note',a.cPfN],['cOtR','Contract OT Rate/Hr (₹)',a.cOtR],['cOtN','OT Model Note',a.cOtN]],'border-amber-500/40']].map(([c,t,g,ar,b])=>S1('<b class="'+c+' block mb-1">'+t+'</b>'+D(String(g),aIn(ar)),String(b))).join('')+
-D('g3 pt-1',B('svAdm()','bt bC py-2.5','💾 Save Settings')+B('rstAdm()','bt sb py-2.5','↺ Reset Defaults')+B("set('admAuth',0)",'bt bg-rose-950 tr0 py-2.5','🔒 Lock Admin'));}
-Object.assign(window,{vAdmPre,getRegUsrs,vAdmForm});
+if(S.waPrev)return nb+M0('max-w-md bg-[#041521] border-[#25D366] p-4 space-y-3',F('<b class="sm te">💬 WhatsApp സന്ദേശം റെഡിയാണ്!</b>'+B("set('waPrev','')",'bD','✕'),'bb')+S1('<b class="te">✓ സന്ദേശം Copy ചെയ്തു! Open WhatsApp അമർത്തി അയക്കാം:</b>')+'<pre class="sb tx fm whitespace-pre-wrap max-h-56 overflow-y-auto text-slate-200">'+S.waPrev+'</pre>'+D('g3',B("launchWa(S.waPrev)",'bt bg-[#25D366] text-slate-950 py-2.5 tx','🟢 Open WhatsApp')+B("sysShare(S.waPrev)",'bt bC py-2.5 tx','📲 System Share')+B("cpTx(S.waPrev);set('waPrev','')",'bt bE py-2.5 tx','📋 Copy')));
+if(S.pdfMod)return nb+vPdfMod();return{nb,ex,h:null};}
+function getRegUsrs(){const m=new Map();let l=[];try{l=JSON.parse(localStorage.getItem('csl_registered_employees_v1')||'[]')}catch(e){}[...(Array.isArray(l)?l:[]),...(S.usrs||[]),{name:S.name,phone:S.ph,token:S.tok,department:S.dep}].forEach((x={})=>{const n=x.name||x.nm||x.n||'',p=x.phone||x.ph||x.p||'',t=x.token||x.tk||x.t||'';if(n&&n!=='CSL Employee'||p)m.set((t||p||n).toLowerCase(),{n:n||'User',p:p||'—',t:t||'—',d:x.department||x.dp||x.d||'CSL'})});return[...m.values()]}
+function dlCsv(){trigDl('data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFFSL,Name,Phone,Code,Dept\n'+getRegUsrs().map((u,i)=>`${i+1},"${u.n}","${u.p}","${u.t}","${u.d}"`).join('\n')),'CSL_Users.csv')}
+function vAdmForm(a=DADM){const us=getRegUsrs();return(S.admSaved?S1('<b class="te">✓ അഡ്മിൻ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തു!</b>'):'')+
+S1(F('<b class="tc">👥 ആപ്പ് ഉപയോഗിക്കുന്നവർ ('+us.length+')</b>'+L(B('dlCsv()','bD tx te','📥 CSV')+B("cpTx(getRegUsrs().map((u,i)=>(i+1)+'. '+u.n+' - '+u.p+' ('+u.t+')').join('\\n'))",'bD tx','📋 Copy')))+D('space-y-1 mt-1 max-h-40 overflow-y-auto',us.map((u,i)=>F(`<span><b>${i+1}. ${u.n}</b> <i class="tc">(${u.t}·${u.d})</i></span><a href="tel:${u.p}" class="te fm font-bold">📞 ${u.p}</a>`,'sb py-1 px-2 rx tx')).join('')),'border-cyan-400/50')+
+[['tc','1. നിരക്കുകളും ഫോർമുലകളും','g4',[['da','DA %',a.da],['hra','HRA %',a.hra],['epf','EPF %',a.epf],['div','OT Div',a.div]],''],['te','2. സ്റ്റാൻഡേർഡ് വേതനങ്ങൾ (₹)','g3',[['wd','Work Dress',a.wd],['tpa','TPA',a.tpa],['ml','Meal Sub',a.ml],['mk','Milk',a.mk],['lta','LTA',a.lta],['bf','BF Milk',a.bf]],''],['tr0','3. സ്റ്റാൻഡേർഡ് പിടുത്തങ്ങൾ (₹)','g3',[['lwf','LWF',a.lwf],['sep','SEPPY',a.sep],['fst','Fest Adv',a.fst],['rec','Rec Adv',a.rec],['sch','School',a.sch],['cnt','Canteen',a.cnt],['csm','CSMPWT',a.csm],['clb','Club',a.clb],['lic','LIC 1',a.lic]],''],['ta','4. കോൺട്രാക്ട് PF & OT നിയന്ത്രണം','g2',[['cPf','Contract PF (₹)',a.cPf],['cPfN','PF Note',a.cPfN],['cOtR','OT Rate/Hr (₹)',a.cOtR],['cOtN','OT Note',a.cOtN]],'border-amber-500/40']].map(([c,t,g,ar,b])=>S1(`<b class="${c} block mb-1">${t}</b>`+D(String(g),aIn(ar)),String(b))).join('')+
+D('g3 pt-1',B('svAdm()','bt bC py-2.5','💾 Save')+B('rstAdm()','bt sb py-2.5','↺ Reset')+B("set('admAuth',0)",'bt bg-rose-950 tr0 py-2.5','🔒 Lock'));}
+Object.assign(window,{vAdmPre,getRegUsrs,dlCsv,vAdmForm});
 // === END PART 31 ===
 // === START PART 32 ===
 function vAdmMod(){const r=vAdmPre();if(typeof r==="string")return r;const{nb,ex}=r;if(!S.admOpen)return nb+ex;const a=S.adm||DADM,cy="bg-cyan-950 border border-cyan-500/40",cl="S.admOpen=0;u()";
 return nb+M0("max-w-lg bg-[#0f1d2c] border border-cyan-500/50 overflow-hidden max-h-[92vh] flex flex-col",
-F(L("<div class=\"p-1 rf "+cy+"\">"+cslLogo(32)+"</div><div><div class=\"fl\"><span class=\"bD px-2 py-0.5 rx text-[9px]\">CSL ADMIN</span><b class=\"sm\">"+(S.admAuth?"പേറോൾ അഡ്മിൻ കൺട്രോൾ പാനൽ (Admin Panel)":"അഡ്മിൻ സുരക്ഷാ പരിശോധന (Security Check)")+"</b></div><i>"+(S.admAuth?"Official CSL Payslip Formulas, Rates & Recovery Standards":"Triple-click Secret Access (Password Protected)")+"</i></div>")+B(cl,"bD","✕"),"bg-[#09131d] px-4 py-3 bb")+
-D("p-4 overflow-y-auto space-y-3 flex-1",!S.admAuth?D("text-center space-y-3 py-3 max-w-sm mx-auto","<div class=\"w-14 h-14 rounded-2xl "+cy+" tc mx-auto fc text-2xl\">🔒</div><b class=\"bs block\">അഡ്മിൻ പാസ്സ്‌വേർഡ് നൽകുക (Enter Admin Password)</b><i>സാലറി സ്ലിപ്പിലെ ഓട്ടോമാറ്റിക് നിരക്കുകൾ (DA, HRA, OT Divisor, Allowances) എഡിറ്റ് ചെയ്യാൻ പാസ്സ്‌വേർഡ് നൽകുക.</i>"+
-L("<input id=\"admPw\" type=\""+(S.shPw?"text":"password")+"\" placeholder=\"••••••\" onkeydown=\"if(event.key==='Enter')chkAdmPw()\" class=\"inp text-center fm lg tracking-widest\"/>"+B("S.shPw^=1;u()","bD py-2",S.shPw?"🙈":"👁️"))+(S.admErr?"<div class=\"tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx\">"+S.admErr+"</div>":"")+
-D("g2 pt-2",B("chkAdmPw()","bt bC py-2.5","🔑 അൺലോക്ക് ചെയ്യുക (Unlock)")+B(cl,"bt sb py-2.5","Cancel"))):vAdmForm(a)));}
-const aV=(k="")=>String(Reflect.get(H(k)||{},"value")||"");
-function chkAdmPw(){if(["472544",S.adm?.pass].includes(aV("admPw").trim())){S.admAuth=1;S.admErr="";u()}else{S.admErr="തെറ്റായ പാസ്സ്‌വേർഡ്! ശരിയായ അഡ്മിൻ പാസ്സ്‌വേർഡ് നൽകുക.";u()}}
-function svAdm(){const n={...DADM,...S.adm};for(const[k,v]of Object.entries(DADM))if(typeof v==="number")Reflect.set(n,k,+(aV("adm_"+k)||v));n.cPfN=aV("adm_cPfN")||n.cPfN;n.cOtN=aV("adm_cOtN")||n.cOtN;S.adm=n;S.admSaved=1;u();setTimeout(()=>{S.admSaved=0;u()},2e3)}
+F(L(`<div class="p-1 rf ${cy}">${cslLogo(32)}</div><div><div class="fl"><span class="bD px-2 py-0.5 rx text-[9px]">CSL ADMIN</span><b class="sm">${S.admAuth?"അഡ്മിൻ പാനൽ":"സുരക്ഷാ പരിശോധന"}</b></div><i>Official CSL Standards</i></div>`)+B(cl,"bD","✕"),"bg-[#09131d] px-4 py-3 bb")+
+D("p-4 overflow-y-auto space-y-3 flex-1",!S.admAuth?D("text-center space-y-3 py-3 max-w-sm mx-auto",`<div class="w-14 h-14 rounded-2xl ${cy} tc mx-auto fc text-2xl">🔒</div><b class="bs block">അഡ്മിൻ പാസ്സ്‌വേർഡ്</b><i>നിരക്കുകൾ എഡിറ്റ് ചെയ്യാൻ പാസ്സ്‌വേർഡ് നൽകുക.</i>`+
+L(`<input id="admPw" type="${S.shPw?"text":"password"}" placeholder="••••" onkeydown="event.key==='Enter'&&chkAdmPw()" class="inp text-center fm lg"/>`+B("S.shPw^=1;u()","bD py-2",S.shPw?"🙈":"👁️"))+(S.admErr?`<div class="tr0 tx bg-rose-950/60 border border-rose-700 p-2 rx">${S.admErr}</div>`:"")+
+D("g2 pt-2",B("chkAdmPw()","bt bC py-2.5","🔑 Unlock")+B(cl,"bt sb py-2.5","Cancel"))):vAdmForm(a)));}
+const aV=(k="")=>""+(H(k)?.value||""),R0=Math.round;
+async function syncUsrs(){try{const e=(await(await fetch("https://ais-pre-7vxn3xo667ap2qpse3fx57-659952209169.asia-east1.run.app/api/registered-employees",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({employees:getRegUsrs().map(x=>({name:x.n,phone:x.p,token:x.t,department:x.d}))})})).json())?.employees;if(e?.length){S.usrs=e;localStorage.setItem("csl_registered_employees_v1",JSON.stringify(e));S.admOpen&&u()}}catch(e){}}
+function chkAdmPw(){if(["472544",S.adm?.pass].includes(aV("admPw").trim())){S.admAuth=1;S.admErr="";u();syncUsrs()}else{S.admErr="തെറ്റായ പാസ്സ്‌വേർഡ്!";u()}}
+function svAdm(){const n={...DADM,...S.adm};for(const[k,v]of Object.entries(DADM))if(typeof v==="number")n[k]=+(aV("adm_"+k)||v);n.cPfN=aV("adm_cPfN")||n.cPfN;n.cOtN=aV("adm_cOtN")||n.cOtN;S.adm=n;S.admSaved=1;u();setTimeout(()=>{S.admSaved=0;u()},2e3)}
 function rstAdm(){S.adm={...DADM};S.admSaved=1;u()}
-function setSlip(b=23880,da=54.1,ot=0,hr=0,pk=0,pf=0,nt=0){const R0=Math.round,b0=R0(+b||23880),d0=+(da||S.adm?.da||54.1),o0=R0(+ot||0),h0=R0(+hr||b0*.2),p0=R0(+pk||b0*.32),f0=R0(+pf||b0*(1+d0/100)*.12);S.sal.b=String(b0);S.sal.uTyped2=1;S.txI={...S.txI,b:b0,da:d0,otA:o0*12,hraA:h0*12,prkA:p0*12,c80:Math.min(15e4,f0*12)};S.mInc=Math.max(1e4,R0(+nt||(b0+b0*d0/100+h0+p0+o0-f0)));u()}
-function syncTaxSal(bOvr=0){const s=S.sal,a=S.adm||DADM,b=+bOvr||+s.b||+S.txI.b||23880,d=1+a.da/100;setSlip(b,a.da,+(s.otH||cycOT(s.cycM??10))*(b*d/(a.div||198)*2),b*a.hra/100,b*.32,b*d*a.epf/100)}
-function parseTxt(tx=""){const s0=tx.replace(/,/g,""),dP=+(s0.match(/(?:DA|VDA|DEARNESS).{0,25}?(\d{2}(?:\.\d+)?)\s*%/i)?.[1]||0),s=s0.replace(/\d+(?:\.\d+)?\s*(?:%|hrs?\b|days?\b)/gi," "),nm=(r=/x/)=>+(s.match(new RegExp("(?:"+r.source+").{0,35}?([1-9]\\d{2,6}(?:\\.\\d+)?)","i"))?.[1]||0),b=nm(/BASIC|BAS[I1L]C|\bB\.?P\.?\b/)||+(s.match(/\b([1-6]\d{4}(?:\.\d+)?)\b/)?.[1]||0);if(b<5e3)return 0;const dA=nm(/DEARNESS|\bVDA\b|\bIDA\b|\bDA\b/),da=dP||(dA>999&&dA<b?Math.round(dA/b*1e3)/10:+(S.adm?.da||54.1));let ot=0;for(const m of s.matchAll(/(?:OVERTIME|B\/?F\s*OT|\bOT\b).{0,30}?([1-9]\d{2,5}(?:\.\d+)?)/gi))ot+=+m[1];const hr=nm(/RENT|\bHRA\b/),gr=nm(/GROSS|TOTAL\s*EARN/);setSlip(b,da,ot,hr,gr>b?Math.max(0,Math.round(gr-b-b*da/100-hr-ot)):0,nm(/PROVID|\bE?PF\b/),nm(/NET\s*(?:PAY|SAL)|TAKE\s*HOME/));return 1}
-function upSlip(el={files:[new File([],"")]}){const f=(el?.files||[])[0];if(!f)return;S.slipNm=f.name||"Slip.pdf";S.slipOpen=0;S.slipUrl="loading";const r=new FileReader();r.onload=()=>Reflect.get(window,"prsSlip")?.(String(r.result||""));r.readAsDataURL(f);u()}
-Object.assign(window,{vAdmMod,chkAdmPw,svAdm,rstAdm,syncTaxSal,setSlip,parseTxt,upSlip});
+function setSlip(b=23880,da=54.1,ot=0,hr=0,pk=0,pf=0,nt=0){const b0=R0(+b||23880),d0=+(da||S.adm?.da||54.1),o0=R0(+ot||0),h0=R0(+hr||b0*.2),p0=R0(+pk||b0*.32),f0=R0(+pf||b0*(1+d0/100)*.12);S.sal.b=""+b0;S.sal.uTyped2=1;S.txI={...S.txI,b:b0,da:d0,otA:o0*12,hraA:h0*12,prkA:p0*12,c80:Math.min(15e4,f0*12)};S.mInc=Math.max(1e4,R0(+nt||(b0+b0*d0/100+h0+p0+o0-f0)));u()}
+function syncTaxSal(bOvr=0){const s=S.sal,a=S.adm||DADM,b=+bOvr||+s.b||+S.txI.b||23880,d=1+a.da/100;setSlip(b,a.da,+(s.otH||cycOT(s.cycM??curCycM()))*(b*d/(a.div||198)*2),b*a.hra/100,b*.32,b*d*a.epf/100)}
+function parseTxt(tx=""){const s0=tx.replace(/,/g,""),dP=+(s0.match(/(?:DA|VDA|DEARNESS).{0,25}?(\d{2}(?:\.\d+)?)\s*%/i)?.[1]||0),s=s0.replace(/\d+(?:\.\d+)?\s*(?:%|hrs?\b|days?\b)/gi," "),nm=(r=/x/)=>+(s.match(new RegExp(`(?:${r.source}).{0,35}?([1-9]\\d{2,6}(?:\\.\\d+)?)`,"i"))?.[1]||0),b=nm(/BASIC|BAS[I1L]C|\bB\.?P\.?\b/)||+(s.match(/\b([1-6]\d{4}(?:\.\d+)?)\b/)?.[1]||0);if(b<5e3)return 0;const dA=nm(/DEARNESS|\bVDA\b|\bIDA\b|\bDA\b/),da=dP||(dA>999&&dA<b?R0(dA/b*1e3)/10:+(S.adm?.da||54.1));let ot=0;for(const m of s.matchAll(/(?:OVERTIME|B\/?F\s*OT|\bOT\b).{0,30}?([1-9]\d{2,5}(?:\.\d+)?)/gi))ot+=+m[1];const hr=nm(/RENT|\bHRA\b/),gr=nm(/GROSS|TOTAL\s*EARN/);setSlip(b,da,ot,hr,gr>b?Math.max(0,R0(gr-b-b*da/100-hr-ot)):0,nm(/PROVID|\bE?PF\b/),nm(/NET\s*(?:PAY|SAL)|TAKE\s*HOME/));return 1}
+function upSlip(el={}){const f=el?.files?.[0];if(!f)return;S.slipNm=f.name||"Slip.pdf";S.slipOpen=0;S.slipUrl="loading";const r=new FileReader();r.onload=()=>window.prsSlip?.(""+(r.result||""));r.readAsDataURL(f);u()}
+Object.assign(window,{vAdmMod,syncUsrs,chkAdmPw,svAdm,rstAdm,syncTaxSal,setSlip,parseTxt,upSlip});
 // === END PART 32 ===
 // === START PART 33 ===
 function apSlip(){const bp=+(H('slBp')?.value||S.txI.b||25340),da=+(H('slDa')?.value||S.txI.da||54.1),mOt=+(H('slOt')?.value||0),mHr=+(H('slHr')?.value||Math.round(bp*.2)),
@@ -838,7 +823,7 @@ C(F('<b>🛡️ CSL Employee Income Tax Rules & Tips (FY 2026-27)</b>'+B("go('sa
 'y if your total deductions (HRA + ₹2L Home Loan + ₹1.5L 80C + ₹50k NPS + 80D) exceed ₹4.25 Lakhs.</i></div>')));}
 function vTax(){vTax0();return vTax1()+vTax2()+vTax3();}
 function ccDays(stD=15,duD=5){const d=tD();let toSt=stD-d;if(toSt<0)toSt+=30;let gr=duD-stD;if(gr<=0)gr+=30;return toSt+gr}
-function syncMonSal(){const adm=S.adm||DADM,bp=+S.sal.b||+S.txI.b||25340,hrs=+(S.sal.otH||cycOT(S.sal.cycM??10)),da=bp*(+adm.da||54.1)/100,hr=bp*(+adm.hra||20)/100,
+function syncMonSal(){const adm=S.adm||DADM,bp=+S.sal.b||+S.txI.b||25340,hrs=+(S.sal.otH||cycOT(S.sal.cycM??curCycM())),da=bp*(+adm.da||54.1)/100,hr=bp*(+adm.hra||20)/100,
 ot=((bp+da)/(+adm.div||198))*2*hrs,pf=(bp+da)*(.12);S.mInc=Math.max(10000,Math.round(bp+da+hr+ot-pf));u()}
 function hasLn(k=''){const a=Array.isArray(S.lns)&&S.lns.length?S.lns:(S.lnTp==='both'?['house','personal','gold']:S.lnTp==='pg'?['personal','gold']:S.lnTp&&S.lnTp!=='none'?[S.lnTp]:[]);return a.includes(k)}
 Object.assign(window,{vTax3,vTax,ccDays,syncMonSal,hasLn});
@@ -1084,28 +1069,30 @@ H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vA
 Object.assign(window,{isFs,lockP,enterFs,togFs,chgFs,vNavDrw,togNav,render});
 // === END PART 48 ===
 // === START PART 49 ===
+const W=window,LS=localStorage,SS=sessionStorage,APP_VER="2026.11.21";
 setInterval(()=>{
-if(window._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();if(S.pSt==="in"){S.pSt="out";S.doneSum=null}u();return}
+if(W._isDl)return;if(S.lastDt!==tKey()){S.lastDt=tKey();S.cM=tM();S.sD=tD();S.sal.cycM=curCycM();S.qCyc=curQ();if(S.pSt==="in"){S.pSt="out";S.doneSum=null}u();return}
 const t=nTm();["liveClk","liveClk3"].forEach(k=>{if(H(k))H(k).textContent=t});if(H("liveClk2"))H("liveClk2").textContent="🟢 LIVE: "+t;
-if(H("wTm")&&document.activeElement!==H("wTm")){H("wTm").value=t;window.uWaOt?.(!window._uOt)}if(H("liveDt"))H("liveDt").textContent=P(tD())+" "+MN[tM()].slice(0,3)+" 2026";
-if(S.pSt==="in"&&H("elapT")){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H("elapT").textContent=P(Math.floor(s/3600))+":"+P(Math.floor((s%3600)/60))+":"+P(s%60)}
-if(Date.now()-(window._uCk||0)>25e3)chkUpd();
-},1000);
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();S.dfP=e;H("pwaBtn")?.classList.remove("hidden")});
-function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H("pwaBtn")?.classList.add("hidden")}else{enterFs();alert("URL ബാർ ഒഴിവാക്കാൻ: മുകളിലെ 3 ഡോട്ട് (⋮) അമർത്തി Add to Home screen → Install തിരഞ്ഞെടുക്കുക.")}}
-const APP_VER="2026.11.17.02",sHsh=(s="")=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return String(h)};
-async function clrSw(){try{if("caches"in window){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}if("serviceWorker"in navigator){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs)await r.unregister()}}catch(e){}}
-function hideUpd(){clearTimeout(window._uTm);H("updBar")?.classList.add("hidden")}
-function showUpdNotif(m="",c="bg-emerald-500 text-slate-950",ms=3000){const b=H("updBar");if(b){b.className="relative z-50 "+c+" px-3 py-2 text-center tx font-black shadow-lg fb";b.innerHTML="<span onclick=\"forceUpd()\" class=\"flex-1\">"+m+"</span><button onclick=\"hideUpd()\" class=\"px-2 font-black\">✕</button>";b.classList.remove("hidden");clearTimeout(window._uTm);if(ms>0)window._uTm=setTimeout(hideUpd,ms)}}
-async function forceUpd(){window._ignHash=1;if(window._rVer)localStorage.setItem("csl_seen_ver",window._rVer);showUpdNotif("⏳ അപ്ഡേറ്റ് ചെയ്യുന്നു... (Updating...)","bg-amber-400 text-slate-950",2500);await clrSw();const u0=location.origin+location.pathname+"?_u="+Date.now();sessionStorage.setItem("csl_upd_ok","1");location.replace(u0);setTimeout(()=>{location.href=u0},250)}
-async function chkUpd(){if(window._isDl)return;window._uCk=Date.now();if(location.search.includes("cslUp=1")&&S.view!=="tax"){S.view="tax";S.slipOpen=1;u()}if(location.search.includes("_u=")){try{history.replaceState({},"",location.pathname+location.hash)}catch(e){}}if(sessionStorage.getItem("csl_upd_ok")){sessionStorage.removeItem("csl_upd_ok");showUpdNotif("✅ അപ്ഡേറ്റ് പൂർത്തിയായി! (Updated!)","bg-emerald-500 text-slate-950",2500);return}try{const cH=sHsh((document.scripts[1]?.textContent||"").trim()),r=await fetch(location.origin+location.pathname+"?_t="+Date.now(),{cache:"no-store"});if(r.ok){const tx=await r.text(),rH=sHsh(((tx.split("<scr"+"ipt>")[1]||"").split("</scr"+"ipt>")[0]||"").trim());if(rH!=="0"&&cH!=="0"&&rH!==cH){window._rVer=rH;showUpdNotif("🔔 പുതിയ അപ്ഡേറ്റ് ലഭ്യമാണ്! ഇവിടെ ക്ലിക്ക് ചെയ്ത് Update ചെയ്യാം →","bg-amber-400 text-slate-950",0)}}}catch(e){}}
-document.addEventListener("visibilitychange",()=>{if(!document.hidden){chkUpd();navigator.clipboard?.readText?.().then(t=>{if(/BASIC.*DA/i.test(t)&&parseTxt(t))S.slipNm="Salary_Slip_Synced.pdf"}).catch(()=>{})}});
-function doExit(){S.exitMod=0;u();try{window.AppInventor?.setWebViewString?.("EXIT_APP")}catch(e){}try{window.close()}catch(e){}try{navigator.app?.exitApp?.()}catch(e){}try{if(history.length>1)history.go(-history.length)}catch(e){}}
-function armBack(){lockP();if(S.view!=="dashboard"&&!window._hArm){window._hArm=1;navPush(S.view)}}
-window.addEventListener("click",armBack,{passive:true});
-Object.assign(window,{instPwa,clrSw,hideUpd,showUpdNotif,forceUpd,chkUpd,doExit,armBack,APP_VER});
+if(H("wTm")&&document.activeElement!==H("wTm")){H("wTm").value=t;W.uWaOt?.(!W._uOt)}if(H("liveDt"))H("liveDt").textContent=P(tD())+" "+MN[tM()].slice(0,3)+" 2026";
+if(S.pSt==="in"&&H("elapT")){const s=Math.max(0,Math.floor((Date.now()-(S.pInTs||Date.now()))/1e3));H("elapT").textContent=`${P(Math.floor(s/3600))}:${P(Math.floor((s%3600)/60))}:${P(s%60)}`}
+if(Date.now()-(W._uCk||0)>2e4)chkUpd();
+},1e3);
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();S.dfP=e;H("pwaBtn")?.classList.remove("hidden")});
+function instPwa(){if(S.dfP){S.dfP.prompt();S.dfP=null;H("pwaBtn")?.classList.add("hidden")}else{enterFs();alert("3 ഡോട്ട് (⋮) → Add to Home screen → Install")}}
+const sHsh=(s="")=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return""+h},curH=()=>sHsh(([...document.scripts].find(s=>s.textContent.includes("initApp"))?.textContent||"").trim()),uN=()=>showUpdNotif("🔔 പുതിയ അപ്ഡേറ്റ് ലഭ്യമാണ്! Update ചെയ്യാം →","bg-amber-400 text-slate-950",0);
+async function clrSw(){try{for(const k of await caches?.keys?.()||[])await caches.delete(k);for(const r of await navigator.serviceWorker?.getRegistrations?.()||[])await r.unregister()}catch(e){}}
+function ackVer(){const v=W._rVer||curH();if(v&&v!=="0")LS.setItem("csl_seen_ver",v);if(W._rSha)LS.setItem("csl_seen_sha",W._rSha)}
+function hideUpd(){ackVer();clearTimeout(W._uTm);H("updBar")?.classList.add("hidden")}
+function showUpdNotif(m="",c="bg-emerald-500 text-slate-950",ms=3e3){const b=H("updBar");if(!b)return;b.className=`relative z-50 ${c} px-3 py-2 text-center tx font-black shadow-lg fb`;b.innerHTML=`<span onclick="forceUpd()" class="flex-1">${m}</span><button onclick="hideUpd()" class="px-2">✕</button>`;b.classList.remove("hidden");clearTimeout(W._uTm);if(ms>0)W._uTm=setTimeout(hideUpd,ms)}
+async function forceUpd(){W._ignHash=1;ackVer();showUpdNotif("⏳ അപ്ഡേറ്റ് ചെയ്യുന്നു...","bg-amber-400 text-slate-950",2500);await clrSw();const u0=location.origin+location.pathname+"?_u="+Date.now();SS.setItem("csl_upd_ok","1");location.replace(u0);setTimeout(()=>{location.href=u0},250)}
+async function chkUpd(){if(W._isDl)return;W._uCk=Date.now();W.syncUsrs?.();if(location.search.includes("_u="))try{history.replaceState({},"",location.pathname+location.hash)}catch(e){}const cH=curH(),sv=LS.getItem("csl_seen_ver"),f0={cache:"no-store"};if(SS.getItem("csl_upd_ok")){SS.removeItem("csl_upd_ok");W._rVer=cH;ackVer();showUpdNotif("✅ അപ്ഡേറ്റ് പൂർത്തിയായി!","bg-emerald-500 text-slate-950",2500);return}if(!sv){if(LS.getItem(K)){W._rVer=cH;uN()}else if(cH!=="0")LS.setItem("csl_seen_ver",cH)}else if(cH!=="0"&&sv!==cH){W._rVer=cH;uN()}try{const tx=await(await fetch(location.origin+location.pathname+"?_t="+Date.now(),f0)).text(),rH=sHsh(((tx.split("<scr"+"ipt>")[1]||"").split("</scr"+"ipt>")[0]||"").trim());if(rH!=="0"&&(rH!==cH||(sv&&rH!==sv))){W._rVer=rH;uN()}}catch(e){}try{const gm=location.hostname.match(/^([^.]+)\.github\.io$/i),gr=location.pathname.split("/").filter(Boolean)[0];if(gm&&gr){const sh=(await(await fetch(`https://api.github.com/repos/${gm[1]}/${gr}/commits?per_page=1&_t=`+Date.now(),f0)).json())?.[0]?.sha||"",ss=LS.getItem("csl_seen_sha");if(sh){W._rSha=sh;if(!ss)LS.setItem("csl_seen_sha",sh);else if(ss!==sh)uN()}}}catch(e){}}
+["pageshow","focus"].map(e=>addEventListener(e,chkUpd));document.addEventListener("visibilitychange",()=>{if(!document.hidden)chkUpd()});
+Object.assign(W,{instPwa,clrSw,hideUpd,showUpdNotif,forceUpd,chkUpd,APP_VER});
 // === END PART 49 ===
 // === START PART 50 ===
+function doExit(){S.exitMod=0;u();try{window.AppInventor?.setWebViewString?.("EXIT_APP");window.close();navigator.app?.exitApp?.();if(history.length>1)history.go(-history.length)}catch(e){}}
+function armBack(){lockP();if(S.view!=="dashboard"&&!window._hArm){window._hArm=1;navPush(S.view)}}
+window.addEventListener("click",armBack,{passive:true});
 function onHwBack(){if(window._ignHash)return;const n=Date.now();if(n-(window._lastBk||0)<220)return;window._lastBk=n;if(S.navOpen){togNav(0);return}if(S.aMod||S.pdfMod||S.waPrev||S.admOpen||S.slipOpen){S.aMod='';
 S.pdfMod='';S.waPrev='';S.admOpen=0;S.slipOpen=0;window._hArm=0;navPush(S.view);u();return}if(S.view!=='dashboard'){window._hArm=0;window._dashTs=n;S.view='dashboard';
 u();scrollTo(0,0);return}if(n-(window._dashTs||0)<500)return;doExit()}
@@ -1139,7 +1126,7 @@ if(S.view!=='dashboard')navPush(S.view);
 }catch(e){}
 render();
 })();
-Object.assign(window,{onHwBack});
+Object.assign(window,{doExit,armBack,onHwBack});
 </script>
 
 </body>
