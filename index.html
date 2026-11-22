@@ -764,20 +764,17 @@ function selLn(t='none'){let a=Array.isArray(S.lns)&&S.lns.length?[...S.lns]:(S.
 'personal','gold'];else if(t==='pg')a=['personal','gold'];else a=a.includes(t)?a.filter(x=>x!==t):[...a,t];S.lns=a;S.lnTp=!a.length?'none':a.length===3?'both':a.length===2&&a.includes('personal')&&a.includes('gold')?'pg':
 a[0];S.mTab=a.length?'loans':'spend';u()}
 function selCc(n=0){S.ccMod=+n;if(!S.ccMod&&S.mTab==='cards')S.mTab='spend';else if(S.ccMod>0)S.mTab='cards';u()}
-function uHl(k='',v=''){S.hl={...(S.hl||{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''}),on:1,[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.hl.ln||0),r0=(+
-(S.hl.rt||8.5))/1200,n0=(+(S.hl.yr||20))*12;if(P0>0)S.hl.emi=Math.round((P0*r0*Math.pow(1+r0,n0))/(Math.pow(1+r0,n0)-1))}u()}
-function uPl(k='',v=''){S.pl={...(S.pl||{ln:'',rt:12.5,yr:5,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='yr'){const P0=+(S.pl.ln||0),r0=(+(S.pl.rt||12.5))/1200,
-n0=(+(S.pl.yr||5))*12;if(P0>0)S.pl.emi=Math.round((P0*r0*Math.pow(1+r0,n0))/(Math.pow(1+r0,n0)-1))}u()}
+function calcEmiM(P0=0,rt=0,mo=1){const P=+P0||0,n=Math.max(1,+mo||1),r=(+rt||0)/1200;return P>0?(r>0?Math.round((P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1)):Math.round(P/n)):0}
+function uHl(k='',v=''){const c=S.hl||{on:0,ln:'',rt:8.5,mo:240,emi:'',ex:''};S.hl={...c,on:1,mo:c.mo||(c.yr?Math.round(+c.yr*12):240),[k]:v};if(k==='ln'||k==='rt'||k==='mo')S.hl.emi=calcEmiM(S.hl.ln,S.hl.rt,S.hl.mo);u()}
+function uPl(k='',v=''){const c=S.pl||{ln:'',rt:12.5,mo:60,emi:'',ex:''};S.pl={...c,mo:c.mo||(c.yr?Math.round(+c.yr*12):60),[k]:v};if(k==='ln'||k==='rt'||k==='mo')S.pl.emi=calcEmiM(S.pl.ln,S.pl.rt,S.pl.mo);u()}
 function adHlTx(emi=0,intYr=0){if(emi>0){const i=S.txs.findIndex(x=>/Home Loan EMI|ഹൗസിംഗ് ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),
 t:'🏠 ഹൗസിംഗ് ലോൺ (Home Loan EMI)',m:'Bank Account',bk:'needs',a:emi,dt:nDT()})}if(intYr>0)S.txI.hlInt=Math.min(200000,intYr);u()}
 function adPlTx(emi=0){if(emi>0){const i=S.txs.findIndex(x=>/Personal Loan EMI|പേഴ്സണൽ ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),
 t:'💼 പേഴ്സണൽ ലോൺ (Personal Loan EMI)',m:'Bank Account',bk:'needs',a:emi,dt:nDT()})}u()}
-function uGl(k='',v=''){S.gl={...(S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='mo'){const P0=+(S.gl.ln||0),r0=(+(S.gl.rt||9))/1200,n0=Math.max(1,+(S.gl.mo||12));if(P0>0)S.gl.emi=Math.round((P0*r0*Math.pow(1+
-r0,
-n0))/(Math.pow(1+r0,n0)-1))}u()}
+function uGl(k='',v=''){S.gl={...(S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''}),[k]:v};if(k==='ln'||k==='rt'||k==='mo')S.gl.emi=calcEmiM(S.gl.ln,S.gl.rt,S.gl.mo);u()}
 function adGlTx(emi=0){if(emi>0){const i=S.txs.findIndex(x=>/Gold Loan|ഗോൾഡ് ലോൺ/i.test(x.t));if(i>=0)S.txs[i].a=emi;else S.txs.unshift({id:Date.now(),t:'🪙 ഗോൾഡ് ലോൺ (Gold Loan Release)',m:'Bank Account',bk:'needs',a:emi,
 dt:nDT()})}u()}
-Object.assign(window,{selLn,selCc,uHl,uPl,adHlTx,adPlTx,uGl,adGlTx});
+Object.assign(window,{selLn,selCc,calcEmiM,uHl,uPl,adHlTx,adPlTx,uGl,adGlTx});
 // === END PART 37 ===
 // === START PART 38 ===
 function vMon0a(){const inc=+S.mInc||0,nLim=Math.round(inc*.5),wLim=Math.round(inc*.3),sLim=Math.round(inc*.2),useCc=+(S.ccMod??3)>0,md=S.ccMod===2?2:3,hH=hasLn('house'),hP=hasLn('personal'),hG=hasLn('gold'),noLn=!hH&&!hP&&!hG,allLn=hH&&hP&&hG,
@@ -789,25 +786,22 @@ const tB=S.bks.reduce((a,b)=>a+(+b.bl||0),0),actC=useCc?S.cds.slice(0,md):[],tLm
 0),uPct=tLm>0?Math.round(tC/tLm*100):0,tS=needS+wantS;
 const rnk=[...actC].sort((a,b)=>ccDays(b.stD||15,b.duD||5)-ccDays(a.stD||15,b.duD||5)),best=rnk[0]||actC[0]||null,mOpts=[...(useCc?S.cds.map(c=>c.b):[]),
 ...S.bks.map(b=>b.b),'UPI / GPay',...(useCc?['Credit Card']:[]),'Bank Account','Cash'].filter((v,i,a)=>v&&a.indexOf(v)===i).join(',');
-const hl=S.hl||{on:0,ln:'',rt:8.5,yr:20,emi:'',ex:''},P0=+(hl.ln||0),rt0=+(hl.rt||8.5),yr0=+(hl.yr||20),rM=rt0/1200,nM=yr0*12,cEmi=P0>0?Math.round((P0*rM*Math.pow(1+
-rM,nM))/(Math.pow(1+rM,nM)-1)):0,hlEmi=+(hl.emi||cEmi||0),hlEx=+(hl.ex||0)||Math.round(hlEmi/12),hlPct=inc>0?Math.round(hlEmi/inc*100):0,remInc=Math.max(0,
+const hl=S.hl||{on:0,ln:'',rt:8.5,mo:240,emi:'',ex:''},P0=+(hl.ln||0),rt0=+(hl.rt??8.5),nM=Math.max(1,+(hl.mo||(hl.yr?Math.round(+hl.yr*12):240))),rM=rt0/1200,cEmi=calcEmiM(P0,rt0,nM),hlEmi=P0>0?cEmi:+(hl.emi||0),hlSug=P0>0&&hlEmi>0?Math.max(1000,Math.round(hlEmi*.2/100)*100):0,hlEx=+(hl.ex||0)||hlSug,hlPct=inc>0?Math.round(hlEmi/inc*100):0,remInc=Math.max(0,
 inc-hlEmi),hlNeedB=Math.max(0,Math.round(inc*.65)-hlEmi),hlWantB=Math.round(inc*.15),intYr=P0>0?Math.min(200000,Math.round(P0*rt0/100)):Math.min(200000,
 Math.round(hlEmi*8.4));
 let nInt=P0>0&&hlEmi>P0*rM?Math.max(0,hlEmi*nM-P0):0,pM=nM,pInt=0;if(P0>0&&hlEmi>P0*rM&&hlEx>0){let bl=P0,mc=0;while(bl>0&&mc<nM){const mi=bl*rM;pInt+=mi;
 const pr=hlEmi+hlEx-mi;if(pr<=0)break;bl-=pr;mc++}pM=mc}const intSv=Math.max(0,Math.round(nInt-pInt)),mSv=Math.max(0,nM-pM),yrSv=(""+(Math.floor(mSv/12))+
 " Yr "+(mSv%12)+" Mo");
-return(window._vm={inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,tab,needS,wantS,savS,tB,actC,tLm,tC,uPct,tS,rnk,best,mOpts,hl,P0,rt0,yr0,rM,nM,cEmi,hlEmi,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,nInt,pM,pInt,intSv,mSv,yrSv});}
+return(window._vm={inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,tab,needS,wantS,savS,tB,actC,tLm,tC,uPct,tS,rnk,best,mOpts,hl,P0,rt0,nM,rM,cEmi,hlEmi,hlSug,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,nInt,pM,pInt,intSv,mSv,yrSv});}
 Object.assign(window,{vMon0a});
 // === END PART 38 ===
 // === START PART 39 ===
-function vMon0b(){const{inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,needS,wantS,savS,tB,tC,uPct,hlEmi,hlPct}=window._vm;const pl=S.pl||{ln:'',rt:12.5,yr:5,emi:'',ex:''},P1=+(pl.ln||0),rt1=+(pl.rt||12.5),yr1=+(pl.yr||5),rM1=rt1/1200,nM1=yr1*12,cEmi1=P1>0?Math.round((P1*rM1*Math.pow(1+
-rM1,nM1))/(Math.pow(1+rM1,nM1)-1)):0,plEmi=+(pl.emi||cEmi1||0),plEx=+(pl.ex||0)||Math.round(plEmi/4),plPct=inc>0?Math.round(plEmi/inc*100):0,plNeedB=Math.max(0,
+function vMon0b(){const{inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,needS,wantS,savS,tB,tC,uPct,hlEmi,hlPct}=window._vm;const pl=S.pl||{ln:'',rt:12.5,mo:60,emi:'',ex:''},P1=+(pl.ln||0),rt1=+(pl.rt??12.5),nM1=Math.max(1,+(pl.mo||(pl.yr?Math.round(+pl.yr*12):60))),rM1=rt1/1200,cEmi1=calcEmiM(P1,rt1,nM1),plEmi=P1>0?cEmi1:+(pl.emi||0),plSug=P1>0&&plEmi>0?Math.max(1000,Math.round(plEmi*.3/100)*100):0,plEx=+(pl.ex||0)||plSug,plPct=inc>0?Math.round(plEmi/inc*100):0,plNeedB=Math.max(0,
 Math.round(inc*.6)-plEmi),plWantB=Math.round(inc*.1),plSavB=Math.round(inc*.3);
 let nInt1=P1>0&&plEmi>P1*rM1?Math.max(0,plEmi*nM1-P1):0,pM1=nM1,pInt1=0;if(P1>0&&plEmi>P1*rM1&&plEx>0){let bl=P1,mc=0;while(bl>0&&mc<nM1){const mi=bl*rM1;
 pInt1+=mi;const pr=plEmi+plEx-mi;if(pr<=0)break;bl-=pr;mc++}pM1=mc}const plIntSv=Math.max(0,Math.round(nInt1-pInt1)),plMSv=Math.max(0,nM1-pM1);
-const gl=S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''},P2=+(gl.ln||0),rt2=+(gl.rt||9),mo2=Math.max(1,+(gl.mo||12)),rM2=rt2/1200,cEmi2=P2>0?Math.round((P2*rM2*Math.pow(1+rM2,mo2))/(Math.pow(1+rM2,mo2)-1)):0,glEmi=+(gl.emi||cEmi2||0),
-glEx=+
-(gl.ex||0)||Math.round(glEmi/4),glPct=inc>0?Math.round(glEmi/inc*100):0,glNeedB=Math.max(0,Math.round(inc*.6)-glEmi),glWantB=Math.round(inc*.15),glSavB=Math.round(inc*.25);
+const gl=S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''},P2=+(gl.ln||0),rt2=+(gl.rt??9),mo2=Math.max(1,+(gl.mo||12)),rM2=rt2/1200,cEmi2=calcEmiM(P2,rt2,mo2),glEmi=P2>0?cEmi2:+(gl.emi||0),glSug=P2>0&&glEmi>0?Math.max(500,Math.round(glEmi*.25/100)*100):0,
+glEx=+(gl.ex||0)||glSug,glPct=inc>0?Math.round(glEmi/inc*100):0,glNeedB=Math.max(0,Math.round(inc*.6)-glEmi),glWantB=Math.round(inc*.15),glSavB=Math.round(inc*.25);
 let nInt2=P2>0&&glEmi>P2*rM2?Math.max(0,glEmi*mo2-P2):0,pM2=mo2,pInt2=0;if(P2>0&&glEmi>P2*rM2&&glEx>0){let bl=P2,mc=0;while(bl>0&&mc<mo2){const mi=bl*rM2;pInt2+=mi;const pr=glEmi+glEx-mi;if(pr<=0)break;bl-=pr;mc++}pM2=mc}const glIntSv=Math.max(0,
 Math.round(nInt2-pInt2)),glMSv=Math.max(0,mo2-pM2),rtDf=Math.max(0,+(rt1-rt2).toFixed(1)),pgArb=Math.round(((P1||P2||200000)*rtDf)/100),pgEmi=plEmi+glEmi,pgPct=inc>0?Math.round(pgEmi/inc*100):0;
 const lnBar=D('g3',[['house',(hH?'✓ ':'')+'🏠 ഹൗസ് ലോൺ',hH,'bg-amber-500 text-slate-950 font-black'],['personal',(hP?'✓ ':'')+'💼 പേഴ്സണൽ ലോൺ',hP,'bg-cyan-400 text-slate-950 font-black'],['gold',(hG?'✓ ':'')+'🪙 ഗോൾഡ് ലോൺ',
@@ -818,7 +812,7 @@ window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n�
 "*"+(hH&&hlEmi?("\n• House Loan EMI: *"+(R(hlEmi))+"* ("+(hlPct)+"%)"):'')+(hP&&plEmi?("\n• Personal Loan EMI: *"+(R(plEmi))+"* ("+(plPct)+"%)"):'')+(hG&&glEmi?("\n• Gold Loan Pay: *"+(R(glEmi))+"* ("+(glPct)+"%)"):'')+"\n• Bank Balance: *"+
 (R(tB))+"*"+(useCc?(" | Card Used: *"+(R(tC))+"* ("+(uPct)+"%)"):''));
 const tabs=[['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")],['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],['cards',useCc?("💳 കാർഡ് ("+(md)+")"):'💳 കാർഡ് (Off)'],['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")]];
-return Object.assign(window._vm,{pl,P1,rt1,yr1,rM1,nM1,cEmi1,plEmi,plEx,plPct,plNeedB,plWantB,plSavB,nInt1,pM1,pInt1,plIntSv,plMSv,gl,P2,rt2,mo2,rM2,cEmi2,glEmi,glEx,glPct,glNeedB,glWantB,glSavB,nInt2,pM2,pInt2,glIntSv,glMSv,rtDf,pgArb,pgEmi,pgPct,lnBar,tabs});}
+return Object.assign(window._vm,{pl,P1,rt1,nM1,rM1,cEmi1,plEmi,plSug,plEx,plPct,plNeedB,plWantB,plSavB,nInt1,pM1,pInt1,plIntSv,plMSv,gl,P2,rt2,mo2,rM2,cEmi2,glEmi,glSug,glEx,glPct,glNeedB,glWantB,glSavB,nInt2,pM2,pInt2,glIntSv,glMSv,rtDf,pgArb,pgEmi,pgPct,lnBar,tabs});}
 Object.assign(window,{vMon0b});
 // === END PART 39 ===
 // === START PART 40 ===
@@ -866,17 +860,16 @@ R(pgEmi)+"</b> · ശമ്പളത്തിന്റെ "+pgPct+"%).</i></div>
 Object.assign(window,{vMon2});
 // === END PART 42 ===
 // === START PART 43 ===
-function vMonHl1(){const{sLim,hl,P0,hlEmi,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,intSv,mSv,yrSv}=window._vm;return F("<div><b class=\"sm ta\">🏠 ഹൗസിംഗ് ലോൺ (Home Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം & മാനേജ് ചെയ്യാം?</b><div><i>ഹൗസിംഗ് ലോൺ ഉള്ളപ്പോൾ 50/30/20-ന് പക"+
+function vMonHl1(){const{sLim,hl,P0,nM,hlEmi,hlSug,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,intSv,mSv,yrSv}=window._vm;return F("<div><b class=\"sm ta\">🏠 ഹൗസിംഗ് ലോൺ (Home Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം & മാനേജ് ചെയ്യാം?</b><div><i>ഹൗസിംഗ് ലോൺ ഉള്ളപ്പോൾ 50/30/20-ന് പക"+
 "രം <b>65 / 15 / 20 ഹൗസിംഗ് ലോൺ ഫോർമുലയും OT പ്രീപേയ്മെന്റ് തന്ത്രവും</b> ഉപയോഗിക്കുക!</i></div></div>"+(hlEmi?("<span class=\"bD rf tx fm "+(hlPct<=35?'te':'tr0')+
 "\">EMI: "+(hlPct)+"% ("+(hlPct<=35?'Safe ≤35% ✓':'High >35% ⚠️')+")</span>"):''),'m2 flex-wrap')+
-D('g5 m2',[['ln','Loan Amount (₹)',hl.ln,'e.g. 2500000'],['rt','Interest (%)',hl.rt,'8.5'],['yr','Tenure (Yrs)',hl.yr,'20'],['emi','Monthly EMI (₹)',hlEmi||'',
-'Auto / Enter'],['ex','Extra Prepay/m (₹)',hl.ex,'OT Prepay ₹']].map(([k,l,v,ph])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+
-(ph)+"\" value=\""+(v)+"\" onchange=\"uHl('"+(k)+"',this.value)\" class=\"inp fm\"/></div>")).join(''))+
+D('g5 m2',[['ln','Loan Amount (₹)',hl.ln,'e.g. 2500000',0],['rt','ROI % P.A.',hl.rt,'8.5',0],['mo','Tenure (Months)',nM,'240',0],['emi','Monthly EMI (Auto)',hlEmi||'','Auto',1],['ex','Extra OT Pay/m (₹)',hl.ex||hlSug||'','Auto OT ₹',0]].map(([k,l,v,ph,ro])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+
+(ph)+"\" value=\""+(v)+"\""+(ro?' readonly':" onchange=\"uHl('"+(k)+"',this.value)\"")+" class=\"inp fm"+(ro?' ta':'')+"\"/></div>")).join(''))+
 D('g4 m2',[['1. 🏠 Home Loan EMI',R(hlEmi)+(" ("+(hlPct)+"%)"),'tr0',("EMI കഴിഞ്ഞ് ബാക്കി ശമ്പളം: <b>"+(R(remInc))+"</b>")],['2. 🍲 വീട്ടുചിലവ് (≤65%)',
 R(hlNeedB),'tc','EMI + വീട്ടുചിലവുകൾ ശമ്പളത്തിന്റെ 65%-ൽ കൂടരുത്'],['3. 🎉 ആഗ്രഹങ്ങൾ (30%→15%)',R(hlWantB)+' (15%)','ta','ഹൗസിംഗ് ലോൺ ഉള്ളപ്പോൾ Wants 30%-ൽ നിന്ന് 15% ആക്കുക'],
 ['4. 💎 20% സമ്പാദ്യം + Prepay',R(sLim)+' (20%)','te',("10% Emergency/SIP ("+(R(Math.round(sLim/2)))+") + 10% ലോൺ മുതലിലേക്ക്")]].map(([t,v,c,s])=>S1(("<b class=\""+
 (c)+" tx\">"+(t)+"</b><div class=\"sm fm my-0.5\"><b>"+(v)+"</b></div><div class=\"text-[9px] ts\">"+(s)+"</div>"))).join(''))+
-(P0>0&&hlEmi>0?S1(F(("<div><b class=\"te\">⚡ പ്രതിമാസം "+(R(hlEx))+" (അല്ലെങ്കിൽ OT തുക / വർഷത്തിൽ 1 Extra EMI) മുതലിലേക്ക് (Principal) അധികം അടച്ചാൽ:</b><div class=\"tx fm\">ആകെ പലിശ ല"+
+(P0>0&&hlEmi>0?S1(F(("<div><b class=\"te\">⚡ Extra OT Pay → ലോണിലേക്ക് അടയ്ക്കേണ്ട തുക: <span class=\"ta\">"+(R(hlEx))+"/മാസം</span> (മൊത്തം: "+(R(hlEmi+hlEx))+"/മാസം)</b><div class=\"tx fm\">ആകെ പലിശ ല"+
 "ാഭം: <b class=\"ta\">"+(R(intSv))+"</b> · ലോൺ കാലാവധി കുറയുന്നത്: <b class=\"tc\">"+(yrSv)+"</b> ("+(mSv)+" മാസം വേഗത്തിൽ തീരും!)</div></div>")+B(("adHlTx("+
 (hlEmi)+","+(intYr)+")"),'bt bE tx','✓ Sync EMI & Sec 24(b) Tax'),'flex-wrap'),'m2 bg-emerald-950/60 border-emerald-500/50'):B(("adHlTx("+(hlEmi)+","+
 (intYr)+")"),'bt bA w-full m2 tx','➕ Add Housing Loan EMI to Budget & Sync Income Tax (Sec 24b)'));}
@@ -890,17 +883,16 @@ function vMonHl2(){const{hlEmi}=window._vm;return S1(("<b class=\"tc block mb-1\
 Object.assign(window,{vMonHl1,vMonHl2});
 // === END PART 43 ===
 // === START PART 44 ===
-function vMonPl1(){const{pl,P1,plEmi,plEx,plPct,plNeedB,plWantB,plSavB,plIntSv,plMSv}=window._vm;return F("<div><b class=\"sm tc\">💼 പേഴ്സണൽ ലോൺ (Personal / Society Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം?</b><div><i>പേഴ്സണൽ ലോണിന് പലിശ കൂടുതലായതിനാൽ <b"+
+function vMonPl1(){const{pl,P1,nM1,plEmi,plSug,plEx,plPct,plNeedB,plWantB,plSavB,plIntSv,plMSv}=window._vm;return F("<div><b class=\"sm tc\">💼 പേഴ്സണൽ ലോൺ (Personal / Society Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം?</b><div><i>പേഴ്സണൽ ലോണിന് പലിശ കൂടുതലായതിനാൽ <b"+
 ">60 / 10 / 30 ഡെറ്റ്-ഫ്രീ ഫോർമുലയും OT Fast-Closure തന്ത്രവും</b> ഉപയോഗിക്കുക!</i></div></div>"+(plEmi?("<span class=\"bD rf tx fm "+(plPct<=15?'te':'tr0')+
 "\">EMI: "+(plPct)+"% ("+(plPct<=15?'Safe ≤15% ✓':'High >15% ⚠️')+")</span>"):''),'m2 flex-wrap')+
-D('g5 m2',[['ln','Loan Amount (₹)',pl.ln,'e.g. 500000'],['rt','Interest (%)',pl.rt,'12.5'],['yr','Tenure (Yrs)',pl.yr,'5'],['emi','Monthly EMI (₹)',plEmi||'',
-'Auto / Enter'],['ex','Extra OT Pay/m (₹)',pl.ex,'OT Payoff ₹']].map(([k,l,v,ph])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+
-(ph)+"\" value=\""+(v)+"\" onchange=\"uPl('"+(k)+"',this.value)\" class=\"inp fm\"/></div>")).join(''))+
+D('g5 m2',[['ln','Loan Amount (₹)',pl.ln,'e.g. 500000',0],['rt','ROI % P.A.',pl.rt,'12.5',0],['mo','Tenure (Months)',nM1,'60',0],['emi','Monthly EMI (Auto)',plEmi||'','Auto',1],['ex','Extra OT Pay/m (₹)',pl.ex||plSug||'','Auto OT ₹',0]].map(([k,l,v,ph,ro])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+
+(ph)+"\" value=\""+(v)+"\""+(ro?' readonly':" onchange=\"uPl('"+(k)+"',this.value)\"")+" class=\"inp fm"+(ro?' ta':'')+"\"/></div>")).join(''))+
 D('g4 m2',[['1. 💼 Personal Loan EMI',R(plEmi)+(" ("+(plPct)+"%)"),'tr0','ഉയർന്ന പലിശയുള്ള ലോൺ — വേഗം ക്ലോസ് ചെയ്യുക'],['2. 🍲 വീട്ടുചിലവ് (≤60%)',R(plNeedB),
 'tc','EMI + വീട്ടുചിലവുകൾ ശമ്പളത്തിന്റെ 60%-ൽ ഒതുക്കുക'],['3. 🎉 ആഗ്രഹങ്ങൾ (30%→10%)',R(plWantB)+' (10%)','ta','ലോൺ തീരുന്നതുവരെ Wants 10% ആയി കർശനമായി കുറയ്ക്കുക'],
 ['4. ⚡ 30% സമ്പാദ്യം + Closure',R(plSavB)+' (30%)','te','OT തുക ഉപയോഗിച്ച് ലോൺ പ്രിൻസിപ്പൽ വേഗം തീർക്കുക']].map(([t,v,c,s])=>S1(("<b class=\""+(c)+" tx\">"+
 (t)+"</b><div class=\"sm fm my-0.5\"><b>"+(v)+"</b></div><div class=\"text-[9px] ts\">"+(s)+"</div>"))).join(''))+
-(P1>0&&plEmi>0?S1(F(("<div><b class=\"te\">⚡ പ്രതിമാസം "+(R(plEx))+" (CSL OT തുകയിൽ നിന്ന്) പേഴ്സണൽ ലോൺ മുതലിലേക്ക് അധികം അടച്ചാൽ:</b><div class=\"tx fm\">ആകെ പലിശ ലാഭം: <b class=\"ta\">"+
+(P1>0&&plEmi>0?S1(F(("<div><b class=\"te\">⚡ Extra OT Pay → ലോണിലേക്ക് അടയ്ക്കേണ്ട തുക: <span class=\"ta\">"+(R(plEx))+"/മാസം</span> (മൊത്തം: "+(R(plEmi+plEx))+"/മാസം)</b><div class=\"tx fm\">ആകെ പലിശ ലാഭം: <b class=\"ta\">"+
 (R(plIntSv))+"</b> · ലോൺ തീരുന്നത്: <b class=\"tc\">"+(plMSv)+" മാസം വേഗത്തിൽ!</b></div></div>")+B(("adPlTx("+(plEmi)+")"),'bt bE tx','✓ Add Personal Loan EMI'),
 'flex-wrap'),'m2 bg-emerald-950/60 border-emerald-500/50'):B(("adPlTx("+(plEmi)+")"),'bt bC w-full m2 tx','➕ Add Personal Loan EMI to Monthly Budget'));}
 function vMonPl2(){return S1("<b class=\"tc block mb-1\">🛡️ പേഴ്സണൽ ലോൺ ബുദ്ധിപരമായി ഉപയോഗിക്കാനും വേഗം തീർക്കാനുമുള്ള 6 സുവർണ്ണ നിയമങ്ങൾ:</b><div class=\"g3 text-[10px]\"><div><b class=\"ta\">1. എന്തിനു മാത്രം"+
@@ -914,17 +906,13 @@ function vMonPl2(){return S1("<b class=\"tc block mb-1\">🛡️ പേഴ്സ
 Object.assign(window,{vMonPl1,vMonPl2});
 // === END PART 44 ===
 // === START PART 45 ===
-function vMonGl1(){const{gl,P2,glEmi,glEx,glPct,glNeedB,glWantB,glSavB,glIntSv,glMSv}=window._vm;return F("<div><b class=\"sm ta\">🪙 ഗോൾഡ് ലോൺ (Gold Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം & സ്വർണ്ണം സുരക്ഷിതമായി തിരിച്ചെടുക്കാം?</b><div><i>പലിശ മാത്രം അടച്ച് പുതുക്കുന്ന കെണി ഒഴിവാക്കി <b>60 / 15 / 25 Gold Release ഫ"+
+function vMonGl1(){const{gl,P2,mo2,glEmi,glSug,glEx,glPct,glNeedB,glWantB,glSavB,glIntSv,glMSv}=window._vm;return F("<div><b class=\"sm ta\">🪙 ഗോൾഡ് ലോൺ (Gold Loan) എങ്ങനെ ബുദ്ധിപരമായി ഉപയോഗിക്കാം & സ്വർണ്ണം സുരക്ഷിതമായി തിരിച്ചെടുക്കാം?</b><div><i>പലിശ മാത്രം അടച്ച് പുതുക്കുന്ന കെണി ഒഴിവാക്കി <b>60 / 15 / 25 Gold Release ഫ"+
 "ോർമുലയും OT Part-Release തന്ത്രവും</b> ഉപയോഗിക്കുക!</i></div></div>"+(glEmi?("<span class=\"bD rf tx fm "+(glPct<=20?'te':'tr0')+"\">Pay: "+(glPct)+"% ("+(glPct<=20?'Safe ≤20% ✓':'High >20% ⚠️')+")</span>"):''),'m2 flex-wrap')+
-D('g5 m2',[['ln',
-'Gold Loan (₹)',gl.ln,'e.g. 200000'],['rt','Interest (%)',gl.rt,'9.0'],['mo','Months (1-36)',gl.mo,'12'],['emi','Monthly Pay (₹)',glEmi||'','Auto / Enter'],['ex','OT Release/m (₹)',gl.ex,'OT Release ₹']].map(([k,l,v,ph])=>("<div><i>"+
-(l)+
-"</i><input type=\"number\" step=\"0.1\" placeholder=\""+(ph)+"\" value=\""+(v)+"\" onchange=\"uGl('"+(k)+"',this.value)\" class=\"inp fm\"/></div>")).join(''))+D('g4 m2',[['1. 🪙 Gold Loan Monthly Pay',R(glEmi)+(" ("+(glPct)+
+D('g5 m2',[['ln','Gold Loan (₹)',gl.ln,'e.g. 200000',0],['rt','ROI % P.A.',gl.rt,'9.0',0],['mo','Tenure (Months)',mo2,'12',0],['emi','Monthly EMI (Auto)',glEmi||'','Auto',1],['ex','Extra OT Pay/m (₹)',gl.ex||glSug||'','Auto OT ₹',0]].map(([k,l,v,ph,ro])=>("<div><i>"+(l)+"</i><input type=\"number\" step=\"0.1\" placeholder=\""+(ph)+"\" value=\""+(v)+"\""+(ro?' readonly':" onchange=\"uGl('"+(k)+"',this.value)\"")+" class=\"inp fm"+(ro?' ta':'')+"\"/></div>")).join(''))+D('g4 m2',[['1. 🪙 Gold Loan Monthly Pay',R(glEmi)+(" ("+(glPct)+
 "%)"),'ta',
 'മുതലും പലിശയും ചേർത്ത് മാസംതോറും അടച്ച് സ്വർണ്ണം തിരിച്ചെടുക്കുക'],['2. 🍲 വീട്ടുചിലവ് (≤60%)',R(glNeedB),'tc','ഗോൾഡ് ലോൺ + വീട്ടുചിലവുകൾ ശമ്പളത്തിന്റെ 60%-ൽ ഒതുക്കുക'],['3. 🎉 ആഗ്രഹങ്ങൾ (30%→15%)',R(glWantB)+' (15%)','tr0',
 'സ്വർണ്ണം തിരിച്ചെടുക്കുന്നതുവരെ Wants 15% ആക്കുക'],['4. 🔓 25% OT Gold Release',R(glSavB)+' (25%)','te','OT തുക ഉപയോഗിച്ച് ഓരോ ആഭരണമായി (Part-Release) തിരിച്ചെടുക്കുക']].map(([t,v,c,s])=>S1(("<b class=\""+(c)+" tx\">"+(t)+
-"</b><div class=\"sm fm my-0.5\"><b>"+(v)+"</b></div><div class=\"text-[9px] ts\">"+(s)+"</div>"))).join(''))+(P2>0&&glEmi>0?S1(F(("<div><b class=\"te\">⚡ പ്രതിമാസം "+(R(glEx))+
-" (CSL OT തുകയിൽ നിന്ന്) ഗോൾഡ് ലോൺ മുതലിലേക്ക് അധികം അടച്ചാൽ:</b><div class=\"tx fm\">ആകെ പലിശ ലാഭം: <b class=\"ta\">"+(R(glIntSv))+"</b> · സ്വർണ്ണം തിരിച്ചെടുക്കാം: <b class=\"tc\">"+(glMSv)+" മാസം വേഗത്തിൽ!</b></div></div>")+
+"</b><div class=\"sm fm my-0.5\"><b>"+(v)+"</b></div><div class=\"text-[9px] ts\">"+(s)+"</div>"))).join(''))+(P2>0&&glEmi>0?S1(F(("<div><b class=\"te\">⚡ Extra OT Pay → ലോണിലേക്ക് അടയ്ക്കേണ്ട തുക: <span class=\"ta\">"+(R(glEx))+"/മാസം</span> (മൊത്തം: "+(R(glEmi+glEx))+"/മാസം)</b><div class=\"tx fm\">ആകെ പലിശ ലാഭം: <b class=\"ta\">"+(R(glIntSv))+"</b> · സ്വർണ്ണം തിരിച്ചെടുക്കാം: <b class=\"tc\">"+(glMSv)+" മാസം വേഗത്തിൽ!</b></div></div>")+
 B(("adGlTx("+(glEmi)+
 ")"),'bt bE tx','✓ Add Gold Loan Pay'),'flex-wrap'),'m2 bg-emerald-950/60 border-emerald-500/50'):B(("adGlTx("+(glEmi)+")"),'bt bA w-full m2 tx','➕ Add Gold Loan Monthly Release to Budget'));}
 function vMonGl2(){return S1("<b class=\"ta block mb-1\">🛡️ ഗോൾഡ് ലോൺ ബുദ്ധിപരമായി ഉപയോഗിക്കാനും സ്വർണ്ണം സുരക്ഷിതമായി തിരിച്ചെടുക്കാനുമുള്ള 6 സുവർണ്ണ നിയമങ്ങൾ:</b><div class="+
