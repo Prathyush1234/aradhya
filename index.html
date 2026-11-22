@@ -192,7 +192,7 @@ return brand('front',S.uSigned?B('rstEmp()','bt bg-rose-950 tr0 tx','🔄 New Us
 [['sNm','👤 FULL NAME','Enter Full Name',S.name],['sTk','# CSL CODE NUMBER','Enter CSL Code No',S.tok],['sPh','📞 PHONE NUMBER (+91)','Enter 10-digit Mobile No',S.ph],['sDp','🏢 DEPARTMENT','Enter Department / Shop',S.dep]].map(([id,l,ph,v])=>C(F('<i>'+l+'</i><b class="tr0">*</b>')+ip(id,ph,'text',String(v)))).join('')+
 (ic?D('g2 m2',C('<u>📅 JOINING DATE (DOJ)</u>'+ip('sDj','','date',S.doj,"S.doj=this.value;u()"))+C('<em>⏱️ 1 YEAR FINISH</em><div class="ta fm sm mt-2"><b>'+fin+'</b></div>')):'')+
 C(F('<div><b class="sm">CSL Leave Quotas & Initial Available Balances</b> <span class="bD rf tx">SYNCED</span></div>'+B("set('qOpen',!S.qOpen)",'bD rf tx',S.qOpen?'Hide ∧':'Show ∨'),'m2')+
-(S.qOpen?D('bt1 space-y-2',F('<em>● Casual Leave (CL – '+avlCl+'d Avl)</em><span class="bA px-2 rx tx">CL-1:'+c1+'d · CL-2:'+c2+'d</span>')+D('g2',[['qC1','CL-1 (Jan 1: +6d)',c1],['qC2','CL-2 (Jul 1: +6d)',c2],['qHp','HPL Avl (Jan 1: +21d)',avlLv('HPL')],['qEl','EL Avl (+2.5/mo <20d lv)',avlLv('EL')],['qSc','SCL Available',avlLv('SCL')]].map(([id,l,v])=>S1('<u>'+l+'</u>'+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+S1('<div class="tx te">✓ Live Available Leaves synced to Calendar & Attendance:</div><div id="lvPrev" class="tx fm tc mt-0.5">CL: <b>'+avlCl+'d</b> (CL-1:'+c1+'·CL-2:'+c2+') · EL: <b>'+avlLv('EL')+'d</b> · HPL: <b>'+avlLv('HPL')+'d</b> · SCL: <b>'+avlLv('SCL')+'d</b></div>')):''))+
+(S.qOpen?D('bt1 space-y-2',F('<em>● Casual Leave (CL – '+avlCl+'d Avl)</em><span class="bA px-2 rx tx">CL-1:'+c1+'d · CL-2:'+c2+'d</span>')+D('g2',[['qC1','CL-1 Available',c1],['qC2','CL-2 Available',c2],['qHp','HPL Available',avlLv('HPL')],['qEl','EL Available',avlLv('EL')],['qSc','SCL Available',avlLv('SCL')]].map(([id,l,v])=>S1('<u>'+l+'</u>'+ip(String(id),'','number',String(v),'uLvQ()'))).join(''))+S1('<div class="tx te">✓ Live Available Leaves synced to Calendar & Attendance:</div><div id="lvPrev" class="tx fm tc mt-0.5">CL: <b>'+avlCl+'d</b> (CL-1:'+c1+'·CL-2:'+c2+') · EL: <b>'+avlLv('EL')+'d</b> · HPL: <b>'+avlLv('HPL')+'d</b> · SCL: <b>'+avlLv('SCL')+'d</b></div>')):''))+
 B('doSign()','w-full py-3 rf bC bs m2','Save & Open Attendance →')+gBox('Once initial leaves are saved, the app always opens directly on the Attendance page.');
 }
 function doSign(){
@@ -243,8 +243,8 @@ function vCalHols(clT=12){const y=S.cY||tY(),hs=hols(y),nt=hs.filter(h=>h[4]==='
 L(yrSw()+B("set('cTab','wall')",'bD rf tx','← Wall Calendar')),'m2 flex-wrap')+D('g4 text-center m2',st('Closed Holidays',hs.length,'tr0')+st('CSL Gazetted',hs.length-nt,
 'tr0')+st('National (NH)',nt,'ta')+st('CSL Leaves/Yr','63+','te'))+L([['all',`All Holidays (${hs.length})`],['Gazetted','CSL Gazetted'],['National',
 `National (${nt})`],['leaves','CSL Leaves (CL/EL/HPL)']].map(([k,l])=>B(("set('hFlt','"+(k)+"')"),("px-2.5 py-1 rx tx "+(S.hFlt===k?'bg-amber-500 text-slate-950 font-black':'sb ts')),
-l)).join(''),'flex-wrap m2')+(S.hFlt==='leaves'?D('g2',[['CL',clT,`Casual Leave (CL-1:${avlCl1()}d · CL-2:${avlCl2()}d · Jan1:+6, Jul1:+6)`,'ta',lvCnt('CL')],['EL',totLv('EL'),'Earned Leave (+2.5/mo if <20d leave)',
-'te',lvCnt('EL')+lvCnt('ML')],['ML','From EL','Medical Leave (മെഡിക്കൽ ലീവ് - Debited from EL)','tr0',lvCnt('ML')],['HPL',totLv('HPL'),'Half Pay Leave (Jan 1: +21d)',
+l)).join(''),'flex-wrap m2')+(S.hFlt==='leaves'?D('g2',[['CL',clT,`Casual Leave (CL-1:${avlCl1()}d · CL-2:${avlCl2()}d)`,'ta',lvCnt('CL')],['EL',totLv('EL'),'Earned Leave (ഏൺഡ് ലീവ്)',
+'te',lvCnt('EL')+lvCnt('ML')],['ML','From EL','Medical Leave (മെഡിക്കൽ ലീവ് - Debited from EL)','tr0',lvCnt('ML')],['HPL',totLv('HPL'),'Half Pay Leave (ഹാഫ് പേ ലീവ്)',
 'tc',lvCnt('HPL')],['SCL',totLv('SCL'),'Special Casual Leave (സ്പെഷ്യൽ ലീവ്)','ta',lvCnt('SCL')]].map(([k,q0,nm,cl,us])=>S1(F(("<b class=\"sm "+(cl)+"\">"+
 (k)+" · "+(q0==='From EL'?q0:("Avl: "+(avlLv(String(k)))+"d / "+(q0)+"d"))+"</b><span class=\"bD tx\">Used: "+(us)+"d</span>"))+("<div class=\"tx mt-0.5\">"+
 (nm)+"</div>"))).join('')):hs.filter(h=>S.hFlt==='all'||h[4].includes(S.hFlt)).map(h=>hRow(h,y)).join(''))):'');}
@@ -407,8 +407,8 @@ function vAtt3(){const{ml,on,clT}=window._va;return (S.doneSum&&!on?C(F(L(("<spa
 qBanner()+
 C(F(("<div class=\"fl\"><span class=\"w-2 h-2 rf bg-emerald-400\"></span><b>"+(ml?'CSL അവൈലബിൾ ലീവ് ബാലൻസ്':'CSL Available Leave Balances (Synced)')+"</b></div>")+
 L(B("set('aMod','quota')",'bD tx','⚙ Initial Quotas')+B("set('aMod','leave')",'bt bE tx','✈️ Apply Leave')),'m2')+
-D('g4',[['CL',avlLv('CL'),clT,lvCnt('CL'),`CL-1:${avlCl1()}d·CL-2:${avlCl2()}d`,'ta'],['EL',avlLv('EL'),totLv('EL'),lvCnt('EL')+lvCnt('ML'),'Earned (+2.5/mo)',
-'te'],['HPL',avlLv('HPL'),totLv('HPL'),lvCnt('HPL'),'Half Pay (21/Jan1)','tc'],['SCL',avlLv('SCL'),totLv('SCL'),lvCnt('SCL'),'Special Casual','ta']].map(([k,
+D('g4',[['CL',avlLv('CL'),clT,lvCnt('CL'),`CL-1:${avlCl1()}d·CL-2:${avlCl2()}d`,'ta'],['EL',avlLv('EL'),totLv('EL'),lvCnt('EL')+lvCnt('ML'),'Earned (ML incl.)',
+'te'],['HPL',avlLv('HPL'),totLv('HPL'),lvCnt('HPL'),'Half Pay Leave','tc'],['SCL',avlLv('SCL'),totLv('SCL'),lvCnt('SCL'),'Special Casual','ta']].map(([k,
 rem,tot,us,sub,c])=>S1(F(("<b class=\""+(c)+" tx\">"+(k)+" Avl</b><i>Used:"+(us)+"d</i>"))+("<div class=\"bs fm "+(c)+"\"><b>"+(rem)+"d</b> <i class=\"tx\">/ "+
 (tot)+"d</i></div><div class=\"text-[8px] ts\">"+(sub)+"</div>"),'',("S.lvTp='"+(k)+"';set('aMod','leave')"))).join('')));}
 const uPOt=()=>{if(H('pOt'))H('pOt').value=calcOt(H('pSh')?.value||S.sh,H('pOut')?.value||nTm(),0,H('pDt')?.value||tKey(),H('pIn')?.value||'')};
@@ -461,7 +461,7 @@ Object.assign(window,{vAttMod1,svP});
 // === END PART 21 ===
 // === START PART 22 ===
 function vAttMod(m=10,sd=SH.A2,sDt='',curR=S.att['2026-11-02']){const wSh=S.waSh||daySh(m,S.sD||tD()),wTm=noSec(S.waTm||nTm()),wOt=window._uOt?(S.waOt||1):calcOt(wSh,wTm,1,sDt,curR.in||''),isOt=S.waCat==='full_day_ot',isAn=S.waSes==='Second Half',pCol=isOt?'border-[#800000] text-[#800000]':isAn?'border-red-600 text-[#dc2626]':'border-green-600 text-[#15803d]',bc='rx tx ',tw=' text-white font-black';if(S.aMod==='wa')S.waOt=wOt;return vAttMod1(m,sd,sDt,curR)+
-(S.aMod==='quota'?mBox('⚙ Edit Available Leaves (CL-1 & CL-2)',D('g2 my-2',[['mC1','CL-1 Avl (Jan 1: +6)',avlCl1()],['mC2','CL-2 Avl (Jul 1: +6)',avlCl2()],['mEl','EL Avl (+2.5/mo <20d lv)',avlLv('EL')],['mHp','HPL Avl (Jan 1: +21)',avlLv('HPL')],['mSc','SCL Avl',avlLv('SCL')]].map(([i,l,v])=>S1(`<u>${l}</u><input id="${i}" type="number" step="0.5" min="0" value="${v}" class="inp"/>`)).join(''))+B("svLvEd('m')",'bt bE w-full','✓ Save Quotas & Leaves')):'')+
+(S.aMod==='quota'?mBox('⚙ Edit Available Leaves',D('g2 my-2',[['mC1','CL-1 Avl',avlCl1()],['mC2','CL-2 Avl',avlCl2()],['mEl','EL Avl',avlLv('EL')],['mHp','HPL Avl',avlLv('HPL')],['mSc','SCL Avl',avlLv('SCL')]].map(([i,l,v])=>S1(`<u>${l}</u><input id="${i}" type="number" step="0.5" min="0" value="${v}" class="inp"/>`)).join(''))+B("svLvEd('m')",'bt bE w-full','✓ Save Quotas & Leaves')):'')+
 (S.aMod==='wa'?mBox('💬 Half-Day & OT WhatsApp Share',
 D('g2 my-2',B("S.waCat='full_day_ot';window._uOt=0;uWaOt(1);u()",`py-1.5 ${bc}${isOt?'bg-[#800000]'+tw:'sb ts'}`,'♦️ OT Punch Out')+B("S.waCat='half_day';u()",`py-1.5 ${bc}${!isOt?'bC':'sb ts'}`,'🕒 Half Day (FN/AN)'))+
 D('g2 m2',`<div><i>Shift</i>${sl('wSh','C1,A2,B2,C2,A',wSh).replace('<select','<select onchange="uWaOt(1)"')}</div><div><i>Time</i>${ip('wTm','','text',wTm,'uWaOt(1)')}</div>`+(isOt?`<div><i>OT Hrs</i><input id="wOt" type="number" step="0.5" min="0" value="${wOt}" oninput="uWaOt(0)" class="inp"/></div><div><i>Date</i>${ip('wDt','','date',sDt,'uWaOt(1)')}</div>`:B("S.waSes='First Half';S.waTp='IN';u()",`py-2 ${bc}${!isAn?'bg-green-600'+tw:'sb ts'}`,'🟢 Forenoon Leave (In)')+B("S.waSes='Second Half';S.waTp='OUT';u()",`py-2 ${bc}${isAn?'bg-red-600'+tw:'sb ts'}`,'🔴 Afternoon Leave (Out)')))+
