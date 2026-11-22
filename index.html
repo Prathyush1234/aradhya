@@ -755,7 +755,7 @@ C(F('<b>🛡️ CSL Employee Income Tax Rules & Tips (FY 2026-27)</b>'+B("go('sa
 function vTax(){vTax0();return vTax1()+vTax2()+vTax3();}
 function ccDays(stD=15,duD=5){const d=tD();let toSt=stD-d;if(toSt<0)toSt+=30;let gr=duD-stD;if(gr<=0)gr+=30;return toSt+gr}
 function syncMonSal(){const adm=S.adm||DADM,bp=+S.sal.b||+S.txI.b||25340,hrs=+(S.sal.otH||cycOT(S.sal.cycM??curCycM())),da=bp*(+adm.da||54.1)/100,hr=bp*(+adm.hra||20)/100,
-ot=((bp+da)/(+adm.div||198))*2*hrs,pf=(bp+da)*(.12);S.mInc=Math.max(10000,Math.round(bp+da+hr+ot-pf));u()}
+ot=Math.max(0,Math.round(hrs>0?((bp+da)/(+adm.div||198))*2*hrs:(+S.txI.otA||0)/12)),pf=(bp+da)*(.12);S.mInc=Math.max(10000,Math.round(bp+da+hr-pf));S.mOt=ot;u()}
 function hasLn(k=''){const a=Array.isArray(S.lns)&&S.lns.length?S.lns:(S.lnTp==='both'?['house','personal','gold']:S.lnTp==='pg'?['personal','gold']:S.lnTp&&S.lnTp!=='none'?[S.lnTp]:[]);return a.includes(k)}
 Object.assign(window,{vTax3,vTax,ccDays,syncMonSal,hasLn});
 // === END PART 36 ===
@@ -777,38 +777,39 @@ dt:nDT()})}u()}
 Object.assign(window,{selLn,selCc,calcEmiM,uHl,uPl,adHlTx,adPlTx,uGl,adGlTx});
 // === END PART 37 ===
 // === START PART 38 ===
-function vMon0a(){const inc=+S.mInc||0,nLim=Math.round(inc*.5),wLim=Math.round(inc*.3),sLim=Math.round(inc*.2),useCc=+(S.ccMod??3)>0,md=S.ccMod===2?2:3,hH=hasLn('house'),hP=hasLn('personal'),hG=hasLn('gold'),noLn=!hH&&!hP&&!hG,allLn=hH&&hP&&hG,
+function vMon0a(){const baseInc=+S.mInc||0,otInc=+S.mOt||0,inc=baseInc+otInc,nLim=Math.round(inc*.5),wLim=Math.round(inc*.3),sLim=Math.round(inc*.2),useCc=+(S.ccMod??3)>0,md=S.ccMod===2?2:3,hH=hasLn('house'),hP=hasLn('personal'),hG=hasLn('gold'),noLn=!hH&&!hP&&!hG,allLn=hH&&hP&&hG,
 pgLn=!hH&&hP&&hG,
 tab=(!useCc&&S.mTab==='cards')?'spend':(S.mTab||'spend');
+const bNeed=Math.round(baseInc*.5),bWant=Math.round(baseInc*(noLn?.3:.15)),bSav=Math.round(baseInc*.2),otLn=Math.round(otInc*.5),otEm=Math.round(otInc*.3),otFn=Math.max(0,otInc-otLn-otEm);
 const needS=S.txs.filter(x=>(x.bk||'needs')==='needs').reduce((a,x)=>a+(+x.a||0),0),wantS=S.txs.filter(x=>x.bk==='wants').reduce((a,x)=>a+(+x.a||0),0),
 savS=S.txs.filter(x=>x.bk==='savings').reduce((a,x)=>a+(+x.a||0),0);
 const tB=S.bks.reduce((a,b)=>a+(+b.bl||0),0),actC=useCc?S.cds.slice(0,md):[],tLm=actC.reduce((a,c)=>a+(+c.lm||50000),0),tC=actC.reduce((a,c)=>a+(+c.us||0),
 0),uPct=tLm>0?Math.round(tC/tLm*100):0,tS=needS+wantS;
 const rnk=[...actC].sort((a,b)=>ccDays(b.stD||15,b.duD||5)-ccDays(a.stD||15,b.duD||5)),best=rnk[0]||actC[0]||null,mOpts=[...(useCc?S.cds.map(c=>c.b):[]),
 ...S.bks.map(b=>b.b),'UPI / GPay',...(useCc?['Credit Card']:[]),'Bank Account','Cash'].filter((v,i,a)=>v&&a.indexOf(v)===i).join(',');
-const hl=S.hl||{on:0,ln:'',rt:8.5,mo:240,emi:'',ex:''},P0=+(hl.ln||0),rt0=+(hl.rt??8.5),nM=Math.max(1,+(hl.mo||(hl.yr?Math.round(+hl.yr*12):240))),rM=rt0/1200,cEmi=calcEmiM(P0,rt0,nM),hlEmi=P0>0?cEmi:+(hl.emi||0),hlSug=P0>0&&hlEmi>0?Math.max(1000,Math.round(hlEmi*.2/100)*100):0,hlEx=+(hl.ex||0)||hlSug,hlPct=inc>0?Math.round(hlEmi/inc*100):0,remInc=Math.max(0,
+const hl=S.hl||{on:0,ln:'',rt:8.5,mo:240,emi:'',ex:''},P0=+(hl.ln||0),rt0=+(hl.rt??8.5),nM=Math.max(1,+(hl.mo||(hl.yr?Math.round(+hl.yr*12):240))),rM=rt0/1200,cEmi=calcEmiM(P0,rt0,nM),hlEmi=P0>0?cEmi:+(hl.emi||0),hlSug=P0>0&&hlEmi>0?(otInc>0?Math.max(1000,Math.round(otInc*.4/100)*100):Math.max(1000,Math.round(hlEmi*.2/100)*100)):0,hlEx=+(hl.ex||0)||hlSug,hlPct=inc>0?Math.round(hlEmi/inc*100):0,remInc=Math.max(0,
 inc-hlEmi),hlNeedB=Math.max(0,Math.round(inc*.65)-hlEmi),hlWantB=Math.round(inc*.15),intYr=P0>0?Math.min(200000,Math.round(P0*rt0/100)):Math.min(200000,
 Math.round(hlEmi*8.4));
 let nInt=P0>0&&hlEmi>P0*rM?Math.max(0,hlEmi*nM-P0):0,pM=nM,pInt=0;if(P0>0&&hlEmi>P0*rM&&hlEx>0){let bl=P0,mc=0;while(bl>0&&mc<nM){const mi=bl*rM;pInt+=mi;
 const pr=hlEmi+hlEx-mi;if(pr<=0)break;bl-=pr;mc++}pM=mc}const intSv=Math.max(0,Math.round(nInt-pInt)),mSv=Math.max(0,nM-pM),yrSv=(""+(Math.floor(mSv/12))+
 " Yr "+(mSv%12)+" Mo");
-return(window._vm={inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,tab,needS,wantS,savS,tB,actC,tLm,tC,uPct,tS,rnk,best,mOpts,hl,P0,rt0,nM,rM,cEmi,hlEmi,hlSug,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,nInt,pM,pInt,intSv,mSv,yrSv});}
+return(window._vm={baseInc,otInc,inc,nLim,wLim,sLim,bNeed,bWant,bSav,otLn,otEm,otFn,useCc,md,hH,hP,hG,noLn,allLn,pgLn,tab,needS,wantS,savS,tB,actC,tLm,tC,uPct,tS,rnk,best,mOpts,hl,P0,rt0,nM,rM,cEmi,hlEmi,hlSug,hlEx,hlPct,remInc,hlNeedB,hlWantB,intYr,nInt,pM,pInt,intSv,mSv,yrSv});}
 Object.assign(window,{vMon0a});
 // === END PART 38 ===
 // === START PART 39 ===
-function vMon0b(){const{inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,needS,wantS,savS,tB,tC,uPct,hlEmi,hlPct}=window._vm;const pl=S.pl||{ln:'',rt:12.5,mo:60,emi:'',ex:''},P1=+(pl.ln||0),rt1=+(pl.rt??12.5),nM1=Math.max(1,+(pl.mo||(pl.yr?Math.round(+pl.yr*12):60))),rM1=rt1/1200,cEmi1=calcEmiM(P1,rt1,nM1),plEmi=P1>0?cEmi1:+(pl.emi||0),plSug=P1>0&&plEmi>0?Math.max(1000,Math.round(plEmi*.3/100)*100):0,plEx=+(pl.ex||0)||plSug,plPct=inc>0?Math.round(plEmi/inc*100):0,plNeedB=Math.max(0,
+function vMon0b(){const{baseInc,otInc,inc,nLim,wLim,sLim,useCc,md,hH,hP,hG,noLn,allLn,pgLn,needS,wantS,savS,tB,tC,uPct,hlEmi,hlPct}=window._vm;const pl=S.pl||{ln:'',rt:12.5,mo:60,emi:'',ex:''},P1=+(pl.ln||0),rt1=+(pl.rt??12.5),nM1=Math.max(1,+(pl.mo||(pl.yr?Math.round(+pl.yr*12):60))),rM1=rt1/1200,cEmi1=calcEmiM(P1,rt1,nM1),plEmi=P1>0?cEmi1:+(pl.emi||0),plSug=P1>0&&plEmi>0?(otInc>0?Math.max(1000,Math.round(otInc*.6/100)*100):Math.max(1000,Math.round(plEmi*.3/100)*100)):0,plEx=+(pl.ex||0)||plSug,plPct=inc>0?Math.round(plEmi/inc*100):0,plNeedB=Math.max(0,
 Math.round(inc*.6)-plEmi),plWantB=Math.round(inc*.1),plSavB=Math.round(inc*.3);
 let nInt1=P1>0&&plEmi>P1*rM1?Math.max(0,plEmi*nM1-P1):0,pM1=nM1,pInt1=0;if(P1>0&&plEmi>P1*rM1&&plEx>0){let bl=P1,mc=0;while(bl>0&&mc<nM1){const mi=bl*rM1;
 pInt1+=mi;const pr=plEmi+plEx-mi;if(pr<=0)break;bl-=pr;mc++}pM1=mc}const plIntSv=Math.max(0,Math.round(nInt1-pInt1)),plMSv=Math.max(0,nM1-pM1);
-const gl=S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''},P2=+(gl.ln||0),rt2=+(gl.rt??9),mo2=Math.max(1,+(gl.mo||12)),rM2=rt2/1200,cEmi2=calcEmiM(P2,rt2,mo2),glEmi=P2>0?cEmi2:+(gl.emi||0),glSug=P2>0&&glEmi>0?Math.max(500,Math.round(glEmi*.25/100)*100):0,
+const gl=S.gl||{ln:'',rt:9,mo:12,emi:'',ex:''},P2=+(gl.ln||0),rt2=+(gl.rt??9),mo2=Math.max(1,+(gl.mo||12)),rM2=rt2/1200,cEmi2=calcEmiM(P2,rt2,mo2),glEmi=P2>0?cEmi2:+(gl.emi||0),glSug=P2>0&&glEmi>0?(otInc>0?Math.max(500,Math.round(otInc*.5/100)*100):Math.max(500,Math.round(glEmi*.25/100)*100)):0,
 glEx=+(gl.ex||0)||glSug,glPct=inc>0?Math.round(glEmi/inc*100):0,glNeedB=Math.max(0,Math.round(inc*.6)-glEmi),glWantB=Math.round(inc*.15),glSavB=Math.round(inc*.25);
 let nInt2=P2>0&&glEmi>P2*rM2?Math.max(0,glEmi*mo2-P2):0,pM2=mo2,pInt2=0;if(P2>0&&glEmi>P2*rM2&&glEx>0){let bl=P2,mc=0;while(bl>0&&mc<mo2){const mi=bl*rM2;pInt2+=mi;const pr=glEmi+glEx-mi;if(pr<=0)break;bl-=pr;mc++}pM2=mc}const glIntSv=Math.max(0,
 Math.round(nInt2-pInt2)),glMSv=Math.max(0,mo2-pM2),rtDf=Math.max(0,+(rt1-rt2).toFixed(1)),pgArb=Math.round(((P1||P2||200000)*rtDf)/100),pgEmi=plEmi+glEmi,pgPct=inc>0?Math.round(pgEmi/inc*100):0;
 const lnBar=D('g3',[['house',(hH?'✓ ':'')+'🏠 ഹൗസ് ലോൺ',hH,'bg-amber-500 text-slate-950 font-black'],['personal',(hP?'✓ ':'')+'💼 പേഴ്സണൽ ലോൺ',hP,'bg-cyan-400 text-slate-950 font-black'],['gold',(hG?'✓ ':'')+'🪙 ഗോൾഡ് ലോൺ',
 hG,'bg-yellow-400 text-slate-950 font-black'],['pg',(pgLn?'✓ ':'')+'💼+🪙 പേഴ്സണൽ+ഗോൾഡ്',pgLn,'bg-amber-400 text-slate-950 font-black'],['both',(allLn?'✓ ':'')+'🏛️ എല്ലാം (All 3)',allLn,'bg-amber-500 text-slate-950 font-black'],
 ['none','🚫 ലോൺ ഇല്ല',noLn,'bE font-black']].map(([k,l,on,cl])=>B(("selLn('"+(k)+"')"),("py-1.5 px-1.5 rx tx "+(on?cl:'sb ts')),String(l))).join(''));
-window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n👤 *"+(S.name||'CSL Employee')+"* ("+(S.tok||'—')+")\n• Monthly Income: *"+
-(R(inc))+"*\n• 50% Needs: *"+(R(needS))+" / "+(R(nLim))+"*\n• 30% Wants: *"+(R(wantS))+" / "+(R(wLim))+"*\n• 20% Savings: *"+(R(savS))+" / "+(R(sLim))+
+window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n👤 *"+(S.name||'CSL Employee')+"* ("+(S.tok||'—')+")\n• Total Income: *"+
+(R(inc))+"* (Salary: "+R(baseInc)+" + OT: "+R(otInc)+")\n• 50% Needs: *"+(R(needS))+" / "+(R(nLim))+"*\n• 30% Wants: *"+(R(wantS))+" / "+(R(wLim))+"*\n• 20% Savings: *"+(R(savS))+" / "+(R(sLim))+
 "*"+(hH&&hlEmi?("\n• House Loan EMI: *"+(R(hlEmi))+"* ("+(hlPct)+"%)"):'')+(hP&&plEmi?("\n• Personal Loan EMI: *"+(R(plEmi))+"* ("+(plPct)+"%)"):'')+(hG&&glEmi?("\n• Gold Loan Pay: *"+(R(glEmi))+"* ("+(glPct)+"%)"):'')+"\n• Bank Balance: *"+
 (R(tB))+"*"+(useCc?(" | Card Used: *"+(R(tC))+"* ("+(uPct)+"%)"):''));
 const tabs=[['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")],['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],['cards',useCc?("💳 കാർഡ് ("+(md)+")"):'💳 കാർഡ് (Off)'],['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")]];
@@ -822,18 +823,20 @@ D(useCc?'g4 m2':'g3 m2',st('Bank Balance',R(tB),'te')+(useCc?st(("Cards ("+(uPct
 D('grid grid-cols-5 gap-1 p-1 bg-[#03131e] rounded-xl border border-[#123d59] m2',tabs.map(([k='',l=''])=>B(("set('mTab','"+(k)+
 "')"),("py-2 rx tx text-center "+(tab===k?'bC font-black shadow':'ts')),l)).join(''));}
 const vCcOff=()=>S1('<div class="text-center py-3"><b class="sm ta block mb-1">💳 ക്രെഡിറ്റ് കാർഡ് വിഭാഗം ഇപ്പോൾ ഓഫ് ആണ്</b><i class="block mb-2">2 അല്ലെങ്കിൽ 3 കാർഡ് പ്ലാൻ ഓൺ ചെയ്യാൻ താഴെ ക്ലിക്ക് ചെയ്യുക.</i><div class="fc gap-2">'+B('selCc(2)','bt bA tx','💳 2 Cards')+B('selCc(3)','bt bC tx','💳 3 Cards')+'</div></div>','m2 border-cyan-500/40');
-Object.assign(window,{vMon1,vCcOff});
+function vMonPlan(){const{baseInc,otInc,inc,nLim,wLim,bNeed,bWant,bSav,otLn,otEm,otFn,noLn}=window._vm;return S1(F("<b class=\"tc\">📅 ഈ മാസത്തെ ബജറ്റ് എങ്ങനെ പ്ലാൻ ചെയ്യാം (Salary + OT പ്ലാൻ)</b><span class=\"fm tx te\"><b>ആകെ: "+R(inc)+"</b></span>",'mb-1 flex-wrap')+D('g3 text-[10px]',S1("<b class=\"tc block mb-0.5\">1. 💵 ശമ്പള പ്ലാൻ ("+R(baseInc)+")</b><div class=\"fm\">• അവശ്യം & EMI (50%): <b>"+R(bNeed)+"</b><br>• ആഗ്രഹങ്ങൾ ("+(noLn?'30%':'15%')+"): <b>"+R(bWant)+"</b><br>• <span class=\"te\">1-ആം തീയതി Save (20%): <b>"+R(bSav)+"</b></span></div>")+S1("<b class=\"ta block mb-0.5\">2. ⚡ OT വരുമാന പ്ലാൻ ("+R(otInc)+")</b>"+(otInc>0?("<div class=\"fm\">• <span class=\"ta\">50% "+(noLn?'SIP / Gold നിക്ഷേപം':'ലോൺ അടവ് (Extra OT)')+": <b>"+R(otLn)+"</b></span><br>• <span class=\"te\">30% Emergency/Save: <b>"+R(otEm)+"</b></span><br>• 20% കുടുംബം/ചെലവ്: <b>"+R(otFn)+"</b></div>"):'<i>മുകളിൽ <b>OT Income ₹</b> ചേർക്കുകയോ <b>⚡ Sync Salary</b> അമർത്തുകയോ ചെയ്താൽ OT ബജറ്റ് പ്ലാൻ ഇവിടെ കാണാം.</i>'))+S1("<b class=\"te block mb-0.5\">3. ✅ ഈ മാസത്തെ ആകെ ലക്ഷ്യം</b><div class=\"fm\">• ആകെ ചെലവ് പരിധി: <b>"+R(nLim+wLim)+"</b><br>• <span class=\"te\">ആകെ സമ്പാദ്യം: <b>"+R(bSav+otEm)+"</b></span><br>• <span class=\"ta\">⚡ "+(noLn?'അധിക നിക്ഷേപം':'ലോൺ എക്സ്ട്രാ OT')+": <b>"+R(otLn)+"</b></span></div>")),'m2 bg-[#041a26] border-cyan-500/40');}
+Object.assign(window,{vMon1,vCcOff,vMonPlan});
 // === END PART 40 ===
 // === START PART 41 ===
-function vMonBud(){const{inc,nLim,wLim,sLim,hH,hP,hG,noLn,tab,needS,wantS,savS}=window._vm;return (tab==='budget'?S1(F("<div><b class=\"sm te\">📊 50 / 30 / 20 Smart Budget Split (സ്മാർട്ട് ബജറ്റ് പ്ലാൻ)</b><div><i>ശമ്പളവും OT-യും 50% അവശ്യം · 30% ആഗ്രഹങ്ങൾ · 20% സമ്പാദ്യം എന്ന ക്രമ"+
-"ത്തിൽ വിഭജിക്കുക</i></div></div>"+L(("<div class=\"fl\"><i>Income ₹:</i><input type=\"number\" placeholder=\"Monthly Income\" value=\""+(inc||'')+"\" onchange=\"S.mInc=+this.value||0;u"+
-"()\" class=\"inp w-28 fm text-right\"/></div>")+B('syncMonSal()','bt bC tx','⚡ Sync Salary')),'m2 flex-wrap')+
+function vMonBud(){const{baseInc,otInc,inc,nLim,wLim,sLim,hH,hP,hG,noLn,tab,needS,wantS,savS}=window._vm;return (tab==='budget'?S1(F("<div><b class=\"sm te\">📊 50 / 30 / 20 Smart Budget Split (സ്മാർട്ട് ബജറ്റ് പ്ലാൻ)</b><div><i>ശമ്പളവും OT-യും 50% അവശ്യം · 30% ആഗ്രഹങ്ങൾ · 20% സമ്പാദ്യം എന്ന ക്രമ"+
+"ത്തിൽ വിഭജിക്കുക</i></div></div>"+B('syncMonSal()','bt bC tx','⚡ Sync Salary'),'m2 flex-wrap')+
+D('g3 m2',S1("<i class=\"tc\">💵 Salary Income ₹:</i><input type=\"number\" placeholder=\"Monthly Salary\" value=\""+(baseInc||'')+"\" onchange=\"S.mInc=+this.value||0;u()\" class=\"inp fm mt-0.5\"/>")+S1("<i class=\"ta\">⚡ Overtime (OT) Income ₹:</i><input type=\"number\" placeholder=\"Monthly OT ₹\" value=\""+(otInc||'')+"\" onchange=\"S.mOt=+this.value||0;u()\" class=\"inp fm ta mt-0.5\"/>")+S1("<i class=\"te\">💰 ആകെ മാസ വരുമാനം</i><div class=\"bs fm te mt-1\"><b>"+R(inc)+"</b></div><div class=\"text-[9px] ts\">Salary + OT</div>"))+
 D('g3 m2',[['🏠 50% NEEDS (അവശ്യ ചിലവുകൾ)',needS,nLim,'tc','bg-cyan-400','വീട്ടുചിലവ്, പലചരക്ക്, ബില്ലുകൾ, പെട്രോൾ, EMI എന്നിവ 50%-ൽ ഒതുക്കുക.'],['🎉 30% WANTS (ആഗ്രഹങ്ങൾ)',
 wantS,wLim,'ta','bg-amber-400','ഹോട്ടൽ ഭക്ഷണം, ഷോപ്പിംഗ്, സിനിമ, യാത്രകൾ എന്നിവ 30%-ൽ കൂടാതെ നിയന്ത്രിക്കുക.'],['💎 20% SAVINGS (സമ്പാദ്യം)',savS,sLim,
 'te','bg-emerald-400','ശമ്പളം കിട്ടുന്ന 1-ആം തീയതി തന്നെ 20% തുക SIP / PPF / Emergency Fund-ലേക്ക് മാറ്റുക.']].map(([t,u0,l0,c,bg,tip])=>{const p=l0>0?Math.min(100,
 Math.round((+u0/Math.max(1,+l0))*100)):0;return S1(F(("<b class=\""+(c)+" tx\">"+(t)+"</b><span class=\"fm tx\">"+(p)+"%</span>"))+("<div class=\"bs fm my-0.5\"><b>"+
 (R(+u0))+"</b> <i class=\"tx\">/ "+(R(+l0))+"</i></div><div class=\"w-full h-1.5 bg-[#020d16] rf overflow-hidden my-1\"><div class=\"h-full "+(bg)+"\" style=\"width:"+
 (p)+"%\"></div></div><div class=\"text-[9px] ts\">Rem: <b class=\"text-white\">"+(R(Math.max(0,+l0-+u0)))+"</b> · "+(tip)+"</div>"))}).join(''))+
+vMonPlan()+
 S1(("<b class=\"tc block mb-1\">🧠 50/30/20 ബുദ്ധിപരമായി കൈകാര്യം ചെയ്യാനുള്ള 3 വഴികൾ:</b><div class=\"g3 text-[10px]\"><div><b class=\"te\">1. 3-Bank Account രീതി:</b><br><i>(A) SBI Sa"+
 "lary A/c: ശമ്പളം & EMI · (B) Daily UPI A/c: 50%+30% ചിലവുകൾക്ക് · (C) Savings A/c: 20% സമ്പാദ്യത്തിന് (UPI ഓഫ് ചെയ്യുക).</i></div><div><b class=\"ta\">2. CSL Overtime (OT) 50:50 നിയമം:"+
 "</b><br><i>ബേസിക് ശമ്പളം കൊണ്ട് വീട്ടുചിലവ് നടത്തുക; OT തുകയുടെ 50% Emergency Fund-ലേക്കും 50% ലോൺ ക്ലോസ് ചെയ്യാനും മാറ്റിവെക്കുക.</i></div><div><b class=\"tc\">3. 1-ആം തീയതി Auto-Save"+
