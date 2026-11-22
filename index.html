@@ -817,21 +817,18 @@ window._monMsg=("*COCHIN SHIPYARD LIMITED (CSL)*\n*🏦 MONEY & SMART BUDGET*\n�
 (R(inc))+"*\n• 50% Needs: *"+(R(needS))+" / "+(R(nLim))+"*\n• 30% Wants: *"+(R(wantS))+" / "+(R(wLim))+"*\n• 20% Savings: *"+(R(savS))+" / "+(R(sLim))+
 "*"+(hH&&hlEmi?("\n• House Loan EMI: *"+(R(hlEmi))+"* ("+(hlPct)+"%)"):'')+(hP&&plEmi?("\n• Personal Loan EMI: *"+(R(plEmi))+"* ("+(plPct)+"%)"):'')+(hG&&glEmi?("\n• Gold Loan Pay: *"+(R(glEmi))+"* ("+(glPct)+"%)"):'')+"\n• Bank Balance: *"+
 (R(tB))+"*"+(useCc?(" | Card Used: *"+(R(tC))+"* ("+(uPct)+"%)"):''));
-const tabs=[['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")],['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],...(useCc?[['cards',("💳 കാർഡ് ("+(md)+")")]]:[]),['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")]];
+const tabs=[['spend',("🧾 ചെലവ് ("+(S.txs.length)+")")],['budget','📊 ബജറ്റ്'],['loans','🏠 ലോൺ പ്ലാൻ'],['cards',useCc?("💳 കാർഡ് ("+(md)+")"):'💳 കാർഡ് (Off)'],['banks',("🏦 ബാങ്ക് ("+(S.bks.length)+")")]];
 return Object.assign(window._vm,{pl,P1,rt1,yr1,rM1,nM1,cEmi1,plEmi,plEx,plPct,plNeedB,plWantB,plSavB,nInt1,pM1,pInt1,plIntSv,plMSv,gl,P2,rt2,mo2,rM2,cEmi2,glEmi,glEx,glPct,glNeedB,glWantB,glSavB,nInt2,pM2,pInt2,glIntSv,glMSv,rtDf,pgArb,pgEmi,pgPct,lnBar,tabs});}
 Object.assign(window,{vMon0b});
 // === END PART 39 ===
 // === START PART 40 ===
-function vMon1(){const{useCc,tab,savS,tB,tC,uPct,tS,lnBar,tabs}=window._vm;return F("<div><h2 class=\"bs\">🏦 Permanent Employee Money Management</h2></div>"+
+function vMon1(){const{useCc,tab,savS,tB,tC,uPct,tS,tabs}=window._vm;return F("<div><h2 class=\"bs\">🏦 Permanent Employee Money Management</h2></div>"+
 B("launchWa(window._monMsg)",'bt bg-[#25D366] text-slate-950 tx','💬 Share'),'m2')+
 D(useCc?'g4 m2':'g3 m2',st('Bank Balance',R(tB),'te')+(useCc?st(("Cards ("+(uPct)+"%)"),R(tC),'ta'):'')+st('Needs+Wants',R(tS),'tr0')+st('20% Savings',R(savS),'tc'))+
-S1(D('g2',("<div><b class=\"ta tx block mb-1\">1. 🏠 ലോണുകൾ തിരഞ്ഞെടുക്കുക (ഒന്നോ അതിലധികമോ സെലക്ട് ചെയ്യാം):</b>"+(lnBar)+"</div><div><b class=\"tc tx block mb-1\">2. 💳 ക്രെഡിറ്റ് കാർഡ് ഉപയോഗിക്കുന്നുണ്ടോ?:</b><div class=\"g3\">"+
-([[0,'🚫 ഇല്ല'],[2,'💳 2 കാർഡ്'],
-[3,'💳 3 കാർഡ്']].map(([n,l])=>B(("selCc("+(n)+")"),("py-1.5 px-2 rx tx "+((+S.ccMod||0)===n?'bC font-black':'sb ts')),String(l))).join(''))+"</div><i class=\"block mt-1 text-[9px]\">"+
-(useCc?'ക്രെഡിറ്റ് കാർഡ് പ്ലാൻ സജീവമാണ് (45–50d പലിശരഹിതം)':'✓ ക്രെഡിറ്റ് കാർഡ് ഒഴിവാക്കി — കാർഡ് വിവരങ്ങൾ മറച്ചു')+"</i></div>")),'m2 border-cyan-500/40 bg-[#041824]')+
-D(("grid "+(useCc?'grid-cols-5':'grid-cols-4')+" gap-1 p-1 bg-[#03131e] rounded-xl border border-[#123d59] m2"),tabs.map(([k='',l=''])=>B(("set('mTab','"+(k)+
+D('grid grid-cols-5 gap-1 p-1 bg-[#03131e] rounded-xl border border-[#123d59] m2',tabs.map(([k='',l=''])=>B(("set('mTab','"+(k)+
 "')"),("py-2 rx tx text-center "+(tab===k?'bC font-black shadow':'ts')),l)).join(''));}
-Object.assign(window,{vMon1});
+const vCcOff=()=>S1('<div class="text-center py-3"><b class="sm ta block mb-1">💳 ക്രെഡിറ്റ് കാർഡ് വിഭാഗം ഇപ്പോൾ ഓഫ് ആണ്</b><i class="block mb-2">2 അല്ലെങ്കിൽ 3 കാർഡ് പ്ലാൻ ഓൺ ചെയ്യാൻ താഴെ ക്ലിക്ക് ചെയ്യുക.</i><div class="fc gap-2">'+B('selCc(2)','bt bA tx','💳 2 Cards')+B('selCc(3)','bt bC tx','💳 3 Cards')+'</div></div>','m2 border-cyan-500/40');
+Object.assign(window,{vMon1,vCcOff});
 // === END PART 40 ===
 // === START PART 41 ===
 function vMonBud(){const{inc,nLim,wLim,sLim,hH,hP,hG,noLn,tab,needS,wantS,savS}=window._vm;return (tab==='budget'?S1(F("<div><b class=\"sm te\">📊 50 / 30 / 20 Smart Budget Split (സ്മാർട്ട് ബജറ്റ് പ്ലാൻ)</b><div><i>ശമ്പളവും OT-യും 50% അവശ്യം · 30% ആഗ്രഹങ്ങൾ · 20% സമ്പാദ്യം എന്ന ക്രമ"+
@@ -961,7 +958,7 @@ S1(("<b class=\"ta block mb-1\">🛡️ "+(md)+" ക്രെഡിറ്റ് 
 " (Bill: 15th) ഉപയോഗിക്കുക → അടുത്ത മാസം 5 വരെ (50 ദിവസം) പലിശയില്ല!"+(md===3?'<br>• <b>മാസം 26 മുതൽ 2 വരെ:</b> Card 3 (Bill: 25th) ഓൺലൈൻ ബില്ലുകൾക്ക് ഉപയോഗിക്കുക (47d Free).':'')+
 "</i></div><div><b class=\"te\">2. CIBIL 780+ & പലിശ ഒഴിവാക്കാനുള്ള നിയമങ്ങൾ:</b><br><i>• <b>30% Limit Rule:</b> കാർഡ് ലിമിറ്റിന്റെ 30%-ൽ താഴെ മാത്രം ഉപയോഗിക്കുക.<br>• <b>Total Due Only"+
 ":</b> ഒരിക്കലും Minimum Due അടയ്ക്കരുത്; എപ്പോഴും Full Bill അടയ്ക്കുക.<br>• <b>No ATM Cash:</b> ക്രെഡിറ്റ് കാർഡ് കൊണ്ട് ATM-ൽ നിന്ന് പണം എടുക്കരുത്.</i></div></div>"),
-'bg-[#041a26] border-amber-500/40'),'m2 border-amber-500/40'):'');}
+'bg-[#041a26] border-amber-500/40'),'m2 border-amber-500/40'):tab==='cards'?vCcOff():'');}
 Object.assign(window,{vMonCc});
 // === END PART 46 ===
   // === START PART 47 ===
