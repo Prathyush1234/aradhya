@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 <meta name="screen-orientation" content="portrait">
+<meta name="x5-orientation" content="portrait">
 <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
@@ -39,7 +40,6 @@ i{font-size:10px;color:#94a3b8}u{font-size:10px;color:#22d3ee;font-weight:700}em
 .g2,.g3,.g4,.g5,.g7{display:grid;gap:5px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g7{grid-template-columns:repeat(7,1fr);gap:3px}
 .tx{font-size:10px}.sm{font-size:13px}.bs{font-size:15px}.lg{font-size:17px}.m2{margin-bottom:7px}.rx{border-radius:8px}.rf{border-radius:50px}
 .ts{color:#94a3b8}.tc{color:#22d3ee}.ta{color:#fbbf24}.te{color:#34d399}.tr0{color:#fb7185}.fm{font-family:monospace}#cpBox{display:none!important}
-@media screen and (orientation:landscape) and (max-height:520px){html{transform:rotate(-90deg);transform-origin:left top;width:100vh;height:100vw;overflow-x:hidden;position:absolute;top:100%;left:0}}
 @media print{body *{visibility:hidden}#otPrn,#otPrn *{visibility:visible}#otPrn{position:fixed;inset:0;width:100%;background:#fff}}
 </style>
 </head>
@@ -955,7 +955,7 @@ Object.assign(window,{vMonBk,vMon,adB,adC,adX});
 // === END PART 47 ===
 // === START PART 48 ===
 function isFs(){return!!(document.fullscreenElement||document.webkitFullscreenElement)}
-function lockP(){try{screen.orientation?.lock?.('portrait-primary').catch(()=>{})}catch(e){}}
+function lockP(){try{const o=screen.orientation;if(o?.lock)o.lock('portrait').catch(()=>o.lock('portrait-primary').catch(()=>{}));else(screen.lockOrientation||screen.mozLockOrientation||screen.msLockOrientation)?.call(screen,'portrait')}catch(e){}}
 function enterFs(){lockP();if(S.noFs||isFs()||window.self!==window.top)return;try{const e=document.documentElement;Promise.resolve((e.requestFullscreen||e.webkitRequestFullscreen)?.call(e)).then(lockP).catch(()=>{})}catch(e){}}
 function togFs(){if(isFs()){S.noFs=1;try{Promise.resolve((document.exitFullscreen||document.webkitExitFullscreen)?.call(document)).catch(()=>{})}catch(e){}}else{S.noFs=0;enterFs()}}
 const NAV0=[['front','🏠 Front Page'],['dashboard','⚡ QuickAccess'],['attendance','📋 Attendance & Shifts'],['calendar','📅 CSL Calendar 2026'],['salary','💵 Salary Calculator'],['money','🏦 Money Management'],['tax','📊 Income Tax']];
@@ -966,7 +966,7 @@ function render(){
 if(window._isDl)return;H('cpBox')?.remove();chgFs(0);if(!H('navDrw'))document.body.insertAdjacentHTML('afterbegin','<div id="navDrw"></div>');
 if(!H('navBtn'))document.querySelector('header .fb')?.firstElementChild?.insertAdjacentHTML('afterbegin','<button id="navBtn" onclick="togNav()" class="bC px-2.5 py-1 rx sm mr-2">☰</button>');
 H("hdrLogo").innerHTML=cslLogo(36);if(H('admMod'))H('admMod').innerHTML=vAdmMod();H('navDrw').innerHTML=vNavDrw();
-H("fNav").innerHTML=NAV0.map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.slice(3)}</span>`).join(" • ");
+H("fNav").innerHTML=NAV0.filter(([v])=>v!=="tax").map(([v,l])=>`<span onclick="go('${v}')" class="tc">${l.slice(3)}</span>`).join(" • ");
 H('appView').innerHTML=({front:vFront,signin:vSign,dashboard:vDash,attendance:vAtt,calendar:vCal,salary:vSal,tax:vTax,money:vMon}[S.view]||vFront)();
 }
 Object.assign(window,{isFs,lockP,enterFs,togFs,chgFs,vNavDrw,togNav,render});
@@ -1000,6 +1000,7 @@ function onHwBack(){if(window._ignHash)return;const n=Date.now();if(n-(window._l
 S.pdfMod='';S.waPrev='';S.admOpen=0;S.slipOpen=0;window._hArm=0;navPush(S.view);u();return}if(S.view!=='dashboard'){window._hArm=0;window._dashTs=n;S.view='dashboard';
 u();scrollTo(0,0);return}if(n-(window._dashTs||0)<500)return;doExit()}
 window.addEventListener('popstate',onHwBack);window.addEventListener('hashchange',onHwBack);
+try{screen.orientation?.addEventListener?.('change',lockP);document.addEventListener('fullscreenchange',lockP)}catch(e){}
 window.addEventListener('load',()=>setTimeout(()=>{lockP();if(S.view!=='dashboard')navPush(S.view)},80));
 (function initApp(){
 if(location.search.includes('cslDl=')){
@@ -1021,7 +1022,7 @@ img.onload=()=>{
 const mk=(sz=192)=>{const c=document.createElement('canvas');c.width=c.height=sz;c.getContext('2d').drawImage(img,0,0,sz,sz);return c.toDataURL('image/png')};
 const i192=mk(192),i512=mk(512),u0=location.href.split('?')[0];if(H('apIcon'))H('apIcon').href=i192;
 const mf={id:u0,name:'My CSL - Cochin Shipyard Portal',short_name:'My CSL',description:'Cochin Shipyard Limited Official Employee Portal',start_url:u0,
-scope:'./',display:'fullscreen',display_override:['fullscreen','standalone'],orientation:'portrait-primary',background_color:'#010911',theme_color:'#041521',icons:[{src:i192,
+scope:'./',display:'fullscreen',display_override:['fullscreen','standalone'],orientation:'portrait',background_color:'#010911',theme_color:'#041521',icons:[{src:i192,
 sizes:'192x192',type:'image/png',purpose:'any'},{src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}]};
 if(H('mfLink'))H('mfLink').href='data:application/manifest+json;charset=utf-8,'+encodeURIComponent(JSON.stringify(mf));
 };img.src=url;
